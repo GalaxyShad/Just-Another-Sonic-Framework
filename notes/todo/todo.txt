@@ -1,0 +1,53 @@
+
+# [+] [BUG] Collision - stuck in floor after roll
+# [+] [BUG] DropDash - Dropdash animation in rolling
+# [+-] [BUG] Camera - camera shift when starting roll or jump
+# [+] [BUG] Crouching - crouching in air
+# [+] [BUG] Angle animation - wrong on 270
+# [+-] [BUG] Thickering in slopes
+# [+] [BUG] Camera - thickering rolling in air
+# [+-] [BUG] Collision - after landing  on edge no angle
+# [ ] [BUG?] Collision - jump through floor
+
+# [ ] [OPTIMIZATION] Collisions
+
+# [ ] [IMPROVEMENTS] New Sprites
+
+# [ ] [COMMON ENGINE] Global Controller - change Window Size, fullscr
+
+# [+-] [REFACTOR] Animation System
+# [ ] [REFACTOR] Actions
+
+# [+] [TODO] Camera - camera Lag after spindash or dropdash or dash
+# [ ] [TODO] Camera - camera look up, look down
+
+# [ ] [TODO] Background System - parallax
+
+# [+-] [TODO] Collision - layers
+# [ ] [TODO] Collision - platforms
+
+# [+] [TODO] Objects - rings
+# [+] [TODO] Objects - springs
+# [ ] [TODO] Objects - monitors, powerups
+# [+] [TODO] Objects - spikes
+# [ ] [TODO] Objects - enemy
+# [ ] [TODO] Objects - moving platforms
+# [ ] [TODO] Objects - end level sign
+
+# [ ] [TODO] SFX - flicky, explosion
+# [ ] [TODO] SFX - spindash smoke, braking smoke
+
+# [ ] [TODO] Physics - water
+# [ ] [TODO] Physics - super form
+
+# [ ] [TODO] Gimmicks - corcksew
+
+# [ ] [TODO] Player - get hit
+# [ ] [TODO] Player - die
+
+# [ ] [TODO] Characters - Tails 
+# [ ] [TODO] Characters - Knux
+
+# [ ] [TODO] HUD
+
+
