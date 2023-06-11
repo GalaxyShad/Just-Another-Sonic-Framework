@@ -15,9 +15,6 @@ function PlayerCollision() {
 		sensor.wall_box.vradius = 0;
 	}
 	
-	var ang_cos = dcos(sensor.angle);
-	var ang_sin = dsin(sensor.angle);
-		
 	while (sensor.is_collision_right()) {
 		x -= dcos(sensor.angle);
 		y += dsin(sensor.angle);
@@ -51,9 +48,8 @@ function PlayerCollision() {
 			}
 		}
 		
-	
 		// Landing
-		if (sensor.is_collision_bottom() && ysp > 0) {
+		if (sensor.is_collision_bottom(,2) && ysp > 0) {
 			ground = true;
 			
 			var _ang = sensor.get_ground_angle();
