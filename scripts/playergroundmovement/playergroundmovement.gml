@@ -15,8 +15,8 @@ function PlayerGroundMovement() {
 	} else if (gsp != 0)
 		gsp -= slp * sina;
 	
-	xsp = gsp *  dcos(sensor.angle);
-	ysp = gsp * -dsin(sensor.angle);
+	//xsp = gsp *  dcos(sensor.angle);
+	//ysp = gsp * -dsin(sensor.angle);
 	
 	
 	// Movement

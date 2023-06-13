@@ -4,8 +4,14 @@
 
 function PlayerCollision() {
 
+	if (ground) {
+		xsp = gsp *  dcos(sensor.angle);
+		ysp = gsp * -dsin(sensor.angle);
+	}
+	
 	x += xsp;
 	y += ysp;
+	
 	
 	x = clamp(x, 0 + sensor.wall_box.hradius, room_width - sensor.wall_box.hradius);
 	
@@ -49,7 +55,7 @@ function PlayerCollision() {
 		}
 		
 		// Landing
-		if (sensor.is_collision_bottom(,2) && ysp > 0) {
+		if (sensor.is_collision_bottom() && ysp > 0) {
 			ground = true;
 			
 			var _ang = sensor.get_ground_angle();

@@ -15,7 +15,26 @@ if (action == ACT_DIE) {
 player_switch_sensor_radius();
 
 
-PlayerCollision();
+if (ground) {
+	var _gsp = gsp;
+
+	var _d = 8;
+
+	gsp = _gsp % _d;
+	PlayerCollision();
+
+	for (var i = 0; i < floor(abs(_gsp) / _d) * _d; i+=_d) {
+		gsp = sign(_gsp)*_d;
+		PlayerCollision();	
+	}
+
+	gsp = _gsp;
+} else {
+	PlayerCollision();	
+}
+
+
+//PlayerCollision();
 
 //////////////////////////////////////////////////////
 
