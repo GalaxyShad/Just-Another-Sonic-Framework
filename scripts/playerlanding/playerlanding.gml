@@ -8,8 +8,8 @@ function player_landing() {
 	) {
 		action = ACT_NORMAL;
 			
-		y -= 5 * cos(degtorad(sensor.angle));
-		x += 5 * sin(degtorad(sensor.angle));
+		y -= 5 * dcos(sensor.get_angle());
+		x += 5 * dsin(sensor.get_angle());
 	}
 	
 	if (action == ACT_HURT) {
@@ -30,7 +30,7 @@ function player_landing() {
 			if (sign(image_xscale) == sign(xsp))
 				gsp = (gsp / 4) + (drpspd * sign(image_xscale));
 			else 
-				gsp = ( (sensor.angle == 0) ? 0 : (gsp / 2)) + (drpspd * sign(image_xscale));
+				gsp = ( (sensor.get_angle() == 0) ? 0 : (gsp / 2)) + (drpspd * sign(image_xscale));
 				
 			camera.lagTimer = 15;
 		} else {

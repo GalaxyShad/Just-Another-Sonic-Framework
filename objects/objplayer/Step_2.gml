@@ -6,7 +6,7 @@
 if (!ground) {
 	animation_angle += angle_difference(0, animation_angle) / 10;
 } else {
-	var _ang = (sensor.angle >= 35 && sensor.angle <= 325) ? sensor.angle : 0;
+	var _ang = (sensor.get_angle() >= 35 && sensor.get_angle() <= 325) ? sensor.get_angle() : 0;
 	animation_angle += angle_difference(_ang, animation_angle) / 4;
 }
 
@@ -122,8 +122,8 @@ switch (action) {
 	case ACT_BALANCING: {
 		image_speed = 0.5;
 		
-		if ((image_xscale == 1  && sensor.is_collision_left_edge()) || 
-			(image_xscale == -1 && sensor.is_collision_right_edge()))
+		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
+			(image_xscale == -1 && sensor.is_collision_ground_right_edge()))
 				sprite_index = sprSonicBalancing;
 		else
 			sprite_index = sprSonicBalancingB;

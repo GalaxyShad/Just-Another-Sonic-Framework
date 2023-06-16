@@ -14,14 +14,14 @@ if (!show_debug_info)
 	exit;
 
 draw_text(
-	16, 16,
+	16, 240,
 	"fps: " + string(fps) + "\n" +
 	"ground: " + string(ground) + "\n" +
 	"action: " + string(action) + "\n" +
 	"gsp: " + string(gsp) + "\n" +
 	"xsp: " + string(xsp) + "\n" +
 	"ysp: " + string(ysp) + "\n" +
-	"angle: " + string(sensor.angle) + "\n" +
+	"angle: " + string(sensor.get_angle()) + "\n" +
 	"animation_angle: " + string(animation_angle) + "\n"
 
 	/*

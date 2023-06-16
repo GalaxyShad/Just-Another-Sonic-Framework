@@ -24,23 +24,23 @@ var vbox = {
 };
 
 if (objFollow.x >= vbox.right)
-	x += min(follow_x - vbox.right, 16)
+	x += min(follow_x - vbox.right, MAX_SPD)
 	
 if (objFollow.x <= vbox.left)
-	x += max(follow_x - vbox.left, -16)
+	x += max(follow_x - vbox.left, -MAX_SPD)
 
 if (objFollow == objPlayer) {	
 	if ( objPlayer.ground) {
 		if ( objPlayer.gsp <= 8)
-			y += clamp(follow_y - y, -6, 6);
+			y += clamp(follow_y - y, -4, 4);
 		else 
-			y += clamp(follow_y - y, -16, 16);
+			y += clamp(follow_y - y, -MAX_SPD, MAX_SPD);
 	} else {
 		if (follow_y > vbox.bottom)
-			y += min(follow_y - vbox.bottom, 16);
+			y += min(follow_y - vbox.bottom, MAX_SPD);
 	
 		if (follow_y < vbox.top)
-			y += max(follow_y - vbox.top, -16);
+			y += max(follow_y - vbox.top, -MAX_SPD);
 	}
 }
 

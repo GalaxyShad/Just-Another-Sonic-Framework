@@ -5,89 +5,94 @@
 function PlayerCollision() {
 
 	if (ground) {
-		xsp = gsp *  dcos(sensor.angle);
-		ysp = gsp * -dsin(sensor.angle);
+		xsp = gsp *  dcos(sensor.get_angle());
+		ysp = gsp * -dsin(sensor.get_angle());
 	}
+	
 	
 	x += xsp;
-	y += ysp;
+	y += ysp;	
 	
 	
-	x = clamp(x, 0 + sensor.wall_box.hradius, room_width - sensor.wall_box.hradius);
+	sensor.set_position(x, y);
 	
-	if ( (sensor.angle <= 15 || sensor.angle >= 345 ) && ground) {
-		sensor.wall_box.vradius = 8;	
-	} else {
-		sensor.wall_box.vradius = 0;
-	}
+	x = clamp(x, 0, room_width);
+
 	
-	while (sensor.is_collision_right()) {
-		x -= dcos(sensor.angle);
-		y += dsin(sensor.angle);
+	sensor.set_wall_box(
+		( (sensor.get_angle() <= 15 || sensor.get_angle() >= 345 ) && ground) ? 
+		SENSOR_WALLBOX_NORMAL : SENSOR_WALLBOX_SLOPES
+	);
+	
+	var _cos_ang = dcos(sensor.get_angle());
+	var _sin_ang = dsin(sensor.get_angle());
+	
+	while (sensor.is_collision_solid_right()) {
+		x -= _cos_ang;
+		y += _sin_ang;
+		
+		sensor.set_position(x, y);
 	}
 
-	while (sensor.is_collision_left()) {
-		x += dcos(sensor.angle);
-		y -= dsin(sensor.angle);
+	while (sensor.is_collision_solid_left()) {
+		x += _cos_ang;
+		y -= _sin_ang;
+		
+		sensor.set_position(x, y);
 	}
 	
 	if (!ground) {	
-		sensor.angle = 0;
+		sensor.set_angle(0);
 		
-		if (sensor.is_collision_top() && ysp < 0) {
+		if (sensor.is_collision_solid_top() && ysp < 0) {
 	
-			sensor.angle = 180;
+			sensor.set_angle(180);
 			var ang = sensor.get_ground_angle();
 		
 			if ((ang >= 91 && ang <= 135) || (ang >= 226 && ang <= 270)) {
-				sensor.angle = ang;
+				sensor.set_angle(ang);
 				ground = true;
-				gsp = ysp * -sign(sin(sensor.angle));
+				gsp = ysp * -sign(dsin(sensor.get_angle()));
 			
 				player_landing();
 			} else {
-				sensor.angle = 0;
-			
+				sensor.set_angle(0);	
 				ysp = 0;
-			
-				while (sensor.is_collision_top()) y += 1;
 			}
 		}
 		
 		// Landing
-		if (sensor.is_collision_bottom() && ysp > 0) {
+		
+		if (!ground && sensor.is_collision_solid_bottom() && ysp > 0) {
 			ground = true;
 			
 			var _ang = sensor.get_ground_angle();
-
-			
-			
+		
 			if (_ang == 0) {
-				sensor.angle = 0;
+				sensor.set_angle(0);
 				
-				var is_col_left  = sensor.is_collision_left_edge();
-				var is_col_right = sensor.is_collision_right_edge();
+				var is_col_left  = sensor.is_collision_ground_left_edge();
+				var is_col_right = sensor.is_collision_ground_right_edge();
 			
 				if (!is_col_left && is_col_right) {
-					sensor.angle = 90;
+					sensor.set_angle(90);
 				} 
 			
 				if (is_col_left && !is_col_right) {
-					sensor.angle = 270;
+					sensor.set_angle(270);
 				}
 				
-				var temp_vradius = sensor.floor_box.vradius;
-				sensor.floor_box.vradius += 4;
-			
-				if (sensor.is_collision_bottom())
+				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) {
 					_ang = sensor.get_ground_angle();
+				} else {
+					_ang = 0;
+				}
 			
-				sensor.floor_box.vradius = temp_vradius;
 			}
 		
-			sensor.angle = _ang;
+			sensor.set_angle(_ang);
 		
-			_ang = abs(sensor.angle);
+			_ang = abs(sensor.get_angle());
 			if (_ang >= 180) 
 				_ang = 360 - _ang;
 		
@@ -98,13 +103,13 @@ function PlayerCollision() {
 				if (abs(xsp) > abs(ysp)) 
 					gsp = xsp;
 				else 
-					gsp = ysp / 2 * -sign(sin(degtorad(sensor.angle)));
+					gsp = ysp / 2 * -sign(dsin(sensor.get_angle()));
 			
 			} else if ( _ang >= 46 &&  _ang <= 100) {
 				if (abs(xsp) > abs(ysp))
 					gsp = xsp;
 				else 
-					gsp = ysp * -sign(sin(degtorad(sensor.angle)));
+					gsp = ysp * -sign(dsin(sensor.get_angle()));
 			}
 			
 			player_landing();
@@ -116,35 +121,30 @@ function PlayerCollision() {
 	}
 	
 	if (ground) {
+		_cos_ang = dcos(sensor.get_angle());
+		_sin_ang = dsin(sensor.get_angle());
 		
-		while (sensor.is_collision_bottom()) {
-			y -= dcos(sensor.angle);	
-			x -= dsin(sensor.angle);
-		}
-		
-		while (sensor.is_collision_bottom(parSolid, 1)) {
-			y -= dcos(sensor.angle);	
-			x -= dsin(sensor.angle);
-		}
-		
-		while (!sensor.is_collision_bottom() && 
+		while (!sensor.is_collision_solid_bottom() && 
 				sensor.is_collision_ground()
 		) {
-			y += dcos(sensor.angle);	
-			x += dsin(sensor.angle);
+			y += _cos_ang;	
+			x += _sin_ang;
+			sensor.set_position(x, y);
 		}
 		
-		sensor.angle = sensor.get_ground_angle();
+		while (sensor.is_collision_solid_bottom()) {
+			y -= _cos_ang;	
+			x -= _sin_ang;
+			sensor.set_position(x, y);
+		}
+		
+		sensor.set_angle(sensor.get_ground_angle());
 		
 		if (!sensor.is_collision_ground()) {
-			sensor.angle = 0;
+			sensor.set_angle(0);
 			ground = false;
 		} 
-
 	} 
-	
-
-	
 	
 
 }
