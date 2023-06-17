@@ -2,6 +2,7 @@
 // Вы можете записать свой код в этом редакторе
 
 var objFollow = objPlayer;
+
 if (!objFollow)
 	exit;
 	
@@ -42,6 +43,9 @@ if (objFollow == objPlayer) {
 		if (follow_y < vbox.top)
 			y += max(follow_y - vbox.top, -MAX_SPD);
 	}
+}
+else{
+	y += clamp(follow_y - y, -4, 4);
 }
 
 

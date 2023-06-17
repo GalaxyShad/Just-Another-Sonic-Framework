@@ -76,20 +76,20 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			
 			draw_set_color(make_color_hsv(i * 50, 255, 255));
 			draw_circle(
-				__x + __floor_box.coords[curr].x, __y + __floor_box.coords[curr].y, 
+				__x + __floor_box.coords[curr].x - 1, __y + __floor_box.coords[curr].y, 
 				1, false
 			);
 			
 			draw_set_color(c_aqua);	
 			draw_line(
-				__x + __floor_box.coords[curr].x, __y + __floor_box.coords[curr].y,
-				__x + __floor_box.coords[next].x, __y + __floor_box.coords[next].y,
+				__x + __floor_box.coords[curr].x - 1, __y + __floor_box.coords[curr].y,
+				__x + __floor_box.coords[next].x - 1, __y + __floor_box.coords[next].y,
 			);	
 			
 			draw_set_color(c_red);	
 			draw_line(
-				__x + __wall_box.coords[curr].x, __y + __wall_box.coords[curr].y,
-				__x + __wall_box.coords[next].x, __y + __wall_box.coords[next].y,
+				__x + __wall_box.coords[curr].x - 1, __y + __wall_box.coords[curr].y,
+				__x + __wall_box.coords[next].x - 1, __y + __wall_box.coords[next].y,
 			);	
 		}
 		
