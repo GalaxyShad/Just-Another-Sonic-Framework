@@ -9,7 +9,7 @@
 # [+-] [BUG] Collision - after landing  on edge no angle
 # [ ] [BUG?] Collision - jump through floor
 
-# [ ] [OPTIMIZATION] Collisions
+# [+] [OPTIMIZATION] Collisions
 
 # [ ] [IMPROVEMENTS] New Sprites
 

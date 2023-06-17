@@ -3,18 +3,14 @@
 function PlayerHandleLayers() {
 	
 	if (sensor.collision_object(objLayerSwitch)) {
-		if (gsp > 0) {
-			sensor.layer = 1;	
-		} else {
-			sensor.layer = 0;
-		}
+		sensor.set_layer((gsp > 0) ? 1 : 0);	
 	}
 	
 	if (sensor.collision_object(objLayerToHigh)) {
-		sensor.layer = 0;
+		sensor.set_layer(0);	
 	}
 	
 	if (sensor.collision_object(objLayerToLow)) {
-		sensor.layer = 1;
+		sensor.set_layer(1);
 	}
 }

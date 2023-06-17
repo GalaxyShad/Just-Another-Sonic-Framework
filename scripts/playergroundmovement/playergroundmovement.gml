@@ -4,8 +4,8 @@ function PlayerGroundMovement() {
 	if (!ground)
 		return;
 		
-	// Deacceleration on slopes
-	var sina = dsin(sensor.angle);
+	// Deacceleration on 
+	var sina = dsin(sensor.get_angle());
 	
 	if (action == ACT_ROLL) {
 		if (sign(gsp) == sign(sina))
@@ -15,10 +15,7 @@ function PlayerGroundMovement() {
 	} else if (gsp != 0)
 		gsp -= slp * sina;
 	
-	xsp = gsp *  dcos(sensor.angle);
-	ysp = gsp * -dsin(sensor.angle);
-	
-	
+
 	// Movement
 	if (control_lock_timer == 0) {
 		
@@ -70,8 +67,9 @@ function PlayerGroundMovement() {
 
 
 	// Fall off slopes
+	
 	if (control_lock_timer == 0) {
-	    if (abs(gsp) < 2.5 && sensor.angle >= 46 && sensor.angle <= 315) { 
+	    if (abs(gsp) < 2.5 && sensor.get_angle() >= 46 && sensor.get_angle() <= 315) { 
 			ground = false;
 			gsp = 0; 
 	        control_lock_timer = 30;

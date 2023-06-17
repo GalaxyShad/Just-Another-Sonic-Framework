@@ -1,10 +1,10 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
 function PlayerHandleSprings(){
-	var oSpring = sensor.is_collision_bottom(objSpringYellow, 6);
+	var oSpring = sensor.check_expanded(0, 2, function() { return sensor.collision_bottom(objSpringYellow);} );
 	
 	if (oSpring) {
-		if (abs(angle_difference(sensor.angle, oSpring.image_angle)) < 60 &&
+		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle)) < 60 &&
 			oSpring.image_speed == 0
 		) {
 			if (!ground)
@@ -23,10 +23,10 @@ function PlayerHandleSprings(){
 		}
 	}
 	
-	oSpring = sensor.is_collision_right(objSpringYellow, 4+abs(gsp*2));
+	oSpring = sensor.check_expanded(2, 0, function() { return sensor.collision_right(objSpringYellow);} );
 	
 	if (oSpring) {
-		if (abs(angle_difference(sensor.angle, oSpring.image_angle - 90)) < 60 &&
+		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle - 90)) < 60 &&
 			oSpring.image_speed == 0
 		) {	
 			if (ground) 
@@ -40,10 +40,10 @@ function PlayerHandleSprings(){
 		}
 	}
 	
-	oSpring = sensor.is_collision_left(objSpringYellow, 4+abs(gsp*2));
+	oSpring = sensor.check_expanded(2, 0, function() { return sensor.collision_left(objSpringYellow);} );
 	
 	if (oSpring) {
-		if (abs(angle_difference(sensor.angle, oSpring.image_angle + 90)) < 60 &&
+		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle + 90)) < 60 &&
 			oSpring.image_speed == 0
 		) {	
 			
@@ -58,10 +58,10 @@ function PlayerHandleSprings(){
 		}
 	}
 	
-	oSpring = sensor.is_collision_top(objSpringYellow, 4+abs(ysp*2));
+	oSpring = sensor.check_expanded(0, 2, function() { return sensor.collision_top(objSpringYellow);} );
 	
 	if (oSpring && !ground) {
-		if (abs(angle_difference(sensor.angle, oSpring.image_angle + 180)) < 15 &&
+		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle + 180)) < 15 &&
 			oSpring.image_speed == 0
 		) {	
 			

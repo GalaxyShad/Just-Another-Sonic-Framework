@@ -1,21 +1,20 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
 
-
-function Sensor() constructor {
+function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
-	x = 0;
-	y = 0;
+	__x = _x;
+	__y = _y;
 	
-	angle = 0;
+	__angle = 0;
+	__angle_sin = 0;
+	__angle_cos = 0;
 	
-	layer = 0;
+	__layer = 0;
 	
-	max_expand = 24;
+	__max_expand = 16;
 	
-	floor_box = {
-		hradius : 8,
-		vradius : 20,
+	__floor_box = {
+		hradius : _floor_box[0],
+		vradius : _floor_box[1],
 		
 		coords : [
 			{ x: 0, y : 0 },
@@ -25,9 +24,9 @@ function Sensor() constructor {
 		]
 	};
 	
-	wall_box = {
-		hradius : 10,
-		vradius : 0,
+	__wall_box = {
+		hradius : _wall_box[0],
+		vradius : _wall_box[1],
 		
 		coords : [
 			{ x: 0, y : 0 },
@@ -39,32 +38,37 @@ function Sensor() constructor {
 	
 	/////////////////////////////////////////////////////////////////////
 	
-	update_coords = function() {
-		x = other.x;
-		y = other.y;
-		
-		var radang = degtorad(angle); 
-		var acos   = cos(radang);
-		var asin   = sin(radang);
-		
+	__update_coords = function() {
 		for (var i = 0; i < 4; i++) {
 			var hsign = (i == 1 || i == 2) ? -1 : 1;
 			var vsign = (i == 2 || i == 3) ? -1 : 1;
 			
-			floor_box.coords[i].x = x - floor_box.hradius *  acos * hsign
-									  - floor_box.vradius *  asin * vsign;
-			floor_box.coords[i].y = y - floor_box.hradius * -asin * hsign
-									  - floor_box.vradius *  acos * vsign;								  
+			__floor_box.coords[i].x =	- __floor_box.hradius *  __angle_cos * hsign
+										- __floor_box.vradius *  __angle_sin * vsign;
+			__floor_box.coords[i].y =	- __floor_box.hradius * -__angle_sin * hsign
+										- __floor_box.vradius *  __angle_cos * vsign;								  
 	
-			wall_box.coords[i].x  = x - wall_box.hradius *  acos * hsign
-									  - wall_box.vradius *  asin * vsign;
-			wall_box.coords[i].y  = y - wall_box.hradius * -asin * hsign
-									  - wall_box.vradius *  acos * vsign;	
+			__wall_box.coords[i].x  =	- __wall_box.hradius *  __angle_cos * hsign
+										- __wall_box.vradius *  __angle_sin * vsign;
+			__wall_box.coords[i].y  =	- __wall_box.hradius * -__angle_sin * hsign
+										- __wall_box.vradius *  __angle_cos * vsign;	
 		}
 	};
 	
+	__get_floor_box_bottom	= function() { return [__floor_box.coords[2], __floor_box.coords[3]]; }
+	__get_floor_box_top		= function() { return [__floor_box.coords[0], __floor_box.coords[1]]; }
+	__get_wall_box_left		= function() { return [__wall_box.coords[0], __wall_box.coords[3]]; }
+	__get_wall_box_right	= function() { return [__wall_box.coords[1], __wall_box.coords[2]]; }
+	
+	#macro FLOORBOX_BOTTOM_LINE	__get_floor_box_bottom()
+	#macro FLOORBOX_TOP_LINE	__get_floor_box_top()
+	#macro WALLBOX_LEFT_LINE	__get_wall_box_left()
+	#macro WALLBOX_RIGHT_LINE	__get_wall_box_right()
+	
+	#macro Angle get_angle()
+	
 	draw = function() {
-		update_coords();
+		__update_coords();
 		
 		for (var i = 0; i < 4; i++) {
 			var curr = i;
@@ -72,255 +76,225 @@ function Sensor() constructor {
 			
 			draw_set_color(make_color_hsv(i * 50, 255, 255));
 			draw_circle(
-				floor_box.coords[curr].x, floor_box.coords[curr].y, 
+				__x + __floor_box.coords[curr].x, __y + __floor_box.coords[curr].y, 
 				1, false
 			);
 			
 			draw_set_color(c_aqua);	
 			draw_line(
-				floor_box.coords[curr].x, floor_box.coords[curr].y,
-				floor_box.coords[next].x, floor_box.coords[next].y,
+				__x + __floor_box.coords[curr].x, __y + __floor_box.coords[curr].y,
+				__x + __floor_box.coords[next].x, __y + __floor_box.coords[next].y,
 			);	
 			
 			draw_set_color(c_red);	
 			draw_line(
-				wall_box.coords[curr].x, wall_box.coords[curr].y,
-				wall_box.coords[next].x, wall_box.coords[next].y,
+				__x + __wall_box.coords[curr].x, __y + __wall_box.coords[curr].y,
+				__x + __wall_box.coords[next].x, __y + __wall_box.coords[next].y,
 			);	
 		}
 		
 		draw_set_color(c_green);
-		draw_circle(x, y, 1, false);
+		draw_circle(__x, __y, 1, false);
 		
 		draw_set_color(c_white);
 	};
 	
-	collision_object = function(object, expand = 0) {
-		return collision_rectangle(
-			x - floor_box.hradius - expand,
-			y - floor_box.vradius - expand,
-			x + floor_box.hradius + expand,
-			y + floor_box.vradius + expand,
-			object, true, true
-		);
-	};
+	__genesis_mode_angle = function(_angle) {
+		if (_angle >= 000 && _angle <= 045) return 0;
+		if (_angle >= 046 && _angle <= 134) return 90;
+		if (_angle >= 135 && _angle <= 225) return 180;
+		if (_angle >= 226 && _angle <= 314) return 270;
+		return 0;
+	}
 	
-	is_collision_line = function(point_a, point_b, object = parSolid) {
-		update_coords();
+	set_angle = function(_angle) {
+		__angle = _angle;
+		
+		__angle_sin = dsin(__angle);
+		__angle_cos = dcos(__angle);
+		
+		__update_coords();
+	}
+	
+	set_layer = function(_layer) { __layer = _layer; }
+	
+	get_layer = function() { return __layer; }
+	
+	get_angle = function() { return __angle; }
+	
+	set_position = function(_x, _y) { __x = _x; __y = _y; }
+	
+	set_floor_box = function(_box) {
+		__floor_box.hradius = _box[0];
+		__floor_box.vradius = _box[1];
+		
+		__update_coords();
+	}
+	
+	set_wall_box = function(_box) {
+		__wall_box.hradius = _box[0];
+		__wall_box.vradius = _box[1];
+		
+		__update_coords();
+	}
+	
+	__collision_line = function(_line, _object) {
+		return collision_line(
+			floor(__x + _line[0].x), floor(__y + _line[0].y),
+			floor(__x + _line[1].x), floor(__y + _line[1].y),
+			_object, true, true
+		);	
+	}
+	
+	__collision_point = function(_point, _object) {
+		return collision_point(
+			floor(__x + _point.x), floor(__y + _point.y),
+			_object, true, true
+		);	
+	}
+	
+	__is_collision_line_solid = function(_line) {
+		return (
+			(__collision_line(_line, parSolid) != noone) || 
+			(__collision_line(_line, parHigh) != noone && __layer == 0) ||
+			(__collision_line(_line, parLow) != noone  && __layer == 1)
+		);
+	}
+	
+	__is_collision_point_solid = function(_point) {
+		return (
+			(__collision_point(_point, parSolid) != noone) || 
+			(__collision_point(_point, parHigh) != noone && __layer == 0) ||
+			(__collision_point(_point, parLow) != noone  && __layer == 1)
+		);
+	}
+	
 
-		if (object == parSolid) {			
-			return (
-				collision_line(
-					floor(point_a.x), floor(point_a.y), 
-					floor(point_b.x), floor(point_b.y), 
-					parSolid, true, true
-				) || 
-				(layer == 0 && collision_line(
-					floor(point_a.x), floor(point_a.y), 
-					floor(point_b.x), floor(point_b.y), 
-					parHigh, true, true
-				)) ||
-				(layer == 1 && collision_line(
-					floor(point_a.x), floor(point_a.y), 
-					floor(point_b.x), floor(point_b.y), 
-					parLow, true, true
-				))
-			);
-		} else {
-			return collision_line(
-				floor(point_a.x), floor(point_a.y), 
-				floor(point_b.x), floor(point_b.y), 
-				object, true, true
-			);
-		}
-	};
 	
-	
-	is_collision_bottom = function(object = parSolid, expand = 0) {
-		var temp_radius = floor_box.vradius;
-		floor_box.vradius = temp_radius + expand;
-		
-		var collision = is_collision_line(
-			floor_box.coords[2],
-			floor_box.coords[3], 
-			object
+	collision_object = function(_object, _expand = 0) {
+		return collision_rectangle(
+			__x - __floor_box.hradius - _expand,
+			__y - __floor_box.vradius - _expand,
+			__x + __floor_box.hradius + _expand,
+			__y + __floor_box.vradius + _expand,
+			_object, true, true
 		);
-		
-		if (object == parSolid && !collision)
-			collision = is_collision_line(
-				floor_box.coords[2],
-				floor_box.coords[3], 
-				parPlatform
-			);
-		
-		floor_box.vradius = temp_radius;
-		
-		return collision;
+	};
+	
+	collision_bottom = function(_object, _expand = 0) { 
+		return __collision_line(FLOORBOX_BOTTOM_LINE, _object);
+	}
+	
+	collision_top = function(_object, _expand = 0) { 
+		return __collision_line(FLOORBOX_TOP_LINE, _object);
+	}
+	
+	collision_left = function(_object, _expand = 0) { 
+		return __collision_line(WALLBOX_LEFT_LINE, _object);
+	}
+	
+	collision_right = function(_object, _expand = 0) { 
+		return __collision_line(WALLBOX_RIGHT_LINE, _object);	
+	}
+	
+	
+	is_collision_solid_bottom = function() {
+		return __is_collision_line_solid(FLOORBOX_BOTTOM_LINE) || 
+			   collision_bottom(parPlatform) != noone;
 	};
 	
 	
-	is_collision_top = function(object = parSolid, expand = 0) {
-		var temp_radius = floor_box.vradius;
-		floor_box.vradius = temp_radius + expand;
-		
-		var collision = is_collision_line(
-			floor_box.coords[0],
-			floor_box.coords[1], 
-			object
-		);
-		
-		floor_box.vradius = temp_radius;
-		
-		return collision;
+	is_collision_solid_top = function() {
+		return __is_collision_line_solid(FLOORBOX_TOP_LINE);
 	};
 	
 	
-	is_collision_left = function(object = parSolid, expand = 0) {
-		var temp_radius = wall_box.hradius;
-		wall_box.hradius = temp_radius + expand;
-			
-		var collision = is_collision_line(
-			wall_box.coords[0],
-			wall_box.coords[3], 
-			object
-		);
-		
-		wall_box.hradius = temp_radius;
-		
-		return collision;
+	is_collision_solid_left = function() {
+		return __is_collision_line_solid(WALLBOX_LEFT_LINE);
 	};
 	
 	
-	is_collision_right = function(object = parSolid, expand = 0) {
-		var temp_radius = wall_box.hradius;
-		wall_box.hradius = temp_radius + expand;
-		
-		var collision = is_collision_line(
-			wall_box.coords[1],
-			wall_box.coords[2], 
-			object
-		);
-		
-		wall_box.hradius = temp_radius;
-		
-		return collision;
+	is_collision_solid_right = function() {
+		return __is_collision_line_solid(WALLBOX_RIGHT_LINE);
 	};
 	
+	
+	check_expanded = function(_hexpand, _vexpand, _function) {
+		__floor_box.hradius += _hexpand;
+		__floor_box.vradius += _vexpand;
+		__wall_box.hradius  += _hexpand;
+		__wall_box.vradius  += _vexpand;
+		__update_coords();
+		
+		var _result = _function();
+		
+		__floor_box.hradius -= _hexpand;
+		__floor_box.vradius -= _vexpand;
+		__wall_box.hradius  -= _hexpand;
+		__wall_box.vradius  -= _vexpand;
+		__update_coords();
+		
+		return _result;
+	}
 
 	is_collision_ground = function() {
-				
-		var temp_radius = floor_box.vradius;
-		
-		for (var i = 0; i < temp_radius+max_expand; i++) {
-			floor_box.vradius = i;
-			
-			if (is_collision_bottom()) {
-				floor_box.vradius = temp_radius;
-				update_coords();
-				
+		for (var i = 0; i < __max_expand; i++) {
+			if (check_expanded(0, i, is_collision_solid_bottom))
 				return true;
-			}
 		}
-		
-		floor_box.vradius = temp_radius;
-		update_coords();
 		
 		return false;
 	};
 	
 	
-	is_collision_left_edge = function() {
-		var dst_point = {
-			x: floor_box.coords[3].x + max_expand * dsin(angle),
-			y: floor_box.coords[3].y + max_expand * dcos(angle)
+	is_collision_ground_left_edge = function() {
+		var _dst_point = {
+			x: __floor_box.coords[3].x + __max_expand * __angle_sin,
+			y: __floor_box.coords[3].y + __max_expand * __angle_cos
 		};
 		
-		return (
-			is_collision_line(
-				floor_box.coords[3], dst_point, parSolid
-			) ||
-			is_collision_line(
-				floor_box.coords[3], dst_point, parPlatform
-			) 
-		);	
+		return __is_collision_line_solid([__floor_box.coords[3], _dst_point]);
 	};
 	
 	
-	is_collision_right_edge = function() {
-		var dst_point = {
-			x: floor_box.coords[2].x + max_expand * dsin(angle),
-			y: floor_box.coords[2].y + max_expand * dcos(angle)
+	is_collision_ground_right_edge = function() {
+		var _dst_point = {
+			x: __floor_box.coords[2].x + __max_expand * __angle_sin,
+			y: __floor_box.coords[2].y + __max_expand * __angle_cos
 		};
 		
-		return (
-			is_collision_line(
-				floor_box.coords[2], dst_point, parSolid
-			) ||
-			is_collision_line(
-				floor_box.coords[2], dst_point, parPlatform
-			) 
-		);	
-		
+		return __is_collision_line_solid([__floor_box.coords[2], _dst_point]);
 	};
 	
 	
-	get_ground_angle = function(object = parSolid) {
-		if (is_collision_bottom(parSolidNoAngle, 6))
-			return angle;
+	get_ground_angle = function() {
+		var lpoint = { 
+			is_found: false, 
+			x: __floor_box.coords[3].x, y: __floor_box.coords[3].y 
+		};
+		var rpoint = { 
+			is_found: false, 
+			x: __floor_box.coords[2].x, y: __floor_box.coords[2].y 
+		};
 		
-		var temp_radius = floor_box.vradius;
-		var temp_angle = angle;
+		var _temp_angle = __angle;
+		set_angle(round(_temp_angle / 10) * 10);
 		
-		var lpoint = { is_found: false, x: 0, y: 0 };
-		var rpoint = { is_found: false, x: 0, y: 0 };
-		
-		angle = round(temp_angle / 10) * 10;
-		
-		for (var i = 0; i < max_expand; i++) {
-			floor_box.vradius = temp_radius + i;
-			//update_coords();
-			
-			if (
-				(
-					is_collision_line(
-						floor_box.coords[3], floor_box.coords[3],
-						object
-					) ||
-					is_collision_line(
-						floor_box.coords[3], floor_box.coords[3],
-						parPlatform
-					)
-				) && 
-				!lpoint.is_found
-			) {
+		for (var i = 0; i < __max_expand; i++) {
+			if (__is_collision_point_solid(lpoint)) {
 				lpoint.is_found = true;
-				lpoint.x = floor_box.coords[3].x;
-				lpoint.y = floor_box.coords[3].y;
+			} else if (!lpoint.is_found) {
+				lpoint.x += __angle_sin;
+				lpoint.y += __angle_cos;
 			}
 			
-			if (
-				(
-					is_collision_line(
-						floor_box.coords[2], floor_box.coords[2],
-						object
-					) ||
-					is_collision_line(
-						floor_box.coords[2], floor_box.coords[2],
-						parPlatform
-					) 
-				) &&
-				!rpoint.is_found
-			) {
+			if (__is_collision_point_solid(rpoint)) {
 				rpoint.is_found = true;
-				rpoint.x = floor_box.coords[2].x;
-				rpoint.y = floor_box.coords[2].y;
+			} else if (!rpoint.is_found) {
+				rpoint.x += __angle_sin;
+				rpoint.y += __angle_cos;	
 			}
 		}
-		
-		floor_box.vradius = temp_radius;
-	
-		angle = temp_angle;
-		update_coords();
 		
 		var new_angle = 0;
 					   
@@ -330,11 +304,13 @@ function Sensor() constructor {
 			);
 		}
 		
+		set_angle(_temp_angle);
+		
 		/*
 		var tollerance = 5;
 		
-		if (abs(angle_difference(new_angle, temp_angle)) < tollerance)
-			new_angle = temp_angle;
+		if (abs(angle_difference(new_angle, _temp_angle)) < tollerance)
+			new_angle = _temp_angle;
 		
 		if (new_angle >= 360 - tollerance || new_angle <= 0 + tollerance)
 			new_angle = 0;

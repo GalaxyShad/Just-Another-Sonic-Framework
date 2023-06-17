@@ -72,7 +72,13 @@ drpmax		= 12; //the top speed for a drop dash
 drpspdsup	= 12; //the base speed for a drop dash while super
 drpmaxsup	= 13; //the top speed for a drop dash while super
 
-sensor = new Sensor();
+#macro SENSOR_FLOORBOX_NORMAL	[8, 20]
+#macro SENSOR_FLOORBOX_ROLL		[7, 15]
+
+#macro SENSOR_WALLBOX_NORMAL	[10, 8]
+#macro SENSOR_WALLBOX_SLOPES	[10, 0]
+
+sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
 
 is_key_left = 0;
 is_key_right = 0;
