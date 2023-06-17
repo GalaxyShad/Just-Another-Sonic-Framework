@@ -44,33 +44,27 @@ gsp = 0;
 camera = instance_create_layer(x, y, layer, objCamera);
 
 #macro ACT_NORMAL		0
-#macro ACT_JUMP			1
+
 #macro ACT_ROLL			2
-#macro ACT_SKID			3
-#macro ACT_CROUCH		4
-#macro ACT_LOOK_UP		5
-#macro ACT_PUSH			6
-#macro ACT_SPINDASH		7
-#macro ACT_BALANCING	8
-#macro ACT_PEELOUT		9
-#macro ACT_SPRING		10
-#macro ACT_DIE			-1
+
 #macro ACT_HURT			-2
 
-action = ACT_NORMAL;
+action = 0;
 
 peelout_timer = 0;
 
 inv_timer = 0;
 
-spinrev = 0;
 
-is_drop_dashing = false;
-drop_dash_timer = 0;
 drpspd		= 8; //the base speed for a drop dash
 drpmax		= 12; //the top speed for a drop dash
 drpspdsup	= 12; //the base speed for a drop dash while super
 drpmaxsup	= 13; //the top speed for a drop dash while super
+
+allow_jump		= true;
+allow_movement	= true;
+
+peelout_animation_spd = 0;
 
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
@@ -79,6 +73,10 @@ drpmaxsup	= 13; //the top speed for a drop dash while super
 #macro SENSOR_WALLBOX_SLOPES	[10, 0]
 
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
+state = new State(id);
+PlayerStates();
+state.change_to("normal");
+
 
 is_key_left = 0;
 is_key_right = 0;

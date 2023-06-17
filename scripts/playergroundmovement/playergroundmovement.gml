@@ -7,7 +7,7 @@ function PlayerGroundMovement() {
 	// Deacceleration on 
 	var sina = dsin(sensor.get_angle());
 	
-	if (action == ACT_ROLL) {
+	if (state.current() == "roll") {
 		if (sign(gsp) == sign(sina))
 			gsp -= slp_rollup * sina;
 		else 
@@ -17,9 +17,9 @@ function PlayerGroundMovement() {
 	
 
 	// Movement
-	if (control_lock_timer == 0) {
+	if (control_lock_timer == 0 && allow_movement) {
 		
-		if (action != ACT_ROLL) {
+		if (state.current() != "roll") {
 			if (is_key_left) {
 			
 				if (gsp > 0) {
@@ -58,11 +58,11 @@ function PlayerGroundMovement() {
 	
 	
 	// Friction
-	if (!is_key_left && !is_key_right && action != ACT_ROLL) {
+	if (!is_key_left && !is_key_right && state.current() != "roll") {
 		gsp -= min(abs(gsp), frc) * sign(gsp);
 	}
 	
-	if (action == ACT_ROLL)
+	if (state.current() == "roll")
 		gsp -= min(abs(gsp), frc / 2) * sign(gsp);
 
 
