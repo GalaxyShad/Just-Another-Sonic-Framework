@@ -1,9 +1,9 @@
 {
   "FolderOrderSettings": [
     {"name":"Player","order":1,"path":"folders/Objects/Player.yy",},
+    {"name":"Knuckles","order":11,"path":"folders/Sprites/Knuckles.yy",},
     {"name":"Monitors","order":1,"path":"folders/Sprites/Monitors.yy",},
     {"name":"Sonic","order":2,"path":"folders/Sprites/Sonic.yy",},
-    {"name":"Knuckles","order":11,"path":"folders/Sprites/Knuckles.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Sprite152528","order":8,"path":"sprites/Sprite152528/Sprite152528.yy",},

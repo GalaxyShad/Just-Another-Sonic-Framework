@@ -201,7 +201,7 @@
     {"name":"inst_6EFED18A","path":"rooms/rmTest/rmTest.yy",},
     {"name":"inst_3BCDB32B","path":"rooms/rmTest/rmTest.yy",},
     {"name":"inst_1494ADD1","path":"rooms/rmTest/rmTest.yy",},
-    {"name":"inst_34DFAA3D","path":"rooms/rmTest/rmTest.yy",},
+    {"name":"inst_1F4B62","path":"rooms/rmTest/rmTest.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -284,7 +284,7 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_580DF740","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objSpringRed","path":"objects/objSpringRed/objSpringRed.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":3520.0,"y":2208.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_3BCDB32B","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objSpringYellow","path":"objects/objSpringYellow/objSpringYellow.yy",},"properties":[],"rotation":-180.0,"scaleX":1.0,"scaleY":1.0,"x":3488.0,"y":1920.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_1494ADD1","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objMonitorShield","path":"objects/objMonitorShield/objMonitorShield.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2480.0,"y":1664.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_34DFAA3D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objPlayerKnuckles","path":"objects/objPlayerKnuckles/objPlayerKnuckles.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2064.0,"y":2112.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_1F4B62","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objPlayerKnuckles","path":"objects/objPlayerKnuckles/objPlayerKnuckles.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":2048.0,"y":2128.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Solids","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7A3DA94F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Object345","path":"objects/Object345/Object345.yy",},"properties":[],"rotation":0.0,"scaleX":27.000002,"scaleY":2.0,"x":64.0,"y":2128.0,},
