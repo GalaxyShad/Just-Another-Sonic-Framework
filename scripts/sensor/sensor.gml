@@ -253,7 +253,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			y: __floor_box.coords[3].y + __max_expand * __angle_cos
 		};
 		
-		return __is_collision_line_solid([__floor_box.coords[3], _dst_point]);
+		return __is_collision_line_solid([__floor_box.coords[3], _dst_point]) ||
+			   __collision_line([__floor_box.coords[3], _dst_point], parPlatform) != noone;
 	};
 	
 	
@@ -263,7 +264,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			y: __floor_box.coords[2].y + __max_expand * __angle_cos
 		};
 		
-		return __is_collision_line_solid([__floor_box.coords[2], _dst_point]);
+		return __is_collision_line_solid([__floor_box.coords[2], _dst_point]) || 
+			  __collision_line([__floor_box.coords[2], _dst_point], parPlatform) != noone;
 	};
 	
 	
@@ -281,14 +283,14 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		set_angle(round(_temp_angle / 10) * 10);
 		
 		for (var i = 0; i < __max_expand; i++) {
-			if (__is_collision_point_solid(lpoint)) {
+			if (__is_collision_point_solid(lpoint) || __collision_point(lpoint, parPlatform) != noone) {
 				lpoint.is_found = true;
 			} else if (!lpoint.is_found) {
 				lpoint.x += __angle_sin;
 				lpoint.y += __angle_cos;
 			}
 			
-			if (__is_collision_point_solid(rpoint)) {
+			if (__is_collision_point_solid(rpoint) || __collision_point(rpoint, parPlatform) != noone) {
 				rpoint.is_found = true;
 			} else if (!rpoint.is_found) {
 				rpoint.x += __angle_sin;

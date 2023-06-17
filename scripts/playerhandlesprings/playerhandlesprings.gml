@@ -15,7 +15,8 @@ function PlayerHandleSprings(){
 			
 			ground = false;
 			
-			action = ACT_SPRING;
+			state.change_to("spring");
+			//action = ACT_SPRING;
 			
 			audio_play_sound(sndSpring, 0, false);
 			

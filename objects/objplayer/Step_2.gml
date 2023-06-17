@@ -31,8 +31,8 @@ if (gsp == 0 && action == ACT_NORMAL)
 else
 	idle_anim_timer = 0;
 
-switch (action) {
-	case ACT_NORMAL: {
+switch (state.current()) {
+	case "normal": {
 		if (ground) {
 			if (abs(gsp) == 0) {
 				
@@ -62,10 +62,16 @@ switch (action) {
 				sprite_index = sprSonicDash;
 				
 				
-			if (sprite_index == sprSonicWalk || sprite_index == sprSonicRun || sprite_index == sprSonicDash)
+			if (sprite_index == sprSonicWalk || 
+				sprite_index == sprSonicRun  || 
+				sprite_index == sprSonicDash
+			) {
 				image_speed = 0.5 + abs(gsp) / 8.0;
-			else if (sprite_index == sprSonicBored || sprite_index == sprSonicBoredEx)
+			} else if (sprite_index == sprSonicBored || 
+					   sprite_index == sprSonicBoredEx
+			) { 
 				image_speed = 1;
+			}
 			
 		} else if (sprite_index != sprSonicWalk && sprite_index != sprSonicRun && sprite_index != sprSonicDash) {
 			sprite_index = sprSonicWalk;
@@ -75,19 +81,20 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_JUMP:
-	case ACT_ROLL: {
-		if (!is_drop_dashing)
-			sprite_index = sprSonicRoll;
-		else
-			sprite_index = sprSonicDropDash;
-		
-		image_speed = 0.5 + abs(gsp) / 8.0;
-		
+	case "roll":
+	case "jump": {
+		sprite_index = sprSonicRoll;
+		image_speed = 0.5 + abs(gsp) / 8.0;	
 		break;
 	}
 	
-	case ACT_CROUCH: {
+	case "dropdash": {
+		sprite_index = sprSonicDropDash;
+		image_speed = 0.5 + abs(gsp) / 8.0;
+		break;
+	}
+	
+	case "look_down": {
 		sprite_index = sprSonicCrouch;
 		image_speed = 0.5;
 		if (image_index >= 1)
@@ -95,7 +102,7 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_LOOK_UP: {
+	case "look_up": {
 		sprite_index = sprSonicLookUp;
 		image_speed = 0.5;
 		if (image_index >= 1)
@@ -103,13 +110,13 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_PUSH: {
+	case "push": {
 		sprite_index = sprSonicPush;
 		image_speed = 0.125;
 		break;
 	}
 	
-	case ACT_SKID: {
+	case "skid": {
 		sprite_index = sprSonicSkid;
 		image_speed = 0.55;
 		
@@ -119,7 +126,7 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_BALANCING: {
+	case "balancing": {
 		image_speed = 0.5;
 		
 		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
@@ -131,12 +138,12 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_PEELOUT: {
-		image_speed = 0.25 + peelout_timer / 25;
+	case "peelout": {
+		image_speed = 0.25 + peelout_animation_spd / 25;
 		
-		if (peelout_timer < 15)
+		if (peelout_animation_spd < 15)
 			sprite_index = sprSonicWalk;
-		else if (peelout_timer < 30)
+		else if (peelout_animation_spd < 30)
 			sprite_index = sprSonicRun;
 		else
 			sprite_index = sprSonicDash;
@@ -144,13 +151,13 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_SPINDASH: {
+	case "spindash": {
 		image_speed = 1;
 		sprite_index = sprSonicSpindash;
 	}
 	break;
 
-	case ACT_SPRING: {
+	case "spring": {
 		image_speed = 0.125 + abs(ysp) / 10;
 		
 		if (ysp <= 0)
@@ -160,17 +167,19 @@ switch (action) {
 	}
 	break;
 	
-	case ACT_HURT: {
+	case "hurt": {
 		sprite_index = sprSonicHurt;
 	} break;
 	
 	
-	case ACT_DIE: {
+	case "die": {
 		image_speed = 0;
 		image_index = 0;
 		sprite_index = sprSonicDie;
 	} break;
+	
 }
+
 
 if (sprite_index != sprite_index_prev)
 	image_index = 0;
