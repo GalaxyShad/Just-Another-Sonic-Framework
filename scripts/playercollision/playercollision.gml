@@ -49,6 +49,31 @@ function PlayerCollision() {
 			sensor.set_angle(180);
 			var ang = sensor.get_ground_angle();
 		
+			show_debug_message($"{ang}");
+			
+			if (ang == 0) {
+				sensor.set_angle(180);
+				
+				var is_col_left  = sensor.is_collision_ground_left_edge();
+				var is_col_right = sensor.is_collision_ground_right_edge();
+			
+				if (!is_col_left && is_col_right) {
+					sensor.set_angle(270);
+				} 
+			
+				if (is_col_left && !is_col_right) {
+					sensor.set_angle(90);
+				}
+				
+				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) {
+					ang = sensor.get_ground_angle();
+				} else {
+					ang = 0;
+				}
+			}
+			
+			show_debug_message($"nnn {ang}");
+		
 			if ((ang >= 91 && ang <= 135) || (ang >= 226 && ang <= 270)) {
 				sensor.set_angle(ang);
 				ground = true;
@@ -82,12 +107,7 @@ function PlayerCollision() {
 					sensor.set_angle(270);
 				}
 				
-				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) {
-					_ang = sensor.get_ground_angle();
-				} else {
-					_ang = 0;
-				}
-			
+				_ang = sensor.check_expanded(0, -4, sensor.get_ground_angle);
 			}
 		
 			sensor.set_angle(_ang);
@@ -124,6 +144,13 @@ function PlayerCollision() {
 		_cos_ang = dcos(sensor.get_angle());
 		_sin_ang = dsin(sensor.get_angle());
 		
+		
+		while (sensor.is_collision_solid_bottom()) {
+			y -= _cos_ang;	
+			x -= _sin_ang;
+			sensor.set_position(x, y);
+		}
+		
 		while (!sensor.is_collision_solid_bottom() && 
 				sensor.is_collision_ground()
 		) {
@@ -132,9 +159,10 @@ function PlayerCollision() {
 			sensor.set_position(x, y);
 		}
 		
-		while (sensor.is_collision_solid_bottom()) {
-			y -= _cos_ang;	
-			x -= _sin_ang;
+		// Possible slopes thickering fix
+		while (abs(gsp) < 6 && sensor.is_collision_solid_bottom()) {
+			y -= _cos_ang / 100;	
+			x -= _sin_ang / 100;
 			sensor.set_position(x, y);
 		}
 		

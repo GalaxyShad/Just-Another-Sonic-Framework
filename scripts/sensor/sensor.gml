@@ -102,6 +102,14 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		draw_set_color(c_white);
 	};
 	
+	__genesis_mode_angle = function(_angle) {
+		if (_angle >= 000 && _angle <= 045) return 0;
+		if (_angle >= 046 && _angle <= 134) return 90;
+		if (_angle >= 135 && _angle <= 225) return 180;
+		if (_angle >= 226 && _angle <= 314) return 270;
+		return 0;
+	}
+	
 	set_angle = function(_angle) {
 		__angle = _angle;
 		
@@ -273,7 +281,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		};
 		
 		var _temp_angle = __angle;
-		set_angle(round(_temp_angle / 10) * 10);
+		//set_angle(round(_temp_angle / 10) * 10);
 		
 		for (var i = 0; i < __max_expand; i++) {
 			if (__is_collision_point_solid(lpoint)) {
