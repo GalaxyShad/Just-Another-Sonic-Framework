@@ -15,10 +15,12 @@ function PlayerAirMovement(){
 		ysp = 16;
 		
 	// Movement
-	if (is_key_left && xsp > -top) 
-		xsp -= airacc;
-	else if (is_key_right && xsp < top) 
-		xsp += airacc;
+	if (allow_movement) {
+		if (is_key_left && xsp > -top) 
+			xsp -= airacc;
+		else if (is_key_right && xsp < top) 
+			xsp += airacc;
+	}
 		
 	// Air Drag
 	if (!ground && ysp < 0 && ysp > -4) {
