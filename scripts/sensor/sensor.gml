@@ -1,6 +1,3 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
-
 
 function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
@@ -281,7 +278,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		};
 		
 		var _temp_angle = __angle;
-		//set_angle(round(_temp_angle / 10) * 10);
+		set_angle(round(_temp_angle / 10) * 10);
 		
 		for (var i = 0; i < __max_expand; i++) {
 			if (__is_collision_point_solid(lpoint)) {
@@ -309,7 +306,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		set_angle(_temp_angle);
 		
-		
+		/*
 		var tollerance = 5;
 		
 		if (abs(angle_difference(new_angle, _temp_angle)) < tollerance)
@@ -326,7 +323,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			
 		if (new_angle >= 270 - tollerance  && new_angle <= 270 + tollerance)
 			new_angle = 270;
-		
+		*/
 		
 		
 		return floor(new_angle);
