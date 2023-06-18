@@ -33,6 +33,8 @@ control_lock_timer = 0;
 
 idle_anim_timer = 0;
 
+using_shield_abbility = false;
+
 
 
 ground = false;

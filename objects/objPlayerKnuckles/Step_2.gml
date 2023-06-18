@@ -31,8 +31,8 @@ if (gsp == 0 && action == ACT_NORMAL)
 else
 	idle_anim_timer = 0;
 
-switch (action) {
-	case ACT_NORMAL: {
+switch (state.current()) {
+	case "normal": {
 		if (ground) {
 			if (abs(gsp) == 0) {
 				
@@ -60,10 +60,15 @@ switch (action) {
 			else sprite_index = sprKnucklesRun;
 				
 				
-			if (sprite_index == sprKnucklesWalk || sprite_index == sprKnucklesRun || sprite_index == sprSonicDash)
-				image_speed = 0.5 + abs(gsp) / 32.0;
+			if (sprite_index == sprKnucklesWalk || 
+				sprite_index == sprKnucklesRun || 
+				sprite_index == sprSonicDash
+			)
+				image_speed = 0.125 + abs(gsp) / 8.0;
 			else if (sprite_index == sprKnucklesBored || sprite_index == sprKnucklesBoredEx)
 				image_speed = 1;
+				
+			show_debug_message($"img spd {image_speed}");
 			
 		} else if (sprite_index != sprKnucklesWalk && sprite_index != sprKnucklesRun && sprite_index != sprSonicDash) {
 			sprite_index = sprKnucklesWalk;
@@ -73,19 +78,15 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_JUMP:
-	case ACT_ROLL: {
-		if (!is_drop_dashing)
-			sprite_index = sprKnucklesRoll;
-		else
-			sprite_index = sprSonicDropDash;
-		
+	case "jump":
+	case "roll": {
+		sprite_index = sprKnucklesRoll;
 		image_speed = 0.5 + abs(gsp) / 8.0;
-		
+	
 		break;
 	}
 	
-	case ACT_CROUCH: {
+	case "look_down": {
 		sprite_index = sprKnucklesCrouch;
 		image_speed = 0.5;
 		if (image_index >= 1)
@@ -93,7 +94,7 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_LOOK_UP: {
+	case "look_up": {
 		sprite_index = sprKnucklesLookUp;
 		image_speed = 0.5;
 		if (image_index >= 1)
@@ -101,13 +102,13 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_PUSH: {
+	case "push": {
 		sprite_index = sprKnucklesPush;
 		image_speed = 1;
 		break;
 	}
 	
-	case ACT_SKID: {
+	case "skid": {
 		sprite_index = sprKnucklesSkid;
 		image_speed = 0.55;
 		
@@ -117,7 +118,7 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_BALANCING: {
+	case "balancing": {
 		image_speed = 0.5;
 		
 		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
@@ -129,7 +130,7 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_PEELOUT: {
+	case "peelout": {
 		image_speed = 0.25 + peelout_timer / 25;
 		
 		if (peelout_timer < 15)
@@ -140,13 +141,13 @@ switch (action) {
 		break;
 	}
 	
-	case ACT_SPINDASH: {
+	case "spindash": {
 		image_speed = 1;
 		sprite_index = sprKnucklesSpindash;
 	}
 	break;
 
-	case ACT_SPRING: {
+	case "spring": {
 		image_speed = 0.125 + abs(ysp) / 10;
 		
 		if (ysp <= 0)
@@ -156,12 +157,12 @@ switch (action) {
 	}
 	break;
 	
-	case ACT_HURT: {
+	case "hurt": {
 		sprite_index = sprKnucklesHurt;
 	} break;
 	
 	
-	case ACT_DIE: {
+	case "die": {
 		image_speed = 0;
 		image_index = 0;
 		sprite_index = sprKnucklesDie;

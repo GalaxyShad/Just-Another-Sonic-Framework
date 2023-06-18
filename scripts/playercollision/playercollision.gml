@@ -49,8 +49,6 @@ function PlayerCollision() {
 			sensor.set_angle(180);
 			var ang = sensor.get_ground_angle();
 		
-			show_debug_message($"{ang}");
-			
 			if (ang == 0) {
 				sensor.set_angle(180);
 				
@@ -72,7 +70,6 @@ function PlayerCollision() {
 				}
 			}
 			
-			show_debug_message($"nnn {ang}");
 		
 			if ((ang >= 91 && ang <= 135) || (ang >= 226 && ang <= 270)) {
 				sensor.set_angle(ang);
@@ -132,9 +129,10 @@ function PlayerCollision() {
 					gsp = ysp * -sign(dsin(sensor.get_angle()));
 			}
 			
-			player_landing();
+			xsp = gsp *  dcos(sensor.get_angle());
+			ysp = gsp * -dsin(sensor.get_angle());
 			
-			ysp = 0;
+			player_landing();
 		}
 	
 

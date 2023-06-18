@@ -4,7 +4,7 @@ function player_landing() {
 	
 	
 	
-	var _states = ["jump", "roll", "spring"]; 
+	var _states = ["roll", "spring"]; 
 	
 	if (array_contains(_states, state.current())) {
 		state.change_to("normal");
@@ -14,6 +14,8 @@ function player_landing() {
 	}
 	
 	state.landing();
+	
+	
 	
 	player_switch_sensor_radius();
 	
