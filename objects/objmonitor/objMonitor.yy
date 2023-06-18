@@ -32,7 +32,19 @@
   "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"item","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"ITEM_NONE","varType":1,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"item","filters":[],"listItems":[
+        "ITEM_NONE",
+        "ITEM_RING",
+        "ITEM_SHIELD",
+        "ITEM_ELECTRIC_SHIELD",
+        "ITEM_FIRE_SHIELD",
+        "ITEM_WATER_SHIELD",
+        "ITEM_INVINCIBILITY",
+        "ITEM_SPEED_SNEAKERS",
+        "ITEM_SUPER",
+        "ITEM_EGGMAN",
+        "ITEM_1UP",
+      ],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"ITEM_NONE","varType":6,},
   ],
   "solid": false,
   "spriteId": {

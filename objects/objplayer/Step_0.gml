@@ -83,24 +83,7 @@ if ((_is_moving_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_r
 if (inv_timer > 0)
 	inv_timer--;
 	
-show_debug_message($"{inv_timer}");
 
-/*
-if (!ground && action == ACT_JUMP && is_key_action_pressed) {
-	
-	if (shield == SHIELD_BUBBLE) {
-		audio_play_sound(sndBubbleBounce, 0, false);
-		ysp = 7;
-	} else if (shield == SHIELD_FIRE) {
-		audio_play_sound(sndFireDash, 0, false);
-		ysp = 0;
-		xsp = 6 * sign(image_xscale);
-		camera.lagTimer = 15;
-	} else if (shield == SHIELD_ELECTRIC) {
-		audio_play_sound(sndLightningJump, 0, false);
-		ysp = -4;
-	}
-}*/
 
 
 	

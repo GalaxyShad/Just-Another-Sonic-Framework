@@ -17,9 +17,9 @@ is_falling   = false;
 
 //item = ITEM_RING;
 
-action = function() {
-	global.rings += 10;	
-};
+action = function() {};
+
+PlayerLanding()
 
 
 

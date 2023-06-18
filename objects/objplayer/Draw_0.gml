@@ -11,8 +11,9 @@ else if (shield == SHIELD_BUBBLE)
 	draw_sprite(sprWaterShield, global.tick, x, y);
 else if (shield == SHIELD_ELECTRIC)
 	draw_sprite(sprElectricShield, global.tick / 3, x, y);
-else if (shield == SHIELD_FIRE)
+else if (shield == SHIELD_FIRE) {
 	draw_sprite(sprFireShield, global.tick, x, y);
+}
 
 if (show_debug_info) 
 	sensor.draw();
