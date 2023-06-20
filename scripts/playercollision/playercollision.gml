@@ -63,7 +63,7 @@ function PlayerCollision() {
 					sensor.set_angle(90);
 				}
 				
-				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) {
+				if (sensor.check_expanded(0, 5, sensor.is_collision_ground)) {
 					ang = sensor.get_ground_angle();
 				} else {
 					ang = 0;
@@ -104,7 +104,11 @@ function PlayerCollision() {
 					sensor.set_angle(270);
 				}
 				
-				_ang = sensor.check_expanded(0, -4, sensor.get_ground_angle);
+				if (sensor.check_expanded(0, 5, sensor.is_collision_ground)) {
+					_ang = sensor.get_ground_angle();
+				} else {
+					_ang = 0;
+				}
 			}
 		
 			sensor.set_angle(_ang);
