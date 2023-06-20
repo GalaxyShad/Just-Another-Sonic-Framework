@@ -24,7 +24,15 @@ else if (shield == SHIELD_BUBBLE) {
 } else if (shield == SHIELD_ELECTRIC)
 	draw_sprite(sprElectricShield, global.tick / 3, x, y);
 else if (shield == SHIELD_FIRE) {
-	draw_sprite(sprFireShield, global.tick, x, y);
+	
+	
+	draw_sprite_ext(
+		(using_shield_abbility && xsp != 0) ? sprFireShieldActive : sprFireShield, 
+		global.tick, 
+		x, y, 
+		(using_shield_abbility && xsp != 0) ? sign(xsp) : 1, 1,
+		0, c_white, 1
+	);
 }
 
 if (show_debug_info) 

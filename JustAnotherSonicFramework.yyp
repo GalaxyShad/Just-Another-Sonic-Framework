@@ -92,6 +92,7 @@
     {"id":{"name":"Object34531","path":"objects/Object34531/Object34531.yy",},},
     {"id":{"name":"Sprite5751","path":"sprites/Sprite5751/Sprite5751.yy",},},
     {"id":{"name":"PlayerHandleMonitors","path":"scripts/PlayerHandleMonitors/PlayerHandleMonitors.yy",},},
+    {"id":{"name":"sprFireShieldActive","path":"sprites/sprFireShieldActive/sprFireShieldActive.yy",},},
     {"id":{"name":"sprWaterShield","path":"sprites/sprWaterShield/sprWaterShield.yy",},},
     {"id":{"name":"sprKnucklesRoll","path":"sprites/sprKnucklesRoll/sprKnucklesRoll.yy",},},
     {"id":{"name":"Sprite1525","path":"sprites/Sprite1525/Sprite1525.yy",},},

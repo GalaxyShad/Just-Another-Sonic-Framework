@@ -62,6 +62,7 @@
     {"name":"Object34531","order":17,"path":"objects/Object34531/Object34531.yy",},
     {"name":"Sprite5751","order":4,"path":"sprites/Sprite5751/Sprite5751.yy",},
     {"name":"PlayerHandleMonitors","order":12,"path":"scripts/PlayerHandleMonitors/PlayerHandleMonitors.yy",},
+    {"name":"sprFireShieldActive","order":24,"path":"sprites/sprFireShieldActive/sprFireShieldActive.yy",},
     {"name":"sprWaterShield","order":14,"path":"sprites/sprWaterShield/sprWaterShield.yy",},
     {"name":"sprKnucklesRoll","order":8,"path":"sprites/sprKnucklesRoll/sprKnucklesRoll.yy",},
     {"name":"Sprite1525","order":5,"path":"sprites/Sprite1525/Sprite1525.yy",},
