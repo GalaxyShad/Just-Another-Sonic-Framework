@@ -68,6 +68,15 @@ allow_movement	= true;
 
 peelout_animation_spd = 0;
 
+water_shield_scale = {
+	xscale: 1,
+	yscale: 1,
+	
+	__xscale: 1,
+	__yscale: 1
+};
+
+
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
 

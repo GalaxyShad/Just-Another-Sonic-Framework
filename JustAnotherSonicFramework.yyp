@@ -79,6 +79,7 @@
     {"id":{"name":"objHud","path":"objects/objHud/objHud.yy",},},
     {"id":{"name":"sprSonic","path":"sprites/sprSonic/sprSonic.yy",},},
     {"id":{"name":"sprSonicBoredEx","path":"sprites/sprSonicBoredEx/sprSonicBoredEx.yy",},},
+    {"id":{"name":"Sprite90","path":"sprites/Sprite90/Sprite90.yy",},},
     {"id":{"name":"PlayerSwitchSensorRadius","path":"scripts/PlayerSwitchSensorRadius/PlayerSwitchSensorRadius.yy",},},
     {"id":{"name":"sprSpikes","path":"sprites/sprSpikes/sprSpikes.yy",},},
     {"id":{"name":"objLayerToLow","path":"objects/objLayerToLow/objLayerToLow.yy",},},
