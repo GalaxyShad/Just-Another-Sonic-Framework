@@ -17,7 +17,7 @@ draw_text(
 	16, 240,
 	"fps: " + string(fps) + "\n" +
 	"ground: " + string(ground) + "\n" +
-	"action: " + string(action) + "\n" +
+	"action: " + string(state.current()) + "\n" +
 	"gsp: " + string(gsp) + "\n" +
 	"xsp: " + string(xsp) + "\n" +
 	"ysp: " + string(ysp) + "\n" +

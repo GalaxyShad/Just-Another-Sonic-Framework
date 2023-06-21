@@ -60,10 +60,15 @@ switch (state.current()) {
 			else sprite_index = sprKnucklesRun;
 				
 				
-			if (sprite_index == sprKnucklesWalk || sprite_index == sprKnucklesRun || sprite_index == sprSonicDash)
-				image_speed = 0.5 + abs(gsp) / 32.0;
+			if (sprite_index == sprKnucklesWalk || 
+				sprite_index == sprKnucklesRun || 
+				sprite_index == sprSonicDash
+			)
+				image_speed = 0.125 + abs(gsp) / 8.0;
 			else if (sprite_index == sprKnucklesBored || sprite_index == sprKnucklesBoredEx)
 				image_speed = 1;
+				
+			show_debug_message($"img spd {image_speed}");
 			
 		} else if (sprite_index != sprKnucklesWalk && sprite_index != sprKnucklesRun && sprite_index != sprSonicDash) {
 			sprite_index = sprKnucklesWalk;
