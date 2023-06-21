@@ -1,6 +1,12 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
-
+function PlayerHandleObjects() {
+	PlayerHandleLayers();
+	PlayerHandleSprings();
+	PlayerHandleRing();
+	PlayerHandleSpikes();
+	PlayerHandleMonitors();	
+}
 
 function PlayerCollision() {
 
@@ -42,37 +48,20 @@ function PlayerCollision() {
 	}
 	
 	if (!ground) {	
+		//sensor.set_angle( sensor.get_angle() + angle_difference(0, sensor.get_angle()) / 20 );
+		
 		sensor.set_angle(0);
 		
 		if (sensor.is_collision_solid_top() && ysp < 0) {
 	
 			sensor.set_angle(180);
-			var ang = sensor.get_ground_angle();
-		
-			if (ang == 0) {
-				sensor.set_angle(180);
-				
-				var is_col_left  = sensor.is_collision_ground_left_edge();
-				var is_col_right = sensor.is_collision_ground_right_edge();
-			
-				if (!is_col_left && is_col_right) {
-					sensor.set_angle(270);
-				} 
-			
-				if (is_col_left && !is_col_right) {
-					sensor.set_angle(90);
-				}
-				
-				if (sensor.check_expanded(0, 5, sensor.is_collision_ground)) {
-					ang = sensor.get_ground_angle();
-				} else {
-					ang = 0;
-				}
-			}
+			var _ang = sensor.get_ground_angle();
+			if (_ang == 0) 
+				_ang = sensor.get_landing_ground_angle();
 			
 		
-			if ((ang >= 91 && ang <= 135) || (ang >= 226 && ang <= 270)) {
-				sensor.set_angle(ang);
+			if ((_ang >= 91 && _ang <= 135) || (_ang >= 226 && _ang <= 270)) {
+				sensor.set_angle(_ang);
 				ground = true;
 				gsp = ysp * -sign(dsin(sensor.get_angle()));
 			
@@ -82,34 +71,26 @@ function PlayerCollision() {
 				ysp = 0;
 			}
 		}
+
 		
+		
+		
+
 		// Landing
 		
 		if (!ground && sensor.is_collision_solid_bottom() && ysp > 0) {
 			ground = true;
+
+			
+			while (sensor.is_collision_solid_bottom()) {
+				y--;
+				sensor.set_position(x, y);
+			}
 			
 			var _ang = sensor.get_ground_angle();
 		
-			if (_ang == 0) {
-				sensor.set_angle(0);
-				
-				var is_col_left  = sensor.is_collision_ground_left_edge();
-				var is_col_right = sensor.is_collision_ground_right_edge();
-			
-				if (!is_col_left && is_col_right) {
-					sensor.set_angle(90);
-				} 
-			
-				if (is_col_left && !is_col_right) {
-					sensor.set_angle(270);
-				}
-				
-				if (sensor.check_expanded(0, 5, sensor.is_collision_ground)) {
-					_ang = sensor.get_ground_angle();
-				} else {
-					_ang = 0;
-				}
-			}
+			if (_ang == 0) 
+				_ang = sensor.get_landing_ground_angle();
 		
 			sensor.set_angle(_ang);
 		
@@ -138,8 +119,6 @@ function PlayerCollision() {
 			
 			player_landing();
 		}
-	
-
 	}
 	
 	if (ground) {
@@ -175,6 +154,8 @@ function PlayerCollision() {
 			ground = false;
 		} 
 	} 
+	
+	
 	
 
 }
