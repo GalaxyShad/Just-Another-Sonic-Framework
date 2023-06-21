@@ -20,6 +20,9 @@ dec = 0.5;
 frc = acc;
 top = 6;
 
+kgr = 3; //knuckles_glid_rotation
+glid_top=5;
+
 animation_angle = 0;
 
 slp = 0.125;

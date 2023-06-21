@@ -11,8 +11,8 @@ function PlayerAirMovement(){
 	
 	// Gravity
 	ysp += grv;
-	if (ysp > 16)
-		ysp = 16;
+	if(state.current() == "glid" && ysp > 2) ysp=2;
+	else if (ysp > 16) ysp = 16;
 		
 	// Movement
 	if (allow_movement) {
@@ -21,6 +21,18 @@ function PlayerAirMovement(){
 		else if (is_key_right && xsp < top) 
 			xsp += airacc;
 	}
+	if(state.current() == "glid"){		
+		if(!is_key_left && !is_key_right && abs(xsp) < glid_top){
+			xsp += airacc * sign(image_xscale);
+		}
+		else if (is_key_left && xsp > -glid_top){
+			xsp -= airacc;
+		}
+		else if (is_key_right && xsp < glid_top){
+			xsp += airacc;
+		}
+	}
+	
 		
 	// Air Drag
 	if (!ground && ysp < 0 && ysp > -4) {

@@ -43,15 +43,14 @@ switch (state.current()) {
 				else
 					sprite_index = sprKnuckles;
 					
-				if (idle_anim_timer > 236 && sprite_index == sprKnucklesBored) {
-					image_index = 0.25;
-					if (image_index < 2)
-						image_index = 2;
+				if (idle_anim_timer > 236 && sprite_index == sprSonicBored) {
+					if (image_index < 1)
+						image_index = 0;
 				}
 				
 				if (idle_anim_timer >= 816 && sprite_index == sprKnucklesBoredEx) {
-					if (idle_anim_timer >= 832 && image_index < 2)
-						image_index = 1;
+					if (idle_anim_timer >= 832)
+						image_index += 0.1;
 				}
 				
 				
@@ -60,17 +59,14 @@ switch (state.current()) {
 			else sprite_index = sprKnucklesRun;
 				
 				
-			if (sprite_index == sprKnucklesWalk || 
-				sprite_index == sprKnucklesRun || 
-				sprite_index == sprSonicDash
-			)
+			if (sprite_index == sprKnucklesWalk || sprite_index == sprKnucklesRun)
 				image_speed = 0.125 + abs(gsp) / 8.0;
 			else if (sprite_index == sprKnucklesBored || sprite_index == sprKnucklesBoredEx)
 				image_speed = 1;
 				
-			show_debug_message($"img spd {image_speed}");
+			//show_debug_message($"img spd {image_speed}");
 			
-		} else if (sprite_index != sprKnucklesWalk && sprite_index != sprKnucklesRun && sprite_index != sprSonicDash) {
+		} else if (sprite_index != sprKnucklesWalk && sprite_index != sprKnucklesRun) {
 			sprite_index = sprKnucklesWalk;
 			image_speed = 0.25 + abs(gsp) / 32.0;
 		}
@@ -119,14 +115,13 @@ switch (state.current()) {
 	}
 	
 	case "balancing": {
-		image_speed = 0.5;
+		image_speed = 1;
 		
 		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
 			(image_xscale == -1 && sensor.is_collision_ground_right_edge()))
 				sprite_index = sprKnucklesBalancing;
 		else
 			sprite_index = sprKnucklesBalancingB;
-		
 		break;
 	}
 	
@@ -144,8 +139,8 @@ switch (state.current()) {
 	case "spindash": {
 		image_speed = 1;
 		sprite_index = sprKnucklesSpindash;
+		break;
 	}
-	break;
 
 	case "spring": {
 		image_speed = 0.125 + abs(ysp) / 10;
@@ -154,19 +149,46 @@ switch (state.current()) {
 			sprite_index = sprKnucklesSpring;
 		else
 			sprite_index = sprKnucklesWalk;
+		break;
 	}
-	break;
 	
 	case "hurt": {
 		sprite_index = sprKnucklesHurt;
-	} break;
-	
+		break;
+	}
 	
 	case "die": {
 		image_speed = 0;
 		image_index = 0;
 		sprite_index = sprKnucklesDie;
-	} break;
+		break;
+	}
+
+	case "glid": {
+		//sprite_index = sprKnucklesGlid;
+		
+		sprite_index = sprKnucklesUngroundedRotation;
+		
+		if(abs(xsp)>kgr) _gg=kgr*sign(xsp);
+		else _gg = xsp;
+		image_index = kgr - _gg * sign(image_xscale);
+		
+		break;
+	}
+	
+	case "land": {
+		sprite_index = sprKnucklesLand;
+		if(abs(xsp)>2) image_index=0;
+		else image_index=1;
+		break;
+	}
+	
+	case "drop": {
+		sprite_index = sprKnucklesDrop;
+		if(ysp<3) image_index=0;
+		else image_index=1;
+		break;
+	}
 }
 
 if (sprite_index != sprite_index_prev)

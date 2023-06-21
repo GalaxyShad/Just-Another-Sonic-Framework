@@ -22,7 +22,15 @@ draw_text(
 	"xsp: " + string(xsp) + "\n" +
 	"ysp: " + string(ysp) + "\n" +
 	"angle: " + string(sensor.get_angle()) + "\n" +
-	"animation_angle: " + string(animation_angle) + "\n"
+	"animation_angle: " + string(animation_angle) + "\n" +
+	"\n" +
+	"allow_jump: " + string(allow_jump) + "\n" +
+	"allow_movement: " + string(allow_movement) + "\n" +
+	"\n" +
+	"sprit_index: " + string(sprite_index) + "\n" +
+	"image_index: " + string(image_index) + "\n" +
+	"image_speed: " + string(image_speed) + "\n" +
+	"image_xscale: " + string(image_xscale) + "\n"
 
 	/*
 	"edge_left: " + string(sensor.is_collision_left_edge()) + "\n" + 

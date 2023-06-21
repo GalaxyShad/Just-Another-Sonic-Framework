@@ -5,6 +5,8 @@ function is_player_sphere() {
 		"jump",
 		"roll",
 		"dropdash",
+		//"glid",
+		"land",
 	], state.current());
 }
 
@@ -51,7 +53,6 @@ state.add("normal", {
 	},
 });
 
-
 state.add("jump", {
 	__bounce_force: 7.5,
 	
@@ -66,8 +67,16 @@ state.add("jump", {
 		if (is_key_action_pressed && 
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
 		) {
-			audio_play_sound(sndPlrDropDash, 0, false);
-			state.change_to("dropdash");
+			if(object_index==objPlayer){
+				audio_play_sound(sndPlrDropDash, 0, false);
+				state.change_to("dropdash");
+			}
+			else if(object_index==objPlayerKnuckles){
+				ysp = 0;
+				xsp = (3+xsp/3) * sign(image_xscale);//0->(3+xsp/3)
+				state.change_to("glid");
+			}
+			//show_debug_message($"This is player -> {object_get_name(object_index)}");
 		}
 		
 		
@@ -123,7 +132,6 @@ state.add("jump", {
 	},
 });
 
-
 state.add("look_up", {
 	on_start: function(player) { with player {
 		allow_jump = false;	
@@ -139,11 +147,11 @@ state.add("look_up", {
 		if (!is_key_up || !ground || gsp != 0)
 			state.change_to("normal");
 			
-		if (ground && is_key_action) 
-			state.change_to("peelout");
+		if (ground && is_key_action)
+			if(object_index==objPlayer) state.change_to("peelout");
+			else state.change_to("jump")
 	}},
 });
-
 
 state.add("look_down", {
 	on_start: function(player) { with player {
@@ -167,7 +175,6 @@ state.add("look_down", {
 	}},
 });
 
-
 state.add("push", {
 	on_step: function(player) { with player {
 		xsp = 0;
@@ -178,7 +185,6 @@ state.add("push", {
 	}},
 });
 
-
 state.add("roll", {
 	on_step: function(player) { with player {
 		var _agsp = abs(gsp);
@@ -187,7 +193,6 @@ state.add("roll", {
 			state.change_to("normal");
 	}},
 });
-
 
 state.add("skid", {
 	on_step: function(player) { with player {
@@ -199,14 +204,12 @@ state.add("skid", {
 	}},
 });
 
-
 state.add("balancing", {
 	on_step: function(player) { with player {
 		if (gsp != 0 || !ground)
 			state.change_to("normal");
 	}},
 });
-
 
 state.add("peelout", {
 	__timer: 0,
@@ -297,7 +300,6 @@ state.add("spindash", {
 	},
 });
 
-
 state.add("dropdash", {
 	__drop_timer: 0,
 	
@@ -305,8 +307,7 @@ state.add("dropdash", {
 		__drop_timer = 0;
 		audio_play_sound(sndPlrDropDash, 0, false);
 	},
-	
-	
+		
 	on_landing: function(player) {with player {
 		if (other.__drop_timer < 20) {
 			state.change_to("normal");
@@ -351,7 +352,60 @@ state.add("hurt", {
 	}},
 });
 
+state.add("glid", {
+	//dropdash->glid
+	
+	on_start: function(player) {with (player) {
+		allow_jump = false;
+		allow_movement = false;
+	}},
+	
+	on_step: function(player) {with player {
+		if (!is_key_action)
+			state.change_to("drop");
+	}},
+	
+	on_landing: function(player) {with player {
+		state.change_to("land");
+	}},
+	
+	on_exit: function(player) {with (player) {
+		allow_jump = true;	
+		allow_movement = true;			
+	}},
+});
 
+state.add("drop", {
+	
+	on_start: function(player) { with player {
+	}},
+	
+	
+	on_landing: function(player) {with player {
+		state.change_to("look_down");
+	}},
+	
+	on_exit: function(player) { with player {
+	}},
+	
+});
 
+state.add("land", {
+	
+	on_start: function(player) { with player {
+		allow_jump = false;
+		allow_movement = false;
+	}},
+	
+	on_step: function(player) {with player {
+		if (abs(xsp)<3) state.change_to("normal");
+	}},
+	
+	on_exit: function(player) { with player {
+		gsp = 0;
+		allow_jump = true;	
+		allow_movement = true;	
+	}},
+});
 
 }

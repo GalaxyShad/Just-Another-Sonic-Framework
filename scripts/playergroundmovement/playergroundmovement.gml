@@ -18,10 +18,20 @@ function PlayerGroundMovement() {
 
 	// Movement
 	if (control_lock_timer == 0 && allow_movement) {
-		
-		if (state.current() != "roll") {
+		if(state.current() == "roll") {
 			if (is_key_left) {
-			
+				if (gsp > 0) {
+					gsp -= 0.125;  
+					if (gsp <= 0) gsp = -0.5;  		
+				}
+			} else if (is_key_right) {
+				if (gsp < 0) {
+					gsp += 0.125;  
+					if (gsp >= 0) gsp = 0.5;  
+				} 
+			}
+		} else {
+			if (is_key_left) {
 				if (gsp > 0) {
 					gsp -= dec;  
 					if (gsp <= 0) gsp = -0.5;  		
@@ -30,41 +40,27 @@ function PlayerGroundMovement() {
 					if (gsp < -top) gsp = -top;  		
 				} 
 			} else if (is_key_right) {
-			
 				if (gsp < 0) {
 					gsp += dec;  
 					if (gsp >= 0) gsp = 0.5;  
 				} else if (gsp < top) {
 					gsp += acc;
 					if (gsp > top) gsp = top;  
-				} 
-			}
-		} else {
-			if (is_key_left) {
-			
-				if (gsp > 0) {
-					gsp -= 0.125;  
-					if (gsp <= 0) gsp = -0.5;  		
-				} 
-			} else if (is_key_right) {
-			
-				if (gsp < 0) {
-					gsp += 0.125;  
-					if (gsp >= 0) gsp = 0.5;  
-				} 
+				}
 			}
 		}
 	}
 	
-	
 	// Friction
-	if (!is_key_left && !is_key_right && state.current() != "roll") {
+	if (!is_key_left && !is_key_right && state.current() != "roll" && state.current() != "land") {
 		gsp -= min(abs(gsp), frc) * sign(gsp);
 	}
 	
 	if (state.current() == "roll")
 		gsp -= min(abs(gsp), frc / 2) * sign(gsp);
-
+	
+	if (state.current() == "land")
+		gsp -= min(abs(gsp), frc) * sign(gsp);
 
 	// Fall off slopes
 	
