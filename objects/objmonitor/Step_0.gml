@@ -5,7 +5,7 @@ if (!is_falling)
 	exit;
 	
 
-vspeed += 0.125;
+vspeed += 0.21875;
 
 if (place_meeting(x, y+vspeed+1, parSolid) && vspeed > 0) {
 	while (!place_meeting(x, y, parSolid))

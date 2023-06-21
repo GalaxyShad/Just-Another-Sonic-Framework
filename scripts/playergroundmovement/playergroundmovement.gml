@@ -12,7 +12,7 @@ function PlayerGroundMovement() {
 			gsp -= slp_rollup * sina;
 		else 
 			gsp -= slp_rolldown * sina;
-	} else if (gsp != 0)
+	} else if (abs(slp * sina) >= 0.05078125)
 		gsp -= slp * sina;
 	
 
@@ -63,12 +63,17 @@ function PlayerGroundMovement() {
 		gsp -= min(abs(gsp), frc) * sign(gsp);
 
 	// Fall off slopes
-	
+	// Sonic 3 method
 	if (control_lock_timer == 0) {
-	    if (abs(gsp) < 2.5 && sensor.get_angle() >= 46 && sensor.get_angle() <= 315) { 
-			ground = false;
-			gsp = 0; 
-	        control_lock_timer = 30;
+	    if (abs(gsp) < 2.5 && sensor.get_angle() >= 35 && sensor.get_angle() <= 326) { 
+			control_lock_timer = 30;
+			
+			if (sensor.get_angle() >= 69 && sensor.get_angle() <= 293) {
+				ground = false;
+			} else {
+				gsp += (sensor.get_angle() < 180) ? -0.5 : +0.5;	
+			}
+	        
 	    }
 	} else {
 	    control_lock_timer--; 
