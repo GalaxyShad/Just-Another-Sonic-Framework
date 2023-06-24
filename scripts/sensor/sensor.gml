@@ -267,7 +267,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	};
 	
 	get_landing_ground_angle = function() {
-		var _n = __floor_box.hradius * 2;
+		var _n = __floor_box.hradius / 2;
 		
 		var _dir = 1; 
 		var _start_point = __floor_box.coords[3];
