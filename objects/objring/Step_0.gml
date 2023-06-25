@@ -5,29 +5,32 @@ if (mode == 0) {
 	var _oPlayer = instance_nearest(x, y, objPlayer);
 	
 	if (_oPlayer != noone) {
-	if ((distance_to_object(_oPlayer) < 64) && _oPlayer.shield == 4) {
-		var _sx = sign(_oPlayer.x - x);
-		var _sy = sign(_oPlayer.y - y);
-	
-		//check relative movement
-		var _tx = (sign(xsp) == _sx)
-		var _ty = (sign(ysp) == _sy)
-	
-	
-		var _ringacceleration;
-		_ringacceleration[0] = 0.75;
-		_ringacceleration[1] = 0.1875;
+		if ((distance_to_object(_oPlayer) < 64) && _oPlayer.shield == 4) {
+			is_magnetized = true;
+		}
 		
-		//add to speed
-		xsp += (_ringacceleration[_tx] * _sx)
-		ysp += (_ringacceleration[_ty] * _sy)
-		//"ringacceleration" would be an array, where: [0] = 0.75 [1] = 0.1875
+		if (is_magnetized) {
+			var _sx = sign(_oPlayer.x - x);
+			var _sy = sign(_oPlayer.y - y);
 	
-		//move
-		x += xsp;
-		y += ysp;
+			//check relative movement
+			var _tx = (sign(xsp) == _sx)
+			var _ty = (sign(ysp) == _sy)
+	
+	
+			var _ringacceleration;
+			_ringacceleration[0] = 0.75;
+			_ringacceleration[1] = 0.1875;
+		
+			//add to speed
+			xsp += (_ringacceleration[_tx] * _sx)
+			ysp += (_ringacceleration[_ty] * _sy)
+		}
 	}
-	}
+	
+	//move
+	x += xsp;
+	y += ysp;
 }
 
 if mode != 1
