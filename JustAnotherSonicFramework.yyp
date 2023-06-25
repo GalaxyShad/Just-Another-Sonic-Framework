@@ -152,6 +152,7 @@
     {"id":{"name":"Sprite575155","path":"sprites/Sprite575155/Sprite575155.yy",},},
     {"id":{"name":"objMonitor","path":"objects/objMonitor/objMonitor.yy",},},
     {"id":{"name":"TODO","path":"notes/TODO/TODO.yy",},},
+    {"id":{"name":"sndWaterSplash","path":"sounds/sndWaterSplash/sndWaterSplash.yy",},},
     {"id":{"name":"sprKnucklesHurt","path":"sprites/sprKnucklesHurt/sprKnucklesHurt.yy",},},
     {"id":{"name":"sprKnucklesClambEx","path":"sprites/sprKnucklesClambEx/sprKnucklesClambEx.yy",},},
     {"id":{"name":"rmAnimation","path":"rooms/rmAnimation/rmAnimation.yy",},},

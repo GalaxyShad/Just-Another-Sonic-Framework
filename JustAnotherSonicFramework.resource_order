@@ -121,6 +121,7 @@
     {"name":"objMonitorEggman","order":2,"path":"objects/objMonitorEggman/objMonitorEggman.yy",},
     {"name":"Sprite575155","order":8,"path":"sprites/Sprite575155/Sprite575155.yy",},
     {"name":"TODO","order":5,"path":"notes/TODO/TODO.yy",},
+    {"name":"sndWaterSplash","order":21,"path":"sounds/sndWaterSplash/sndWaterSplash.yy",},
     {"name":"sprKnucklesHurt","order":10,"path":"sprites/sprKnucklesHurt/sprKnucklesHurt.yy",},
     {"name":"sprKnucklesClambEx","order":25,"path":"sprites/sprKnucklesClambEx/sprKnucklesClambEx.yy",},
     {"name":"rmAnimation","order":6,"path":"rooms/rmAnimation/rmAnimation.yy",},

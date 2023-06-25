@@ -54,6 +54,8 @@ if (_water != noone) {
 		var _particle = part_system_create(ParticleSystem2);
 		part_system_depth(_particle, -20);
 		part_system_position(_particle, x, y);
+		
+		audio_play_sound(sndWaterSplash, 0, 0);
 	} else if (y <= _water.y && physics.is_underwater()) {
 		ysp *= 2;
 		physics.cancel_underwater();
@@ -61,6 +63,8 @@ if (_water != noone) {
 		var _particle = part_system_create(ParticleSystem2);
 		part_system_depth(_particle, -20);
 		part_system_position(_particle, x, y);
+		
+		audio_play_sound(sndWaterSplash, 0, 0);
 	}
 }
 
