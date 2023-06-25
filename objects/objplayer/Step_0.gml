@@ -50,9 +50,17 @@ if (_water != noone) {
 		xsp *= 0.5;
 		ysp *= 0.25;
 		physics.apply_underwater();
+		
+		var _particle = part_system_create(ParticleSystem2);
+		part_system_depth(_particle, -20);
+		part_system_position(_particle, x, y);
 	} else if (y <= _water.y && physics.is_underwater()) {
 		ysp *= 2;
 		physics.cancel_underwater();
+		
+		var _particle = part_system_create(ParticleSystem2);
+		part_system_depth(_particle, -20);
+		part_system_position(_particle, x, y);
 	}
 }
 
