@@ -61,8 +61,8 @@ state.add("jump", {
 	},
 	
 	on_step: function(player) { with (player) {
-		if (!is_key_action && ysp < -4)
-			ysp = -4;
+		if (!is_key_action && ysp < physics.jump_release)
+			ysp = physics.jump_release;
 			
 		if (is_key_action_pressed && 
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)

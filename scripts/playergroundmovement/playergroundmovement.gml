@@ -4,16 +4,15 @@ function PlayerGroundMovement() {
 	if (!ground)
 		return;
 		
-	// Deacceleration on 
-	var sina = dsin(sensor.get_angle());
+	// Deacceleration on slopes
+	var _sina = dsin(sensor.get_angle());
 	
 	if (state.current() == "roll") {
-		if (sign(gsp) == sign(sina))
-			gsp -= slp_rollup * sina;
-		else 
-			gsp -= slp_rolldown * sina;
-	} else if (abs(slp * sina) >= 0.05078125)
-		gsp -= slp * sina;
+		gsp -= _sina * ((sign(gsp) == sign(_sina)) ? 
+			physics.slope_factor_rollup : 
+			physics.slope_factor_rolldown);
+	} else if (abs(physics.slope_factor * _sina) >= 0.05078125)
+		gsp -= physics.slope_factor * _sina;
 	
 
 	// Movement
@@ -21,31 +20,31 @@ function PlayerGroundMovement() {
 		if(state.current() == "roll") {
 			if (is_key_left) {
 				if (gsp > 0) {
-					gsp -= 0.125;  
+					gsp -= physics.roll_deceleration_speed;  
 					if (gsp <= 0) gsp = -0.5;  		
 				}
 			} else if (is_key_right) {
 				if (gsp < 0) {
-					gsp += 0.125;  
+					gsp += physics.roll_deceleration_speed;  
 					if (gsp >= 0) gsp = 0.5;  
 				} 
 			}
 		} else {
 			if (is_key_left) {
 				if (gsp > 0) {
-					gsp -= dec;  
+					gsp -= physics.deceleration_speed;  
 					if (gsp <= 0) gsp = -0.5;  		
-				} else if (gsp > -top) {		
-					gsp -= acc;
-					if (gsp < -top) gsp = -top;  		
+				} else if (gsp > -physics.top_speed) {		
+					gsp -= physics.acceleration_speed;
+					if (gsp < -physics.top_speed) gsp = -physics.top_speed;  		
 				} 
 			} else if (is_key_right) {
 				if (gsp < 0) {
-					gsp += dec;  
+					gsp += physics.deceleration_speed;  
 					if (gsp >= 0) gsp = 0.5;  
-				} else if (gsp < top) {
-					gsp += acc;
-					if (gsp > top) gsp = top;  
+				} else if (gsp < physics.top_speed) {
+					gsp += physics.acceleration_speed;
+					if (gsp > physics.top_speed) gsp = physics.top_speed;  
 				}
 			}
 		}
@@ -53,14 +52,14 @@ function PlayerGroundMovement() {
 	
 	// Friction
 	if (!is_key_left && !is_key_right && state.current() != "roll" && state.current() != "land") {
-		gsp -= min(abs(gsp), frc) * sign(gsp);
+		gsp -= min(abs(gsp), physics.friction_speed) * sign(gsp);
 	}
 	
 	if (state.current() == "roll")
-		gsp -= min(abs(gsp), frc / 2) * sign(gsp);
+		gsp -= min(abs(gsp), physics.friction_speed / 2) * sign(gsp);
 	
 	if (state.current() == "land")
-		gsp -= min(abs(gsp), frc) * sign(gsp);
+		gsp -= min(abs(gsp), physics.friction_speed) * sign(gsp);
 
 	// Fall off slopes
 	// Sonic 3 method

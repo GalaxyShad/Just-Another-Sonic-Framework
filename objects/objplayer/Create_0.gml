@@ -1,8 +1,6 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
-#macro ROLL_DEC 0.125
-#macro DEC		0.5
 
 #macro SHIELD_NONE			0
 #macro SHIELD_CLASSIC		1
@@ -10,27 +8,30 @@
 #macro SHIELD_FIRE			3
 #macro SHIELD_ELECTRIC		4
 
+
+
 shield = SHIELD_NONE;
+
+
 
 show_debug_info = true;
 
-acc = 0.046875;
-airacc = acc * 2;
-dec = 0.5;
-frc = acc;
-top = 6;
+physics = new PlayerPhysics(,{
+	acceleration_speed:		0.1875,
+	deceleration_speed:		1,
+	top_speed:				10,
+	
+	air_acceleration_speed: 0.375,
+	jump_force:				8,
+});
+
+physics.apply_underwater();
+
 
 kgr = 3; //knuckles_glid_rotation
 glid_top=5;
 
 animation_angle = 0;
-
-slp = 0.125;
-slp_rollup = 0.078125;
-slp_rolldown = 0.3125;
-
-grv = 0.21875;
-jmp = 6.5;
 
 control_lock_timer = 0;
 
@@ -62,9 +63,6 @@ inv_timer = 0;
 
 
 drpspd		= 8; //the base speed for a drop dash
-drpmax		= 12; //the top speed for a drop dash
-drpspdsup	= 12; //the base speed for a drop dash while super
-drpmaxsup	= 13; //the top speed for a drop dash while super
 
 allow_jump		= true;
 allow_movement	= true;

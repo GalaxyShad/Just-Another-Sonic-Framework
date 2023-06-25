@@ -11,6 +11,7 @@
     {"name":"Sprite232629","order":9,"path":"sprites/Sprite232629/Sprite232629.yy",},
     {"name":"sprMonitorIcons","order":2,"path":"sprites/sprMonitorIcons/sprMonitorIcons.yy",},
     {"name":"sprKnucklesRun","order":7,"path":"sprites/sprKnucklesRun/sprKnucklesRun.yy",},
+    {"name":"PlayerPhysics","order":25,"path":"scripts/PlayerPhysics/PlayerPhysics.yy",},
     {"name":"Object34","order":6,"path":"objects/Object34/Object34.yy",},
     {"name":"Sprite15252844","order":16,"path":"sprites/Sprite15252844/Sprite15252844.yy",},
     {"name":"sprKnucklesBalancingB","order":14,"path":"sprites/sprKnucklesBalancingB/sprKnucklesBalancingB.yy",},

@@ -35,6 +35,7 @@
     {"id":{"name":"Sprite232629","path":"sprites/Sprite232629/Sprite232629.yy",},},
     {"id":{"name":"sprMonitorIcons","path":"sprites/sprMonitorIcons/sprMonitorIcons.yy",},},
     {"id":{"name":"sprKnucklesRun","path":"sprites/sprKnucklesRun/sprKnucklesRun.yy",},},
+    {"id":{"name":"PlayerPhysics","path":"scripts/PlayerPhysics/PlayerPhysics.yy",},},
     {"id":{"name":"Object34","path":"objects/Object34/Object34.yy",},},
     {"id":{"name":"sndPlrPeelRelease","path":"sounds/sndPlrPeelRelease/sndPlrPeelRelease.yy",},},
     {"id":{"name":"Sprite15252844","path":"sprites/Sprite15252844/Sprite15252844.yy",},},

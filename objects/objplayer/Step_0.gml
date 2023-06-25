@@ -1,6 +1,6 @@
 
 if (state.current() == "die") {
-	ysp += grv;
+	ysp += physics.gravity_force;
 	
 	y += ysp;
 	
@@ -54,8 +54,8 @@ if (ground && oMovingPlatform) {
 if (allow_jump && ground && is_key_action_pressed) {
 	ground = false;
 	
-	ysp -= jmp * dcos(sensor.get_angle()); 
-	xsp -= jmp * dsin(sensor.get_angle()); 
+	ysp -= physics.jump_force * dcos(sensor.get_angle()); 
+	xsp -= physics.jump_force * dsin(sensor.get_angle()); 
 	
 	state.change_to("jump");
 	
