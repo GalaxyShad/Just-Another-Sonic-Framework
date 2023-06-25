@@ -12,7 +12,25 @@
 
 shield = SHIELD_NONE;
 
-
+set_shield = function(_shield = SHIELD_NONE) {
+	if (physics.is_underwater() && 
+		(_shield == SHIELD_FIRE || _shield == SHIELD_ELECTRIC)
+	) return;
+	
+	shield = _shield;
+	
+	if (shield == SHIELD_NONE)
+		return;
+	
+	var _sounds = [
+		sndBlueShield, 
+		sndBubbleShield, 
+		sndFireShield, 
+		sndLightningShield
+	];
+	
+	audio_play_sound(_sounds[_shield - 1], 0, 0);
+}
 
 show_debug_info = true;
 
@@ -25,7 +43,7 @@ physics = new PlayerPhysics(,{
 });
 
 //physics.apply_super_form();
-
+//physics.apply_super_fast_shoes();
 
 kgr = 3; //knuckles_glid_rotation
 glid_top=5;

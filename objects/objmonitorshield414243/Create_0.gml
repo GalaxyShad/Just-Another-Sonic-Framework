@@ -15,7 +15,6 @@
 event_inherited();
 item = ITEM_WATER_SHIELD;
 action = function() {
-	audio_play_sound(sndBubbleShield, 0, false);
-	with objPlayer shield = SHIELD_BUBBLE;
+	with objPlayer set_shield(SHIELD_BUBBLE);
 };
 
