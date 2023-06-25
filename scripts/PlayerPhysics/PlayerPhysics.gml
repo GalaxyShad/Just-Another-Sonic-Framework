@@ -45,6 +45,11 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+	is_underwater = function() {
+		return __is_underwater;	
+	};
+
+
 	reset = function() {
 		__apply_props(__default_props);
 		if (__is_underwater) __apply_underwater();

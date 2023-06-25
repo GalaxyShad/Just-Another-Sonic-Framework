@@ -41,6 +41,7 @@
     {"name":"sprSonicSkid","order":9,"path":"sprites/sprSonicSkid/sprSonicSkid.yy",},
     {"name":"objMovingPlatform","order":9,"path":"objects/objMovingPlatform/objMovingPlatform.yy",},
     {"name":"objLayerToHigh","order":3,"path":"objects/objLayerToHigh/objLayerToHigh.yy",},
+    {"name":"objWaterLevel","order":26,"path":"objects/objWaterLevel/objWaterLevel.yy",},
     {"name":"sndLoseRings","order":17,"path":"sounds/sndLoseRings/sndLoseRings.yy",},
     {"name":"objSfxExplosion","order":4,"path":"objects/objSfxExplosion/objSfxExplosion.yy",},
     {"name":"sprKnucklesLookUp","order":4,"path":"sprites/sprKnucklesLookUp/sprKnucklesLookUp.yy",},

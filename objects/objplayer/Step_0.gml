@@ -44,6 +44,18 @@ PlayerHandleObjects();
 
 state.step();
 
+var _water = instance_nearest(x, y, objWaterLevel);
+if (_water != noone) {
+	if (y > _water.y && !physics.is_underwater())	{ 
+		xsp *= 0.5;
+		ysp *= 0.25;
+		physics.apply_underwater();
+	} else if (y <= _water.y && physics.is_underwater()) {
+		ysp *= 2;
+		physics.cancel_underwater();
+	}
+}
+
 var oMovingPlatform = sensor.collision_object(objMovingPlatform, 6);
 if (ground && oMovingPlatform) {
 	x += oMovingPlatform.x - oMovingPlatform.xprevious; 

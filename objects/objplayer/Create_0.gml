@@ -25,7 +25,7 @@ physics = new PlayerPhysics(,{
 	jump_force:				8,
 });
 
-physics.apply_underwater();
+
 
 
 kgr = 3; //knuckles_glid_rotation

@@ -69,6 +69,7 @@
     {"id":{"name":"sprSonicSkid","path":"sprites/sprSonicSkid/sprSonicSkid.yy",},},
     {"id":{"name":"objMovingPlatform","path":"objects/objMovingPlatform/objMovingPlatform.yy",},},
     {"id":{"name":"objLayerToHigh","path":"objects/objLayerToHigh/objLayerToHigh.yy",},},
+    {"id":{"name":"objWaterLevel","path":"objects/objWaterLevel/objWaterLevel.yy",},},
     {"id":{"name":"sndLoseRings","path":"sounds/sndLoseRings/sndLoseRings.yy",},},
     {"id":{"name":"objSfxExplosion","path":"objects/objSfxExplosion/objSfxExplosion.yy",},},
     {"id":{"name":"sprKnucklesLookUp","path":"sprites/sprKnucklesLookUp/sprKnucklesLookUp.yy",},},
