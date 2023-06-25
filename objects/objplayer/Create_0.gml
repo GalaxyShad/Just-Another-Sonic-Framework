@@ -20,12 +20,11 @@ physics = new PlayerPhysics(,{
 	acceleration_speed:		0.1875,
 	deceleration_speed:		1,
 	top_speed:				10,
-	
-	air_acceleration_speed: 0.375,
 	jump_force:				8,
+	air_acceleration_speed: 0.375,
 });
 
-
+//physics.apply_super_form();
 
 
 kgr = 3; //knuckles_glid_rotation
@@ -50,10 +49,6 @@ gsp = 0;
 camera = instance_create_layer(x, y, layer, objCamera);
 
 #macro ACT_NORMAL		0
-
-#macro ACT_ROLL			2
-
-#macro ACT_HURT			-2
 
 action = 0;
 

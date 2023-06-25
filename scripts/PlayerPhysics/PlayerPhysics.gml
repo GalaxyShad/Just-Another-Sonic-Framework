@@ -93,9 +93,12 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 	
-	__apply_props = function(_props) {
-		struct_foreach(_props, function(name) {
-			self[$ name] = _props[$ name] ?? self[$ name];
+	__apply_props = function(_props = {}) {
+		//var _p = _props;
+		
+		struct_foreach(_props, function(name, st) {
+			show_debug_message($"{name}: {st}");
+			self[$ name] = st ?? self[$ name];
 		});	
 	};
 	
@@ -158,7 +161,7 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 			self[$ name] = __default_props[$ name];
 		});
 		
-		struct_foreach(__default_superform_props, function(name) {
+		struct_foreach(__default_props, function(name) {
 			__default_superform_props[$ name] = 
 				__custom_superform_props[$ name] ?? __default_superform_props[$ name];
 		});
