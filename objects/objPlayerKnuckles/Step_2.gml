@@ -26,7 +26,7 @@ if (!ground) {
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
 }
 
-if (gsp == 0 && action == ACT_NORMAL)
+if (gsp == 0 && state.current() == "normal")
 	idle_anim_timer++;
 else
 	idle_anim_timer = 0;

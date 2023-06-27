@@ -26,7 +26,7 @@ if (!ground) {
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
 }
 
-if (gsp == 0 && action == ACT_NORMAL)
+if (gsp == 0 && state.current() == "normal")
 	idle_anim_timer++;
 else
 	idle_anim_timer = 0;
@@ -186,4 +186,6 @@ if (sprite_index != sprite_index_prev)
 
 sprite_index_prev = sprite_index;
 
+if (physics.is_underwater())
+	timer_underwater.tick();
 

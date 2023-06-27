@@ -360,6 +360,15 @@ state.add("hurt", {
 	}},
 });
 
+state.add("die", {
+	on_start: function(player) {with (player) {
+		audio_play_sound(sndHurt, 0, false);	
+		
+		xsp = 0;
+		ysp = -7;
+	}},
+});
+
 state.add("glid", {
 	//dropdash->glid
 	

@@ -66,8 +66,6 @@ gsp = 0;
 
 camera = instance_create_layer(x, y, layer, objCamera);
 
-#macro ACT_NORMAL		0
-
 action = 0;
 
 peelout_timer = 0;
@@ -101,6 +99,39 @@ sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
 state = new State(id);
 PlayerStates();
 state.change_to("normal");
+
+remaining_air = 30;
+
+
+
+
+timer_underwater = new Timer2(60, true, function() {
+	
+	if (array_contains([25, 20, 15], remaining_air)) {
+		// warning chime	
+		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
+	} 
+	
+	if (remaining_air == 12) {
+		// drowning music	
+		show_debug_message("drowning music");
+	} 
+	
+	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
+		// warning number bubble
+		var _number = (remaining_air / 2) - 1;
+		instance_create_depth(
+			x + 6 * image_xscale, y, -1000, objBubbleCountdown, { number: _number });
+	} 
+	
+	if (remaining_air == 0) {
+		// player drown	
+		audio_play_sound(sndPlrDrown, 0, 0);
+		state.change_to("die");
+	}
+	
+	remaining_air--;
+});
 
 
 is_key_left = 0;

@@ -1,3 +1,4 @@
+state.step();
 
 if (state.current() == "die") {
 	ysp += physics.gravity_force;
@@ -42,7 +43,7 @@ PlayerAirMovement();
 PlayerHandleObjects();
 
 
-state.step();
+//state.step();
 
 var _water = instance_nearest(x, y, objWaterLevel);
 if (_water != noone) {
@@ -58,9 +59,14 @@ if (_water != noone) {
 			
 			if (shield == SHIELD_ELECTRIC || shield == SHIELD_FIRE)
 				shield = SHIELD_NONE;
+				
+			timer_underwater.start();
 		} else {
 			ysp *= 2;
 			physics.cancel_underwater();
+			
+			remaining_air = 30;
+			timer_underwater.reset();
 		}
 		
 		var _particle = part_system_create(ParticleSystem2);

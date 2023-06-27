@@ -22,11 +22,6 @@ function PlayerGetHit(){
 		xsp = -2 * sign(image_xscale);
 		ysp = -4;
 	} else {
-		audio_play_sound(sndHurt, 0, false);	
-		
 		state.change_to("die");
-		
-		xsp = 0;
-		ysp = -7;
 	}
 }
