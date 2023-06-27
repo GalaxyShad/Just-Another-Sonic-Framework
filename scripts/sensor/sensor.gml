@@ -65,6 +65,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	#macro WALLBOX_LEFT_LINE	__get_wall_box_left()
 	#macro WALLBOX_RIGHT_LINE	__get_wall_box_right()
 	
+	
+	
 	draw = function() {
 		__update_coords();
 		
@@ -122,6 +124,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
 	set_position = function(_x, _y) { __x = _x; __y = _y; }
 	
+	get_position = function() { return { x: __x, y: __y }; }
+	
 	set_floor_box = function(_box) {
 		__floor_box.hradius = _box[0];
 		__floor_box.vradius = _box[1];
@@ -141,7 +145,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			floor(__x + _line[0].x), floor(__y + _line[0].y),
 			floor(__x + _line[1].x), floor(__y + _line[1].y),
 			_object, true, true
-		);	
+		);
 	}
 	
 	__collision_point = function(_point, _object) {

@@ -33,6 +33,7 @@ function PlayerCollision() {
 	var _cos_ang = dcos(sensor.get_angle());
 	var _sin_ang = dsin(sensor.get_angle());
 	
+	
 	while (sensor.is_collision_solid_right()) {
 		x -= _cos_ang;
 		y += _sin_ang;
@@ -125,29 +126,34 @@ function PlayerCollision() {
 		_cos_ang = dcos(sensor.get_angle());
 		_sin_ang = dsin(sensor.get_angle());
 		
-		
 		while (sensor.is_collision_solid_bottom()) {
-			y -= _cos_ang;	
-			x -= _sin_ang;
-			sensor.set_position(x, y);
+			sensor.set_position(
+				sensor.get_position().x - _sin_ang,
+				sensor.get_position().y - _cos_ang,
+			);
 		}
 		
 		while (!sensor.is_collision_solid_bottom() && 
 				sensor.is_collision_ground()
 		) {
-			y += _cos_ang;	
-			x += _sin_ang;
-			sensor.set_position(x, y);
+			sensor.set_position(
+				sensor.get_position().x + _sin_ang,
+				sensor.get_position().y + _cos_ang,
+			);
 		}
 		
-		// Possible slopes thickering fix
-		while (abs(gsp) < 6 && sensor.is_collision_solid_bottom()) {
-			y -= _cos_ang / 100;	
-			x -= _sin_ang / 100;
-			sensor.set_position(x, y);
+		while (sensor.is_collision_solid_bottom()) {
+			sensor.set_position(
+				sensor.get_position().x - _sin_ang / 1000,
+				sensor.get_position().y - _cos_ang / 1000,
+			);
 		}
 		
-		sensor.set_angle(sensor.get_ground_angle());
+		x += sensor.get_position().x - x;
+		y += sensor.get_position().y - y;
+		
+		var _new_ang	= sensor.get_ground_angle();
+		sensor.set_angle(_new_ang);
 		
 		if (!sensor.is_collision_ground()) {
 			sensor.set_angle(0);
