@@ -37,7 +37,7 @@ __play_default = function() {
 	//show_debug_message($"name {audio_get_name(level_music)} {audio_is_playing(level_music)}");
 	if (!audio_is_playing(level_music))
 		audio_play_sound(level_music, 100, true, ,level_music_offset);	
-	
+	current_music = level_music;
 };
 
 __play_default();
