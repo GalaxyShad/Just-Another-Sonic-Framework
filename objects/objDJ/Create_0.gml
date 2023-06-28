@@ -31,6 +31,8 @@ set_music = function(_music_name) {
 	current_music = _music;
 };
 
+on_end = function(_music_name){};
+
 __play_default = function() {
 	//show_debug_message($"name {audio_get_name(level_music)} {audio_is_playing(level_music)}");
 	if (!audio_is_playing(level_music))

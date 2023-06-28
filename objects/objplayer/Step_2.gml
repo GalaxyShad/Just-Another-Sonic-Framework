@@ -188,4 +188,5 @@ sprite_index_prev = sprite_index;
 
 if (physics.is_underwater())
 	timer_underwater.tick();
+timer_speed_shoes.tick();
 

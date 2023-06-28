@@ -109,6 +109,7 @@
     {"name":"sndPlrDrown","order":22,"path":"sounds/sndPlrDrown/sndPlrDrown.yy",},
     {"name":"Sprite24","order":4,"path":"sprites/Sprite24/Sprite24.yy",},
     {"name":"sprKnucklesCorcksew","order":16,"path":"sprites/sprKnucklesCorcksew/sprKnucklesCorcksew.yy",},
+    {"name":"objMonitorShield41424349","order":9,"path":"objects/objMonitorShield41424349/objMonitorShield41424349.yy",},
     {"name":"Object345","order":7,"path":"objects/Object345/Object345.yy",},
     {"name":"Sprite58575859","order":13,"path":"sprites/Sprite58575859/Sprite58575859.yy",},
     {"name":"sprKnucklesDrop","order":22,"path":"sprites/sprKnucklesDrop/sprKnucklesDrop.yy",},

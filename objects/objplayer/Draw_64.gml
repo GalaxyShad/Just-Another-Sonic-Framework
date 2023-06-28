@@ -27,7 +27,12 @@ draw_text(
 	$"allow_jump:		{allow_jump}\n" +
 	$"allow_movement:	{allow_movement}\n" +
 	$"\n" +
-	$"remaining_air:	{remaining_air}/{timer_underwater.get_count()}"
+	$"remaining_air:	{remaining_air}/{timer_underwater.get_count()}"+
+	$"speed_shoes:		{timer_speed_shoes.get_count()}\n" +
+	$"\n"+
+	$"physics_underwater:	{physics.is_underwater()}\n"+
+	$"physics_fast_shoes:	{physics.is_super_fast_shoes_on()}\n"+
+	$"physics_super:		{physics.is_super()}"
 
 	/*
 	"edge_left: " + string(sensor.is_collision_left_edge()) + "\n" + 

@@ -32,6 +32,15 @@ set_shield = function(_shield = SHIELD_NONE) {
 	audio_play_sound(_sounds[_shield - 1], 0, 0);
 }
 
+equip_speed_shoes = function() {
+	oDj.set_music("speed_shoes");
+	
+	timer_speed_shoes.reset();
+	timer_speed_shoes.start();
+	
+	physics.apply_super_fast_shoes();	
+}
+
 show_debug_info = true;
 
 physics = new PlayerPhysics(,{
@@ -133,6 +142,8 @@ timer_underwater = new Timer2(60, true, function() {
 	
 	remaining_air--;
 });
+
+timer_speed_shoes = new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
 
 
 is_key_left = 0;

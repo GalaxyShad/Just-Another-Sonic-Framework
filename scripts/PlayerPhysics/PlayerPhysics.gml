@@ -45,9 +45,9 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-	is_underwater = function() {
-		return __is_underwater;	
-	};
+	is_underwater			= function() { return __is_underwater; };
+	is_super_fast_shoes_on	= function() { return __is_super_fast_shoes_on; };
+	is_super				= function() { return __is_super; };
 
 
 	reset = function() {
