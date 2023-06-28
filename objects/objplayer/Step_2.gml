@@ -25,6 +25,10 @@ if (!ground && !clamb) {
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
 }
 
+
+if (ysp == 0 && xsp == 0 && state.current() == "normal") idle_anim_timer++;
+else idle_anim_timer = 0;
+
 switch (state.current()) {
 	
 	case "normal": {

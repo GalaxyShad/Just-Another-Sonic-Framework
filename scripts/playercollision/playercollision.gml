@@ -53,11 +53,10 @@ function PlayerCollision() {
 		sensor.set_angle(0);
 		
 		if (sensor.is_collision_solid_top() && ysp < 0) {
-	
 			sensor.set_angle(180);
 			var _ang = sensor.get_ground_angle();
-			if (_ang == 0) 
-				_ang = sensor.get_landing_ground_angle();
+			if (_ang == 0) {
+				_ang = sensor.get_landing_ground_angle();}
 			
 		
 			if ((_ang >= 91 && _ang <= 135) || (_ang >= 226 && _ang <= 270)) {

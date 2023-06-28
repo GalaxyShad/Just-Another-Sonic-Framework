@@ -14,13 +14,9 @@ function PlayerStates() {
 
 state.add("normal", {
 	on_start: function() {
-		idle_anim_timer = 0
-		
 	},
 	
-	on_step: function(player) {with (player) {
-		idle_anim_timer++
-		
+	on_step: function(player) {with (player) {		
 		// Look Up and Down
 		if (ground && is_key_up && gsp == 0) state.change_to("look_up");
 		if (ground && is_key_down && gsp == 0) state.change_to("look_down");
@@ -380,7 +376,7 @@ state.add("glid", {
 	
 	on_step: function(player) {with player {
 		if (!is_key_action) state.change_to("drop");
-			
+		
 		if(!is_key_left && !is_key_right && abs(xsp) < glid_top){ xsp += airacc * sign(image_xscale); }
 		else if (is_key_left && xsp > -glid_top){ xsp -= airacc; }
 		else if (is_key_right && xsp < glid_top){ xsp += airacc; }
@@ -419,7 +415,8 @@ state.add("land", {
 	}},
 	
 	on_step: function(player) {with player {
-		if (abs(xsp)<3) state.change_to("normal");
+		if (abs(xsp)<3 || ysp!=0) state.change_to("normal");
+		
 	}},
 	
 	on_exit: function(player) { with player {
@@ -436,13 +433,21 @@ state.add("clamb", {
 	}},
 	
 	on_step: function(player) {with player {
-		if (is_key_action_pressed){
-			xsp = (3+xsp/3) * -sign(image_xscale);
-			state.change_to("jump"); //? == objPlayer->Step->60
+		
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale=1;
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale=-1;
+		if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
+		(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
+			state.change_to("clambEx");
 		}
 		
-		if (is_key_up) ysp -= clamb_spid;
-		if (is_key_down) ysp += clamb_spid;
+		if (is_key_action_pressed){
+			image_xscale *= -1;
+			xsp = (3+xsp/3) * sign(image_xscale);
+			state.change_to("jump"); //? == objPlayer->Step->60
+		}
+		if (is_key_up && !sensor.is_collision_solid_top()) ysp -= clamb_spid;
+		if (is_key_down && !ground) ysp += clamb_spid;
 		if (ground) state.change_to("normal");
 	}},
 	

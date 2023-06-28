@@ -8,10 +8,8 @@ function PlayerGroundMovement() {
 	var sina = dsin(sensor.get_angle());
 	
 	if (state.current() == "roll") {
-		if (sign(gsp) == sign(sina))
-			gsp -= slp_rollup * sina;
-		else 
-			gsp -= slp_rolldown * sina;
+		if (sign(gsp) == sign(sina)) gsp -= slp_rollup * sina;
+		else gsp -= slp_rolldown * sina;
 	} else if (abs(slp * sina) >= 0.05078125)
 		gsp -= slp * sina;
 	
@@ -24,7 +22,8 @@ function PlayerGroundMovement() {
 					gsp -= 0.125;  
 					if (gsp <= 0) gsp = -0.5;  		
 				}
-			} else if (is_key_right) {
+			}
+			else if (is_key_right) {
 				if (gsp < 0) {
 					gsp += 0.125;  
 					if (gsp >= 0) gsp = 0.5;  
@@ -39,7 +38,8 @@ function PlayerGroundMovement() {
 					gsp -= acc;
 					if (gsp < -top) gsp = -top;  		
 				} 
-			} else if (is_key_right) {
+			}
+			else if (is_key_right) {
 				if (gsp < 0) {
 					gsp += dec;  
 					if (gsp >= 0) gsp = 0.5;  

@@ -71,16 +71,10 @@ if ((_is_moving_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_r
 		if (((xsp < 0 && is_key_left) || (xsp > 0 && is_key_right)) && state.current() != "clamb")
 			state.change_to("push");
 	} else if (!ground && object_index==objPlayerKnuckles && state.current() == "glid") {
-		state.change_to("clamb");	
+		state.change_to("clamb");
 	} else xsp = 0;
 }
 
-if(state.current() == "clamb"){
-	if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
-	(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
-		state.change_to("clambEx");
-	}
-}
 
 if (inv_timer > 0) inv_timer--;
 	
