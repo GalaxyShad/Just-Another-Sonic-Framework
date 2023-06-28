@@ -36,19 +36,17 @@ if (ground) {
 
 PlayerGroundMovement();
 PlayerAirMovement();
-PlayerHandleLayers();
-PlayerHandleSprings();
-PlayerHandleRing();
-PlayerHandleSpikes();
-PlayerHandleMonitors();
+PlayerHandleObjects();
 
+
+state.step();
 
 var oMovingPlatform = sensor.collision_object(objMovingPlatform, 6);
 if (ground && oMovingPlatform) {
 	x += oMovingPlatform.x - oMovingPlatform.xprevious; 
+	sensor.set_position(x, y);
 }
 
-state.step();
 
 if (allow_jump && (ground || clamb) && is_key_action_pressed) {
 	ground = false;

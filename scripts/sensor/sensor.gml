@@ -10,7 +10,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
 	__layer = 0;
 	
-	__max_expand = 16;
+	__max_expand = 24;
 	
 	__floor_box = {
 		hradius : _floor_box[0],
@@ -64,8 +64,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	#macro FLOORBOX_TOP_LINE	__get_floor_box_top()
 	#macro WALLBOX_LEFT_LINE	__get_wall_box_left()
 	#macro WALLBOX_RIGHT_LINE	__get_wall_box_right()
-	
-	#macro Angle get_angle()
 	
 	draw = function() {
 		__update_coords();
@@ -268,19 +266,59 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			  __collision_line([__floor_box.coords[2], _dst_point], parPlatform) != noone;
 	};
 	
+	get_landing_ground_angle = function() {
+		var _n = __floor_box.hradius * 2;
+		
+		var _dir = 1; 
+		var _start_point = __floor_box.coords[3];
+		
+		if (is_collision_ground_right_edge()) {
+			show_debug_message("da");
+			
+			_dir = -1;
+			_start_point = __floor_box.coords[2];
+		}
+		
+		for (var i = 0; i <= _n; i++) {
+			var _apoint = { 
+				x: _start_point.x, 
+				y: _start_point.y 
+			};
+			
+			var _bpoint = { 
+				x: _start_point.x + __angle_cos * _dir, 
+				y: _start_point.y + __angle_sin * _dir
+			};
+
+
+			var _ang = (_dir == 1) ? 
+				get_ground_angle(_apoint, _bpoint) : 
+				get_ground_angle(_bpoint, _apoint);
+				
+			if (_ang != 0)
+				return _ang;
+				
+			_start_point.x += __angle_cos * _dir;
+			_start_point.y += __angle_sin * _dir;
+		}
+		
+		return 0;
+	};
 	
-	get_ground_angle = function() {
+	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
 		var lpoint = { 
 			is_found: false, 
-			x: __floor_box.coords[3].x, y: __floor_box.coords[3].y 
+			x: _left_point.x, 
+			y: _left_point.y 
 		};
 		var rpoint = { 
 			is_found: false, 
-			x: __floor_box.coords[2].x, y: __floor_box.coords[2].y 
+			x: _right_point.x, 
+			y: _right_point.y 
 		};
 		
-		var _temp_angle = __angle;
-		set_angle(round(_temp_angle / 10) * 10);
+		//var _temp_angle = __angle;
+		//set_angle(round(_temp_angle / 10) * 10);
 		
 		for (var i = 0; i < __max_expand; i++) {
 			if (__is_collision_point_solid(lpoint) || __collision_point(lpoint, parPlatform) != noone) {
@@ -301,12 +339,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		var new_angle = 0;
 					   
 		if (rpoint.is_found && lpoint.is_found) {
-			new_angle = point_direction(
-				lpoint.x, lpoint.y, rpoint.x, rpoint.y
-			);
+			new_angle = point_direction(lpoint.x, lpoint.y, rpoint.x, rpoint.y);
 		}
 		
-		set_angle(_temp_angle);
+		//set_angle(_temp_angle);
 		
 		/*
 		var tollerance = 5;

@@ -19,7 +19,7 @@ function PlayerHandleMonitors(){
 		if (oMonitor != noone && ysp < 0) {
 			ysp = 0;
 			oMonitor.is_falling = true;
-			oMonitor.vspeed = -2;
+			oMonitor.vspeed = -1.5;
 		}
 			
 		oMonitor = sensor.collision_object(objMonitor, 6);	

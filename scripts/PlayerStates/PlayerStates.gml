@@ -81,6 +81,8 @@ state.add("jump", {
 			
 			if (shield == SHIELD_BUBBLE) {
 				audio_play_sound(sndBubbleBounce, 0, false);
+				water_shield_scale.xscale = 0.5;
+				water_shield_scale.yscale = 1.5;
 				xsp = 0;
 				ysp = 8;
 			} else if (shield == SHIELD_FIRE) {
@@ -108,6 +110,12 @@ state.add("jump", {
 				
 				sensor.set_position(x, y);
 			}
+			
+			water_shield_scale.__xscale = 2.0;
+			water_shield_scale.__yscale = 0.25;
+			
+			water_shield_scale.xscale = 1;
+			water_shield_scale.yscale = 1;
 			
 			xsp -= other.__bounce_force * dsin(_angle);
 			ysp -= other.__bounce_force * dcos(_angle);
