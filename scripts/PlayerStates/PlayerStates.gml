@@ -96,8 +96,9 @@ state.add("jump", {
 				camera.lagTimer = 15;
 			} else if (shield == SHIELD_ELECTRIC) {
 				audio_play_sound(sndLightningJump, 0, false);
-				ysp = -4;
+				ysp = -5.5;
 				var _particle = part_system_create(ParticleSystem1);
+				part_system_depth(_particle, -1000);
 				part_system_position(_particle, x, y);
 				//part_particles_create(ParticleSystem1, x, y, , 5);
 			}
