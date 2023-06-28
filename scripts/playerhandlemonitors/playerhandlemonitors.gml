@@ -30,8 +30,4 @@ function PlayerHandleMonitors(){
 		}
 		
 	}
-	
-	
-	
-
 }

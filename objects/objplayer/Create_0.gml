@@ -20,8 +20,10 @@ dec = 0.5;
 frc = acc;
 top = 6;
 
-kgr = 3; //knuckles_glid_rotation
-glid_top=5;
+//knuckles
+glid_rotation = 3;
+glid_top = 5;
+clamb_spid = 1;
 
 animation_angle = 0;
 
@@ -41,6 +43,7 @@ using_shield_abbility = false;
 
 
 ground = false;
+clamb = false;
 
 xsp = 0;
 ysp = 0;
@@ -73,6 +76,7 @@ peelout_animation_spd = 0;
 
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
+//#macro SENSOR_FLOORBOX_GLID		[10, 10] //glid - clamb
 
 #macro SENSOR_WALLBOX_NORMAL	[10, 8]
 #macro SENSOR_WALLBOX_SLOPES	[10, 0]

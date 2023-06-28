@@ -10,28 +10,25 @@ if (!ground) {
 	animation_angle += angle_difference(_ang, animation_angle) / 4;
 }
 
-if (sprite_index == sprKnucklesRoll)
-	animation_angle = 0;
+if (sprite_index == sprKnucklesRoll) animation_angle = 0;
 
 if (animation_angle < 0) animation_angle = 360 + animation_angle;
 animation_angle = (abs(animation_angle) % 360);
 
 image_angle = animation_angle;
 
-if (!ground) {
+if (!ground && !clamb) {
 	if		(is_key_right)	image_xscale = 1;
-	else if (is_key_left)	image_xscale = -1;
+	else if (is_key_left)	image_xscale = -1;	
 } else {
 	if		(is_key_right && gsp > 0)	image_xscale = 1;
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
 }
 
-if (gsp == 0 && action == ACT_NORMAL)
-	idle_anim_timer++;
-else
-	idle_anim_timer = 0;
+
 
 switch (state.current()) {
+
 	case "normal": {
 		if (ground) {
 			if (abs(gsp) == 0) {
@@ -165,14 +162,10 @@ switch (state.current()) {
 	}
 
 	case "glid": {
-		//sprite_index = sprKnucklesGlid;
-		
 		sprite_index = sprKnucklesUngroundedRotation;
-		
-		if(abs(xsp)>kgr) _gg=kgr*sign(xsp);
-		else _gg = xsp;
-		image_index = kgr - _gg * sign(image_xscale);
-		
+		if(abs(xsp)>glid_rotation) animation_frame=glid_rotation*sign(xsp);
+		else animation_frame = xsp;
+		image_index = glid_rotation - animation_frame * sign(image_xscale);
 		break;
 	}
 	
@@ -189,6 +182,20 @@ switch (state.current()) {
 		else image_index=1;
 		break;
 	}
+	
+	case "clamb": {
+		sprite_index = sprKnucklesClamb;
+		image_speed = -ysp / 0.7; //ysp->gsp?
+		break;
+	}
+	
+	case "clambEx": {
+		sprite_index = sprKnucklesClambEx;
+		image_speed = 0.4;
+		if(image_index>2) image_index=2
+		break;
+	}
+
 }
 
 if (sprite_index != sprite_index_prev)

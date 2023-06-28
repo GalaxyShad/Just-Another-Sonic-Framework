@@ -10,15 +10,14 @@ if (!ground) {
 	animation_angle += angle_difference(_ang, animation_angle) / 4;
 }
 
-if (sprite_index == sprSonicRoll)
-	animation_angle = 0;
+if (sprite_index == sprSonicRoll) animation_angle = 0;
 
 if (animation_angle < 0) animation_angle = 360 + animation_angle;
 animation_angle = (abs(animation_angle) % 360);
 
 image_angle = animation_angle;
 
-if (!ground) {
+if (!ground && !clamb) {
 	if		(is_key_right)	image_xscale = 1;
 	else if (is_key_left)	image_xscale = -1;
 } else {
@@ -26,12 +25,8 @@ if (!ground) {
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
 }
 
-if (gsp == 0 && action == ACT_NORMAL)
-	idle_anim_timer++;
-else
-	idle_anim_timer = 0;
-
 switch (state.current()) {
+	
 	case "normal": {
 		if (ground) {
 			if (abs(gsp) == 0) {
@@ -154,8 +149,8 @@ switch (state.current()) {
 	case "spindash": {
 		image_speed = 1;
 		sprite_index = sprSonicSpindash;
+		break;
 	}
-	break;
 
 	case "spring": {
 		image_speed = 0.125 + abs(ysp) / 10;
@@ -164,19 +159,20 @@ switch (state.current()) {
 			sprite_index = sprSonicSpring;
 		else
 			sprite_index = sprSonicWalk;
+		break;
 	}
-	break;
 	
 	case "hurt": {
 		sprite_index = sprSonicHurt;
-	} break;
-	
+		break;
+	}
 	
 	case "die": {
 		image_speed = 0;
 		image_index = 0;
 		sprite_index = sprSonicDie;
-	} break;
+		break;
+	}
 	
 }
 

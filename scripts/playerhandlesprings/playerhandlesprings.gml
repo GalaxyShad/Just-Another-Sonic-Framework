@@ -7,8 +7,7 @@ function PlayerHandleSprings(){
 		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle)) < 60 &&
 			oSpring.image_speed == 0
 		) {
-			if (!ground)
-				ysp = 0;
+			if (!ground) ysp = 0;
 			
 			ysp += -oSpring.spd * dcos(oSpring.image_angle);
 			xsp += -oSpring.spd * dsin(oSpring.image_angle);

@@ -1,11 +1,8 @@
 
 if (state.current() == "die") {
 	ysp += grv;
-	
 	y += ysp;
-	
 	camera.lagTimer = 1;
-	
 	exit;
 }
 
@@ -53,8 +50,9 @@ if (ground && oMovingPlatform) {
 
 state.step();
 
-if (allow_jump && ground && is_key_action_pressed) {
+if (allow_jump && (ground || clamb) && is_key_action_pressed) {
 	ground = false;
+	clamb = false;
 	
 	ysp -= jmp * dcos(sensor.get_angle()); 
 	xsp -= jmp * dsin(sensor.get_angle()); 
@@ -72,18 +70,20 @@ if ((_is_moving_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_r
 ) {
 	if (ground) {
 		gsp = 0;
-		
-		if ((xsp < 0 && is_key_left) || (xsp > 0 && is_key_right))
+		if (((xsp < 0 && is_key_left) || (xsp > 0 && is_key_right)) && state.current() != "clamb")
 			state.change_to("push");
-	}
-	
-	xsp = 0;
+	} else if (!ground && object_index==objPlayerKnuckles && state.current() == "glid") {
+		state.change_to("clamb");	
+	} else xsp = 0;
 }
 
-if (inv_timer > 0)
-	inv_timer--;
+if(state.current() == "clamb"){
+	if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
+	(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
+		state.change_to("clambEx");
+	}
+}
+
+if (inv_timer > 0) inv_timer--;
 	
 
-
-
-	

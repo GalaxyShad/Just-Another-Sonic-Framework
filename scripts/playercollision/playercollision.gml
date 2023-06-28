@@ -9,10 +9,8 @@ function PlayerCollision() {
 		ysp = gsp * -dsin(sensor.get_angle());
 	}
 	
-	
 	x += xsp;
 	y += ysp;	
-	
 	
 	sensor.set_position(x, y);
 	
@@ -55,19 +53,11 @@ function PlayerCollision() {
 				var is_col_left  = sensor.is_collision_ground_left_edge();
 				var is_col_right = sensor.is_collision_ground_right_edge();
 			
-				if (!is_col_left && is_col_right) {
-					sensor.set_angle(270);
-				} 
-			
-				if (is_col_left && !is_col_right) {
-					sensor.set_angle(90);
-				}
+				if (!is_col_left && is_col_right) sensor.set_angle(270);
+				if (is_col_left && !is_col_right) sensor.set_angle(90);
 				
-				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) {
-					ang = sensor.get_ground_angle();
-				} else {
-					ang = 0;
-				}
+				if (sensor.check_expanded(0, 5, sensor.is_collision_solid_bottom)) ang = sensor.get_ground_angle();
+				else ang = 0;
 			}
 			
 		
@@ -84,7 +74,6 @@ function PlayerCollision() {
 		}
 		
 		// Landing
-		
 		if (!ground && sensor.is_collision_solid_bottom() && ysp > 0) {
 			ground = true;
 			
@@ -149,9 +138,7 @@ function PlayerCollision() {
 			sensor.set_position(x, y);
 		}
 		
-		while (!sensor.is_collision_solid_bottom() && 
-				sensor.is_collision_ground()
-		) {
+		while (!sensor.is_collision_solid_bottom() && sensor.is_collision_ground()) {
 			y += _cos_ang;	
 			x += _sin_ang;
 			sensor.set_position(x, y);
@@ -169,9 +156,7 @@ function PlayerCollision() {
 		if (!sensor.is_collision_ground()) {
 			sensor.set_angle(0);
 			ground = false;
-		} 
-	} 
-	
-
+		}
+	}
 }
 

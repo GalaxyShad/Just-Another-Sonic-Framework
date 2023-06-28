@@ -14,15 +14,16 @@ function PlayerStates() {
 
 state.add("normal", {
 	on_start: function() {
+		idle_anim_timer = 0
 		
 	},
 	
 	on_step: function(player) {with (player) {
+		idle_anim_timer++
+		
 		// Look Up and Down
-		if (ground && is_key_up && gsp == 0)
-			state.change_to("look_up");
-		if (ground && is_key_down && gsp == 0)
-			state.change_to("look_down");
+		if (ground && is_key_up && gsp == 0) state.change_to("look_up");
+		if (ground && is_key_down && gsp == 0) state.change_to("look_down");
 			
 		// To Roll
 		if (ground && is_key_down && abs(gsp) >= 1) {
@@ -31,20 +32,15 @@ state.add("normal", {
 		}
 		
 		// Skid
-		if (ground && abs(gsp) >= 4 && 
-			((gsp < 0 && is_key_right) || (gsp > 0 && is_key_left))
-		) {
+		if (ground && abs(gsp) >= 4 && ((gsp < 0 && is_key_right) || (gsp > 0 && is_key_left))) {
 			state.change_to("skid");
 			audio_play_sound(sndPlrBraking, 0, false);
 		}
 		
 		// Balancing
-		if (ground && gsp == 0 && 
-			(!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge())
-		) {
+		if (ground && gsp == 0 && state.current()!="clambEx" && state.current()!="clamb" && (!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge())) {
 			state.change_to("balancing");
 		}
-		
 		
 	}},
 	
@@ -73,7 +69,7 @@ state.add("jump", {
 			}
 			else if(object_index==objPlayerKnuckles){
 				ysp = 0;
-				xsp = (3+xsp/3) * sign(image_xscale);//0->(3+xsp/3)
+				xsp = (3+xsp/3) * sign(image_xscale);
 				state.change_to("glid");
 			}
 			//show_debug_message($"This is player -> {object_get_name(object_index)}");
@@ -127,9 +123,9 @@ state.add("jump", {
 			
 	}},
 	
-	on_exit: function(player) {
-		player.using_shield_abbility = false;
-	},
+	on_exit: function(player) { with (player) {
+		using_shield_abbility = false;
+	}},
 });
 
 state.add("look_up", {
@@ -155,8 +151,8 @@ state.add("look_up", {
 
 state.add("look_down", {
 	on_start: function(player) { with player {
-		allow_jump = false;	
-		allow_movement = false;	
+		allow_jump = false;
+		allow_movement = false;
 	}},
 	
 	on_exit: function(player) { with player {
@@ -258,13 +254,13 @@ state.add("peelout", {
 state.add("spindash", {
 	__spinrev: 0,
 	
-	on_start: function(player) {
+	on_start: function(player) { with player {
 		audio_sound_pitch(sndPlrSpindashCharge, 1);
 		audio_play_sound(sndPlrSpindashCharge, 0, false);
 		__spinrev = 0;
-		player.allow_jump = false;	
-		player.allow_movement = false;	
-	},
+		allow_jump = false;	
+		allow_movement = false;	
+	}},
 	
 	on_exit: function(player) { with player {
 		allow_jump = true;	
@@ -352,17 +348,36 @@ state.add("hurt", {
 	}},
 });
 
-state.add("glid", {
-	//dropdash->glid
+state.add("die", {
+	on_start: function(player) { with player {
+		allow_jump = false;
+		allow_movement = false;
+	}},
 	
+	on_step: function(player) {with player {
+		ysp += 0.1875;
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_jump = true;	
+		allow_movement = true;	
+	}},
+});
+
+state.add("glid", {	
 	on_start: function(player) {with (player) {
 		allow_jump = false;
 		allow_movement = false;
 	}},
 	
 	on_step: function(player) {with player {
-		if (!is_key_action)
-			state.change_to("drop");
+		if (!is_key_action) state.change_to("drop");
+			
+		if(!is_key_left && !is_key_right && abs(xsp) < glid_top){ xsp += airacc * sign(image_xscale); }
+		else if (is_key_left && xsp > -glid_top){ xsp -= airacc; }
+		else if (is_key_right && xsp < glid_top){ xsp += airacc; }
+		
+		
 	}},
 	
 	on_landing: function(player) {with player {
@@ -376,7 +391,6 @@ state.add("glid", {
 });
 
 state.add("drop", {
-	
 	on_start: function(player) { with player {
 	}},
 	
@@ -391,7 +405,6 @@ state.add("drop", {
 });
 
 state.add("land", {
-	
 	on_start: function(player) { with player {
 		allow_jump = false;
 		allow_movement = false;
@@ -405,6 +418,49 @@ state.add("land", {
 		gsp = 0;
 		allow_jump = true;	
 		allow_movement = true;	
+	}},
+});
+
+state.add("clamb", {
+	on_start: function(player) { with player {
+		allow_movement = false;
+		clamb = true;
+	}},
+	
+	on_step: function(player) {with player {
+		if (is_key_action_pressed){
+			xsp = (3+xsp/3) * -sign(image_xscale);
+			state.change_to("jump"); //? == objPlayer->Step->60
+		}
+		
+		if (is_key_up) ysp -= clamb_spid;
+		if (is_key_down) ysp += clamb_spid;
+		if (ground) state.change_to("normal");
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_movement = true;
+	}},
+});
+
+state.add("clambEx", {
+	on_start: function(player) { with player {
+		allow_jump = false;
+		allow_movement = false;
+		time_clambEx=40;
+		y-=17;
+		x+=19*sign(image_xscale);
+	}},
+	
+	on_step: function(player) {with player {
+		if(time_clambEx<0)	state.change_to("normal");
+		else time_clambEx--;
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_jump = true;
+		allow_movement = true;
+		clamb=false;
 	}},
 });
 

@@ -45,4 +45,5 @@ function State(_owner) constructor {
 	current = function() { 
 		return __current_state; 
 	}
+	
 }

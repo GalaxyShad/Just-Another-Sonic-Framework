@@ -17,10 +17,15 @@ draw_text(
 	16, 240,
 	"fps: " + string(fps) + "\n" +
 	"ground: " + string(ground) + "\n" +
+	"clamb: " + string(clamb) + "\n" +
+	//"action old: " + string(action) + "\n" +
+	//"bored time: " + string(idle_anim_timer) + "\n" +
 	"action: " + string(state.current()) + "\n" +
 	"gsp: " + string(gsp) + "\n" +
 	"xsp: " + string(xsp) + "\n" +
 	"ysp: " + string(ysp) + "\n" +
+	"x: " + string(x) + "\n" +
+	"y: " + string(y) + "\n" +
 	"angle: " + string(sensor.get_angle()) + "\n" +
 	"animation_angle: " + string(animation_angle) + "\n" +
 	"\n" +
