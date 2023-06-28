@@ -6,8 +6,8 @@
 # [+] [BUG] Angle animation - wrong on 270
 # [+-] [BUG] Thickering in slopes
 # [+] [BUG] Camera - thickering rolling in air
-# [+-] [BUG] Collision - after landing  on edge no angle
-# [ ] [BUG?] Collision - jump through floor
+# [+] [BUG] Collision - after landing  on edge no angle
+# [+-] [BUG?] Collision - jump through floor
 
 # [+] [OPTIMIZATION] Collisions
 
@@ -16,7 +16,7 @@
 # [ ] [COMMON ENGINE] Global Controller - change Window Size, fullscr
 
 # [+-] [REFACTOR] Animation System
-# [ ] [REFACTOR] Actions
+# [+] [REFACTOR] Actions
 
 # [+] [TODO] Camera - camera Lag after spindash or dropdash or dash
 # [ ] [TODO] Camera - camera look up, look down
@@ -24,11 +24,23 @@
 # [ ] [TODO] Background System - parallax
 
 # [+-] [TODO] Collision - layers
-# [ ] [TODO] Collision - platforms
+# [+-] [TODO] Collision - platforms
 
 # [+] [TODO] Objects - rings
 # [+] [TODO] Objects - springs
 # [ ] [TODO] Objects - monitors, powerups
+	# [+] [TODO] Base monitor
+	
+	# [+] [TODO] Base Shield
+	# [+] [TODO] Water Shield
+	# [+] [TODO] Electric Shield
+	# [+] [TODO] Fire Shield
+	# [+] [TODO] Eggman
+	# [+] [TODO] Rings
+	# [ ] [TODO] Super fast shoes
+	# [ ] [TODO] Invincibility
+	# [ ] [TODO] Super
+	# [ ] [TODO] 1 Up
 # [+] [TODO] Objects - spikes
 # [ ] [TODO] Objects - enemy
 # [ ] [TODO] Objects - moving platforms
@@ -37,13 +49,13 @@
 # [ ] [TODO] SFX - flicky, explosion
 # [ ] [TODO] SFX - spindash smoke, braking smoke
 
-# [ ] [TODO] Physics - water
+# [+] [TODO] Physics - water
 # [ ] [TODO] Physics - super form
 
 # [ ] [TODO] Gimmicks - corcksew
 
-# [ ] [TODO] Player - get hit
-# [ ] [TODO] Player - die
+# [+] [TODO] Player - get hit
+# [+] [TODO] Player - die
 
 # [ ] [TODO] Characters - Tails 
 # [ ] [TODO] Characters - Knux

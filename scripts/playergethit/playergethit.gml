@@ -21,6 +21,12 @@ function PlayerGetHit(){
 		
 		xsp = -2 * sign(image_xscale);
 		ysp = -4;
+		
+		if (physics.is_underwater()) {
+			xsp /= 2;
+			ysp /= 2;
+		}
+			
 	} else {
 		state.change_to("die");
 	}

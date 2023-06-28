@@ -8,7 +8,7 @@
 #macro SHIELD_FIRE			3
 #macro SHIELD_ELECTRIC		4
 
-
+oDj = instance_create_layer(x, y, layer, objDJ);
 
 shield = SHIELD_NONE;
 
@@ -115,6 +115,7 @@ timer_underwater = new Timer2(60, true, function() {
 	if (remaining_air == 12) {
 		// drowning music	
 		show_debug_message("drowning music");
+		oDj.set_music("drowning");
 	} 
 	
 	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
