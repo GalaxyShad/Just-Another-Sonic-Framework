@@ -133,6 +133,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__update_coords();
 	}
 	
+	get_floor_box = function() {
+		return { hradius: __floor_box.hradius, vradius: __floor_box.vradius };
+	}
+	
 	set_wall_box = function(_box) {
 		__wall_box.hradius = _box[0];
 		__wall_box.vradius = _box[1];

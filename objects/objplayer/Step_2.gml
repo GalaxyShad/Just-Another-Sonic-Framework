@@ -178,6 +178,10 @@ switch (state.current()) {
 		sprite_index = sprSonicDie;
 	} break;
 	
+	case "breathe": {
+		sprite_index = sprSonicBreathe;
+	} break;
+	
 }
 
 

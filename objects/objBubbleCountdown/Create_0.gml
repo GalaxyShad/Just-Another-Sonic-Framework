@@ -1,8 +1,8 @@
 
 
 
-appearence_sprite = sprBubbleCountdown;
-appearence_frames_count = sprite_get_number(appearence_sprite);
+appearence_sprite = sprBubble;
+appearence_frames_count = 5;
 
 number_sprite = sprBubbleCountdownNumber;
 

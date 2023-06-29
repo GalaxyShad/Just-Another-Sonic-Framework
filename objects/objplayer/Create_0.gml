@@ -12,6 +12,8 @@ oDj = instance_create_layer(x, y, layer, objDJ);
 
 shield = SHIELD_NONE;
 
+running_on_water = false;
+
 set_shield = function(_shield = SHIELD_NONE) {
 	if (physics.is_underwater() && 
 		(_shield == SHIELD_FIRE || _shield == SHIELD_ELECTRIC)
@@ -139,7 +141,7 @@ timer_underwater	= new Timer2(60, true, function() {
 		state.change_to("die");
 	}
 	
-	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubbleSfx);
+	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubble);
 	
 	remaining_air--;
 });
@@ -154,3 +156,5 @@ is_key_down = 0;
 is_key_action = 0;
 
 sprite_index_prev = 0;
+
+pSfxWaterRun = noone;

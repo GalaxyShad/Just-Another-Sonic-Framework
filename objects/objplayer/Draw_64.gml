@@ -15,7 +15,8 @@ if (!show_debug_info)
 
 draw_text(
 	16, 240,
-	$"fps:				f{fps}\n"+
+	$"fps:				{fps}\n"+
+	$"tick:				{global.tick}\n"+
 	$"ground:			{ground}\n" +
 	$"action:			{state.current()}\n"+
 	$"gsp:				{gsp}\n" +
@@ -27,12 +28,14 @@ draw_text(
 	$"allow_jump:		{allow_jump}\n" +
 	$"allow_movement:	{allow_movement}\n" +
 	$"\n" +
-	$"remaining_air:	{remaining_air}/{timer_underwater.get_count()}"+
+	$"remaining_air:	{remaining_air}/{timer_underwater.get_count()}\n"+
 	$"speed_shoes:		{timer_speed_shoes.get_count()}\n" +
 	$"\n"+
 	$"physics_underwater:	{physics.is_underwater()}\n"+
 	$"physics_fast_shoes:	{physics.is_super_fast_shoes_on()}\n"+
-	$"physics_super:		{physics.is_super()}"
+	$"physics_super:		{physics.is_super()}\n"+
+	$"\n"+
+	$"running_on_water:		{running_on_water}\n"
 
 	/*
 	"edge_left: " + string(sensor.is_collision_left_edge()) + "\n" + 

@@ -6,6 +6,20 @@ function PlayerHandleObjects() {
 	PlayerHandleRing();
 	PlayerHandleSpikes();
 	PlayerHandleMonitors();	
+	
+	var _oBubble = sensor.collision_object(objBigBubble);
+	if (_oBubble) {
+		xsp = 0;
+		ysp = 0;
+		
+		state.change_to("breathe");
+		
+		instance_destroy(_oBubble);
+		
+		audio_play_sound(sndPlayerBreathe, 0, 0);
+		
+		player_underwater_regain_air();
+	}
 }
 
 function PlayerCollision() {
@@ -154,6 +168,8 @@ function PlayerCollision() {
 		
 		var _new_ang	= sensor.get_ground_angle();
 		sensor.set_angle(_new_ang);
+		
+			
 		
 		if (!sensor.is_collision_ground()) {
 			sensor.set_angle(0);

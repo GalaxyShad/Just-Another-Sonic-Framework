@@ -426,4 +426,18 @@ state.add("land", {
 	}},
 });
 
+state.add("breathe", {
+	on_start: function() {
+		__timer = 20;
+	},
+	
+	on_step: function(player) {
+		if (__timer > 0)
+			__timer--;
+		else with player {
+			state.change_to("normal");
+		}
+	},
+});
+
 }

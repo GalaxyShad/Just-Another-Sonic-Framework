@@ -38,6 +38,43 @@ if (ground) {
 
 //////////////////////////////////////////////////////
 
+var _water = instance_nearest(x, y, objWaterLevel);
+
+if (_water != noone) {
+	var _colliding_with_water = (y+sensor.get_floor_box().vradius >= _water.y -4);
+	
+	if (_colliding_with_water && 
+		!physics.is_underwater() &&
+		(abs(gsp) >= 6) && ground && 
+		(sensor.get_angle() >= 352  || sensor.get_angle() <= 8) 
+	) {
+		y = _water.y - sensor.get_floor_box().vradius;
+		sensor.set_position(x, y);
+		sensor.set_angle(0);
+		ground = true;
+		running_on_water = true;
+	} 		
+
+
+	if (running_on_water) {
+		if (!part_system_exists(pSfxWaterRun)) {
+			pSfxWaterRun = part_system_create(partWaterRun);	
+		}
+
+		if (ysp >= 0 && abs(gsp) >= 6 && _colliding_with_water) {
+			ground = true;
+			part_type_scale(pSfxWaterRun, -1, 1);
+			part_system_position(
+				pSfxWaterRun, 
+				x - 12 * image_xscale, y + sensor.get_floor_box().vradius
+			);
+		} else {
+			part_system_destroy(pSfxWaterRun);
+			running_on_water = false;
+		}
+	}
+}
+
 PlayerGroundMovement();
 PlayerAirMovement();
 PlayerHandleObjects();
@@ -45,10 +82,14 @@ PlayerHandleObjects();
 
 //state.step();
 
-var _water = instance_nearest(x, y, objWaterLevel);
+
+
+
+
+
 if (_water != noone) {
 	var _is_entering = (y > _water.y)  && !physics.is_underwater();
-	var _is_exiting  = (y <= _water.y) &&  physics.is_underwater();
+	var _is_exiting  = (y <= _water.y)	&&  physics.is_underwater();
 	
 	if (_is_entering || _is_exiting) {
 		if (_is_entering) {

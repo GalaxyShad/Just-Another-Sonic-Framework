@@ -6,7 +6,7 @@ if (inv_timer == 0 || (inv_timer > 0 && global.tick % 10 >= 5))
 	draw_self();
 
 if (shield == SHIELD_CLASSIC)
-	draw_sprite(sprShield, global.tick / 4, x, y);
+	draw_sprite(sprShield, global.tick / 2, x, y);
 else if (shield == SHIELD_BUBBLE) {	
 	water_shield_scale.__xscale = 
 		lerp(water_shield_scale.__xscale, water_shield_scale.xscale, 0.25);
