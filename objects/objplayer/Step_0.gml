@@ -65,8 +65,7 @@ if (_water != noone) {
 			ysp *= 2;
 			physics.cancel_underwater();
 			
-			remaining_air = 30;
-			timer_underwater.reset();
+			player_underwater_regain_air();
 		}
 		
 		var _particle = part_system_create(ParticleSystem2);

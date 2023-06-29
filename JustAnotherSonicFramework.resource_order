@@ -151,6 +151,7 @@
     {"name":"sndPlrDropDash","order":4,"path":"sounds/sndPlrDropDash/sndPlrDropDash.yy",},
     {"name":"sprMonitorBroken","order":1,"path":"sprites/sprMonitorBroken/sprMonitorBroken.yy",},
     {"name":"objMonitorBroken","order":1,"path":"objects/objMonitorBroken/objMonitorBroken.yy",},
+    {"name":"PlayerUnderwater","order":33,"path":"scripts/PlayerUnderwater/PlayerUnderwater.yy",},
     {"name":"SprSurface","order":3,"path":"sprites/SprSurface/SprSurface.yy",},
     {"name":"SprLowSurface31","order":11,"path":"sprites/SprLowSurface31/SprLowSurface31.yy",},
     {"name":"sndFireShield","order":13,"path":"sounds/sndFireShield/sndFireShield.yy",},

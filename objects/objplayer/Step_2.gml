@@ -186,7 +186,7 @@ if (sprite_index != sprite_index_prev)
 
 sprite_index_prev = sprite_index;
 
-if (physics.is_underwater())
+if (physics.is_underwater() && shield != SHIELD_BUBBLE)
 	timer_underwater.tick();
 timer_speed_shoes.tick();
 

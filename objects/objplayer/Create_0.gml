@@ -21,6 +21,9 @@ set_shield = function(_shield = SHIELD_NONE) {
 	
 	if (shield == SHIELD_NONE)
 		return;
+		
+	if (shield == SHIELD_BUBBLE)
+		player_underwater_regain_air();
 	
 	var _sounds = [
 		sndBlueShield, 
@@ -111,11 +114,7 @@ state.change_to("normal");
 
 remaining_air = 30;
 
-
-
-
-timer_underwater = new Timer2(60, true, function() {
-	
+timer_underwater	= new Timer2(60, true, function() {
 	if (array_contains([25, 20, 15], remaining_air)) {
 		// warning chime	
 		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
@@ -143,7 +142,7 @@ timer_underwater = new Timer2(60, true, function() {
 	remaining_air--;
 });
 
-timer_speed_shoes = new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
+timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
 
 
 is_key_left = 0;

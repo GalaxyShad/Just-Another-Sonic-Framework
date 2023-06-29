@@ -182,6 +182,7 @@
     {"id":{"name":"sndPlrDropDash","path":"sounds/sndPlrDropDash/sndPlrDropDash.yy",},},
     {"id":{"name":"sprMonitorBroken","path":"sprites/sprMonitorBroken/sprMonitorBroken.yy",},},
     {"id":{"name":"objMonitorBroken","path":"objects/objMonitorBroken/objMonitorBroken.yy",},},
+    {"id":{"name":"PlayerUnderwater","path":"scripts/PlayerUnderwater/PlayerUnderwater.yy",},},
     {"id":{"name":"SprSurface","path":"sprites/SprSurface/SprSurface.yy",},},
     {"id":{"name":"SprLowSurface31","path":"sprites/SprLowSurface31/SprLowSurface31.yy",},},
     {"id":{"name":"sndFireShield","path":"sounds/sndFireShield/sndFireShield.yy",},},
