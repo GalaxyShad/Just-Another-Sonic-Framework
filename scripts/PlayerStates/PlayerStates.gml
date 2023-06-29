@@ -61,8 +61,8 @@ state.add("jump", {
 	},
 	
 	on_step: function(player) { with (player) {
-		if (!is_key_action && ysp < -4)
-			ysp = -4;
+		if (!is_key_action && ysp < physics.jump_release)
+			ysp = physics.jump_release;
 			
 		if (is_key_action_pressed && 
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
@@ -96,8 +96,9 @@ state.add("jump", {
 				camera.lagTimer = 15;
 			} else if (shield == SHIELD_ELECTRIC) {
 				audio_play_sound(sndLightningJump, 0, false);
-				ysp = -4;
+				ysp = -5.5;
 				var _particle = part_system_create(ParticleSystem1);
+				part_system_depth(_particle, -1000);
 				part_system_position(_particle, x, y);
 				//part_particles_create(ParticleSystem1, x, y, , 5);
 			}
@@ -360,6 +361,15 @@ state.add("hurt", {
 	}},
 });
 
+state.add("die", {
+	on_start: function(player) {with (player) {
+		audio_play_sound(sndHurt, 0, false);	
+		
+		xsp = 0;
+		ysp = -7;
+	}},
+});
+
 state.add("glid", {
 	//dropdash->glid
 	
@@ -414,6 +424,20 @@ state.add("land", {
 		allow_jump = true;	
 		allow_movement = true;	
 	}},
+});
+
+state.add("breathe", {
+	on_start: function() {
+		__timer = 20;
+	},
+	
+	on_step: function(player) {
+		if (__timer > 0)
+			__timer--;
+		else with player {
+			state.change_to("normal");
+		}
+	},
 });
 
 }

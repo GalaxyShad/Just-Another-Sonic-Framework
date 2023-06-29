@@ -4,6 +4,8 @@
 image_speed = 0.5;
 mode = 0;
 
+is_magnetized = false;
+
 ysp = 0;
 xsp = 0;
 

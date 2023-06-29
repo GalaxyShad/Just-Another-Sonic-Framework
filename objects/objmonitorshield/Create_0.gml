@@ -15,7 +15,6 @@
 event_inherited();
 item = ITEM_SHIELD;
 action = function() {
-	audio_play_sound(sndBlueShield, 0, false);
-	with objPlayer shield = SHIELD_CLASSIC;
+	with objPlayer set_shield(SHIELD_CLASSIC);
 };
 

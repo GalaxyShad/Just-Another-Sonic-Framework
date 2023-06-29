@@ -1,8 +1,6 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
-#macro ROLL_DEC 0.125
-#macro DEC		0.5
 
 #macro SHIELD_NONE			0
 #macro SHIELD_CLASSIC		1
@@ -10,27 +8,61 @@
 #macro SHIELD_FIRE			3
 #macro SHIELD_ELECTRIC		4
 
+oDj = instance_create_layer(x, y, layer, objDJ);
+
 shield = SHIELD_NONE;
+
+running_on_water = false;
+
+set_shield = function(_shield = SHIELD_NONE) {
+	if (physics.is_underwater() && 
+		(_shield == SHIELD_FIRE || _shield == SHIELD_ELECTRIC)
+	) return;
+	
+	shield = _shield;
+	
+	if (shield == SHIELD_NONE)
+		return;
+		
+	if (shield == SHIELD_BUBBLE)
+		player_underwater_regain_air();
+	
+	var _sounds = [
+		sndBlueShield, 
+		sndBubbleShield, 
+		sndFireShield, 
+		sndLightningShield
+	];
+	
+	audio_play_sound(_sounds[_shield - 1], 0, 0);
+}
+
+equip_speed_shoes = function() {
+	oDj.set_music("speed_shoes");
+	
+	timer_speed_shoes.reset();
+	timer_speed_shoes.start();
+	
+	physics.apply_super_fast_shoes();	
+}
 
 show_debug_info = true;
 
-acc = 0.046875;
-airacc = acc * 2;
-dec = 0.5;
-frc = acc;
-top = 6;
+physics = new PlayerPhysics(,{
+	acceleration_speed:		0.1875,
+	deceleration_speed:		1,
+	top_speed:				10,
+	jump_force:				8,
+	air_acceleration_speed: 0.375,
+});
+
+//physics.apply_super_form();
+//physics.apply_super_fast_shoes();
 
 kgr = 3; //knuckles_glid_rotation
 glid_top=5;
 
 animation_angle = 0;
-
-slp = 0.125;
-slp_rollup = 0.078125;
-slp_rolldown = 0.3125;
-
-grv = 0.21875;
-jmp = 6.5;
 
 control_lock_timer = 0;
 
@@ -48,12 +80,6 @@ gsp = 0;
 
 camera = instance_create_layer(x, y, layer, objCamera);
 
-#macro ACT_NORMAL		0
-
-#macro ACT_ROLL			2
-
-#macro ACT_HURT			-2
-
 action = 0;
 
 peelout_timer = 0;
@@ -62,9 +88,6 @@ inv_timer = 0;
 
 
 drpspd		= 8; //the base speed for a drop dash
-drpmax		= 12; //the top speed for a drop dash
-drpspdsup	= 12; //the base speed for a drop dash while super
-drpmaxsup	= 13; //the top speed for a drop dash while super
 
 allow_jump		= true;
 allow_movement	= true;
@@ -91,6 +114,40 @@ state = new State(id);
 PlayerStates();
 state.change_to("normal");
 
+remaining_air = 30;
+
+timer_underwater	= new Timer2(60, true, function() {
+	if (array_contains([25, 20, 15], remaining_air)) {
+		// warning chime	
+		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
+	} 
+	
+	if (remaining_air == 12) {
+		// drowning music	
+		show_debug_message("drowning music");
+		oDj.set_music("drowning");
+	} 
+	
+	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
+		// warning number bubble
+		var _number = (remaining_air / 2) - 1;
+		instance_create_depth(
+			x + 6 * image_xscale, y, -1000, objBubbleCountdown, { number: _number });
+	} 
+	
+	if (remaining_air == 0) {
+		// player drown	
+		audio_play_sound(sndPlrDrown, 0, 0);
+		state.change_to("die");
+	}
+	
+	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubble);
+	
+	remaining_air--;
+});
+
+timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
+
 
 is_key_left = 0;
 is_key_right = 0;
@@ -99,3 +156,5 @@ is_key_down = 0;
 is_key_action = 0;
 
 sprite_index_prev = 0;
+
+pSfxWaterRun = noone;

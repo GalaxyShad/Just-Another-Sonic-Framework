@@ -6,7 +6,7 @@ function player_switch_sensor_radius() {
 		state.current() == "dropdash"
 	) {
 		sensor.set_floor_box(SENSOR_FLOORBOX_ROLL);	
-		camera.offset_y = (action == ACT_ROLL) ? -6 : 0;
+		camera.offset_y = (state.current() == "roll") ? -5 : 0;
 	} else {
 		sensor.set_floor_box(SENSOR_FLOORBOX_NORMAL);
 		camera.offset_y = 0;

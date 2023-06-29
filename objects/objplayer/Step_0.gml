@@ -1,6 +1,7 @@
+state.step();
 
 if (state.current() == "die") {
-	ysp += grv;
+	ysp += physics.gravity_force;
 	
 	y += ysp;
 	
@@ -37,12 +38,84 @@ if (ground) {
 
 //////////////////////////////////////////////////////
 
+var _water = instance_nearest(x, y, objWaterLevel);
+
+if (_water != noone) {
+	var _colliding_with_water = (y+sensor.get_floor_box().vradius >= _water.y -4);
+	
+	if (_colliding_with_water && 
+		!physics.is_underwater() &&
+		(abs(gsp) >= 6) && ground && 
+		(sensor.get_angle() >= 352  || sensor.get_angle() <= 8) 
+	) {
+		y = _water.y - sensor.get_floor_box().vradius;
+		sensor.set_position(x, y);
+		sensor.set_angle(0);
+		ground = true;
+		running_on_water = true;
+	} 		
+
+
+	if (running_on_water) {
+		if (!part_system_exists(pSfxWaterRun)) {
+			pSfxWaterRun = part_system_create(partWaterRun);	
+		}
+
+		if (ysp >= 0 && abs(gsp) >= 6 && _colliding_with_water) {
+			ground = true;
+			part_type_scale(pSfxWaterRun, -1, 1);
+			part_system_position(
+				pSfxWaterRun, 
+				x - 12 * image_xscale, y + sensor.get_floor_box().vradius
+			);
+		} else {
+			part_system_destroy(pSfxWaterRun);
+			running_on_water = false;
+		}
+	}
+}
+
 PlayerGroundMovement();
 PlayerAirMovement();
 PlayerHandleObjects();
 
 
-state.step();
+//state.step();
+
+
+
+
+
+
+if (_water != noone) {
+	var _is_entering = (y > _water.y)  && !physics.is_underwater();
+	var _is_exiting  = (y <= _water.y)	&&  physics.is_underwater();
+	
+	if (_is_entering || _is_exiting) {
+		if (_is_entering) {
+			xsp *= 0.5;
+			ysp *= 0.25;
+			
+			physics.apply_underwater();
+			
+			if (shield == SHIELD_ELECTRIC || shield == SHIELD_FIRE)
+				shield = SHIELD_NONE;
+				
+			timer_underwater.start();
+		} else {
+			ysp *= 2;
+			physics.cancel_underwater();
+			
+			player_underwater_regain_air();
+		}
+		
+		var _particle = part_system_create(ParticleSystem2);
+		part_system_depth(_particle, -20);
+		part_system_position(_particle, x, y);
+		
+		audio_play_sound(sndWaterSplash, 0, 0);
+	}
+}
 
 var oMovingPlatform = sensor.collision_object(objMovingPlatform, 6);
 if (ground && oMovingPlatform) {
@@ -54,8 +127,8 @@ if (ground && oMovingPlatform) {
 if (allow_jump && ground && is_key_action_pressed) {
 	ground = false;
 	
-	ysp -= jmp * dcos(sensor.get_angle()); 
-	xsp -= jmp * dsin(sensor.get_angle()); 
+	ysp -= physics.jump_force * dcos(sensor.get_angle()); 
+	xsp -= physics.jump_force * dsin(sensor.get_angle()); 
 	
 	state.change_to("jump");
 	

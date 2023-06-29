@@ -15,7 +15,6 @@
 event_inherited();
 item = ITEM_FIRE_SHIELD;
 action = function() {
-	audio_play_sound(sndFireShield, 0, false);
-	with objPlayer shield = SHIELD_FIRE;
+	with objPlayer set_shield(SHIELD_FIRE);
 };
 
