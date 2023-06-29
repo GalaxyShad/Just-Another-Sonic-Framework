@@ -139,6 +139,8 @@ timer_underwater	= new Timer2(60, true, function() {
 		state.change_to("die");
 	}
 	
+	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubbleSfx);
+	
 	remaining_air--;
 });
 

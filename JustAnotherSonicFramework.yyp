@@ -149,6 +149,7 @@
     {"id":{"name":"Sprite57515253","path":"sprites/Sprite57515253/Sprite57515253.yy",},},
     {"id":{"name":"Sprite575152","path":"sprites/Sprite575152/Sprite575152.yy",},},
     {"id":{"name":"sprSonicBalancingB","path":"sprites/sprSonicBalancingB/sprSonicBalancingB.yy",},},
+    {"id":{"name":"objBreathingBubbleSfx","path":"objects/objBreathingBubbleSfx/objBreathingBubbleSfx.yy",},},
     {"id":{"name":"RingLoss","path":"scripts/RingLoss/RingLoss.yy",},},
     {"id":{"name":"objMonitorShield414243","path":"objects/objMonitorShield414243/objMonitorShield414243.yy",},},
     {"id":{"name":"sndPlrSpindashRelease","path":"sounds/sndPlrSpindashRelease/sndPlrSpindashRelease.yy",},},

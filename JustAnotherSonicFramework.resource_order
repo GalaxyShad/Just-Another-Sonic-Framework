@@ -119,6 +119,7 @@
     {"name":"Sprite57515253","order":6,"path":"sprites/Sprite57515253/Sprite57515253.yy",},
     {"name":"Sprite575152","order":5,"path":"sprites/Sprite575152/Sprite575152.yy",},
     {"name":"sprSonicBalancingB","order":13,"path":"sprites/sprSonicBalancingB/sprSonicBalancingB.yy",},
+    {"name":"objBreathingBubbleSfx","order":34,"path":"objects/objBreathingBubbleSfx/objBreathingBubbleSfx.yy",},
     {"name":"RingLoss","order":13,"path":"scripts/RingLoss/RingLoss.yy",},
     {"name":"objMonitorShield414243","order":8,"path":"objects/objMonitorShield414243/objMonitorShield414243.yy",},
     {"name":"sndPlrSpindashRelease","order":7,"path":"sounds/sndPlrSpindashRelease/sndPlrSpindashRelease.yy",},
