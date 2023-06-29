@@ -10,29 +10,19 @@ function PlayerAirMovement(){
 	}
 	
 	// Gravity
-	ysp += physics.gravity_force;
-	if(state.current() == "glid" && ysp > 2) ysp=2;
+	if(state.current() != "clambe") ysp += physics.gravity_force;
+	if(state.current() == "glide" && ysp > 2) ysp = 2;
+	//else if (state.current() == "clambe") ysp = ysp;
 	else if (ysp > 16) ysp = 16;
-		
+	show_debug_message("Air movement");
+	
 	// Movement
 	if (allow_movement) {
 		if (is_key_left && xsp > -physics.top_speed) 
 			xsp -= physics.air_acceleration_speed;
 		else if (is_key_right && xsp < physics.top_speed) 
 			xsp += physics.air_acceleration_speed;
-	}
-	if(state.current() == "glid"){		
-		if(!is_key_left && !is_key_right && abs(xsp) < glid_top){
-			xsp += physics.air_acceleration_speed * sign(image_xscale);
-		}
-		else if (is_key_left && xsp > -glid_top){
-			xsp -= physics.air_acceleration_speed;
-		}
-		else if (is_key_right && xsp < glid_top){
-			xsp += physics.air_acceleration_speed;
-		}
-	}
-	
+	}	
 		
 	// Air Drag
 	if (!ground && ysp < 0 && ysp > -4) {

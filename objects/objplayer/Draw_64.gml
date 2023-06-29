@@ -18,10 +18,13 @@ draw_text(
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+
 	$"ground:			{ground}\n" +
+	$"clambe:			{clambe}\n" +
 	$"action:			{state.current()}\n"+
 	$"gsp:				{gsp}\n" +
 	$"xsp:				{xsp}\n" +
 	$"ysp:				{ysp}\n" +
+	$"x:				{x}\n" +
+	$"y:				{y}\n" +
 	$"sensor_angle:		{sensor.get_angle()}\n" +
 	$"animation_angle:	{animation_angle}\n" +
 	$"\n" +
