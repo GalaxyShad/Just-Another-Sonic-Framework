@@ -7,7 +7,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "Parents",
-    "path": "folders/Parents.yy",
+    "path": "folders/Objects/__Hidden/Parents.yy",
   },
   "parentObjectId": {
     "name": "parSolid",

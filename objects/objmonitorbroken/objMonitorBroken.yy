@@ -6,8 +6,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "objMonitor",
-    "path": "folders/Objects/objMonitor.yy",
+    "name": "Hidden",
+    "path": "folders/Objects/Monitors/Hidden.yy",
   },
   "parentObjectId": null,
   "persistent": false,

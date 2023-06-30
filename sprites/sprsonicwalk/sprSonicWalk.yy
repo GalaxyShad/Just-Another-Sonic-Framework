@@ -31,7 +31,7 @@
   "origin": 9,
   "parent": {
     "name": "Sonic",
-    "path": "folders/Sprites/Sonic.yy",
+    "path": "folders/Objects/Player/Sprites/Sonic.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

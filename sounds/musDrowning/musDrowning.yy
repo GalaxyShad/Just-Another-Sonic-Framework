@@ -12,8 +12,8 @@
   "conversionMode": 0,
   "duration": 11.811792,
   "parent": {
-    "name": "JustAnotherSonicFramework",
-    "path": "JustAnotherSonicFramework.yyp",
+    "name": "Sounds",
+    "path": "folders/Objects/Player/Sounds.yy",
   },
   "preload": false,
   "sampleRate": 44100,

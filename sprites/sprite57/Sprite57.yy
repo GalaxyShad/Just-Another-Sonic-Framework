@@ -31,8 +31,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Monitors",
-    "path": "folders/Sprites/Monitors.yy",
+    "name": "Sprites",
+    "path": "folders/Objects/Monitors/Sprites.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

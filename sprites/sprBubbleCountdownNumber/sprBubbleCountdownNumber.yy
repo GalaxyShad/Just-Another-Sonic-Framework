@@ -36,8 +36,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Bubbles",
-    "path": "folders/Objects/Player/Bubbles.yy",
+    "name": "Sprites",
+    "path": "folders/Objects/Bubbles/Sprites.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -10,8 +10,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Hidden",
+    "path": "folders/Objects/Bubbles/Hidden.yy",
   },
   "parentObjectId": null,
   "persistent": false,

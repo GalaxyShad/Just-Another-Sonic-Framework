@@ -49,7 +49,7 @@
   "origin": 0,
   "parent": {
     "name": "Collisions",
-    "path": "folders/Sprites/Collisions.yy",
+    "path": "folders/Objects/Sprites/Collisions.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

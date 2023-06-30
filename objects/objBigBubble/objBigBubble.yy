@@ -8,8 +8,8 @@
     {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","objectId":{"name":"objBubble","path":"objects/objBubble/objBubble.yy",},"propertyId":{"name":"Size","path":"objects/objBubble/objBubble.yy",},"value":"Sizes.Big",},
   ],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Hidden",
+    "path": "folders/Objects/Bubbles/Hidden.yy",
   },
   "parentObjectId": {
     "name": "objBubble",
