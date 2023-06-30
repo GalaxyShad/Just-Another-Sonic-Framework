@@ -59,10 +59,8 @@ physics = new PlayerPhysics(,{
 //physics.apply_super_form();
 //physics.apply_super_fast_shoes();
 
-//knuckles
-glide_rotation = 3;
-glide_top=5;
-climbe_spid = 1;
+kgr = 3; //knuckles_glid_rotation
+glid_top=5;
 
 animation_angle = 0;
 
@@ -75,7 +73,6 @@ using_shield_abbility = false;
 
 
 ground = false;
-climbe = false;
 
 xsp = 0;
 ysp = 0;
