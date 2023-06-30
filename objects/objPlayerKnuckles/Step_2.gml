@@ -21,7 +21,7 @@ image_angle = animation_angle;
 if (ground) {
 	if		(is_key_right && gsp > 0)	image_xscale = 1;
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
-} else if(!clambe) {
+} else if(!climbe) {
 	if		(is_key_right)	image_xscale = 1;
 	else if (is_key_left)	image_xscale = -1;	
 }
@@ -186,14 +186,14 @@ switch (state.current()) {
 		break;
 	}
 	
-	case "clambe": {
-		sprite_index = sprKnucklesClambe;
+	case "climbe": {
+		sprite_index = sprKnucklesClimbe;
 		image_speed = -ysp / 0.7;
 		break;
 	}
 	
-	case "clambeEx": {
-		sprite_index = sprKnucklesClambeEx;
+	case "climbeEx": {
+		sprite_index = sprKnucklesClimbeEx;
 		image_speed = 0.4;
 		if(image_index>2) image_index=2
 		break;

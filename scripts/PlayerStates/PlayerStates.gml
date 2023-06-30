@@ -38,7 +38,7 @@ state.add("normal", {
 		}
 		
 		// Balancing
-		if (ground && gsp == 0 && state.current()!="clambeEx" && state.current()!="clambe" && 
+		if (ground && gsp == 0 && state.current()!="climbeEx" && state.current()!="climbe" && 
 			(!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge())
 		) {
 			state.change_to("balancing");
@@ -426,10 +426,10 @@ state.add("land", {
 	}},
 });
 
-state.add("clambe", {
+state.add("climbe", {
 	on_start: function(player) { with player {
 		allow_movement = false;
-		clambe = true;
+		climbe = true;
 	}},
 	
 	on_step: function(player) {with player {
@@ -438,7 +438,7 @@ state.add("clambe", {
 		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale=-1;
 		if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
 		(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
-			state.change_to("clambeEx");
+			state.change_to("climbeEx");
 		}
 		
 		if (is_key_action_pressed){
@@ -447,10 +447,10 @@ state.add("clambe", {
 			state.change_to("jump"); //? == objPlayer->Step->60
 		}
 		ysp = 0.0;
-		if (is_key_up && !sensor.is_collision_solid_top()) ysp -= clambe_spid;
-		if (is_key_down && !ground) ysp += clambe_spid;
+		if (is_key_up && !sensor.is_collision_solid_top()) ysp -= climbe_spid;
+		if (is_key_down && !ground) ysp += climbe_spid;
 		if (ground) state.change_to("normal");
-		show_debug_message("Clambe");
+		show_debug_message("climbe");
 	}},
 	
 	on_exit: function(player) { with player {
@@ -458,24 +458,24 @@ state.add("clambe", {
 	}},
 });
 
-state.add("clambeEx", {
+state.add("climbeEx", {
 	on_start: function(player) { with player {
 		allow_jump = false;
 		allow_movement = false;
-		time_clambeEx=40;
+		time_climbeEx=40;
 		y-=17;
 		x+=19*sign(image_xscale);
 	}},
 	
 	on_step: function(player) {with player {
-		if(time_clambeEx<0)	state.change_to("normal");
-		else time_clambeEx--;
+		if(time_climbeEx<0)	state.change_to("normal");
+		else time_climbeEx--;
 	}},
 	
 	on_exit: function(player) { with player {
 		allow_jump = true;
 		allow_movement = true;
-		clambe=false;
+		climbe=false;
 	}},
 });
 

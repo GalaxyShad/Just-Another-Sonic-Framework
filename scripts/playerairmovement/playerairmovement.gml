@@ -10,9 +10,9 @@ function PlayerAirMovement(){
 	}
 	
 	// Gravity
-	if(state.current() != "clambe") ysp += physics.gravity_force;
+	if(state.current() != "climbe") ysp += physics.gravity_force;
 	if(state.current() == "glide" && ysp > 2) ysp = 2;
-	//else if (state.current() == "clambe") ysp = ysp;
+	//else if (state.current() == "climbe") ysp = ysp;
 	else if (ysp > 16) ysp = 16;
 	show_debug_message("Air movement");
 	

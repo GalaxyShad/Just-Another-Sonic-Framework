@@ -18,7 +18,7 @@ draw_text(
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+
 	$"ground:			{ground}\n" +
-	$"clambe:			{clambe}\n" +
+	$"climbe:			{climbe}\n" +
 	$"action:			{state.current()}\n"+
 	$"gsp:				{gsp}\n" +
 	$"xsp:				{xsp}\n" +

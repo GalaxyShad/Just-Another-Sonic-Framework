@@ -62,7 +62,7 @@ physics = new PlayerPhysics(,{
 //knuckles
 glide_rotation = 3;
 glide_top=5;
-clambe_spid = 1;
+climbe_spid = 1;
 
 animation_angle = 0;
 
@@ -75,7 +75,7 @@ using_shield_abbility = false;
 
 
 ground = false;
-clambe = false;
+climbe = false;
 
 xsp = 0;
 ysp = 0;

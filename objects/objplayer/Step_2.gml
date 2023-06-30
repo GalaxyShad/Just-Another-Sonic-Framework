@@ -21,7 +21,7 @@ image_angle = animation_angle;
 if (ground) {
 	if		(is_key_right && gsp > 0)	image_xscale = 1;
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
-} else if (!clambe) {
+} else if (!climbe) {
 	if		(is_key_right)	image_xscale = 1;
 	else if (is_key_left)	image_xscale = -1;	
 }
