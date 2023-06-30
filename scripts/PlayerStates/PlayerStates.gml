@@ -5,7 +5,6 @@ function is_player_sphere() {
 		"jump",
 		"roll",
 		"dropdash",
-		//"glid",
 		"land",
 	], state.current());
 }
@@ -39,7 +38,7 @@ state.add("normal", {
 		}
 		
 		// Balancing
-		if (ground && gsp == 0 && 
+		if (ground && gsp == 0 && state.current()!="climbeEx" && state.current()!="climbe" && 
 			(!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge())
 		) {
 			state.change_to("balancing");
@@ -73,8 +72,8 @@ state.add("jump", {
 			}
 			else if(object_index==objPlayerKnuckles){
 				ysp = 0;
-				xsp = (3+xsp/3) * sign(image_xscale);//0->(3+xsp/3)
-				state.change_to("glid");
+				xsp = (3+abs(xsp)/2) * sign(image_xscale);
+				state.change_to("glide");
 			}
 			//show_debug_message($"This is player -> {object_get_name(object_index)}");
 		}
@@ -370,17 +369,20 @@ state.add("die", {
 	}},
 });
 
-state.add("glid", {
-	//dropdash->glid
-	
+state.add("glide", {
 	on_start: function(player) {with (player) {
 		allow_jump = false;
 		allow_movement = false;
 	}},
 	
 	on_step: function(player) {with player {
-		if (!is_key_action)
-			state.change_to("drop");
+		if (!is_key_action) state.change_to("drop");
+		
+		if(!is_key_left && !is_key_right && abs(xsp) < glide_top){
+			xsp += physics.air_acceleration_speed * sign(image_xscale);
+		}
+		else if (is_key_left && xsp > -glide_top){ xsp -= physics.air_acceleration_speed; }
+		else if (is_key_right && xsp < glide_top){ xsp += physics.air_acceleration_speed; }
 	}},
 	
 	on_landing: function(player) {with player {
@@ -394,7 +396,6 @@ state.add("glid", {
 });
 
 state.add("drop", {
-	
 	on_start: function(player) { with player {
 	}},
 	
@@ -409,20 +410,72 @@ state.add("drop", {
 });
 
 state.add("land", {
-	
 	on_start: function(player) { with player {
 		allow_jump = false;
 		allow_movement = false;
 	}},
 	
 	on_step: function(player) {with player {
-		if (abs(xsp)<3) state.change_to("normal");
+		if (abs(xsp)<3 || ysp!=0) state.change_to("normal");
 	}},
 	
 	on_exit: function(player) { with player {
 		gsp = 0;
 		allow_jump = true;	
 		allow_movement = true;	
+	}},
+});
+
+state.add("climbe", {
+	on_start: function(player) { with player {
+		allow_movement = false;
+		climbe = true;
+	}},
+	
+	on_step: function(player) {with player {
+		
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale=1;
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale=-1;
+		if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
+		(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
+			state.change_to("climbeEx");
+		}
+		
+		if (is_key_action_pressed){
+			image_xscale *= -1;
+			xsp = (3+abs(xsp)/2) * sign(image_xscale);
+			state.change_to("jump"); //? == objPlayer->Step->60
+		}
+		ysp = 0.0;
+		if (is_key_up && !sensor.is_collision_solid_top()) ysp -= climbe_spid;
+		if (is_key_down && !ground) ysp += climbe_spid;
+		if (ground) state.change_to("normal");
+		show_debug_message("climbe");
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_movement = true;
+	}},
+});
+
+state.add("climbeEx", {
+	on_start: function(player) { with player {
+		allow_jump = false;
+		allow_movement = false;
+		time_climbeEx=40;
+		y-=17;
+		x+=19*sign(image_xscale);
+	}},
+	
+	on_step: function(player) {with player {
+		if(time_climbeEx<0)	state.change_to("normal");
+		else time_climbeEx--;
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_jump = true;
+		allow_movement = true;
+		climbe=false;
 	}},
 });
 

@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
-  "name": "sprKnucklesGlid",
+  "name": "sprKnucklesGlide",
   "bbox_bottom": 23,
   "bbox_left": 0,
   "bbox_right": 47,
@@ -32,7 +32,7 @@
   "sequence": {
     "resourceType": "GMSequence",
     "resourceVersion": "1.4",
-    "name": "sprKnucklesGlid",
+    "name": "sprKnucklesGlide",
     "autoRecord": true,
     "backdropHeight": 768,
     "backdropImageOpacity": 0.5,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"36aea0bd-2bac-469f-9ff1-82e66a9f5ccc","path":"sprites/sprKnucklesGlid/sprKnucklesGlid.yy",},},},"Disabled":false,"id":"81e50f0b-619d-457a-873b-8221f20049cf","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"36aea0bd-2bac-469f-9ff1-82e66a9f5ccc","path":"sprites/sprKnucklesGlide/sprKnucklesGlide.yy",},},},"Disabled":false,"id":"81e50f0b-619d-457a-873b-8221f20049cf","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
