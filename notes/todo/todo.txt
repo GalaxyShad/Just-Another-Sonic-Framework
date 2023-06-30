@@ -21,7 +21,7 @@
 # [+] [TODO] Camera - camera Lag after spindash or dropdash or dash
 # [ ] [TODO] Camera - camera look up, look down
 
-# [ ] [TODO] Bacglid_rotationound System - parallax
+# [ ] [TODO] Background System - parallax
 
 # [+-] [TODO] Collision - layers
 # [+-] [TODO] Collision - platforms

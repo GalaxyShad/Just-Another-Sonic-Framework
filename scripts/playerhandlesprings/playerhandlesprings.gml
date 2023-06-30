@@ -29,9 +29,7 @@ function PlayerHandleSprings(){
 	if (oSpring) {
 		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle - 90)) < 60 &&
 			oSpring.image_speed == 0
-		) {
-			if(state.current() != "roll") state.change_to("normal");
-			
+		) {	
 			if (ground) 
 				gsp = -oSpring.spd;
 			else 
@@ -48,8 +46,7 @@ function PlayerHandleSprings(){
 	if (oSpring) {
 		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle + 90)) < 60 &&
 			oSpring.image_speed == 0
-		) {
-			if(state.current() != "roll") state.change_to("normal");
+		) {	
 			
 			if (ground) 
 				gsp = oSpring.spd;
