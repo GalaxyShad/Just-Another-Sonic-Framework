@@ -1,4 +1,3 @@
-show_debug_message("Step");
 state.step();
 
 if (state.current() == "die") {
@@ -125,9 +124,8 @@ if (ground && oMovingPlatform) {
 }
 
 
-if (allow_jump && (ground || climbe) && is_key_action_pressed) {
+if (allow_jump && ground && is_key_action_pressed) {
 	ground = false;
-	climbe = false;
 	
 	ysp -= physics.jump_force * dcos(sensor.get_angle()); 
 	xsp -= physics.jump_force * dsin(sensor.get_angle()); 
@@ -146,11 +144,11 @@ if ((_is_moving_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_r
 	if (ground) {
 		gsp = 0;
 		
-		if (((xsp < 0 && is_key_left) || (xsp > 0 && is_key_right)) && state.current() != "climbe")
+		if ((xsp < 0 && is_key_left) || (xsp > 0 && is_key_right))
 			state.change_to("push");
-	} else if (!ground && object_index==objPlayerKnuckles && state.current() == "glide") {
-		state.change_to("climbe");
-	} else xsp = 0; //Need else?
+	}
+	
+	xsp = 0;
 }
 
 if (inv_timer > 0)
