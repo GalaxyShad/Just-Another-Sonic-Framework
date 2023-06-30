@@ -18,12 +18,12 @@ animation_angle = (abs(animation_angle) % 360);
 
 image_angle = animation_angle;
 
-if (!ground) {
-	if		(is_key_right)	image_xscale = 1;
-	else if (is_key_left)	image_xscale = -1;
-} else {
+if (ground) {
 	if		(is_key_right && gsp > 0)	image_xscale = 1;
 	else if (is_key_left  && gsp < 0)	image_xscale = -1;
+} else if (!climbe) {
+	if		(is_key_right)	image_xscale = 1;
+	else if (is_key_left)	image_xscale = -1;	
 }
 
 if (gsp == 0 && state.current() == "normal")
