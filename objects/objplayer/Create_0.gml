@@ -2,29 +2,31 @@
 // Вы можете записать свой код в этом редакторе
 
 
-#macro SHIELD_NONE			0
-#macro SHIELD_CLASSIC		1
-#macro SHIELD_BUBBLE		2
-#macro SHIELD_FIRE			3
-#macro SHIELD_ELECTRIC		4
+enum Shield {
+	None,
+	Classic,
+	Bubble,
+	Flame,
+	Lightning
+};
 
-oDj = instance_create_layer(x, y, layer, objDJ);
+o_dj = instance_create_layer(x, y, layer, objDJ);
 
-shield = SHIELD_NONE;
+shield = Shield.None;
 
 running_on_water = false;
 
 set_shield = function(_shield = SHIELD_NONE) {
 	if (physics.is_underwater() && 
-		(_shield == SHIELD_FIRE || _shield == SHIELD_ELECTRIC)
+		(_shield == Shield.Flame || _shield == Shield.Lightning)
 	) return;
 	
 	shield = _shield;
 	
-	if (shield == SHIELD_NONE)
+	if (shield == Shield.None)
 		return;
 		
-	if (shield == SHIELD_BUBBLE)
+	if (shield == Shield.Bubble)
 		player_underwater_regain_air();
 	
 	var _sounds = [
@@ -38,7 +40,7 @@ set_shield = function(_shield = SHIELD_NONE) {
 }
 
 equip_speed_shoes = function() {
-	oDj.set_music("speed_shoes");
+	o_dj.set_music("speed_shoes");
 	
 	timer_speed_shoes.reset();
 	timer_speed_shoes.start();
@@ -111,7 +113,7 @@ water_shield_scale = {
 
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
 state = new State(id);
-PlayerStates();
+player_states();
 state.change_to("normal");
 
 remaining_air = 30;
@@ -125,7 +127,7 @@ timer_underwater	= new Timer2(60, true, function() {
 	if (remaining_air == 12) {
 		// drowning music	
 		show_debug_message("drowning music");
-		oDj.set_music("drowning");
+		o_dj.set_music("drowning");
 	} 
 	
 	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
@@ -154,7 +156,8 @@ is_key_right = 0;
 is_key_up = 0;
 is_key_down = 0;
 is_key_action = 0;
+is_key_action_pressed = 0;
 
 sprite_index_prev = 0;
 
-pSfxWaterRun = noone;
+p_sfx_water_run = -1;

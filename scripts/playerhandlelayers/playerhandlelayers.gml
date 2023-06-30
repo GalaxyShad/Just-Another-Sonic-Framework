@@ -1,6 +1,6 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
-function PlayerHandleLayers() {
+function player_handle_layers() {
 	
 	if (sensor.collision_object(objLayerSwitch)) {
 		sensor.set_layer((gsp > 0) ? 1 : 0);	

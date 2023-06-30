@@ -169,9 +169,9 @@ switch (state.current()) {
 		
 		sprite_index = sprKnucklesUngroundedRotation;
 		
-		if(abs(xsp)>kgr) _gg=kgr*sign(xsp);
+		/*if(abs(xsp)>kgr) _gg=kgr*sign(xsp);
 		else _gg = xsp;
-		image_index = kgr - _gg * sign(image_xscale);
+		image_index = kgr - _gg * sign(image_xscale);*/
 		
 		break;
 	}

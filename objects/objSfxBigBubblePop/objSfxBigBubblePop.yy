@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Hidden",
-    "path": "folders/Objects/Bubbles/Hidden.yy",
+    "name": "Bubbles",
+    "path": "folders/Objects/__Hidden/Bubbles.yy",
   },
   "parentObjectId": null,
   "persistent": false,

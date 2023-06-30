@@ -5,7 +5,7 @@ if (state.current() == "die") {
 	
 	y += ysp;
 	
-	camera.lagTimer = 1;
+	camera.set_lag_timer(1);
 	
 	exit;
 }
@@ -20,19 +20,19 @@ if (ground) {
 	var _d = 16;
 
 	gsp = _gsp % _d;
-	PlayerCollision();
+	player_collision();	
 
 	if (ground) {
 		for (var i = 0; i < floor(abs(_gsp) / _d) * _d; i+=_d) {
 			gsp = sign(_gsp)*_d;
-			PlayerCollision();	
+			player_collision();	
 			if (!ground) break;
 		}
 	}
 
 	gsp = _gsp;
 } else {
-	PlayerCollision();	
+	player_collision();	
 }
 
 
@@ -57,35 +57,26 @@ if (_water != noone) {
 
 
 	if (running_on_water) {
-		if (!part_system_exists(pSfxWaterRun)) {
-			pSfxWaterRun = part_system_create(partWaterRun);	
+		if (!part_system_exists(p_sfx_water_run)) {
+			p_sfx_water_run = part_system_create(partWaterRun);	
 		}
 
 		if (ysp >= 0 && abs(gsp) >= 6 && _colliding_with_water) {
 			ground = true;
-			part_type_scale(pSfxWaterRun, -1, 1);
 			part_system_position(
-				pSfxWaterRun, 
+				p_sfx_water_run, 
 				x - 12 * image_xscale, y + sensor.get_floor_box().vradius
 			);
 		} else {
-			part_system_destroy(pSfxWaterRun);
+			part_system_destroy(p_sfx_water_run);
 			running_on_water = false;
 		}
 	}
 }
 
-PlayerGroundMovement();
-PlayerAirMovement();
-PlayerHandleObjects();
-
-
-//state.step();
-
-
-
-
-
+player_ground_movement();
+player_air_movement();
+player_handle_objects();
 
 if (_water != noone) {
 	var _is_entering = (y > _water.y)  && !physics.is_underwater();
@@ -98,8 +89,8 @@ if (_water != noone) {
 			
 			physics.apply_underwater();
 			
-			if (shield == SHIELD_ELECTRIC || shield == SHIELD_FIRE)
-				shield = SHIELD_NONE;
+			if (shield == Shield.Lightning || shield == Shield.Flame)
+				shield = Shield.None;
 				
 			timer_underwater.start();
 		} else {
@@ -117,9 +108,9 @@ if (_water != noone) {
 	}
 }
 
-var oMovingPlatform = sensor.collision_object(objMovingPlatform, 6);
-if (ground && oMovingPlatform) {
-	x += oMovingPlatform.x - oMovingPlatform.xprevious; 
+var _o_moving_platform = sensor.collision_object(objMovingPlatform, 6);
+if (ground && _o_moving_platform) {
+	x += _o_moving_platform.x - _o_moving_platform.xprevious; 
 	sensor.set_position(x, y);
 }
 

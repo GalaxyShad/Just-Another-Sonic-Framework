@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_FIRE_SHIELD;
 action = function() {
-	with objPlayer set_shield(SHIELD_FIRE);
+	with objPlayer set_shield(Shield.Flame);
 };
 

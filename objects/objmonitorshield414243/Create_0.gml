@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_WATER_SHIELD;
 action = function() {
-	with objPlayer set_shield(SHIELD_BUBBLE);
+	with objPlayer set_shield(Shield.Bubble);
 };
 

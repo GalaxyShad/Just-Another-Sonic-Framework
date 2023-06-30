@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_ELECTRIC_SHIELD;
 action = function() {
-	with objPlayer set_shield(SHIELD_ELECTRIC);
+	with objPlayer set_shield(Shield.Lightning);
 };
 

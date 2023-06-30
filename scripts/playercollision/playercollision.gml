@@ -1,20 +1,20 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
-function PlayerHandleObjects() {
-	PlayerHandleLayers();
-	PlayerHandleSprings();
-	PlayerHandleRing();
-	PlayerHandleSpikes();
-	PlayerHandleMonitors();	
+function player_handle_objects() {
+	player_handle_layers();
+	player_handle_springs();
+	player_handle_rings();
+	player_handle_spikes();
+	player_handle_monitors();
 	
-	var _oBubble = sensor.collision_object(objBigBubble);
-	if (_oBubble) {
+	var _o_bubble = sensor.collision_object(objBigBubble);
+	if (_o_bubble) {
 		xsp = 0;
 		ysp = 0;
 		
 		state.change_to("breathe");
 		
-		instance_destroy(_oBubble);
+		instance_destroy(_o_bubble);
 		
 		audio_play_sound(sndPlayerBreathe, 0, 0);
 		
@@ -22,7 +22,7 @@ function PlayerHandleObjects() {
 	}
 }
 
-function PlayerCollision() {
+function player_collision() {
 
 	if (ground) {
 		xsp = gsp *  dcos(sensor.get_angle());
@@ -143,7 +143,7 @@ function PlayerCollision() {
 		while (sensor.is_collision_solid_bottom()) {
 			sensor.set_position(
 				sensor.get_position().x - _sin_ang,
-				sensor.get_position().y - _cos_ang,
+				sensor.get_position().y - _cos_ang
 			);
 		}
 		
@@ -152,14 +152,14 @@ function PlayerCollision() {
 		) {
 			sensor.set_position(
 				sensor.get_position().x + _sin_ang,
-				sensor.get_position().y + _cos_ang,
+				sensor.get_position().y + _cos_ang
 			);
 		}
 		
 		while (sensor.is_collision_solid_bottom()) {
 			sensor.set_position(
 				sensor.get_position().x - _sin_ang / 1000,
-				sensor.get_position().y - _cos_ang / 1000,
+				sensor.get_position().y - _cos_ang / 1000
 			);
 		}
 		

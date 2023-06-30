@@ -19,7 +19,6 @@ is_falling   = false;
 
 action = function() {};
 
-PlayerLanding()
 
 
 

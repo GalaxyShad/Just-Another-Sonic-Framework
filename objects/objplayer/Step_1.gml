@@ -12,17 +12,17 @@ if (keyboard_check_pressed(ord("R")))
 	room_restart();
 
 if (keyboard_check_pressed(ord("S")))
-	PlayerGetHit();
+	player_get_hit();
 	
 if (keyboard_check_pressed(ord("A")))
 	show_debug_info = !show_debug_info;
 
 if keyboard_check(ord("2"))
-	room_speed = 20;
+	game_set_speed(20, gamespeed_fps);
 else if keyboard_check(ord("1"))
-	room_speed = 60;
+	game_set_speed(60, gamespeed_fps);
 else if keyboard_check(ord("3"))
-	room_speed = 5;
+	game_set_speed(5, gamespeed_fps);
 	
 
 

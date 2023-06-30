@@ -3,19 +3,21 @@
 
 scale = 1;
 
-#macro VIEW_WIDTH	480*scale//426
-#macro VIEW_HEIGHT	270*scale//240
+#macro VIEW_WIDTH	480 * scale//426
+#macro VIEW_HEIGHT	270 * scale//240
 
 #macro MAX_SPD 16
 
 offset_x = 0;
 offset_y = 0;
 
-lagTimer = 0;
+lag_timer = 0;
 
-wndScale = 3 / scale;
+set_lag_timer = function(_value) { lag_timer = _value; }
 
-window_set_size(VIEW_WIDTH * wndScale, VIEW_HEIGHT * wndScale);
+wnd_scale = 3 / scale;
+
+window_set_size(VIEW_WIDTH * wnd_scale, VIEW_HEIGHT * wnd_scale);
 
 surface_resize(application_surface, window_get_width(), window_get_height());
 

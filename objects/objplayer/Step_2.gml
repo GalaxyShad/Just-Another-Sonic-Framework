@@ -190,7 +190,7 @@ if (sprite_index != sprite_index_prev)
 
 sprite_index_prev = sprite_index;
 
-if (physics.is_underwater() && shield != SHIELD_BUBBLE)
+if (physics.is_underwater() && shield != Shield.Bubble)
 	timer_underwater.tick();
 timer_speed_shoes.tick();
 

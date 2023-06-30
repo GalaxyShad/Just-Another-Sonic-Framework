@@ -40,18 +40,18 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
 	__update_coords = function() {
 		for (var i = 0; i < 4; i++) {
-			var hsign = (i == 1 || i == 2) ? -1 : 1;
-			var vsign = (i == 2 || i == 3) ? -1 : 1;
+			var _hsign = (i == 1 || i == 2) ? -1 : 1;
+			var _vsign = (i == 2 || i == 3) ? -1 : 1;
 			
-			__floor_box.coords[i].x =	- __floor_box.hradius *  __angle_cos * hsign
-										- __floor_box.vradius *  __angle_sin * vsign;
-			__floor_box.coords[i].y =	- __floor_box.hradius * -__angle_sin * hsign
-										- __floor_box.vradius *  __angle_cos * vsign;								  
+			__floor_box.coords[i].x =	- __floor_box.hradius *  __angle_cos * _hsign
+										- __floor_box.vradius *  __angle_sin * _vsign;
+			__floor_box.coords[i].y =	- __floor_box.hradius * -__angle_sin * _hsign
+										- __floor_box.vradius *  __angle_cos * _vsign;								  
 	
-			__wall_box.coords[i].x  =	- __wall_box.hradius *  __angle_cos * hsign
-										- __wall_box.vradius *  __angle_sin * vsign;
-			__wall_box.coords[i].y  =	- __wall_box.hradius * -__angle_sin * hsign
-										- __wall_box.vradius *  __angle_cos * vsign;	
+			__wall_box.coords[i].x  =	- __wall_box.hradius *  __angle_cos * _hsign
+										- __wall_box.vradius *  __angle_sin * _vsign;
+			__wall_box.coords[i].y  =	- __wall_box.hradius * -__angle_sin * _hsign
+										- __wall_box.vradius *  __angle_cos * _vsign;	
 		}
 	};
 	
@@ -71,25 +71,25 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__update_coords();
 		
 		for (var i = 0; i < 4; i++) {
-			var curr = i;
-			var next = (i+1) % 4;
+			var _curr = i;
+			var _next = (i+1) % 4;
 			
 			draw_set_color(make_color_hsv(i * 50, 255, 255));
 			draw_circle(
-				__x + __floor_box.coords[curr].x - 1, __y + __floor_box.coords[curr].y, 
+				__x + __floor_box.coords[_curr].x - 1, __y + __floor_box.coords[_curr].y, 
 				1, false
 			);
 			
 			draw_set_color(c_aqua);	
 			draw_line(
-				__x + __floor_box.coords[curr].x - 1, __y + __floor_box.coords[curr].y,
-				__x + __floor_box.coords[next].x - 1, __y + __floor_box.coords[next].y,
+				__x + __floor_box.coords[_curr].x - 1, __y + __floor_box.coords[_curr].y,
+				__x + __floor_box.coords[_next].x - 1, __y + __floor_box.coords[_next].y
 			);	
 			
 			draw_set_color(c_red);	
 			draw_line(
-				__x + __wall_box.coords[curr].x - 1, __y + __wall_box.coords[curr].y,
-				__x + __wall_box.coords[next].x - 1, __y + __wall_box.coords[next].y,
+				__x + __wall_box.coords[_curr].x - 1, __y + __wall_box.coords[_curr].y,
+				__x + __wall_box.coords[_next].x - 1, __y + __wall_box.coords[_next].y
 			);	
 		}
 		
@@ -314,12 +314,12 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	};
 	
 	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
-		var lpoint = { 
+		var _lpoint = { 
 			is_found: false, 
 			x: _left_point.x, 
 			y: _left_point.y 
 		};
-		var rpoint = { 
+		var _rpoint = { 
 			is_found: false, 
 			x: _right_point.x, 
 			y: _right_point.y 
@@ -329,25 +329,25 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		//set_angle(round(_temp_angle / 10) * 10);
 		
 		for (var i = 0; i < __max_expand; i++) {
-			if (__is_collision_point_solid(lpoint) || __collision_point(lpoint, parPlatform) != noone) {
-				lpoint.is_found = true;
-			} else if (!lpoint.is_found) {
-				lpoint.x += __angle_sin;
-				lpoint.y += __angle_cos;
+			if (__is_collision_point_solid(_lpoint) || __collision_point(_lpoint, parPlatform) != noone) {
+				_lpoint.is_found = true;
+			} else if (!_lpoint.is_found) {
+				_lpoint.x += __angle_sin;
+				_lpoint.y += __angle_cos;
 			}
 			
-			if (__is_collision_point_solid(rpoint) || __collision_point(rpoint, parPlatform) != noone) {
-				rpoint.is_found = true;
-			} else if (!rpoint.is_found) {
-				rpoint.x += __angle_sin;
-				rpoint.y += __angle_cos;	
+			if (__is_collision_point_solid(_rpoint) || __collision_point(_rpoint, parPlatform) != noone) {
+				_rpoint.is_found = true;
+			} else if (!_rpoint.is_found) {
+				_rpoint.x += __angle_sin;
+				_rpoint.y += __angle_cos;	
 			}
 		}
 		
-		var new_angle = 0;
+		var _new_angle = 0;
 					   
-		if (rpoint.is_found && lpoint.is_found) {
-			new_angle = point_direction(lpoint.x, lpoint.y, rpoint.x, rpoint.y);
+		if (_rpoint.is_found && _lpoint.is_found) {
+			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
 		}
 		
 		//set_angle(_temp_angle);
@@ -355,24 +355,24 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		/*
 		var tollerance = 5;
 		
-		if (abs(angle_difference(new_angle, _temp_angle)) < tollerance)
-			new_angle = _temp_angle;
+		if (abs(angle_difference(_new_angle, _temp_angle)) < tollerance)
+			_new_angle = _temp_angle;
 		
-		if (new_angle >= 360 - tollerance || new_angle <= 0 + tollerance)
-			new_angle = 0;
+		if (_new_angle >= 360 - tollerance || _new_angle <= 0 + tollerance)
+			_new_angle = 0;
 			
-		if (new_angle >= 90 - tollerance && new_angle <= 90 + tollerance)
-			new_angle = 90;
+		if (_new_angle >= 90 - tollerance && _new_angle <= 90 + tollerance)
+			_new_angle = 90;
 			
-		if (new_angle >= 180 - tollerance && new_angle <= 180 + tollerance)
-			new_angle = 180;
+		if (_new_angle >= 180 - tollerance && _new_angle <= 180 + tollerance)
+			_new_angle = 180;
 			
-		if (new_angle >= 270 - tollerance  && new_angle <= 270 + tollerance)
-			new_angle = 270;
+		if (_new_angle >= 270 - tollerance  && _new_angle <= 270 + tollerance)
+			_new_angle = 270;
 		*/
 		
 		
-		return floor(new_angle);
+		return floor(_new_angle);
 	};
 	
 	

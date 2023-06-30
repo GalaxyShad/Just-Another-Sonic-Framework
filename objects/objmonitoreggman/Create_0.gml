@@ -16,7 +16,7 @@ event_inherited();
 item = ITEM_EGGMAN;
 action = function() {
 	if (instance_exists(objPlayer)) {
-		with objPlayer PlayerGetHit();	
+		with objPlayer player_get_hit();	
 	}
 };
 

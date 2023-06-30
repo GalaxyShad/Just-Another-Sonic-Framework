@@ -10,7 +10,7 @@ function is_player_sphere() {
 	], state.current());
 }
 
-function PlayerStates() {
+function player_states() {
 
 state.add("normal", {
 	on_start: function() {
@@ -65,7 +65,7 @@ state.add("jump", {
 			ysp = physics.jump_release;
 			
 		if (is_key_action_pressed && 
-			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
+			(shield == Shield.None || shield == Shield.Classic)
 		) {
 			if(object_index==objPlayer){
 				audio_play_sound(sndPlrDropDash, 0, false);
@@ -83,30 +83,39 @@ state.add("jump", {
 		if (!ground && is_key_action_pressed && !using_shield_abbility)  {
 			using_shield_abbility = true;
 			
-			if (shield == SHIELD_BUBBLE) {
-				audio_play_sound(sndBubbleBounce, 0, false);
-				water_shield_scale.xscale = 0.5;
-				water_shield_scale.yscale = 1.5;
-				xsp = 0;
-				ysp = 8;
-			} else if (shield == SHIELD_FIRE) {
-				audio_play_sound(sndFireDash, 0, false);
-				ysp = 0;
-				xsp = 8 * sign(image_xscale);
-				camera.lagTimer = 15;
-			} else if (shield == SHIELD_ELECTRIC) {
-				audio_play_sound(sndLightningJump, 0, false);
-				ysp = -5.5;
-				var _particle = part_system_create(ParticleSystem1);
-				part_system_depth(_particle, -1000);
-				part_system_position(_particle, x, y);
-				//part_particles_create(ParticleSystem1, x, y, , 5);
+			switch (shield) {
+				case Shield.Bubble:
+					audio_play_sound(sndBubbleBounce, 0, false);
+					
+					water_shield_scale.xscale = 0.5;
+					water_shield_scale.yscale = 1.5;
+					
+					xsp = 0;
+					ysp = 8;
+					break;
+				case Shield.Flame: 
+					audio_play_sound(sndFireDash, 0, false);
+					
+					ysp = 0;
+					xsp = 8 * sign(image_xscale);
+				
+					camera.set_lag_timer(15);
+					break;
+				case Shield.Lightning:
+					audio_play_sound(sndLightningJump, 0, false);
+					
+					ysp = -5.5;
+					
+					var _particle = part_system_create(ParticleSystem1);
+					part_system_depth(_particle, -1000);
+					part_system_position(_particle, x, y);
+					break;
 			}
 		}
 	}},
 	
 	on_landing: function(player) {with (player) {
-		if (using_shield_abbility && shield == SHIELD_BUBBLE) {
+		if (using_shield_abbility && shield == Shield.Bubble) {
 			var _angle = sensor.get_angle();
 			
 			while (sensor.is_collision_solid_bottom()) {
@@ -246,7 +255,7 @@ state.add("peelout", {
 					audio_stop_sound(sndPlrPeelCharge);
 					audio_play_sound(sndPlrPeelRelease, 0, false);
 			
-					camera.lagTimer = 15;
+					camera.set_lag_timer(15);
 				} else {
 					other.__timer = 0;		
 				}
@@ -290,7 +299,7 @@ state.add("spindash", {
 			
 				state.change_to("roll");
 		
-				camera.lagTimer = 15;
+				camera.set_lag_timer(15);
 			}
 		}
 	
@@ -331,7 +340,7 @@ state.add("dropdash", {
 		else 
 			gsp = ((sensor.get_angle() == 0) ? 0 : (gsp / 2)) + (drpspd * sign(image_xscale));
 				
-		camera.lagTimer = 15;
+		camera.set_lag_timer(15);
 	}},
 	
 	on_step: function(player) {with player {

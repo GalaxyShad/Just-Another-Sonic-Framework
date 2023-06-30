@@ -4,7 +4,8 @@
 
 #macro Y_SPEED		-0.5
 
-END_FRAMES = [2, 4, 6]
+__end_frames = [2, 4, 6]
+#macro END_FRAMES __end_frames
 
 vspeed		= Y_SPEED;
 image_speed = 0.25;
@@ -18,8 +19,8 @@ enum Sizes {
 size		= Size;
 sine_value	= 0;
 
-oWater = instance_nearest(x, y, objWaterLevel);
+o_water = instance_nearest(x, y, objWaterLevel);
 
-if (!oWater) instance_destroy();
+if (!o_water) instance_destroy();
 
-depth = oWater.depth;
+depth = o_water.depth;

@@ -1,15 +1,15 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
-function PlayerGetHit(){
+function player_get_hit(){
 	if (inv_timer > 0 || state.current() == "hurt")
 		return;
 		
-	if (global.rings > 0 || shield != SHIELD_NONE) {
-		if (shield == SHIELD_NONE) {
-			RingLoss(x, y);
+	if (global.rings > 0 || shield != Shield.None) {
+		if (shield == Shield.None) {
+			ring_loss(x, y);
 			audio_play_sound(sndLoseRings, 0, false);
 		} else {
-			shield = SHIELD_NONE;
+			shield = Shield.None;
 			audio_play_sound(sndHurt, 0, false);	
 		}
 			

@@ -28,7 +28,7 @@
   "origin": 4,
   "parent": {
     "name": "Sprites",
-    "path": "folders/Objects/Bubbles/Sprites.yy",
+    "path": "folders/Objects/__Hidden/Bubbles/Sprites.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
