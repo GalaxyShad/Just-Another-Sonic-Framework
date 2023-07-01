@@ -26,7 +26,7 @@ state.add("normal", {
 		// To Roll
 		if (ground && is_key_down && abs(gsp) >= 1) {
 			state.change_to("roll");
-			audio_play_sound(sndPlrRoll, 0, false);
+			audio_play_sound(sndPlrRoll, 0, false, global.sound_volume);
 		}
 		
 		// Skid
@@ -34,7 +34,7 @@ state.add("normal", {
 			((gsp < 0 && is_key_right) || (gsp > 0 && is_key_left))
 		) {
 			state.change_to("skid");
-			audio_play_sound(sndPlrBraking, 0, false);
+			audio_play_sound(sndPlrBraking, 0, false, global.sound_volume);
 		}
 		
 		// Balancing
@@ -67,7 +67,7 @@ state.add("jump", {
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
 		) {
 			if(object_index==objPlayer){
-				audio_play_sound(sndPlrDropDash, 0, false);
+				audio_play_sound(sndPlrDropDash, 0, false, global.sound_volume);
 				state.change_to("dropdash");
 			}
 			else if(object_index==objPlayerKnuckles){
@@ -83,18 +83,18 @@ state.add("jump", {
 			using_shield_abbility = true;
 			
 			if (shield == SHIELD_BUBBLE) {
-				audio_play_sound(sndBubbleBounce, 0, false);
+				audio_play_sound(sndBubbleBounce, 0, false, global.sound_volume);
 				water_shield_scale.xscale = 0.5;
 				water_shield_scale.yscale = 1.5;
 				xsp = 0;
 				ysp = 8;
 			} else if (shield == SHIELD_FIRE) {
-				audio_play_sound(sndFireDash, 0, false);
+				audio_play_sound(sndFireDash, 0, false, global.sound_volume);
 				ysp = 0;
 				xsp = 8 * sign(image_xscale);
 				camera.lagTimer = 15;
 			} else if (shield == SHIELD_ELECTRIC) {
-				audio_play_sound(sndLightningJump, 0, false);
+				audio_play_sound(sndLightningJump, 0, false, global.sound_volume);
 				ysp = -5.5;
 				var _particle = part_system_create(ParticleSystem1);
 				part_system_depth(_particle, -1000);
@@ -223,7 +223,7 @@ state.add("peelout", {
 	__timer: 0,
 	
 	on_start: function(player) { with player {
-		audio_play_sound(sndPlrPeelCharge, 0, false);
+		audio_play_sound(sndPlrPeelCharge, 0, false, global.sound_volume);
 		other.__timer = 0;
 		allow_jump = false;	
 		player.allow_movement = false;	
@@ -243,7 +243,7 @@ state.add("peelout", {
 					gsp = 12 * image_xscale;
 			
 					audio_stop_sound(sndPlrPeelCharge);
-					audio_play_sound(sndPlrPeelRelease, 0, false);
+					audio_play_sound(sndPlrPeelRelease, 0, false, global.sound_volume);
 			
 					camera.lagTimer = 15;
 				} else {
@@ -268,7 +268,7 @@ state.add("spindash", {
 	
 	on_start: function(player) {
 		audio_sound_pitch(sndPlrSpindashCharge, 1);
-		audio_play_sound(sndPlrSpindashCharge, 0, false);
+		audio_play_sound(sndPlrSpindashCharge, 0, false, global.sound_volume);
 		__spinrev = 0;
 		player.allow_jump = false;	
 		player.allow_movement = false;	
@@ -285,7 +285,7 @@ state.add("spindash", {
 				gsp = (8 + (floor(other.__spinrev) / 2)) * sign(image_xscale);
 		
 				audio_stop_sound(sndPlrSpindashCharge);
-				audio_play_sound(sndPlrSpindashRelease, 0, false);
+				audio_play_sound(sndPlrSpindashRelease, 0, false, global.sound_volume);
 			
 				state.change_to("roll");
 		
@@ -299,7 +299,7 @@ state.add("spindash", {
 			audio_stop_sound(sndPlrSpindashCharge);
 		
 			audio_sound_pitch(sndPlrSpindashCharge, 1 + __spinrev / 10);
-			audio_play_sound(sndPlrSpindashCharge, 0, false);
+			audio_play_sound(sndPlrSpindashCharge, 0, false, global.sound_volume);
 		
 		}
 	
@@ -313,7 +313,7 @@ state.add("dropdash", {
 	
 	on_start: function(player) {
 		__drop_timer = 0;
-		audio_play_sound(sndPlrDropDash, 0, false);
+		audio_play_sound(sndPlrDropDash, 0, false, global.sound_volume);
 	},
 		
 	on_landing: function(player) {with player {
@@ -323,7 +323,7 @@ state.add("dropdash", {
 		}
 		
 		state.change_to("roll");
-		audio_play_sound(sndPlrSpindashRelease, 0, false);
+		audio_play_sound(sndPlrSpindashRelease, 0, false, global.sound_volume);
 		
 		if (sign(image_xscale) == sign(xsp))
 			gsp = (gsp / 4) + (drpspd * sign(image_xscale));
@@ -362,7 +362,7 @@ state.add("hurt", {
 
 state.add("die", {
 	on_start: function(player) {with (player) {
-		audio_play_sound(sndHurt, 0, false);	
+		audio_play_sound(sndHurt, 0, false, global.sound_volume);	
 		
 		xsp = 0;
 		ysp = -7;
@@ -398,7 +398,6 @@ state.add("glide", {
 state.add("drop", {
 	on_start: function(player) { with player {
 	}},
-	
 	
 	on_landing: function(player) {with player {
 		state.change_to("look_down");

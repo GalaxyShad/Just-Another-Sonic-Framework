@@ -15,7 +15,7 @@
 event_inherited();
 item = ITEM_RING;
 action = function() {
-	audio_play_sound(sndRing, 0, false);
+	audio_play_sound(sndRing, 0, false, global.sound_volume);
 	global.rings += 10;	
 };
 

@@ -151,6 +151,7 @@
     {"id":{"name":"Object3","path":"objects/Object3/Object3.yy",},},
     {"id":{"name":"objMonitorRing","path":"objects/objMonitorRing/objMonitorRing.yy",},},
     {"id":{"name":"musZoneTest","path":"sounds/musZoneTest/musZoneTest.yy",},},
+    {"id":{"name":"rmKnuckles","path":"rooms/rmKnuckles/rmKnuckles.yy",},},
     {"id":{"name":"Sprite57515253","path":"sprites/Sprite57515253/Sprite57515253.yy",},},
     {"id":{"name":"Sprite575152","path":"sprites/Sprite575152/Sprite575152.yy",},},
     {"id":{"name":"sprSonicBalancingB","path":"sprites/sprSonicBalancingB/sprSonicBalancingB.yy",},},
@@ -242,6 +243,7 @@
   ],
   "RoomOrderNodes": [
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
+    {"roomId":{"name":"rmKnuckles","path":"rooms/rmKnuckles/rmKnuckles.yy",},},
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmAnimation","path":"rooms/rmAnimation/rmAnimation.yy",},},
   ],

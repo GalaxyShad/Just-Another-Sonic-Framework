@@ -9,7 +9,7 @@ number_sprite = sprBubbleCountdownNumber;
 anim_index = 0;
 anim_speed = 0.5;
 
-audio_play_sound(sndUnderwaterWarningNumber, 0, 0);
+audio_play_sound(sndUnderwaterWarningNumber, 0, 0, global.sound_volume);
 
 vspeed = -0.5;
 

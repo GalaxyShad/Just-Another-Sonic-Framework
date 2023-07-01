@@ -9,7 +9,7 @@ function PlayerHandleMonitors(){
 	if (ground) {
 		oMonitor = sensor.collision_object(objMonitor, 6);
 		
-		if (oMonitor != noone && state.current() == "roll" && abs(gsp) >= 2) {
+		if (oMonitor != noone && (state.current() == "roll" || state.current() == "glide") && abs(gsp) >= 2) {
 			with oMonitor instance_destroy();
 		}
 			

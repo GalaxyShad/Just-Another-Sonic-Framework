@@ -7,10 +7,10 @@ function PlayerGetHit(){
 	if (global.rings > 0 || shield != SHIELD_NONE) {
 		if (shield == SHIELD_NONE) {
 			RingLoss(x, y);
-			audio_play_sound(sndLoseRings, 0, false);
+			audio_play_sound(sndLoseRings, 0, false, global.sound_volume);
 		} else {
 			shield = SHIELD_NONE;
-			audio_play_sound(sndHurt, 0, false);	
+			audio_play_sound(sndHurt, 0, false, global.sound_volume);	
 		}
 			
 		global.rings = 0;

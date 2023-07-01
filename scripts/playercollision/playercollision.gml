@@ -16,7 +16,7 @@ function PlayerHandleObjects() {
 		
 		instance_destroy(_oBubble);
 		
-		audio_play_sound(sndPlayerBreathe, 0, 0);
+		audio_play_sound(sndPlayerBreathe, 0, 0, global.sound_volume);
 		
 		player_underwater_regain_air();
 	}

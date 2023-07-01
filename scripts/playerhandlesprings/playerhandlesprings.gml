@@ -18,7 +18,7 @@ function PlayerHandleSprings(){
 			state.change_to("spring");
 			//action = ACT_SPRING;
 			
-			audio_play_sound(sndSpring, 0, false);
+			audio_play_sound(sndSpring, 0, false, global.sound_volume);
 			
 			oSpring.image_speed = 1.00;
 		}
@@ -39,7 +39,7 @@ function PlayerHandleSprings(){
 				
 			oSpring.image_speed = 1.00;
 			
-			audio_play_sound(sndSpring, 0, false);
+			audio_play_sound(sndSpring, 0, false, global.sound_volume);
 		}
 	}
 	
@@ -58,7 +58,7 @@ function PlayerHandleSprings(){
 				
 			oSpring.image_speed = 1.00;
 			
-			audio_play_sound(sndSpring, 0, false);
+			audio_play_sound(sndSpring, 0, false, global.sound_volume);
 		}
 	}
 	
@@ -73,7 +73,7 @@ function PlayerHandleSprings(){
 				
 			oSpring.image_speed = 1.00;
 			
-			audio_play_sound(sndSpring, 0, false);
+			audio_play_sound(sndSpring, 0, false, global.sound_volume);
 		}
 	}
 }
