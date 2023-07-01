@@ -281,7 +281,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		var _start_point = __floor_box.coords[3];
 		
 		if (is_collision_ground_right_edge()) {
-			show_debug_message("da");
+			//show_debug_message("da");
 			
 			_dir = -1;
 			_start_point = __floor_box.coords[2];

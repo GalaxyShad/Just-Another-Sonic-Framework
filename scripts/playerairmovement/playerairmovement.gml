@@ -14,7 +14,7 @@ function PlayerAirMovement(){
 	if(state.current() == "glide" && ysp > 2) ysp = 2;
 	//else if (state.current() == "climbe") ysp = ysp;
 	else if (ysp > 16) ysp = 16;
-	show_debug_message("Air movement");
+	//show_debug_message("Air movement");
 	
 	// Movement
 	if (allow_movement) {

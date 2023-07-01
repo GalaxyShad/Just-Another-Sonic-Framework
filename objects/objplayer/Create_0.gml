@@ -128,7 +128,7 @@ timer_underwater	= new Timer2(60, true, function() {
 	
 	if (remaining_air == 12) {
 		// drowning music	
-		show_debug_message("drowning music");
+		//show_debug_message("drowning music");
 		oDj.set_music("drowning");
 	} 
 	

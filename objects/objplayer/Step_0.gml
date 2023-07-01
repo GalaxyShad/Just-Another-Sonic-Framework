@@ -1,4 +1,4 @@
-show_debug_message("Step");
+//show_debug_message("Step");
 state.step();
 
 if (state.current() == "die") {
