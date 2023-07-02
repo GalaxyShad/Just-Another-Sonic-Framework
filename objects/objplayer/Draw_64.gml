@@ -35,7 +35,9 @@ draw_text(
 	$"physics_fast_shoes:	{physics.is_super_fast_shoes_on()}\n"+
 	$"physics_super:		{physics.is_super()}\n"+
 	$"\n"+
-	$"running_on_water:		{running_on_water}\n"
+	$"running_on_water:		{running_on_water}\n" +
+	$"\n"+
+	$"animator_image_speed:		{animator.__image_speed}\n"
 
 	/*
 	"edge_left: " + string(sensor.is_collision_left_edge()) + "\n" + 

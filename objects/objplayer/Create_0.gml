@@ -151,13 +151,47 @@ timer_underwater	= new Timer2(60, true, function() {
 timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
 
 
-is_key_left = 0;
-is_key_right = 0;
-is_key_up = 0;
-is_key_down = 0;
-is_key_action = 0;
-is_key_action_pressed = 0;
+animator = new PlayerAnimator();
 
-sprite_index_prev = 0;
+animator
+	.add("idle",		sprSonic)
+	.add("bored",		sprSonicBored).loop_from(2).speed(1/30)
+	.add("bored_ex",	sprSonicBoredEx).loop_from(2).speed(1/30)
+	
+	.add("look_up",		sprSonicLookUp).stop_on_end().speed(.25)
+	.add("look_down",	sprSonicCrouch).stop_on_end().speed(.25)
+	
+	.add("walking",		sprSonicWalk)
+	.add("running",		sprSonicRun)
+	.add("dash",		sprSonicDash)
+	
+	.add("curling",		sprSonicRoll)
+	.add("dropdash",	sprSonicDropDash)
+	
+	.add("spring",		sprSonicSpring)
+	.add("spindash",	sprSonicSpindash)
+	.add("push",		sprSonicPush).speed(.125)
+	
+	.add("skid",		sprSonicSkid).stop_on_end().speed(.5)
+	
+	.add("balancing_a",	sprSonicBalancing).speed(.5)
+	.add("balancing_b",	sprSonicBalancingB).speed(.5)
+	
+	.add("hurt",		sprSonicHurt).stop_on_end()
+	.add("breathe",		sprSonicBreathe)
+	
+	.add("die",			sprSonicDie)
+;
 
-p_sfx_water_run = -1;
+animator.set("idle");
+	
+is_key_left				= false;
+is_key_right			= false;
+is_key_up				= false;
+is_key_down				= false;
+is_key_action			= false;
+is_key_action_pressed	= false;
+
+sprite_index_prev		= 0;
+
+p_sfx_water_run			= -1;
