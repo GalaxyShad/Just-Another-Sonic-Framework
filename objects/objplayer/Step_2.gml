@@ -33,6 +33,16 @@ sprite_index	= _res[0];
 image_index		= _res[1];
 image_speed		= 0;
 
+if (physics.is_super_fast_shoes_on() && global.tick % 8 == 0)
+	instance_create_depth(x, y, depth+1, objSfxAfterImage, { 
+		SpriteIndex: sprite_index,
+		ImageIndex: image_index,
+		Angle: animation_angle,
+		Xscale: image_xscale,
+		Blend: #71c7ec
+	});
+
+
 if (physics.is_underwater() && shield != Shield.Bubble)
 	timer_underwater.tick();
 	

@@ -14,6 +14,8 @@ if (state.current() == "die") {
 player_switch_sensor_radius();
 
 
+
+
 if (ground) {
 	var _gsp = gsp;
 

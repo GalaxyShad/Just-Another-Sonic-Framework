@@ -53,6 +53,7 @@
     {"name":"sndPlayerBreathe","order":28,"path":"sounds/sndPlayerBreathe/sndPlayerBreathe.yy",},
     {"name":"objSfxExplosion","order":6,"path":"objects/objSfxExplosion/objSfxExplosion.yy",},
     {"name":"sprKnucklesLookUp","order":4,"path":"sprites/sprKnucklesLookUp/sprKnucklesLookUp.yy",},
+    {"name":"objSfxAfterImage","order":7,"path":"objects/objSfxAfterImage/objSfxAfterImage.yy",},
     {"name":"sprKnucklesDie","order":15,"path":"sprites/sprKnucklesDie/sprKnucklesDie.yy",},
     {"name":"Object15","order":9,"path":"objects/Object15/Object15.yy",},
     {"name":"PlayerLanding","order":4,"path":"scripts/PlayerLanding/PlayerLanding.yy",},
