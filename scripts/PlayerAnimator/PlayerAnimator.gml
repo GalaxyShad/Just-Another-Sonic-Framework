@@ -16,41 +16,43 @@ function PlayerAnimator() constructor {
 	
 	__sprite_index_previous = undefined;
 	
-	add = function(_name, _sprite) {
-		__animation_map[$ _name] = [{
+	__create_default = function(_name, _sprite, _is_super = false) {
+		if (__animation_map[$ _name] == undefined)
+			__animation_map[$ _name] = [undefined, undefined];
+		
+		__animation_map[$ _name][_is_super]	= {
 			name: _name,
 			sprite: _sprite,
 			loop_frame: 0,
 			stop_on_end: false,
 			spd: 1,
 			frames: sprite_get_number(_sprite)
-		}, undefined];
+		}
 		
-		__last_added = __animation_map[$ _name][0];
+		__last_added = __animation_map[$ _name][_is_super];
+	}
+	
+	add = function(_name, _sprite) {
+		__create_default(_name, _sprite);
 		
 		return self;
 	};
+	
+	add_super = function(_name, _sprite_super) {
+		if (__animation_map[$ _name] == undefined)
+			show_error($"Super cannot be applied to unexisting animation: [{_name}]", true);
+		
+		__create_default(_name, _sprite_super, true);
+		
+		return self;
+	}
 	
 	speed = function(_spd) {
 		__last_added.spd = _spd;
 		
 		return self;
 	};
-	
-	super = function(_sprite_super) {
-		__animation_map[$ __last_added.name][1] = {
-			name: _name,
-			sprite: _sprite_super,
-			loop_frame: 0,
-			stop_on_end: false,
-			spd: 1,
-			frames: sprite_get_number(_sprite)
-		};
-		
-		__last_added = __animation_map[$ __last_added.name][1];
-		
-		return self;
-	};
+
 	
 	loop_from = function(_loop_frame) {
 		__last_added.loop_frame = _loop_frame;
