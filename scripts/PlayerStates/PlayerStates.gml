@@ -406,7 +406,7 @@ state.add("dropdash", {
 		
 		with player {
 			animator.set("dropdash");
-			animator.set_image_speed(0.5 + abs(gsp) / 8.0);
+			//animator.set_image_speed(0.5 + abs(gsp) / 8.0);
 		}
 	},
 		

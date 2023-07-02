@@ -167,7 +167,7 @@ animator
 	.add("dash",		sprSonicDash)
 	
 	.add("curling",		sprSonicRoll)
-	.add("dropdash",	sprSonicDropDash)
+	.add("dropdash",	sprSonicDropDash).speed(.5)
 	
 	.add("spring",		sprSonicSpring)
 	.add("spindash",	sprSonicSpindash)
