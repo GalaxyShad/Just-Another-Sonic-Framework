@@ -39,7 +39,7 @@ if (physics.is_super_fast_shoes_on() && global.tick % 8 == 0)
 		ImageIndex: image_index,
 		Angle: animation_angle,
 		Xscale: image_xscale,
-		Blend: #71c7ec
+		Blend: magic_color
 	});
 
 

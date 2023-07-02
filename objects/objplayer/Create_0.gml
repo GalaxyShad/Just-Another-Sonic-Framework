@@ -14,6 +14,7 @@ o_dj = instance_create_layer(x, y, layer, objDJ);
 
 shield = Shield.None;
 
+magic_color = #0F52BA;
 running_on_water = false;
 
 set_shield = function(_shield = Shield.None) {
