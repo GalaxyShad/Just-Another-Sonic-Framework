@@ -1,7 +1,13 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
-global.sound_volume = 0.1;
+var num = audio_get_listener_count();
+for( var i = 0; i < num; i++;)
+{
+    var info = audio_get_listener_info(i);
+    audio_set_master_gain(info[? "index"], 0.1);
+    ds_map_destroy(info);
+}
 
 #macro SHIELD_NONE			0
 #macro SHIELD_CLASSIC		1
@@ -35,7 +41,7 @@ set_shield = function(_shield = SHIELD_NONE) {
 		sndLightningShield
 	];
 	
-	audio_play_sound(_sounds[_shield - 1], 0, 0, global.sound_volume);
+	audio_play_sound(_sounds[_shield - 1], 0, 0);
 }
 
 equip_speed_shoes = function() {
@@ -109,6 +115,7 @@ water_shield_scale = {
 
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
+#macro SENSOR_FLOORBOX_GLIDE	[10, 10]
 
 #macro SENSOR_WALLBOX_NORMAL	[10, 8]
 #macro SENSOR_WALLBOX_SLOPES	[10, 0]
@@ -123,7 +130,7 @@ remaining_air = 30;
 timer_underwater	= new Timer2(60, true, function() {
 	if (array_contains([25, 20, 15], remaining_air)) {
 		// warning chime	
-		audio_play_sound(sndUnderwaterWarningChime, 0, 0, global.sound_volume);
+		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
 	} 
 	
 	if (remaining_air == 12) {
@@ -141,7 +148,7 @@ timer_underwater	= new Timer2(60, true, function() {
 	
 	if (remaining_air == 0) {
 		// player drown	
-		audio_play_sound(sndPlrDrown, 0, 0, global.sound_volume);
+		audio_play_sound(sndPlrDrown, 0, 0);
 		state.change_to("die");
 	}
 	

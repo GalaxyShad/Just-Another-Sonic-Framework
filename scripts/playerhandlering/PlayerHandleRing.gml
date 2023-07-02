@@ -9,7 +9,7 @@ function PlayerHandleRing(){
 	if (oRing) {
 		global.rings++;
 		
-		audio_play_sound(sndRing, 0, false, global.sound_volume);
+		audio_play_sound(sndRing, 0, false);
 		
 		instance_create_depth(oRing.x, oRing.y, -1, objSfxRingSparkle);
 		

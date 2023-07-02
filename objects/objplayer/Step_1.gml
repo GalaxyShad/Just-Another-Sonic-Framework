@@ -23,6 +23,8 @@ else if keyboard_check(ord("1"))
 	room_speed = 60;
 else if keyboard_check(ord("3"))
 	room_speed = 5;
+else if keyboard_check(ord("4"))
+	room_speed = 1;
 	
 
 

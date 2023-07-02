@@ -5,6 +5,7 @@ function is_player_sphere() {
 		"jump",
 		"roll",
 		"dropdash",
+		"glide",
 		"land",
 	], state.current());
 }
@@ -26,7 +27,7 @@ state.add("normal", {
 		// To Roll
 		if (ground && is_key_down && abs(gsp) >= 1) {
 			state.change_to("roll");
-			audio_play_sound(sndPlrRoll, 0, false, global.sound_volume);
+			audio_play_sound(sndPlrRoll, 0, false);
 		}
 		
 		// Skid
@@ -34,7 +35,7 @@ state.add("normal", {
 			((gsp < 0 && is_key_right) || (gsp > 0 && is_key_left))
 		) {
 			state.change_to("skid");
-			audio_play_sound(sndPlrBraking, 0, false, global.sound_volume);
+			audio_play_sound(sndPlrBraking, 0, false);
 		}
 		
 		// Balancing
@@ -67,7 +68,7 @@ state.add("jump", {
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
 		) {
 			if(object_index==objPlayer){
-				audio_play_sound(sndPlrDropDash, 0, false, global.sound_volume);
+				audio_play_sound(sndPlrDropDash, 0, false);
 				state.change_to("dropdash");
 			}
 			else if(object_index==objPlayerKnuckles){
@@ -83,18 +84,18 @@ state.add("jump", {
 			using_shield_abbility = true;
 			
 			if (shield == SHIELD_BUBBLE) {
-				audio_play_sound(sndBubbleBounce, 0, false, global.sound_volume);
+				audio_play_sound(sndBubbleBounce, 0, false);
 				water_shield_scale.xscale = 0.5;
 				water_shield_scale.yscale = 1.5;
 				xsp = 0;
 				ysp = 8;
 			} else if (shield == SHIELD_FIRE) {
-				audio_play_sound(sndFireDash, 0, false, global.sound_volume);
+				audio_play_sound(sndFireDash, 0, false);
 				ysp = 0;
 				xsp = 8 * sign(image_xscale);
 				camera.lagTimer = 15;
 			} else if (shield == SHIELD_ELECTRIC) {
-				audio_play_sound(sndLightningJump, 0, false, global.sound_volume);
+				audio_play_sound(sndLightningJump, 0, false);
 				ysp = -5.5;
 				var _particle = part_system_create(ParticleSystem1);
 				part_system_depth(_particle, -1000);
@@ -223,7 +224,7 @@ state.add("peelout", {
 	__timer: 0,
 	
 	on_start: function(player) { with player {
-		audio_play_sound(sndPlrPeelCharge, 0, false, global.sound_volume);
+		audio_play_sound(sndPlrPeelCharge, 0, false);
 		other.__timer = 0;
 		allow_jump = false;	
 		player.allow_movement = false;	
@@ -243,7 +244,7 @@ state.add("peelout", {
 					gsp = 12 * image_xscale;
 			
 					audio_stop_sound(sndPlrPeelCharge);
-					audio_play_sound(sndPlrPeelRelease, 0, false, global.sound_volume);
+					audio_play_sound(sndPlrPeelRelease, 0, false);
 			
 					camera.lagTimer = 15;
 				} else {
@@ -268,7 +269,7 @@ state.add("spindash", {
 	
 	on_start: function(player) {
 		audio_sound_pitch(sndPlrSpindashCharge, 1);
-		audio_play_sound(sndPlrSpindashCharge, 0, false, global.sound_volume);
+		audio_play_sound(sndPlrSpindashCharge, 0, false);
 		__spinrev = 0;
 		player.allow_jump = false;	
 		player.allow_movement = false;	
@@ -285,7 +286,7 @@ state.add("spindash", {
 				gsp = (8 + (floor(other.__spinrev) / 2)) * sign(image_xscale);
 		
 				audio_stop_sound(sndPlrSpindashCharge);
-				audio_play_sound(sndPlrSpindashRelease, 0, false, global.sound_volume);
+				audio_play_sound(sndPlrSpindashRelease, 0, false);
 			
 				state.change_to("roll");
 		
@@ -299,7 +300,7 @@ state.add("spindash", {
 			audio_stop_sound(sndPlrSpindashCharge);
 		
 			audio_sound_pitch(sndPlrSpindashCharge, 1 + __spinrev / 10);
-			audio_play_sound(sndPlrSpindashCharge, 0, false, global.sound_volume);
+			audio_play_sound(sndPlrSpindashCharge, 0, false);
 		
 		}
 	
@@ -313,7 +314,7 @@ state.add("dropdash", {
 	
 	on_start: function(player) {
 		__drop_timer = 0;
-		audio_play_sound(sndPlrDropDash, 0, false, global.sound_volume);
+		audio_play_sound(sndPlrDropDash, 0, false);
 	},
 		
 	on_landing: function(player) {with player {
@@ -323,7 +324,7 @@ state.add("dropdash", {
 		}
 		
 		state.change_to("roll");
-		audio_play_sound(sndPlrSpindashRelease, 0, false, global.sound_volume);
+		audio_play_sound(sndPlrSpindashRelease, 0, false);
 		
 		if (sign(image_xscale) == sign(xsp))
 			gsp = (gsp / 4) + (drpspd * sign(image_xscale));
@@ -362,7 +363,7 @@ state.add("hurt", {
 
 state.add("die", {
 	on_start: function(player) {with (player) {
-		audio_play_sound(sndHurt, 0, false, global.sound_volume);	
+		audio_play_sound(sndHurt, 0, false);	
 		
 		xsp = 0;
 		ysp = -7;
@@ -433,33 +434,24 @@ state.add("climbe", {
 	
 	on_step: function(player) {with player {
 		
-		if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
-		(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
-			show_debug_message("climbEx");
+		//if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
+		//(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
+		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){
 			state.change_to("climbeEx");
-		} else if(!sensor.check_expanded(4, -10, sensor.is_collision_solid_bottom)){
-			show_debug_message("drop");
+		} else if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom)){
 			state.change_to("drop");
 		}
-		
-		/*
-		if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
-		(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
-			show_debug_message("drop");
-			state.change_to("drop");
-		}
-		*/
 		
 		if (is_key_action_pressed){
 			image_xscale *= -1;
 			xsp = (3+abs(xsp)/2) * sign(image_xscale);
 			//state.change_to("jump"); //? == objPlayer->Step->60
 		}
+		
 		ysp = 0.0;
-		if (is_key_up && !sensor.is_collision_solid_top()) ysp -= climbe_spid;
+		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= climbe_spid;
 		if (is_key_down && !ground) ysp += climbe_spid;
 		if (ground) state.change_to("normal");
-		//show_debug_message("climbe");
 	}},
 	
 	on_exit: function(player) { with player {
@@ -473,7 +465,8 @@ state.add("climbeEx", {
 		allow_jump = false;
 		allow_movement = false;
 		time_climbeEx=40;
-		y-=17;
+		xsp=0;
+		y-=27;
 		x+=19*sign(image_xscale);
 	}},
 	

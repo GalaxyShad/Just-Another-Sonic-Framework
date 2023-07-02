@@ -58,7 +58,9 @@
 # [+] [TODO] Player - die
 
 # [ ] [TODO] Characters - Tails 
-# [ ] [TODO] Characters - Knux
+# [+-] [TODO] Characters - Knux
+	# [ ] [BUG] Rotate before climbeEx
+	# [ ] [BUG] Rotate before land
 
 # [ ] [TODO] HUD
 

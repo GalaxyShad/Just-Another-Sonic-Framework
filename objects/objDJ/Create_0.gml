@@ -26,7 +26,7 @@ set_music = function(_music_name) {
 	audio_stop_sound(current_music);
 	
 	if (!audio_is_playing(_music))
-		audio_play_sound(_music, 100, false, global.sound_volume);
+		audio_play_sound(_music, 100, false);
 		
 	current_music = _music;
 };
@@ -35,7 +35,7 @@ on_end = function(_music_name){};
 
 __play_default = function() {
 	if (!audio_is_playing(level_music))
-		audio_play_sound(level_music, 100, true, global.sound_volume , level_music_offset);	
+		audio_play_sound(level_music, 100, true, , level_music_offset);	
 		
 	current_music = level_music;
 };

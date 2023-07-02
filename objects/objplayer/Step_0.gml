@@ -114,7 +114,7 @@ if (_water != noone) {
 		part_system_depth(_particle, -20);
 		part_system_position(_particle, x, y);
 		
-		audio_play_sound(sndWaterSplash, 0, 0, global.sound_volume);
+		audio_play_sound(sndWaterSplash, 0, 0);
 	}
 }
 
@@ -134,7 +134,7 @@ if (allow_jump && (ground || climbe) && is_key_action_pressed) {
 	
 	state.change_to("jump");
 	
-	audio_play_sound(sndPlrJump, 0, false, global.sound_volume);
+	audio_play_sound(sndPlrJump, 0, false);
 } 
 
 var _is_moving_right = (ground && gsp > 0) || (!ground && xsp > 0);
