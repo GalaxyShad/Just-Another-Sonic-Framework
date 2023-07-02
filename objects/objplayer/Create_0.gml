@@ -152,39 +152,51 @@ timer_underwater	= new Timer2(60, true, function() {
 timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
 
 
+
 animator = new PlayerAnimator();
 
 animator
-	.add("idle",		sprSonic)
-	.add("bored",		sprSonicBored).loop_from(2).speed(1/30)
-	.add("bored_ex",	sprSonicBoredEx).loop_from(2).speed(1/30)
+	.add("idle",		sprSonic			)
+	.add("bored",		sprSonicBored		).loop_from(2).speed(1/30)
+	.add("bored_ex",	sprSonicBoredEx		).loop_from(2).speed(1/30)
 	
-	.add("look_up",		sprSonicLookUp).stop_on_end().speed(.25)
-	.add("look_down",	sprSonicCrouch).stop_on_end().speed(.25)
+	.add("look_up",		sprSonicLookUp		).stop_on_end().speed(.25)
+	.add("look_down",	sprSonicCrouch		).stop_on_end().speed(.25)
 	
-	.add("walking",		sprSonicWalk)
-	.add("running",		sprSonicRun)
-	.add("dash",		sprSonicDash)
+	.add("walking",		sprSonicWalk		)
+	.add("running",		sprSonicRun			)
+	.add("dash",		sprSonicDash		)
 	
-	.add("curling",		sprSonicRoll)
-	.add("dropdash",	sprSonicDropDash).speed(.5)
+	.add("curling",		sprSonicRoll		)
+	.add("dropdash",	sprSonicDropDash	).speed(.5)
 	
-	.add("spring",		sprSonicSpring)
-	.add("spindash",	sprSonicSpindash)
-	.add("push",		sprSonicPush).speed(.125)
+	.add("spring",		sprSonicSpring		)
+	.add("spindash",	sprSonicSpindash	)
+	.add("push",		sprSonicPush		).speed(.125)
 	
-	.add("skid",		sprSonicSkid).stop_on_end().speed(.5)
+	.add("skid",		sprSonicSkid		).stop_on_end().speed(.5)
 	
-	.add("balancing_a",	sprSonicBalancing).speed(.5)
-	.add("balancing_b",	sprSonicBalancingB).speed(.5)
+	.add("balancing_a",	sprSonicBalancing	).speed(.5)
+	.add("balancing_b",	sprSonicBalancingB	).speed(.5)
 	
-	.add("hurt",		sprSonicHurt).stop_on_end()
-	.add("breathe",		sprSonicBreathe)
+	.add("hurt",		sprSonicHurt		).stop_on_end()
+	.add("breathe",		sprSonicBreathe		)
 	
-	.add("die",			sprSonicDie).speed(0)
+	.add("die",			sprSonicDie			).speed(0)
+	
+	// === Super ===
+	.add_super("idle",		sprSuperSonic	 ).speed(0.25)
+	.add_super("walking",	sprSuperSonicWalk)
+	.add_super("running",	sprSuperSonicRun )
+	.add_super("dash",		sprSuperSonicDash )
+	.add_super("look_up",	sprSuperSonicLookUp ).stop_on_end().speed(.25)
+	.add_super("look_down",	sprSuperSonicCrouch ).stop_on_end().speed(.25)
 ;
 
 animator.set("idle");
+
+animator.set_form_super();
+physics.apply_super_form();
 	
 is_key_left				= false;
 is_key_right			= false;
