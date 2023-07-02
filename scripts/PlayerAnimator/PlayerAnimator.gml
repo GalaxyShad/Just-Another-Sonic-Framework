@@ -128,6 +128,10 @@ function PlayerAnimator() constructor {
 		return [__sprite_index, __image_index];
 	};
 	
+	is = function(_arr_args_animations = []) {
+		return array_contains(_arr_args_animations, current());
+	};
+	
 	
 	
 }

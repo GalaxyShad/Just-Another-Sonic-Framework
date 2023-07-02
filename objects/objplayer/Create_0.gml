@@ -16,7 +16,7 @@ shield = Shield.None;
 
 running_on_water = false;
 
-set_shield = function(_shield = SHIELD_NONE) {
+set_shield = function(_shield = Shield.None) {
 	if (physics.is_underwater() && 
 		(_shield == Shield.Flame || _shield == Shield.Lightning)
 	) return;
@@ -94,7 +94,7 @@ drpspd		= 8; //the base speed for a drop dash
 allow_jump		= true;
 allow_movement	= true;
 
-peelout_animation_spd = 0;
+//peelout_animation_spd = 0;
 
 water_shield_scale = {
 	xscale: 1,
@@ -180,7 +180,7 @@ animator
 	.add("hurt",		sprSonicHurt).stop_on_end()
 	.add("breathe",		sprSonicBreathe)
 	
-	.add("die",			sprSonicDie)
+	.add("die",			sprSonicDie).speed(0)
 ;
 
 animator.set("idle");

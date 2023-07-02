@@ -1,5 +1,4 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
+
 function is_player_sphere() {
 	return array_contains([
 		"jump",
@@ -13,8 +12,10 @@ function is_player_sphere() {
 function player_states() {
 
 state.add("normal", {
+	__idle_anim_timer: undefined,
+	
 	on_start: function() {
-		
+		__idle_anim_timer = 0;
 	},
 	
 	on_step: function(player) {with (player) {
@@ -52,6 +53,42 @@ state.add("normal", {
 	on_exit: function() {
 		
 	},
+	
+	on_animate: function(player) { with player {
+		var _abs_gsp = abs(gsp);
+		
+		other.__idle_anim_timer = (ground && _abs_gsp == 0) ? 
+			other.__idle_anim_timer+1 : 0;
+			
+		if (!ground) {
+			animator.set("walking");
+			animator.set_image_speed(0.125 + _abs_gsp / 24.0);
+			
+			return;
+		}
+		
+
+		if (_abs_gsp == 0) {
+			if (other.__idle_anim_timer >= 180 && other.__idle_anim_timer < 816)
+				animator.set("bored");
+			else if (other.__idle_anim_timer >= 816)
+				animator.set("bored_ex");
+			else 
+				animator.set("idle");
+		} else {
+			if (_abs_gsp < 6)
+				animator.set("walking");
+			else if (_abs_gsp < 12)
+				animator.set("running");
+			else 
+				animator.set("dash");
+		}
+				
+				
+		if (animator.is(["walking", "running", "dash"])) {
+			animator.set_image_speed(0.125 + _abs_gsp / 24.0);
+		} 
+	}},
 });
 
 state.add("jump", {
@@ -149,12 +186,18 @@ state.add("jump", {
 	on_exit: function(player) {
 		player.using_shield_abbility = false;
 	},
+	
+	on_animate: function(player) { with player {
+		animator.set("curling");
+		animator.set_image_speed(0.5 + abs(gsp) / 8.0);
+	}},
 });
 
 state.add("look_up", {
 	on_start: function(player) { with player {
 		allow_jump = false;	
 		allow_movement = false;	
+		animator.set("look_up");
 	}},
 	
 	on_exit: function(player) { with player {
@@ -176,6 +219,7 @@ state.add("look_down", {
 	on_start: function(player) { with player {
 		allow_jump = false;	
 		allow_movement = false;	
+		animator.set("look_down");
 	}},
 	
 	on_exit: function(player) { with player {
@@ -202,6 +246,10 @@ state.add("push", {
 		if ((image_xscale == 1 && !is_key_right) || (image_xscale == -1 && !is_key_left))
 			state.change_to("normal");
 	}},
+	
+	on_animate: function(player) { with player {
+		animator.set("push");
+	}},
 });
 
 state.add("roll", {
@@ -210,6 +258,11 @@ state.add("roll", {
 		
 		if (_agsp < 0.5)
 			state.change_to("normal");
+	}},
+	
+	on_animate: function(player) { with player {
+		animator.set("curling");
+		animator.set_image_speed(0.5 + abs(gsp) / 8.0);
 	}},
 });
 
@@ -221,9 +274,22 @@ state.add("skid", {
 			state.change_to("normal");	
 		}
 	}},
+	
+	on_start: function(player) { with player {
+		animator.set("skid");
+	}},
 });
 
 state.add("balancing", {
+	on_start: function(player) { with player {
+		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
+			(image_xscale == -1 && sensor.is_collision_ground_right_edge())
+		)
+			animator.set("balancing_a");
+		else
+			animator.set("balancing_b");
+	}},
+	
 	on_step: function(player) { with player {
 		if (gsp != 0 || !ground)
 			state.change_to("normal");
@@ -238,8 +304,6 @@ state.add("peelout", {
 		other.__timer = 0;
 		allow_jump = false;	
 		player.allow_movement = false;	
-		
-		player.peelout_animation_spd = 0;
 	}},
 	
 	on_exit: function(player) { with player {
@@ -269,9 +333,18 @@ state.add("peelout", {
 		__timer++;
 		if __timer > 30
 			__timer = 30;
-			
-		player.peelout_animation_spd = __timer;
 	},
+	
+	on_animate: function(player) { with player {
+		animator.set_image_speed(0.25 + other.__timer / 25);
+		
+		if (other.__timer < 15)
+			animator.set("walking");
+		else if (other.__timer < 30)
+			animator.set("running");
+		else
+			animator.set("dash");
+	}},
 });
 
 state.add("spindash", {
@@ -281,8 +354,12 @@ state.add("spindash", {
 		audio_sound_pitch(sndPlrSpindashCharge, 1);
 		audio_play_sound(sndPlrSpindashCharge, 0, false);
 		__spinrev = 0;
-		player.allow_jump = false;	
-		player.allow_movement = false;	
+		
+		with player {
+			allow_jump = false;	
+			allow_movement = false;	
+			animator.set("spindash");	
+		}
 	},
 	
 	on_exit: function(player) { with player {
@@ -324,7 +401,13 @@ state.add("dropdash", {
 	
 	on_start: function(player) {
 		__drop_timer = 0;
+		
 		audio_play_sound(sndPlrDropDash, 0, false);
+		
+		with player {
+			animator.set("dropdash");
+			animator.set_image_speed(0.5 + abs(gsp) / 8.0);
+		}
 	},
 		
 	on_landing: function(player) {with player {
@@ -354,7 +437,8 @@ state.add("dropdash", {
 
 state.add("hurt", {
 	on_start: function(player) {with (player) {
-		allow_movement = false;			
+		allow_movement = false;		
+		animator.set("hurt");
 	}},
 	
 	on_exit: function(player) {with (player) {
@@ -377,6 +461,8 @@ state.add("die", {
 		
 		xsp = 0;
 		ysp = -7;
+		
+		animator.set("die");
 	}},
 });
 
@@ -437,8 +523,9 @@ state.add("land", {
 });
 
 state.add("breathe", {
-	on_start: function() {
+	on_start: function(player) {
 		__timer = 20;
+		player.animator.set("breathe");
 	},
 	
 	on_step: function(player) {
@@ -448,6 +535,22 @@ state.add("breathe", {
 			state.change_to("normal");
 		}
 	},
+});
+
+state.add("spring", {
+	on_start: function(player) {
+		player.animator.set("spring");
+	},
+	
+	on_animate: function(player) { with player {
+		if (ysp <= 0)	{
+			animator.set_image_speed(0.125 + abs(ysp) / 10);
+			animator.set("spring");
+		} else {
+			animator.set_image_speed(0.25);
+			animator.set("walking");
+		}
+	}},
 });
 
 }

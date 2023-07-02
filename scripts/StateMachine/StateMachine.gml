@@ -29,20 +29,29 @@ function State(_owner) constructor {
 	};
 	
 	step = function() {
-		if (!__state()) return;
+		if (__state() == undefined) return;
 		
 		if (__state()[$ "on_step"] != undefined)
 			__state().on_step(__owner);
 	};
 	
+	animate = function() {
+		if (__state() == undefined) return;
+			
+		if (__state()[$ "on_animate"] != undefined) {
+			__state().on_animate(__owner);
+		}
+	};
+	
+	
 	landing = function() {
-		if (!__state()) return;
+		if (__state() == undefined) return;
 		
 		if (__state()[$ "on_landing"] != undefined)
 			__state().on_landing(__owner);
-	}
+	};
 	
 	current = function() { 
 		return __current_state; 
-	}
+	};
 }
