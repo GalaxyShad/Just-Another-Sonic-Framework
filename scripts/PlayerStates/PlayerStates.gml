@@ -40,9 +40,11 @@ state.add("normal", {
 		}
 		
 		// Balancing
-		if (ground && gsp == 0 && 
-			(!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge())
-		) {
+		var _check_balanced = (sensor.check_expanded(-6, 0, function() { 
+			return (!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge()); 
+		}));
+		
+		if (ground && gsp == 0 && _check_balanced) {
 			state.change_to("balancing");
 		}
 		
