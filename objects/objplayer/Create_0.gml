@@ -176,8 +176,8 @@ animator
 	
 	.add("skid",		sprSonicSkid		).stop_on_end().speed(.5)
 	
-	.add("balancing_a",	sprSonicBalancing	).speed(.5)
-	.add("balancing_b",	sprSonicBalancingB	).speed(.5)
+	.add("balancing_a",	sprSonicBalancing	).speed(.05)
+	.add("balancing_b",	sprSonicBalancingB	).speed(.25)
 	
 	.add("hurt",		sprSonicHurt		).stop_on_end()
 	.add("breathe",		sprSonicBreathe		)

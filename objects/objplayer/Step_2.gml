@@ -33,7 +33,11 @@ sprite_index	= _res[0];
 image_index		= _res[1];
 image_speed		= 0;
 
-if (physics.is_super_fast_shoes_on() && global.tick % 8 == 0)
+if ((physics.is_super_fast_shoes_on() || (physics.is_super() && abs(gsp) >= 6)) && 
+	(global.tick % 8 == 0)
+) {
+	if (physics.is_super()) magic_color = #ffce57;
+	
 	instance_create_depth(x, y, depth+1, objSfxAfterImage, { 
 		SpriteIndex: sprite_index,
 		ImageIndex: image_index,
@@ -41,6 +45,7 @@ if (physics.is_super_fast_shoes_on() && global.tick % 8 == 0)
 		Xscale: image_xscale,
 		Blend: magic_color
 	});
+}
 
 
 if (physics.is_underwater() && shield != Shield.Bubble)

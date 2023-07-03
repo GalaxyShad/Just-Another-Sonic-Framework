@@ -107,6 +107,7 @@
     {"name":"sprKnucklesHang","order":19,"path":"sprites/sprKnucklesHang/sprKnucklesHang.yy",},
     {"name":"sndDestroy","order":20,"path":"sounds/sndDestroy/sndDestroy.yy",},
     {"name":"sprSonicSpindash","order":15,"path":"sprites/sprSonicSpindash/sprSonicSpindash.yy",},
+    {"name":"shPlayerPalleteSwap","order":4,"path":"shaders/shPlayerPalleteSwap/shPlayerPalleteSwap.yy",},
     {"name":"sndPlrRoll","order":6,"path":"sounds/sndPlrRoll/sndPlrRoll.yy",},
     {"name":"objKnucklesWall","order":19,"path":"objects/objKnucklesWall/objKnucklesWall.yy",},
     {"name":"sprKnucklesBored","order":2,"path":"sprites/sprKnucklesBored/sprKnucklesBored.yy",},
