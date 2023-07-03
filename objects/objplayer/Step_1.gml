@@ -11,11 +11,20 @@ is_key_action_pressed = keyboard_check_pressed(ord("Z")) || keyboard_check_press
 if (keyboard_check_pressed(ord("R")))
 	room_restart();
 
-if (keyboard_check_pressed(ord("S")))
+if (keyboard_check_pressed(ord("D")))
 	player_get_hit();
 	
 if (keyboard_check_pressed(ord("A")))
 	show_debug_info = !show_debug_info;
+	
+if (keyboard_check_pressed(ord("S"))) {
+	if (!physics.is_super()) 
+		player_set_super_form();
+	else 
+		player_cancel_super_form();	
+		
+	animator.set("idle");
+}
 
 if keyboard_check(ord("2"))
 	game_set_speed(20, gamespeed_fps);

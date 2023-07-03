@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "shPlayerPalleteSwap",
   "parent": {
-    "name": "JustAnotherSonicFramework",
-    "path": "JustAnotherSonicFramework.yyp",
+    "name": "Player",
+    "path": "folders/Objects/Player.yy",
   },
   "type": 1,
 }

@@ -51,8 +51,11 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 
 
 	reset = function() {
+		if (__is_underwater) __cancel_underwater();
+		
 		__is_super = false;
 		__apply_props(__default_props);
+		
 		if (__is_underwater) __apply_underwater();
 	};
 	
@@ -86,9 +89,13 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 
 	
 	apply_super_form = function(_sonic_like = false) {
+		if (__is_underwater) __cancel_underwater();
+		
 		__apply_props(__default_superform_props);
 		__is_super = true;
+		
 		if (__is_underwater) __apply_underwater();
+
 	};
 	
 /////////////////////////////////////////////////////////////////////////////

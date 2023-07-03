@@ -195,9 +195,6 @@ animator
 
 animator.set("idle");
 
-animator.set_form_super();
-physics.apply_super_form();
-	
 is_key_left				= false;
 is_key_right			= false;
 is_key_up				= false;

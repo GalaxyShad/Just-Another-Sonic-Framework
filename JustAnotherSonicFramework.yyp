@@ -172,6 +172,7 @@
     {"id":{"name":"sndPlrSpindashRelease","path":"sounds/sndPlrSpindashRelease/sndPlrSpindashRelease.yy",},},
     {"id":{"name":"Sprite5857","path":"sprites/Sprite5857/Sprite5857.yy",},},
     {"id":{"name":"objMonitorEggman","path":"objects/objMonitorEggman/objMonitorEggman.yy",},},
+    {"id":{"name":"PlayerSuper","path":"scripts/PlayerSuper/PlayerSuper.yy",},},
     {"id":{"name":"sndUnderwaterWarningNumber","path":"sounds/sndUnderwaterWarningNumber/sndUnderwaterWarningNumber.yy",},},
     {"id":{"name":"Sprite575155","path":"sprites/Sprite575155/Sprite575155.yy",},},
     {"id":{"name":"objMonitor","path":"objects/objMonitor/objMonitor.yy",},},
