@@ -88,7 +88,7 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 	};
 
 	
-	apply_super_form = function(_sonic_like = false) {
+	apply_super_form = function() {
 		if (__is_underwater) __cancel_underwater();
 		
 		__apply_props(__default_superform_props);

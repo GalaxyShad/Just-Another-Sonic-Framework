@@ -156,6 +156,8 @@ function player_collision() {
 			);
 		}
 		
+		sensor.set_angle(sensor.get_ground_angle());
+		
 		while (sensor.is_collision_solid_bottom()) {
 			sensor.set_position(
 				sensor.get_position().x - _sin_ang / 1000,
@@ -165,11 +167,6 @@ function player_collision() {
 		
 		x += sensor.get_position().x - x;
 		y += sensor.get_position().y - y;
-		
-		var _new_ang	= sensor.get_ground_angle();
-		sensor.set_angle(_new_ang);
-		
-			
 		
 		if (!sensor.is_collision_ground()) {
 			sensor.set_angle(0);
