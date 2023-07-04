@@ -18,12 +18,13 @@ if (keyboard_check_pressed(ord("A")))
 	show_debug_info = !show_debug_info;
 	
 if (keyboard_check_pressed(ord("S"))) {
-	if (!physics.is_super()) 
-		player_set_super_form();
-	else 
+	if (!physics.is_super())  {
+		state.change_to("transform");
+		//player_set_super_form();
+	} else 
 		player_cancel_super_form();	
 		
-	animator.set("idle");
+	//animator.set("idle");
 }
 
 if keyboard_check(ord("2"))

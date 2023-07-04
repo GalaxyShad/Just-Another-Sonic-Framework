@@ -184,6 +184,8 @@ animator
 	
 	.add("die",			sprSonicDie			).speed(0)
 	
+	.add("transform",   sprSonicTransform	).stop_on_end().speed(.5)
+	
 	// === Super ===
 	.add_super("idle",		sprSuperSonic	 ).speed(0.25)
 	.add_super("walking",	sprSuperSonicWalk)

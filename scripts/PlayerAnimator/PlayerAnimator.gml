@@ -14,6 +14,8 @@ function PlayerAnimator() constructor {
 	__image_speed  = 1;
 	__sprite_index = 0;
 	
+	__is_ended	   = false;
+	
 	__sprite_index_previous = undefined;
 	
 	__create_default = function(_name, _sprite, _is_super = false) {
@@ -73,6 +75,8 @@ function PlayerAnimator() constructor {
 		if (__animation_map[$ _name] == undefined) {
 			return;
 		}
+		
+		__is_ended = false;
 			
 		__previous_animation_name = __current_animation_name;
 		__current_animation_name  = _name;
@@ -105,6 +109,7 @@ function PlayerAnimator() constructor {
 		return __current_animation_name;	
 	};
 	
+	
 	__get_current_animation = function() {
 		
 		var _anim = __animation_map[$ __current_animation_name];
@@ -115,16 +120,25 @@ function PlayerAnimator() constructor {
 		return (__is_super && _super != undefined) ? _super : _base;
 	};
 	
+	is_animation_ended = function() {
+		return __is_ended;	
+	};
+	
+	get_image_index = function() {
+		return __image_index;
+	};
 	
 	animate = function() {
 		var _anim = __get_current_animation();
 		
 		__image_index += __image_speed;
 		if (__image_index >= _anim.frames) {
-			if (!_anim.stop_on_end)
+			if (!_anim.stop_on_end) {
 				__image_index -= _anim.frames - _anim.loop_frame;
-			else
+			} else {
 				__image_index = _anim.frames - 1;
+				__is_ended = true;
+			}
 		}
 			
 		return [__sprite_index, __image_index];

@@ -1,6 +1,7 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
+
 var _surface_width	= surface_get_width(application_surface);
 var	_surface_height	= surface_get_height(application_surface);
 

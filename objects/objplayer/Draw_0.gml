@@ -20,11 +20,19 @@ if (inv_timer == 0 || (inv_timer > 0 && global.tick % 10 >= 5)) {
 				color_get_blue(_col_new) / 255
 			);
 		}
-	
-		_set_col(1, #2424b4, (global.tick % 8 >= 4) ? #ce9034 : #ffac74);
-		_set_col(2, #2448d8, (global.tick % 8 >= 4) ? #ffac34 : #ffce90);
-		_set_col(3, #4848fc, (global.tick % 8 >= 4) ? #ffce57 : #ffffac);
-		_set_col(4, #6c6cfc, (global.tick % 8 >= 4) ? #ffff74 : #ffffce);
+		
+		var _pal_classic = [ #2424b4, #2448d8, #4848fc, #6c6cfc ];
+		
+		var _pal_super = [ 
+			[ #ce9034, #ffac34, #ffce57, #ffff74 ],
+			[ #ffac74, #ffce90, #ffffac, #ffffce ], 
+			[ #ffffaa, #ffffaa, #ffffaa, #ffffaa ],
+			[ #ffac74, #ffce90, #ffffac, #ffffce ], 
+		];
+		
+		for (var i = 0; i <4; i++) {
+			_set_col(i+1, _pal_classic[i], _pal_super[(global.tick / 4) % 4][i]);
+		}
 	
 		draw_self();
 		shader_reset();
