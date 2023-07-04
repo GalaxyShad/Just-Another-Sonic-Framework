@@ -1,7 +1,9 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
 function player_get_hit(){
-	if (inv_timer > 0 || state.current() == "hurt")
+	
+	
+	if (inv_timer > 0 || state.current() == "hurt" || physics.is_super())
 		return;
 		
 	if (global.rings > 0 || shield != Shield.None) {
