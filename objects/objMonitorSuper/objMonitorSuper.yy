@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objMonitorShield414243",
+  "name": "objMonitorSuper",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "Sprite5857585960",
-    "path": "sprites/Sprite5857585960/Sprite5857585960.yy",
+    "name": "Sprite5857",
+    "path": "sprites/Sprite5857/Sprite5857.yy",
   },
   "spriteMaskId": null,
   "visible": true,

@@ -5,6 +5,8 @@ image_speed = 0;
 
 vspeed = -4;
 
+breaker = -1;
+
 action = function() {};
 
 

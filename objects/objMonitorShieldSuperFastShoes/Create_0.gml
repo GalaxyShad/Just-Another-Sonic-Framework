@@ -13,8 +13,8 @@
 
 // Inherit the parent event
 event_inherited();
-item = ITEM_SHIELD;
-action = function(breaker) {	
-	with breaker set_shield(Shield.Classic);
+item = ITEM_SPEED_SNEAKERS;
+action = function(breaker) {
+	with breaker equip_speed_shoes();
 };
 

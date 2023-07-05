@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objMonitorShield4142",
+  "name": "objMonitorShieldSuperFastShoes",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "Sprite58575859",
-    "path": "sprites/Sprite58575859/Sprite58575859.yy",
+    "name": "Sprite58",
+    "path": "sprites/Sprite58/Sprite58.yy",
   },
   "spriteMaskId": null,
   "visible": true,

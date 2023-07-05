@@ -13,8 +13,8 @@
 
 // Inherit the parent event
 event_inherited();
-item = ITEM_FIRE_SHIELD;
-action = function() {
-	with objPlayer set_shield(Shield.Flame);
+item = ITEM_ELECTRIC_SHIELD;
+action = function(breaker) {
+	with breaker set_shield(Shield.Lightning);
 };
 

@@ -10,7 +10,7 @@ function player_handle_monitors(){
 		_o_monitor = sensor.collision_object(objMonitor, 6);
 		
 		if (_o_monitor != noone && state.current() == "roll" && abs(gsp) >= 2) {
-			with _o_monitor instance_destroy();
+			_o_monitor.destroy(self);
 		}
 			
 	} else {
@@ -25,7 +25,7 @@ function player_handle_monitors(){
 		_o_monitor = sensor.collision_object(objMonitor, 6);	
 		
 		if (_o_monitor != noone && is_player_sphere() && ysp > 0) {	
-			with _o_monitor instance_destroy();
+			_o_monitor.destroy(self);
 			ysp *= -1;
 		}
 		

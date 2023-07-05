@@ -14,7 +14,7 @@
 // Inherit the parent event
 event_inherited();
 item = ITEM_WATER_SHIELD;
-action = function() {
-	with objPlayer set_shield(Shield.Bubble);
+action = function(breaker) {
+	with breaker set_shield(Shield.Bubble);
 };
 

@@ -17,7 +17,19 @@ is_falling   = false;
 
 //item = ITEM_RING;
 
-action = function() {};
+action = function(breaker) {
+
+};
+
+destroy = function(breaker) {
+	var _o_icon = instance_create_depth(x, y, 5, objMonitorIcon);
+	
+	_o_icon.image_index = item;
+	_o_icon.action = action;
+	_o_icon.breaker = other;
+	
+	instance_destroy();
+}
 
 
 

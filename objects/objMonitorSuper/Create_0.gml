@@ -13,8 +13,8 @@
 
 // Inherit the parent event
 event_inherited();
-item = ITEM_SPEED_SNEAKERS;
-action = function() {
-	with objPlayer equip_speed_shoes();
+item = ITEM_SUPER;
+action = function(breaker) {
+	with breaker state.change_to("transform");
 };
 

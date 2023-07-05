@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objMonitorShield41424349",
+  "name": "objMonitorLightningShield",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "Sprite58",
-    "path": "sprites/Sprite58/Sprite58.yy",
+    "name": "Sprite585758",
+    "path": "sprites/Sprite585758/Sprite585758.yy",
   },
   "spriteMaskId": null,
   "visible": true,
