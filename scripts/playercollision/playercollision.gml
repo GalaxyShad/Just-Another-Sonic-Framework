@@ -5,6 +5,8 @@ function player_handle_objects() {
 	player_handle_rings();
 	player_handle_spikes();
 	player_handle_monitors();
+	player_handle_moving_platforms();
+	player_handle_water();
 	
 	var _o_bubble = sensor.collision_object(objBigBubble);
 	if (_o_bubble) {

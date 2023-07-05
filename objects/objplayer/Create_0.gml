@@ -1,5 +1,4 @@
-/// @description Вставьте описание здесь
-// Вы можете записать свой код в этом редакторе
+
 
 show_debug_info = false;
 
@@ -18,8 +17,6 @@ ground = false;
 xsp = 0;
 ysp = 0;
 gsp = 0;
-
-action = 0;
 
 allow_jump		= true;
 allow_movement	= true;
@@ -68,7 +65,6 @@ timer_control_lock = new Timer2(
 timer_invincibility = new Timer2(120, false);
 
 animator = new PlayerAnimator();
-
 animator
 	.add("idle",		sprSonic			)
 	.add("bored",		sprSonicBored		).loop_from(2).speed(.25)
@@ -108,7 +104,6 @@ animator
 	.add_super("look_up",	sprSuperSonicLookUp ).stop_on_end().speed(.25)
 	.add_super("look_down",	sprSuperSonicCrouch ).stop_on_end().speed(.25)
 ;
-
 animator.set("idle");
 
 is_key_left				= false;
