@@ -2,8 +2,9 @@
 // Вы можете записать свой код в этом редакторе
 
 
-if (inv_timer == 0 || (inv_timer > 0 && global.tick % 10 >= 5)) {
-	
+if (!timer_invincibility.is_ticking() || 
+	(timer_invincibility.is_ticking() && global.tick % 10 >= 5)
+) {
 	if (physics.is_super()) {
 		shader_set(shPlayerPalleteSwap);
 		var _set_col = function(_index, _col_old, _col_new) {

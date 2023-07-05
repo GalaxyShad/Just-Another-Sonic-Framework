@@ -2,7 +2,7 @@
 function player_get_hit(){
 	
 	
-	if (inv_timer > 0 || state.current() == "hurt" || physics.is_super())
+	if (timer_invincibility.is_ticking() || state.current() == "hurt" || physics.is_super())
 		return;
 		
 	if (global.rings > 0 || shield != undefined) {

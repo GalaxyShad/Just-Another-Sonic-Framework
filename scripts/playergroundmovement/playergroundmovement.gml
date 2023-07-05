@@ -16,7 +16,7 @@ function player_ground_movement() {
 	
 
 	// Movement
-	if (control_lock_timer == 0 && allow_movement) {
+	if (allow_movement && !timer_control_lock.is_ticking()) {
 		if(state.current() == "roll") {
 			if (is_key_left) {
 				if (gsp > 0) {
@@ -63,19 +63,23 @@ function player_ground_movement() {
 
 	// Fall off slopes
 	// Sonic 3 method
-	if (control_lock_timer == 0) {
-	    if (abs(gsp) < 2.5 && sensor.get_angle() >= 35 && sensor.get_angle() <= 326) { 
-			control_lock_timer = 30;
+	
+	#macro FALL_OFF_SPEED_VALUE 2.5
+	
+	if (!timer_control_lock.is_ticking()) {
+	    if ((abs(gsp) < FALL_OFF_SPEED_VALUE) && 
+			(sensor.get_angle() >= 35) && (sensor.get_angle() <= 326)
+		) { 
+			timer_control_lock.reset_and_start();
 			
 			if (sensor.get_angle() >= 69 && sensor.get_angle() <= 293) {
 				ground = false;
 			} else {
 				gsp += (sensor.get_angle() < 180) ? -0.5 : +0.5;	
 			}
-	        
 	    }
 	} else {
-	    control_lock_timer--; 
+		timer_control_lock.tick();
 	}
 	
 }

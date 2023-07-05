@@ -144,8 +144,7 @@ if ((_is_moving_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_r
 	xsp = 0;
 }
 
-if (inv_timer > 0)
-	inv_timer--;
+
 	
 
 

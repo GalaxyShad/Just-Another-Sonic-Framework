@@ -431,7 +431,7 @@ state.add("hurt", {
 	}},
 	
 	on_landing: function(player) {with (player) {
-		inv_timer = 120;
+		timer_invincibility.reset_and_start();
 		
 		state.change_to("normal");
 		

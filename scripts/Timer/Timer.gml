@@ -8,7 +8,13 @@ function Timer2(_count, _auto_restart = false, _callback = function(){}) constru
 	__count = undefined;
 	__running = false;
 	
+	is_zero = function() {
+		return (__count == 0);	
+	}
 	
+	is_ticking = function() {
+		return __running;	
+	};
 	
 	start = function() {
 		__running = true;	
@@ -25,6 +31,11 @@ function Timer2(_count, _auto_restart = false, _callback = function(){}) constru
 	
 	get_count = function() {
 		return __count;	
+	};
+	
+	reset_and_start = function() {
+		reset();
+		start();
 	};
 	
 	tick = function() {

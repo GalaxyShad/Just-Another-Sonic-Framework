@@ -13,7 +13,6 @@ running_on_water = false;
 
 animation_angle = 0;
 
-control_lock_timer = 0;
 ground = false;
 
 xsp = 0;
@@ -21,12 +20,9 @@ ysp = 0;
 gsp = 0;
 
 action = 0;
-inv_timer = 0;
 
 allow_jump		= true;
 allow_movement	= true;
-
-//peelout_animation_spd = 0;
 
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
@@ -37,8 +33,6 @@ allow_movement	= true;
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
 state  = create_basic_player_states();
 
-remaining_air = 30;
-
 physics = new PlayerPhysics(,{
 	acceleration_speed:		0.1875,
 	deceleration_speed:		1,
@@ -46,6 +40,9 @@ physics = new PlayerPhysics(,{
 	jump_force:				8,
 	air_acceleration_speed: 0.375,
 });
+
+remaining_air = 30;
+
 
 #macro UNDERWATER_EVENT_DELAY		60
 #macro SUPER_FAST_SHOES_DURATION	21*60
@@ -61,6 +58,14 @@ timer_speed_shoes = new Timer2(
 	false, 
 	function() { with self physics.cancel_super_fast_shoes(); }
 );
+
+timer_control_lock = new Timer2(
+	30,
+	false,
+	function() { with self allow_movement = true; }
+);
+
+timer_invincibility = new Timer2(120, false);
 
 animator = new PlayerAnimator();
 

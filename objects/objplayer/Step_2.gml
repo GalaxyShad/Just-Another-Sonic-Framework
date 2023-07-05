@@ -52,4 +52,5 @@ if (physics.is_underwater() && !is_instanceof(shield, ShieldBubble))
 	timer_underwater.tick();
 	
 timer_speed_shoes.tick();
+timer_invincibility.tick();
 
