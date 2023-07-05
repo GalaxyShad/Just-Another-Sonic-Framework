@@ -8,7 +8,7 @@ is_key_down		= keyboard_check(vk_down);
 is_key_action	= keyboard_check(ord("Z")) || keyboard_check(ord("X")) || keyboard_check(ord("C")) || keyboard_check(vk_numpad1);
 is_key_action_pressed = keyboard_check_pressed(ord("Z")) || keyboard_check_pressed(ord("X")) || keyboard_check_pressed(ord("C")) || keyboard_check_pressed(vk_numpad1);
 
-if (keyboard_check_pressed(ord("R")))
+if (keyboard_check_pressed(ord("R")) || keyboard_check_pressed(vk_numpad3))
 	room_restart();
 
 if (keyboard_check_pressed(ord("S")))

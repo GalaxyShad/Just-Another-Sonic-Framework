@@ -68,8 +68,9 @@ physics = new PlayerPhysics(,{
 
 //knuckles
 glide_rotation = 3;
-glide_top=5;
-climbe_spid = 1;
+glide_top = 24;
+glide_gravity_force = 0.125;
+climbe_speed = 1;
 
 animation_angle = 0;
 

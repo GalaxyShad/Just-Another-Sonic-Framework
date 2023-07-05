@@ -68,12 +68,11 @@ state.add("jump", {
 			(shield == SHIELD_NONE || shield == SHIELD_CLASSIC)
 		) {
 			if(object_index==objPlayer){
-				audio_play_sound(sndPlrDropDash, 0, false);
 				state.change_to("dropdash");
 			}
 			else if(object_index==objPlayerKnuckles){
-				ysp = 0;
-				xsp = (3+abs(xsp)/2) * sign(image_xscale);
+				if (ysp<0) ysp = 0;
+				xsp = 4 * sign(image_xscale);
 				state.change_to("glide");
 			}
 			//show_debug_message($"This is player -> {object_get_name(object_index)}");
@@ -374,14 +373,21 @@ state.add("glide", {
 	on_start: function(player) {with (player) {
 		allow_jump = false;
 		allow_movement = false;
+		//glide_speed = 0.015625;
 	}},
+	/*
+	on_step: function(player) {with player {
+		if (!is_key_action) state.change_to("drop");
+		if (!is_key_left && !is_key_right && abs(xsp) < glide_top){ xsp += glide_speed * sign(image_xscale); }
+		else if (is_key_left && xsp > -glide_top){ xsp -= glide_speed; }
+		else if (is_key_right && xsp < glide_top){ xsp += glide_speed; }
+	}},
+	*/
 	
 	on_step: function(player) {with player {
 		if (!is_key_action) state.change_to("drop");
-		
-		if(!is_key_left && !is_key_right && abs(xsp) < glide_top){ xsp += physics.air_acceleration_speed * sign(image_xscale); }
-		else if (is_key_left && xsp > -glide_top){ xsp -= physics.air_acceleration_speed; }
-		else if (is_key_right && xsp < glide_top){ xsp += physics.air_acceleration_speed; }
+		xsp += 0.015625 * sign(xsp);
+		if((is_key_left && xsp>0) || (is_key_right && xsp<0)) state.change_to("glideRotation");
 	}},
 	
 	on_landing: function(player) {with player {
@@ -391,6 +397,37 @@ state.add("glide", {
 	on_exit: function(player) {with (player) {
 		allow_jump = true;	
 		allow_movement = true;			
+	}},
+});
+
+state.add("glideRotation", {
+	__a: undefined,
+	__t: undefined,
+	
+	on_start: function(player) { with player {
+		allow_jump = false;
+		allow_movement = false;
+		if(xsp>0) other.__a = 0;
+		if(xsp<0) other.__a= 180;
+		other.__t = abs(xsp);
+		show_debug_message($"IT IS __T and XSP, {other.__t}, {xsp}");
+	}},
+	
+	on_step: function(player) {with player {
+		if (!is_key_action) state.change_to("drop");
+		other.__a -= 2.8125 * sign(other.__t);
+		xsp = other.__t * dcos(other.__a);
+		show_debug_message($"{other.__a}, {dcos(other.__a)}");
+		if(dcos(other.__a)==1 || dcos(other.__a)==-1) state.change_to("glide");
+	}},
+	
+	on_landing: function(player) {with player {
+		state.change_to("land");
+	}},
+	
+	on_exit: function(player) { with player {
+		allow_jump = true;	
+		allow_movement = true;		
 	}},
 });
 
@@ -414,7 +451,7 @@ state.add("land", {
 	}},
 	
 	on_step: function(player) {with player {
-		if (abs(xsp)<3 || ysp!=0) state.change_to("normal");
+		if (abs(xsp)<3 || abs(xsp)<2) state.change_to("normal");
 	}},
 	
 	on_exit: function(player) { with player {
@@ -434,27 +471,24 @@ state.add("climbe", {
 	
 	on_step: function(player) {with player {
 		
-		//if((image_xscale==1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) ||
-		//(image_xscale==-1 && !sensor.check_expanded(1, 0, sensor.is_collision_solid_left))){
-		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){
-			state.change_to("climbeEx");
-		} else if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom)){
-			state.change_to("drop");
-		}
+		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){ state.change_to("climbeEx"); }
+		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom)){ state.change_to("drop"); }
 		
 		if (is_key_action_pressed){
 			image_xscale *= -1;
-			xsp = (3+abs(xsp)/2) * sign(image_xscale);
-			//state.change_to("jump"); //? == objPlayer->Step->60
+			xsp = (4) * sign(image_xscale);
+			ysp = -4;
+			state.change_to("jump");
+			return;
 		}
-		
-		ysp = 0.0;
-		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= climbe_spid;
-		if (is_key_down && !ground) ysp += climbe_spid;
+		ysp = 0;
+		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= climbe_speed;
+		if (is_key_down && !ground) ysp += climbe_speed;
 		if (ground) state.change_to("normal");
 	}},
 	
 	on_exit: function(player) { with player {
+		audio_play_sound(sndPlrJump, 0, false);
 		allow_movement = true;
 		climbe = false;
 	}},

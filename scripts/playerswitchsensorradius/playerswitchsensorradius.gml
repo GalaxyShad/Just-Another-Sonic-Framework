@@ -3,7 +3,7 @@
 function player_switch_sensor_radius() {
 	if (state.current() == "roll" || state.current() == "jump" || state.current() == "dropdash") {
 		sensor.set_floor_box(SENSOR_FLOORBOX_ROLL);	
-	} else if (state.current() == "glide" || state.current() == "climbe" || state.current() == "land") {
+	} else if (state.current() == "glide" || state.current() == "glideRotation" || state.current() == "climbe" || state.current() == "land") {
 		sensor.set_floor_box(SENSOR_FLOORBOX_GLIDE);
 	} else {
 		sensor.set_floor_box(SENSOR_FLOORBOX_NORMAL);

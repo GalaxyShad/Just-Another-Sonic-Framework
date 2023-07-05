@@ -125,7 +125,7 @@ if (ground && oMovingPlatform) {
 }
 
 
-if (allow_jump && (ground || climbe) && is_key_action_pressed) {
+if (allow_jump && ground && is_key_action_pressed) {
 	ground = false;
 	climbe = false;
 	

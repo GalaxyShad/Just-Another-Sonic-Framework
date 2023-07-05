@@ -40,7 +40,7 @@ function PlayerCollision() {
 
 	
 	sensor.set_wall_box(
-		( (sensor.get_angle() <= 15 || sensor.get_angle() >= 345 ) && (ground || state.current()=="glide")) ? 
+		( (sensor.get_angle() <= 15 || sensor.get_angle() >= 345 ) && (ground)) ? // || state.current()=="glide"
 		SENSOR_WALLBOX_NORMAL : SENSOR_WALLBOX_SLOPES
 	);
 	

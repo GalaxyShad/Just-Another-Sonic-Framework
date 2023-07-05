@@ -164,13 +164,33 @@ switch (state.current()) {
 		break;
 	}
 
+	
 	case "glide": {
-		sprite_index = sprKnucklesUngroundedRotation;
-		if(abs(xsp)>glide_rotation) animation_frame=glide_rotation*sign(xsp);
+		sprite_index = sprKnucklesGlide;
+		if(abs(xsp)>glide_rotation) animation_frame = glide_rotation * sign(xsp);
 		else animation_frame = xsp;
 		image_index = glide_rotation - animation_frame * sign(image_xscale);
 		break;
 	}
+	case "glideRotation": {
+		sprite_index = sprKnucklesUngroundedRotation;
+		if(abs(xsp)>glide_rotation) animation_frame = glide_rotation * sign(xsp);
+		else animation_frame = xsp;
+		image_index = glide_rotation - animation_frame * sign(image_xscale);
+		break;
+	}
+/*	
+	case "glide": {
+		sprite_index = sprKnucklesUngroundedRotationC;
+		
+		if (abs(xsp)>3) sprite_index = sprKnucklesGlide;
+		else {
+			sprite_index = sprKnucklesUngroundedRotationC;
+			image_index = abs(xsp) / 2;
+		}
+		
+		break;
+	}*/
 	
 	case "land": {
 		sprite_index = sprKnucklesLand;
@@ -200,6 +220,7 @@ switch (state.current()) {
 	}
 	
 }
+
 
 if (sprite_index != sprite_index_prev)
 	image_index = 0;

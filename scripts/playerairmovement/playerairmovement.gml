@@ -10,11 +10,17 @@ function PlayerAirMovement(){
 	}
 	
 	// Gravity
-	if(state.current() != "climbe") ysp += physics.gravity_force;
-	if(state.current() == "glide" && ysp > 2) ysp = 2;
-	//else if (state.current() == "climbe") ysp = ysp;
+	if(state.current() != "climbe"){
+		if (state.current() == "glide" || state.current() == "glideRotation") {
+			if(ysp<0.5) ysp += glide_gravity_force;
+			if(ysp>0.5) ysp -= glide_gravity_force;
+		};
+		else ysp += physics.gravity_force;
+	}
 	else if (ysp > 16) ysp = 16;
+	//else if (state.current() == "climbe") ysp = 0;
 	//show_debug_message("Air movement");
+	//if (state.current() != "glide" && state.current() != "glideRotation") ysp += glide_gravity_force; else ysp = 0;
 	
 	// Movement
 	if (allow_movement) {

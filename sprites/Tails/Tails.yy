@@ -27,8 +27,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "JustAnotherSonicFramework",
-    "path": "JustAnotherSonicFramework.yyp",
+    "name": "Tails",
+    "path": "folders/Sprites/Tails.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
