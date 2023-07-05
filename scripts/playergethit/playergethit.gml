@@ -6,12 +6,12 @@ function player_get_hit(){
 	if (inv_timer > 0 || state.current() == "hurt" || physics.is_super())
 		return;
 		
-	if (global.rings > 0 || shield != Shield.None) {
-		if (shield == Shield.None) {
+	if (global.rings > 0 || shield != undefined) {
+		if (shield == undefined) {
 			ring_loss(x, y);
 			audio_play_sound(sndLoseRings, 0, false);
 		} else {
-			shield = Shield.None;
+			shield = undefined;
 			audio_play_sound(sndHurt, 0, false);	
 		}
 			

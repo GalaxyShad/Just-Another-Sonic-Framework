@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_SHIELD;
 action = function(breaker) {	
-	with breaker set_shield(Shield.Classic);
+	with breaker set_shield(new ShieldClassic());
 };
 

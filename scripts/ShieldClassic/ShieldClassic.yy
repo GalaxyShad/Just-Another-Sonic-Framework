@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Timer",
+  "name": "ShieldClassic",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Structs",
-    "path": "folders/Objects/Player/Scripts/Structs.yy",
+    "name": "Shields",
+    "path": "folders/Objects/Player/Shields.yy",
   },
 }

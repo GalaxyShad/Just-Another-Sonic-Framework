@@ -91,8 +91,8 @@ if (_water != noone) {
 			
 			physics.apply_underwater();
 			
-			if (shield == Shield.Lightning || shield == Shield.Flame)
-				shield = Shield.None;
+			if (is_shield_water_flushable(shield))
+				shield = undefined;
 				
 			timer_underwater.start();
 		} else {

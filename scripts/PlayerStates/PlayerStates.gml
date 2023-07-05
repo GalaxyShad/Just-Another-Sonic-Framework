@@ -9,7 +9,8 @@ function is_player_sphere() {
 	], state.current());
 }
 
-function player_states() {
+function create_basic_player_states() {
+state = new State(id);
 
 state.add("normal", {
 	__idle_anim_timer: undefined,
@@ -100,13 +101,19 @@ state.add("jump", {
 		
 	},
 	
+	__use_shield: function(player) { with player {
+		if (!is_instanceof(shield, ShieldUseable)) return;
+		
+		if (shield.is_ability_used()) return;
+		
+		shield.use_ability(player);
+	}},
+	
 	on_step: function(player) { with (player) {
 		if (!is_key_action && ysp < physics.jump_release)
 			ysp = physics.jump_release;
 			
-		if (is_key_action_pressed && 
-			(shield == Shield.None || shield == Shield.Classic)
-		) {
+		if (is_key_action_pressed && !is_instanceof(shield, ShieldUseable)) {
 			if(object_index==objPlayer){
 				audio_play_sound(sndPlrDropDash, 0, false);
 				state.change_to("dropdash");
@@ -119,70 +126,23 @@ state.add("jump", {
 			//show_debug_message($"This is player -> {object_get_name(object_index)}");
 		}
 		
-		
-		if (!ground && is_key_action_pressed && !using_shield_abbility)  {
-			using_shield_abbility = true;
-			
-			switch (shield) {
-				case Shield.Bubble:
-					audio_play_sound(sndBubbleBounce, 0, false);
-					
-					water_shield_scale.xscale = 0.5;
-					water_shield_scale.yscale = 1.5;
-					
-					xsp = 0;
-					ysp = 8;
-					break;
-				case Shield.Flame: 
-					audio_play_sound(sndFireDash, 0, false);
-					
-					ysp = 0;
-					xsp = 8 * sign(image_xscale);
-				
-					camera.set_lag_timer(15);
-					break;
-				case Shield.Lightning:
-					audio_play_sound(sndLightningJump, 0, false);
-					
-					ysp = -5.5;
-					
-					var _particle = part_system_create(ParticleSystem1);
-					part_system_depth(_particle, -1000);
-					part_system_position(_particle, x, y);
-					break;
-			}
+		if (!ground && is_key_action_pressed)  {
+			other.__use_shield(self);
 		}
 	}},
 	
-	on_landing: function(player) {with (player) {
-		if (using_shield_abbility && shield == Shield.Bubble) {
-			var _angle = sensor.get_angle();
-			
-			while (sensor.is_collision_solid_bottom()) {
-				x -= dsin(_angle);
-				y -= dcos(_angle);
-				
-				sensor.set_position(x, y);
+	on_landing: function(player) { with (player) {
+		if (is_instanceof(shield, ShieldUseable)) {			
+			if (is_instanceof(shield, ShieldBubble) && shield.is_ability_used()) {
+				shield.bounce(self);
+				shield.reset_ability();
+				return;	
 			}
 			
-			water_shield_scale.__xscale = 2.0;
-			water_shield_scale.__yscale = 0.25;
-			
-			water_shield_scale.xscale = 1;
-			water_shield_scale.yscale = 1;
-			
-			xsp -= other.__bounce_force * dsin(_angle);
-			ysp -= other.__bounce_force * dcos(_angle);
-			
-			show_debug_message($"{_angle} {other.__bounce_force} {xsp} {ysp}");
-			
-			ground = false;
-			
-			using_shield_abbility = false;
-		} else {
-			state.change_to("normal");	
+			shield.reset_ability();
 		}
 			
+		state.change_to("normal");	
 	}},
 	
 	on_exit: function(player) {
@@ -398,8 +358,14 @@ state.add("spindash", {
 	},
 });
 
+
+#macro DROPDASH_SPEED			8
+#macro DROPDASH_SPEED_SUPER		12
+#macro DROPDASH_MAX				12
+#macro DROPDASH_MAX_SUPER		13
+
 state.add("dropdash", {
-	__drop_timer: 0,
+	__drop_timer:				0,
 	
 	on_start: function(player) {
 		__drop_timer = 0;
@@ -421,10 +387,18 @@ state.add("dropdash", {
 		state.change_to("roll");
 		audio_play_sound(sndPlrSpindashRelease, 0, false);
 		
+		var _drpspd = physics.is_super() ? DROPDASH_SPEED_SUPER : DROPDASH_SPEED;
+		var _drpmax = physics.is_super() ? DROPDASH_MAX_SUPER : DROPDASH_MAX;
+		
 		if (sign(image_xscale) == sign(xsp))
-			gsp = (gsp / 4) + (drpspd * sign(image_xscale));
+			gsp = (gsp / 4) + (_drpspd * sign(image_xscale));
 		else 
-			gsp = ((sensor.get_angle() == 0) ? 0 : (gsp / 2)) + (drpspd * sign(image_xscale));
+			gsp = ((sensor.get_angle() == 0) ? 
+				0 : 
+				(gsp / 2)) + (_drpspd * sign(image_xscale));
+				
+		if (abs(gsp) > _drpmax) 
+			gsp = _drpmax * sign(gsp);
 				
 		camera.set_lag_timer(15);
 	}},
@@ -580,4 +554,7 @@ state.add("transform", {
 	}
 });
 
+
+state.change_to("normal");
+return state;
 }

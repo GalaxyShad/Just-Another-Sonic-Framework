@@ -5,7 +5,7 @@ if (mode == 0) {
 	var _o_player = instance_nearest(x, y, objPlayer);
 	
 	if (_o_player != noone) {
-		if ((distance_to_object(_o_player) < 64) && _o_player.shield == 4) {
+		if ((distance_to_object(_o_player) < 64) && is_instanceof(_o_player.shield, ShieldLightning)) {
 			is_magnetized = true;
 		}
 		

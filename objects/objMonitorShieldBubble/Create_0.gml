@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_WATER_SHIELD;
 action = function(breaker) {
-	with breaker set_shield(Shield.Bubble);
+	with breaker set_shield(new ShieldBubble(breaker));
 };
 

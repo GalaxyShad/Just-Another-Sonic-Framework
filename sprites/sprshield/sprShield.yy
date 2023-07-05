@@ -30,8 +30,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Shields",
-    "path": "folders/Objects/Player/Sprites/Shields.yy",
+    "name": "Sprites",
+    "path": "folders/Objects/Player/Shields/Sprites.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -1,43 +1,25 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
+show_debug_info = false;
 
-enum Shield {
-	None,
-	Classic,
-	Bubble,
-	Flame,
-	Lightning
-};
 
 o_dj = instance_create_layer(x, y, layer, objDJ);
 
-shield = Shield.None;
+shield = undefined;
 
 magic_color = #0F52BA;
 running_on_water = false;
 
-set_shield = function(_shield = Shield.None) {
-	if (physics.is_underwater() && 
-		(_shield == Shield.Flame || _shield == Shield.Lightning)
-	) return;
-	
-	shield = _shield;
-	
-	if (shield == Shield.None)
+
+#region Functions
+
+set_shield = function(_shield) {
+	if (physics.is_underwater() && is_shield_water_flushable(_shield)) 
 		return;
 		
-	if (shield == Shield.Bubble)
-		player_underwater_regain_air();
-	
-	var _sounds = [
-		sndBlueShield, 
-		sndBubbleShield, 
-		sndFireShield, 
-		sndLightningShield
-	];
-	
-	audio_play_sound(_sounds[_shield - 1], 0, 0);
+	shield = _shield;
+	shield.play_pickup_sound();
 }
 
 equip_speed_shoes = function() {
@@ -49,32 +31,11 @@ equip_speed_shoes = function() {
 	physics.apply_super_fast_shoes();	
 }
 
-show_debug_info = true;
-
-physics = new PlayerPhysics(,{
-	acceleration_speed:		0.1875,
-	deceleration_speed:		1,
-	top_speed:				10,
-	jump_force:				8,
-	air_acceleration_speed: 0.375,
-});
-
-//physics.apply_super_form();
-//physics.apply_super_fast_shoes();
-
-kgr = 3; //knuckles_glid_rotation
-glid_top=5;
+#endregion
 
 animation_angle = 0;
 
 control_lock_timer = 0;
-
-idle_anim_timer = 0;
-
-using_shield_abbility = false;
-
-
-
 ground = false;
 
 xsp = 0;
@@ -84,27 +45,12 @@ gsp = 0;
 camera = instance_create_layer(x, y, layer, objCamera);
 
 action = 0;
-
-peelout_timer = 0;
-
 inv_timer = 0;
-
-
-drpspd		= 8; //the base speed for a drop dash
 
 allow_jump		= true;
 allow_movement	= true;
 
 //peelout_animation_spd = 0;
-
-water_shield_scale = {
-	xscale: 1,
-	yscale: 1,
-	
-	__xscale: 1,
-	__yscale: 1
-};
-
 
 #macro SENSOR_FLOORBOX_NORMAL	[8, 20]
 #macro SENSOR_FLOORBOX_ROLL		[7, 15]
@@ -113,11 +59,17 @@ water_shield_scale = {
 #macro SENSOR_WALLBOX_SLOPES	[10, 0]
 
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
-state = new State(id);
-player_states();
-state.change_to("normal");
+state  = create_basic_player_states();
 
 remaining_air = 30;
+
+physics = new PlayerPhysics(,{
+	acceleration_speed:		0.1875,
+	deceleration_speed:		1,
+	top_speed:				10,
+	jump_force:				8,
+	air_acceleration_speed: 0.375,
+});
 
 timer_underwater	= new Timer2(60, true, function() {
 	if (array_contains([25, 20, 15], remaining_air)) {
@@ -149,16 +101,14 @@ timer_underwater	= new Timer2(60, true, function() {
 	remaining_air--;
 });
 
-timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
-
-
+timer_speed_shoes = new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
 
 animator = new PlayerAnimator();
 
 animator
 	.add("idle",		sprSonic			)
-	.add("bored",		sprSonicBored		).loop_from(2).speed(1/30)
-	.add("bored_ex",	sprSonicBoredEx		).loop_from(2).speed(1/30)
+	.add("bored",		sprSonicBored		).loop_from(2).speed(.25)
+	.add("bored_ex",	sprSonicBoredEx		).loop_from(2).speed(.25)
 	
 	.add("look_up",		sprSonicLookUp		).stop_on_end().speed(.25)
 	.add("look_down",	sprSonicCrouch		).stop_on_end().speed(.25)

@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Timer",
+  "name": "ShieldUseable",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Structs",
-    "path": "folders/Objects/Player/Scripts/Structs.yy",
+    "name": "Interfaces",
+    "path": "folders/Objects/Player/Shields/Interfaces.yy",
   },
 }

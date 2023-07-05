@@ -48,7 +48,7 @@ if ((physics.is_super_fast_shoes_on() || (physics.is_super() && abs(gsp) >= 6)) 
 }
 
 
-if (physics.is_underwater() && shield != Shield.Bubble)
+if (physics.is_underwater() && !is_instanceof(shield, ShieldBubble))
 	timer_underwater.tick();
 	
 timer_speed_shoes.tick();
