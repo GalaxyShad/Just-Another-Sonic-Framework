@@ -1,5 +1,4 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
+
 function player_get_hit(){
 	
 	
@@ -19,16 +18,7 @@ function player_get_hit(){
 			
 		ground = false;	
 			
-		state.change_to("hurt");
-		
-		xsp = -2 * sign(image_xscale);
-		ysp = -4;
-		
-		if (physics.is_underwater()) {
-			xsp /= 2;
-			ysp /= 2;
-		}
-			
+		state.change_to("hurt");	
 	} else {
 		state.change_to("die");
 	}

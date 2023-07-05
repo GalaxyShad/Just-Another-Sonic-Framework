@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_ELECTRIC_SHIELD;
 action = function(breaker) {
-	with breaker set_shield(new ShieldLightning());
+	with breaker player_set_shield(new ShieldLightning());
 };
 

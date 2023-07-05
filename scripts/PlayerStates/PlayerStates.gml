@@ -414,6 +414,15 @@ state.add("dropdash", {
 state.add("hurt", {
 	on_start: function(player) {with (player) {
 		allow_movement = false;		
+		
+		xsp = -2 * sign(image_xscale);
+		ysp = -4;
+		
+		if (physics.is_underwater()) {
+			xsp /= 2;
+			ysp /= 2;
+		}
+		
 		animator.set("hurt");
 	}},
 	

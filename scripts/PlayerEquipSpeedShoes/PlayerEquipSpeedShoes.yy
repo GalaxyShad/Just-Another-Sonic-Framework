@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "PlayerGetHit",
+  "name": "PlayerEquipSpeedShoes",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

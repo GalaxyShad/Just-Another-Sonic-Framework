@@ -3,35 +3,13 @@
 
 show_debug_info = false;
 
-
-o_dj = instance_create_layer(x, y, layer, objDJ);
+o_dj	= instance_create_layer(x, y, layer, objDJ);
+camera	= instance_create_layer(x, y, layer, objCamera);
 
 shield = undefined;
 
 magic_color = #0F52BA;
 running_on_water = false;
-
-
-#region Functions
-
-set_shield = function(_shield) {
-	if (physics.is_underwater() && is_shield_water_flushable(_shield)) 
-		return;
-		
-	shield = _shield;
-	shield.play_pickup_sound();
-}
-
-equip_speed_shoes = function() {
-	o_dj.set_music("speed_shoes");
-	
-	timer_speed_shoes.reset();
-	timer_speed_shoes.start();
-	
-	physics.apply_super_fast_shoes();	
-}
-
-#endregion
 
 animation_angle = 0;
 
@@ -41,8 +19,6 @@ ground = false;
 xsp = 0;
 ysp = 0;
 gsp = 0;
-
-camera = instance_create_layer(x, y, layer, objCamera);
 
 action = 0;
 inv_timer = 0;
@@ -71,37 +47,20 @@ physics = new PlayerPhysics(,{
 	air_acceleration_speed: 0.375,
 });
 
-timer_underwater	= new Timer2(60, true, function() {
-	if (array_contains([25, 20, 15], remaining_air)) {
-		// warning chime	
-		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
-	} 
-	
-	if (remaining_air == 12) {
-		// drowning music	
-		show_debug_message("drowning music");
-		o_dj.set_music("drowning");
-	} 
-	
-	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
-		// warning number bubble
-		var _number = (remaining_air / 2) - 1;
-		instance_create_depth(
-			x + 6 * image_xscale, y, -1000, objBubbleCountdown, { number: _number });
-	} 
-	
-	if (remaining_air == 0) {
-		// player drown	
-		audio_play_sound(sndPlrDrown, 0, 0);
-		state.change_to("die");
-	}
-	
-	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubble);
-	
-	remaining_air--;
-});
+#macro UNDERWATER_EVENT_DELAY		60
+#macro SUPER_FAST_SHOES_DURATION	21*60
 
-timer_speed_shoes = new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
+timer_underwater  = new Timer2(
+	UNDERWATER_EVENT_DELAY, 
+	true, 
+	function() { with self player_underwater_event(); }
+);
+
+timer_speed_shoes = new Timer2(
+	SUPER_FAST_SHOES_DURATION, 
+	false, 
+	function() { with self physics.cancel_super_fast_shoes(); }
+);
 
 animator = new PlayerAnimator();
 

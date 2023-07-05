@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_SPEED_SNEAKERS;
 action = function(breaker) {
-	with breaker equip_speed_shoes();
+	with breaker player_equip_speed_shoes();
 };
 

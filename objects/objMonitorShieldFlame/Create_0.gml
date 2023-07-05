@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_FIRE_SHIELD;
 action = function(breaker) {
-	with breaker set_shield(new ShieldFlame(breaker));
+	with breaker player_set_shield(new ShieldFlame(breaker));
 };
 
