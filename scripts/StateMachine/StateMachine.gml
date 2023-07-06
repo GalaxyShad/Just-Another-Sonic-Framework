@@ -6,11 +6,43 @@ function State(_owner) constructor {
 	
 	__owner = _owner;
 	
+	__super_method = undefined;
+	
 	__state = function() {
 		return __state_map[$ __current_state];
 	}
 	
 	add = function(_state_name, _state) {
+		if (__state_map[$ _state_name] != undefined) {
+			show_error(
+				$"[STATE] [{object_get_name(_owner.object_index)}]\n" +
+				$"State [{_state}] already exists.\n" +
+				"If you want to override state, use [override] function.",
+				true
+			)
+		}
+		
+		_state.super = function() {
+			__super_method(__owner);
+			//show_debug_message($"{__owner}");	
+		}
+		
+		__state_map[$ _state_name] = _state;
+	}
+	
+	override = function(_state_name, _state) {
+		if (__state_map[$ _state_name] == undefined) {
+			show_error(
+				$"[STATE] [{object_get_name(_owner.object_index)}]\n" +
+				$"Cannot override state [{_state}], because its not exists.\n",
+				true
+			)
+		}
+		
+		_state.super = function() {
+			__super_method(__owner);
+		}
+		
 		__state_map[$ _state_name] = _state;
 	}
 	
@@ -28,28 +60,25 @@ function State(_owner) constructor {
 			_new.on_start(__owner);
 	};
 	
-	step = function() {
+
+	__call_if_exists = function(_method_name) {
 		if (__state() == undefined) return;
+		if (__state()[$ _method_name] == undefined) return;
 		
-		if (__state()[$ "on_step"] != undefined)
-			__state().on_step(__owner);
-	};
-	
-	animate = function() {
-		if (__state() == undefined) return;
-			
-		if (__state()[$ "on_animate"] != undefined) {
-			__state().on_animate(__owner);
+		if (__state()[$ "override_" + _method_name] != undefined) {
+			__super_method = __state()[$ _method_name];
+			__state()[$ "override_" + _method_name](__owner);
+			return;
 		}
-	};
-	
-	
-	landing = function() {
-		if (__state() == undefined) return;
 		
-		if (__state()[$ "on_landing"] != undefined)
-			__state().on_landing(__owner);
-	};
+		
+		__state()[$ _method_name](__owner);
+	}
+	
+
+	step = function()	 { __call_if_exists("on_step");		};
+	animate = function() { __call_if_exists("on_animate");	};
+	landing = function() { __call_if_exists("on_landing");	};
 	
 	current = function() { 
 		return __current_state; 

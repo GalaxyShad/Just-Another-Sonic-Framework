@@ -6,6 +6,7 @@ if (!show_debug_info)
 
 draw_text(
 	16, 240,
+	$"character:		{object_get_name(object_index)}\n"+
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+
 	$"ground:			{ground}\n" +

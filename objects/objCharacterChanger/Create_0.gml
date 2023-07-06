@@ -22,8 +22,6 @@ change = function(instance) {
 	if (current >= count)
 		current = 0;
 	
-	show_debug_message($"{current} {characters}")
-	
 	instance_create_depth(
 		instance.x, instance.y, instance.depth, characters[current]);
 	

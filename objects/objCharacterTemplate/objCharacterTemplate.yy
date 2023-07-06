@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Characters",
+    "path": "folders/Objects/Player/Characters.yy",
   },
   "parentObjectId": {
     "name": "objPlayer",
