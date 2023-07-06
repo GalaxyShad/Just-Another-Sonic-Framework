@@ -1,21 +1,7 @@
 
 
 
-function player_handle_bubbles() {
-	var _o_bubble = sensor.collision_object(objBigBubble);
-	if (_o_bubble) {
-		xsp = 0;
-		ysp = 0;
-		
-		state.change_to("breathe");
-		
-		instance_destroy(_o_bubble);
-		
-		audio_play_sound(sndPlayerBreathe, 0, 0);
-		
-		player_underwater_regain_air();
-	}
-}
+
 
 function player_collision() {
 	if (ground) {

@@ -104,8 +104,18 @@ behavior_loop = new PlayerLoop(id);
 behavior_loop
 	.add(player_switch_sensor_radius)
 	.add(player_collision)
-	.add(player_ground_movement)
-	.add(player_air_movement)
+	
+	// Ground
+	.add(player_behavior_slope_deacceleration)
+	.add(player_behavior_ground_movement)
+	.add(player_behavior_ground_friction)
+	.add(player_behavior_fall_off_slopes)
+	
+	// Air (!ground)
+	.add(player_behavior_apply_gravity)
+	.add(player_behavior_air_movement)
+	.add(player_behavior_air_drag)
+	.add(player_behavior_jump)
 
 handle_loop = new PlayerLoop(id);
 handle_loop
@@ -118,8 +128,6 @@ handle_loop
 	.add(player_handle_water)
 	.add(player_handle_bubbles)
 ;
-
-
 
 is_key_left				= false;
 is_key_right			= false;

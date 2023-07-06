@@ -1,45 +1,48 @@
 
 function PlayerLoop(_player) constructor {
 	__player = _player;
-	__function_map = {};
+	__function_accessibility = {};
+	__function_list = [];
 	
 	static add = function(_function) {
-		show_debug_message($"sdds ${_function}")
-		
 		var _func_name = script_get_name(_function);
 		
-		__function_map[$ _func_name] = {
-			func:	_function,
-			active:		true
-		};
+		array_push(__function_list, _function);
+		__function_accessibility[$ _func_name] = true;
 		
 		return self;
 	}
 	
 	static enable_all = function(_function) {
-		struct_foreach(__function_map, function(_key, _value) {
-			_value.active = true;
+		struct_foreach(__function_accessibility, function(_key, _value) {
+			_value = true;
 		});
 	}
 	
 	static disable_all = function(_function) {
-		struct_foreach(__function_map, function(_key, _value) {
-			_value.active = false;
+		struct_foreach(__function_accessibility, function(_key, _value) {
+			_valuee = false;
 		});
 	}
 	
 	static enable = function(_function) {
 		var _func_name = script_get_name(_function);
-		__function_map[$ _func_name].active = true;
+		__function_accessibility[$ _func_name] = true;
 	}
 	
 	static disable = function(_function) {
 		var _func_name = script_get_name(_function);
-		__function_map[$ _func_name].active = false;
+		__function_accessibility[$ _func_name] = false;
+	}
+	
+	static is_function_available = function(_function) {
+		var _func_name = script_get_name(_function);
+		
+		return __function_accessibility[$ _func_name];
 	}
 	
 	static get_loop = function() {
-		return 	__function_map;
+		return 	__function_list;
 	}
 	
 }

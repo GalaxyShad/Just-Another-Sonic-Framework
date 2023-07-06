@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "PlayerAirMovement",
+  "name": "PlayerAirBehaviors",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Objects/Player/Scripts.yy",
+    "name": "Behavior",
+    "path": "folders/Objects/Player/Scripts/Behavior.yy",
   },
 }

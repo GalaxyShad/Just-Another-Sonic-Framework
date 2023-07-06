@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "PlayerCollision",
+  "name": "PlayerBehaviorJump",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

@@ -11,34 +11,15 @@ if (state.current() == "die") {
 }
 
 
-struct_foreach(behavior_loop.get_loop(), function(_key, _value) {
-	var _fun = _value.func;
-			
-	if (_value.active == true)
-		_fun();
+array_foreach(behavior_loop.get_loop(), function(_value, _index) {
+	if (behavior_loop.is_function_available(_value)) _value();
 });
 
-struct_foreach(handle_loop.get_loop(), function(_key, _value) {
-	var _fun = _value.func;
-			
-	if (_value.active == true)
-		_fun();
+array_foreach(handle_loop.get_loop(), function(_value, _index) {
+	if (handle_loop.is_function_available(_value)) _value();
 });
 
 
-
-
-
-if (allow_jump && ground && is_key_action_pressed) {
-	ground = false;
-	
-	ysp -= physics.jump_force * dcos(sensor.get_angle()); 
-	xsp -= physics.jump_force * dsin(sensor.get_angle()); 
-	
-	state.change_to("jump");
-	
-	audio_play_sound(sndPlrJump, 0, false);
-} 
 
 var _is_moving_right = (ground && gsp > 0) || (!ground && xsp > 0);
 var _is_moving_left = (ground && gsp < 0) || (!ground && xsp < 0);
