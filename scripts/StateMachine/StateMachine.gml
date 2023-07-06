@@ -49,6 +49,14 @@ function State(_owner) constructor {
 	}
 	
 	change_to = function(_new_state) {
+		if (__state_map[$ _new_state] == undefined) {
+			show_error(
+				$"[STATE] [{object_get_name(_owner.object_index)}]\n" +
+				$"State [{_state}] does not exist.\n",
+				true
+			)
+		}
+		
 		var _prev = __state_map[$ __current_state];
 		
 		if (_prev != undefined && _prev[$ "on_exit"] != undefined) 

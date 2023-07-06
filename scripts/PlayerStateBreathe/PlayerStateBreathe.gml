@@ -2,6 +2,8 @@
 
 
 function PlayerStateBreathe() : BaseState() constructor {
+	__timer = undefined;
+	
 	on_start = function(player) {
 		__timer = 20;
 		player.animator.set("breathe");
