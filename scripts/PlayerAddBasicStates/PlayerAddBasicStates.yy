@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "PlayerStates",
+  "name": "PlayerAddBasicStates",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

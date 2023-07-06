@@ -28,6 +28,8 @@ function State(_owner) constructor {
 		}
 		
 		__state_map[$ _state_name] = _state;
+		
+		return self;
 	}
 	
 	override = function(_state_name, _state) {

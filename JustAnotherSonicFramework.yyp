@@ -158,7 +158,7 @@
     {"id":{"name":"ShieldLightning","path":"scripts/ShieldLightning/ShieldLightning.yy",},},
     {"id":{"name":"PlayerStateLookDown","path":"scripts/PlayerStateLookDown/PlayerStateLookDown.yy",},},
     {"id":{"name":"PlayerAnimator","path":"scripts/PlayerAnimator/PlayerAnimator.yy",},},
-    {"id":{"name":"PlayerStates","path":"scripts/PlayerStates/PlayerStates.yy",},},
+    {"id":{"name":"PlayerAddBasicStates","path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},},
     {"id":{"name":"PlayerGroundMovement","path":"scripts/PlayerGroundMovement/PlayerGroundMovement.yy",},},
     {"id":{"name":"sprBigBubblePop","path":"sprites/sprBigBubblePop/sprBigBubblePop.yy",},},
     {"id":{"name":"sprKnuckles","path":"sprites/sprKnuckles/sprKnuckles.yy",},},

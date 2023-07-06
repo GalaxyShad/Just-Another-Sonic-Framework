@@ -22,7 +22,7 @@ function player_behavior_ground_movement() {
 	}
 }
 
-function player_behavior_slope_deacceleration() {
+function player_behavior_slope_decceleration() {
 	if (!ground) return;
 	
 	var _slp_dec_value = physics.slope_factor * dsin(sensor.get_angle());
@@ -61,60 +61,4 @@ function player_behavior_fall_off_slopes() {
 			gsp += (sensor.get_angle() < 180) ? -0.5 : +0.5;	
 		}
 	}
-}
-
-function __depr_player_ground_movement() {
-	if (!ground) return;
-		
-	// Deacceleration on slopes
-	var _sina = dsin(sensor.get_angle());
-	
-	if (state.current() == "roll") {
-		gsp -= _sina * ((sign(gsp) == sign(_sina)) ? 
-			physics.slope_factor_rollup : 
-			physics.slope_factor_rolldown);
-	} else if (abs(physics.slope_factor * _sina) >= 0.05078125)
-		gsp -= physics.slope_factor * _sina;
-	
-
-	// Movement
-	if (allow_movement && !timer_control_lock.is_ticking()) {
-		if(state.current() == "roll") {
-			if (is_key_left) {
-				if (gsp > 0) {
-					gsp -= physics.roll_deceleration_speed;  
-					if (gsp <= 0) gsp = -0.5;  		
-				}
-			} else if (is_key_right) {
-				if (gsp < 0) {
-					gsp += physics.roll_deceleration_speed;  
-					if (gsp >= 0) gsp = 0.5;  
-				} 
-			}
-		} else {
-			if (is_key_left) {
-				if (gsp > 0) {
-					gsp -= physics.deceleration_speed;  
-					if (gsp <= 0) gsp = -0.5;  		
-				} else if (gsp > -physics.top_speed) {		
-					gsp -= physics.acceleration_speed;
-					if (gsp < -physics.top_speed) gsp = -physics.top_speed;  		
-				} 
-			} else if (is_key_right) {
-				if (gsp < 0) {
-					gsp += physics.deceleration_speed;  
-					if (gsp >= 0) gsp = 0.5;  
-				} else if (gsp < physics.top_speed) {
-					gsp += physics.acceleration_speed;
-					if (gsp > physics.top_speed) gsp = physics.top_speed;  
-				}
-			}
-		}
-	}
-	
-	if (state.current() == "roll")
-		gsp -= min(abs(gsp), physics.friction_speed / 2) * sign(gsp);
-	
-	
-	
 }

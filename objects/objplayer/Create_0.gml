@@ -103,10 +103,13 @@ timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 behavior_loop = new PlayerLoop(id);
 behavior_loop
 	.add(player_switch_sensor_radius)
-	.add(player_collision)
+	
+	// Collisions
+	.add(player_behavior_collisions_ground)
+	.add(player_behavior_collisions_air)
 	
 	// Ground
-	.add(player_behavior_slope_deacceleration)
+	.add(player_behavior_slope_decceleration)
 	.add(player_behavior_ground_movement)
 	.add(player_behavior_ground_friction)
 	.add(player_behavior_fall_off_slopes)

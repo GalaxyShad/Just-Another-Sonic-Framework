@@ -1,15 +1,5 @@
 state.step();
 
-if (state.current() == "die") {
-	ysp += physics.gravity_force;
-	
-	y += ysp;
-	
-	camera.set_lag_timer(1);
-	
-	exit;
-}
-
 
 array_foreach(behavior_loop.get_loop(), function(_value, _index) {
 	if (behavior_loop.is_function_available(_value)) _value();

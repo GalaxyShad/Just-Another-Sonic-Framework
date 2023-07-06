@@ -13,15 +13,15 @@ function PlayerLoop(_player) constructor {
 		return self;
 	}
 	
-	static enable_all = function(_function) {
-		struct_foreach(__function_accessibility, function(_key, _value) {
-			_value = true;
+	static enable_all = function() {
+		struct_foreach(__function_accessibility, function(_key) {
+			__function_accessibility[$ _key] = true;
 		});
 	}
 	
-	static disable_all = function(_function) {
-		struct_foreach(__function_accessibility, function(_key, _value) {
-			_valuee = false;
+	static disable_all = function() {
+		struct_foreach(__function_accessibility, function(_key) {
+			__function_accessibility[$ _key] = false;
 		});
 	}
 	
@@ -37,7 +37,6 @@ function PlayerLoop(_player) constructor {
 	
 	static is_function_available = function(_function) {
 		var _func_name = script_get_name(_function);
-		
 		return __function_accessibility[$ _func_name];
 	}
 	

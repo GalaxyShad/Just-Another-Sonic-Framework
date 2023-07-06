@@ -123,7 +123,7 @@
     {"name":"ShieldLightning","order":6,"path":"scripts/ShieldLightning/ShieldLightning.yy",},
     {"name":"PlayerStateLookDown","order":4,"path":"scripts/PlayerStateLookDown/PlayerStateLookDown.yy",},
     {"name":"PlayerAnimator","order":1,"path":"scripts/PlayerAnimator/PlayerAnimator.yy",},
-    {"name":"PlayerStates","order":5,"path":"scripts/PlayerStates/PlayerStates.yy",},
+    {"name":"PlayerAddBasicStates","order":5,"path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},
     {"name":"PlayerGroundMovement","order":1,"path":"scripts/PlayerGroundMovement/PlayerGroundMovement.yy",},
     {"name":"sprBigBubblePop","order":3,"path":"sprites/sprBigBubblePop/sprBigBubblePop.yy",},
     {"name":"sprKnuckles","order":23,"path":"sprites/sprKnuckles/sprKnuckles.yy",},

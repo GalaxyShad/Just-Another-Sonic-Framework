@@ -9,7 +9,8 @@ SENSOR_WALLBOX_NORMAL	=	[10, 8];
 SENSOR_WALLBOX_SLOPES	=	[10, 0];
 
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
-state  = create_basic_player_states();
+state  = new State(self);
+add_basic_player_states(state);
 
 state.override("jump",		new SonicStateJump());
 state.override("look_up",	new SonicStateLookUp());

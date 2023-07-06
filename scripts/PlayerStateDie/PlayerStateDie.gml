@@ -7,5 +7,16 @@ function PlayerStateDie() : BaseState() constructor {
 		ysp = -7;
 		
 		animator.set("die");
+		
+		behavior_loop.disable_all();
+		handle_loop.disable_all();
+	}};
+	
+	on_step = function(player) { with player {
+		ysp += physics.gravity_force;
+	
+		y += ysp;
+	
+		camera.set_lag_timer(1);
 	}};
 }

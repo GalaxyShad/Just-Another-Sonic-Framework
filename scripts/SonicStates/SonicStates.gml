@@ -14,7 +14,7 @@ function SonicStateJump() : PlayerStateJump() constructor {
 			state.change_to("dropdash");
 		}
 		
-		if (!ground && is_key_action_pressed)  {
+		if (!ground && is_key_action_pressed && !physics.is_super())  {
 			other.__use_shield(self);
 		}
 	}};

@@ -122,6 +122,9 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	
 	get_angle = function() { return __angle; }
 	
+	get_angle_sin = function() { return __angle_sin; }
+	get_angle_cos = function() { return __angle_cos; }
+	
 	set_position = function(_x, _y) { __x = _x; __y = _y; }
 	
 	get_position = function() { return { x: __x, y: __y }; }
