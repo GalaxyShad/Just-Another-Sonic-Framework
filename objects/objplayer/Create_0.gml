@@ -1,4 +1,50 @@
 
+var _VAR_CHECK_LIST = [
+	"SFX_COLOR_MAGIC",
+	"SFX_COLOR_MAGIC_SUPER",
+	
+	"SENSOR_FLOORBOX_NORMAL",
+	"SENSOR_FLOORBOX_ROLL",
+	
+	"SENSOR_WALLBOX_NORMAL",
+	"SENSOR_WALLBOX_SLOPES",
+	
+	"sensor",
+	"state",
+	"physics",
+	
+	"animator"
+];
+
+array_foreach(_VAR_CHECK_LIST, function(_variable) {
+	if (!variable_instance_exists(id, _variable)) {
+		show_error(
+			"[CHARACTER INITIALISATION ERROR]\n" +
+			$"Variable [{_variable}] is not exist.\n" +
+			"You need to initialize this variable to create your character.\n",
+			true
+		)
+	}
+});
+
+var _VAR_TYPES_CHECK_MAP = {
+	sensor:			[Sensor,			"Sensor"		],
+	state:			[State,				"State"			],
+	physics:		[PlayerPhysics,		"PlayerPhysics"	],
+	animator:		[PlayerAnimator,	"PlayerAnimator"]
+};
+
+struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
+	var _instance_variable = variable_instance_get(id, _key);
+	
+	if (!is_instanceof(_instance_variable, _value[0])) {
+		show_error(
+			"[CHARACTER INITIALISATION ERROR]\n" +
+			$"Variable [{_key}] should be the type of [{_value[1]}].\n",
+			true
+		)	
+	}
+});
 
 show_debug_info = false;
 
@@ -7,7 +53,6 @@ camera	= instance_create_layer(x, y, layer, objCamera);
 
 shield = undefined;
 
-magic_color = #0F52BA;
 running_on_water = false;
 
 animation_angle = 0;
@@ -21,90 +66,32 @@ gsp = 0;
 allow_jump		= true;
 allow_movement	= true;
 
-#macro SENSOR_FLOORBOX_NORMAL	[8, 20]
-#macro SENSOR_FLOORBOX_ROLL		[7, 15]
-
-#macro SENSOR_WALLBOX_NORMAL	[10, 8]
-#macro SENSOR_WALLBOX_SLOPES	[10, 0]
-
-sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
-state  = create_basic_player_states();
-
-physics = new PlayerPhysics(,{
-	acceleration_speed:		0.1875,
-	deceleration_speed:		1,
-	top_speed:				10,
-	jump_force:				8,
-	air_acceleration_speed: 0.375,
-});
-
 remaining_air = 30;
 
-
-#macro UNDERWATER_EVENT_DELAY		60
-#macro SUPER_FAST_SHOES_DURATION	21*60
+#macro DELAY_UNDERWATER_EVENT		60
+#macro DURATION_SUPER_FAST_SHOES	21*60
+#macro DURATION_CONTROL_LOCK		30
+#macro DURATION_INVINCIBILITY		120
 
 timer_underwater  = new Timer2(
-	UNDERWATER_EVENT_DELAY, 
+	DELAY_UNDERWATER_EVENT, 
 	true, 
 	function() { with self player_underwater_event(); }
 );
 
 timer_speed_shoes = new Timer2(
-	SUPER_FAST_SHOES_DURATION, 
+	DURATION_SUPER_FAST_SHOES, 
 	false, 
 	function() { with self physics.cancel_super_fast_shoes(); }
 );
 
 timer_control_lock = new Timer2(
-	30,
+	DURATION_CONTROL_LOCK,
 	false,
 	function() { with self allow_movement = true; }
 );
 
-timer_invincibility = new Timer2(120, false);
-
-animator = new PlayerAnimator();
-animator
-	.add("idle",		sprSonic			)
-	.add("bored",		sprSonicBored		).loop_from(2).speed(.25)
-	.add("bored_ex",	sprSonicBoredEx		).loop_from(2).speed(.25)
-	
-	.add("look_up",		sprSonicLookUp		).stop_on_end().speed(.25)
-	.add("look_down",	sprSonicCrouch		).stop_on_end().speed(.25)
-	
-	.add("walking",		sprSonicWalk		)
-	.add("running",		sprSonicRun			)
-	.add("dash",		sprSonicDash		)
-	
-	.add("curling",		sprSonicRoll		)
-	.add("dropdash",	sprSonicDropDash	).speed(.5)
-	
-	.add("spring",		sprSonicSpring		)
-	.add("spindash",	sprSonicSpindash	)
-	.add("push",		sprSonicPush		).speed(.125)
-	
-	.add("skid",		sprSonicSkid		).stop_on_end().speed(.5)
-	
-	.add("balancing_a",	sprSonicBalancing	).speed(.05)
-	.add("balancing_b",	sprSonicBalancingB	).speed(.25)
-	
-	.add("hurt",		sprSonicHurt		).stop_on_end()
-	.add("breathe",		sprSonicBreathe		)
-	
-	.add("die",			sprSonicDie			).speed(0)
-	
-	.add("transform",   sprSonicTransform	).stop_on_end().speed(.5)
-	
-	// === Super ===
-	.add_super("idle",		sprSuperSonic	 ).speed(0.25)
-	.add_super("walking",	sprSuperSonicWalk)
-	.add_super("running",	sprSuperSonicRun )
-	.add_super("dash",		sprSuperSonicDash )
-	.add_super("look_up",	sprSuperSonicLookUp ).stop_on_end().speed(.25)
-	.add_super("look_down",	sprSuperSonicCrouch ).stop_on_end().speed(.25)
-;
-animator.set("idle");
+timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
 is_key_left				= false;
 is_key_right			= false;
@@ -112,7 +99,5 @@ is_key_up				= false;
 is_key_down				= false;
 is_key_action			= false;
 is_key_action_pressed	= false;
-
-sprite_index_prev		= 0;
 
 p_sfx_water_run			= -1;

@@ -18,6 +18,7 @@ function PlayerAnimator() constructor {
 	
 	__sprite_index_previous = undefined;
 	
+	
 	__create_default = function(_name, _sprite, _is_super = false) {
 		if (__animation_map[$ _name] == undefined)
 			__animation_map[$ _name] = [undefined, undefined];
@@ -72,9 +73,9 @@ function PlayerAnimator() constructor {
 	set_form_normal = function() { __is_super = false; };
 	
 	set = function(_name) {
-		if (__animation_map[$ _name] == undefined) {
+		/*if (__animation_map[$ _name] == undefined) {
 			return;
-		}
+		}*/
 		
 		__is_ended = false;
 			
@@ -91,17 +92,6 @@ function PlayerAnimator() constructor {
 	};
 	
 	set_image_speed = function(_speed) {
-		/*var _sprite = __get_current_animation().sprite;
-		
-		var _type = sprite_get_speed_type(_sprite);
-		var _sprite_speed = sprite_get_speed(_sprite)
-		
-		show_debug_message($"LOL {_type} {_sprite_speed} {_speed}");
-		
-		__image_speed = (_type == spritespeed_framespersecond) ? 
-			(_speed * (1 / _sprite_speed) * 2) :
-			(_speed * _sprite_speed);*/
-			
 		__image_speed = _speed;
 	};
 	
@@ -117,7 +107,17 @@ function PlayerAnimator() constructor {
 		var _base  = (_anim != undefined) ? _anim[0] : undefined;
 		var _super = (_anim != undefined) ? _anim[1] : undefined;
 		
-		return (__is_super && _super != undefined) ? _super : _base;
+		var _res = (__is_super && _super != undefined) ? _super : _base;
+		
+		if (_res == undefined) {
+			var _temp = __current_animation_name;
+			
+			__current_animation_name = "__no_anim";
+			_res = __get_current_animation();
+			__current_animation_name = _temp;
+		}
+		
+		return _res;
 	};
 	
 	is_animation_ended = function() {
@@ -148,6 +148,14 @@ function PlayerAnimator() constructor {
 		return array_contains(_arr_args_animations, current());
 	};
 	
+	is_animation_exists = function(_name) {
+		return (__animation_map[$ _name] != undefined);
+	};
+	
+	
+	__init__ = function() {
+		__create_default("__no_anim", sprNoAnimation);
+	}();
 	
 	
 }

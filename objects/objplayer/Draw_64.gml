@@ -10,6 +10,7 @@ draw_text(
 	$"tick:				{global.tick}\n"+
 	$"ground:			{ground}\n" +
 	$"action:			{state.current()}\n"+
+	$"animation:		{animator.current()}\n"+
 	$"gsp:				{gsp}\n" +
 	$"xsp:				{xsp}\n" +
 	$"ysp:				{ysp}\n" +

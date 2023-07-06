@@ -42,8 +42,14 @@ if (!timer_invincibility.is_ticking() ||
 	}
 }
 
-if (shield != undefined)
+if (shield != undefined && !physics.is_super())
 	shield.draw(x, y);
+	
+if (!animator.is_animation_exists(animator.current())) {
+	draw_set_halign(fa_center);
+	draw_text(x, y + 10, $"{animator.current()}");	
+	draw_set_halign(fa_left);
+}
 
 if (show_debug_info) 
 	sensor.draw();

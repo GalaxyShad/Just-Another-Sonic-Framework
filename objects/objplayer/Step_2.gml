@@ -43,7 +43,7 @@ if ((physics.is_super_fast_shoes_on() || (physics.is_super() && abs(gsp) >= 6)) 
 		ImageIndex: image_index,
 		Angle: animation_angle,
 		Xscale: image_xscale,
-		Blend: magic_color
+		Blend: physics.is_super() ? SFX_COLOR_MAGIC_SUPER : SFX_COLOR_MAGIC
 	});
 }
 

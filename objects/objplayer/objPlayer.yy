@@ -33,10 +33,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "sprSonic",
-    "path": "sprites/sprSonic/sprSonic.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }
