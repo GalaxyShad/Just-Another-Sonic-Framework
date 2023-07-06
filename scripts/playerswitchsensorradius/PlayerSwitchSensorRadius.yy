@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Behavior",
+    "path": "folders/Objects/Player/Scripts/Behavior.yy",
   },
 }

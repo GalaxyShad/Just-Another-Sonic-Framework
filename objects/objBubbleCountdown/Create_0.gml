@@ -15,6 +15,6 @@ vspeed = -0.5;
 
 tick = 0;
 
-oWater = instance_nearest(x, y, objWaterLevel);
-if (!oWater) 
+o_water = instance_nearest(x, y, objWaterLevel);
+if (!o_water) 
 	instance_destroy();

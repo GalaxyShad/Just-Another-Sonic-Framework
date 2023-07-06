@@ -8,8 +8,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "objMonitor",
-    "path": "folders/Objects/objMonitor.yy",
+    "name": "Monitors",
+    "path": "folders/Objects/Monitors.yy",
   },
   "parentObjectId": {
     "name": "objMonitor",

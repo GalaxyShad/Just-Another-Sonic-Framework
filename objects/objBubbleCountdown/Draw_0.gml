@@ -1,5 +1,5 @@
 
-if (y <= oWater.y)
+if (y <= o_water.y)
 	instance_destroy();
 
 if (anim_index < appearence_frames_count) {

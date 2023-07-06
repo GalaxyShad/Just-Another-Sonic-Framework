@@ -51,7 +51,11 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 
 
 	reset = function() {
+		if (__is_underwater) __cancel_underwater();
+		
+		__is_super = false;
 		__apply_props(__default_props);
+		
 		if (__is_underwater) __apply_underwater();
 	};
 	
@@ -84,10 +88,14 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 	};
 
 	
-	apply_super_form = function(_sonic_like = false) {
+	apply_super_form = function() {
+		if (__is_underwater) __cancel_underwater();
+		
 		__apply_props(__default_superform_props);
+		__is_super = true;
 		
 		if (__is_underwater) __apply_underwater();
+
 	};
 	
 /////////////////////////////////////////////////////////////////////////////
@@ -96,9 +104,9 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 	__apply_props = function(_props = {}) {
 		//var _p = _props;
 		
-		struct_foreach(_props, function(name, st) {
-			show_debug_message($"{name}: {st}");
-			self[$ name] = st ?? self[$ name];
+		struct_foreach(_props, function(_name, _st) {
+			show_debug_message($"{_name}: {_st}");
+			self[$ _name] = _st ?? self[$ _name];
 		});	
 	};
 	
@@ -156,14 +164,14 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 	
 	
 	__init__ = function() {
-		struct_foreach(__default_props, function(name) {
-			__default_props[$ name] = __custom_props[$ name] ?? __default_props[$ name];
-			self[$ name] = __default_props[$ name];
+		struct_foreach(__default_props, function(_name) {
+			__default_props[$ _name] = __custom_props[$ _name] ?? __default_props[$ _name];
+			self[$ _name] = __default_props[$ _name];
 		});
 		
-		struct_foreach(__default_props, function(name) {
-			__default_superform_props[$ name] = 
-				__custom_superform_props[$ name] ?? __default_superform_props[$ name];
+		struct_foreach(__default_props, function(_name) {
+			__default_superform_props[$ _name] = 
+				__custom_superform_props[$ _name] ?? __default_superform_props[$ _name];
 		});
 	}();	
 	

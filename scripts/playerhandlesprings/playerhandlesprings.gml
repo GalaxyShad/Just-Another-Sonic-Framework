@@ -1,17 +1,17 @@
 // Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
-function PlayerHandleSprings(){
-	var oSpring = sensor.check_expanded(0, 2, function() { return sensor.collision_bottom(objSpringYellow);} );
+function player_handle_springs(){
+	var _o_spring = sensor.check_expanded(0, 2, function() { return sensor.collision_bottom(objSpringYellow);} );
 	
-	if (oSpring) {
-		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle)) < 60 &&
-			oSpring.image_speed == 0
+	if (_o_spring) {
+		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle)) < 60 &&
+			_o_spring.image_speed == 0
 		) {
 			if (!ground)
 				ysp = 0;
 			
-			ysp += -oSpring.spd * dcos(oSpring.image_angle);
-			xsp += -oSpring.spd * dsin(oSpring.image_angle);
+			ysp += -_o_spring.spd * dcos(_o_spring.image_angle);
+			xsp += -_o_spring.spd * dsin(_o_spring.image_angle);
 			
 			ground = false;
 			
@@ -20,55 +20,55 @@ function PlayerHandleSprings(){
 			
 			audio_play_sound(sndSpring, 0, false);
 			
-			oSpring.image_speed = 1.00;
+			_o_spring.image_speed = 1.00;
 		}
 	}
 	
-	oSpring = sensor.check_expanded(2, 0, function() { return sensor.collision_right(objSpringYellow);} );
+	_o_spring = sensor.check_expanded(2, 0, function() { return sensor.collision_right(objSpringYellow);} );
 	
-	if (oSpring) {
-		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle - 90)) < 60 &&
-			oSpring.image_speed == 0
+	if (_o_spring) {
+		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle - 90)) < 60 &&
+			_o_spring.image_speed == 0
 		) {	
 			if (ground) 
-				gsp = -oSpring.spd;
+				gsp = -_o_spring.spd;
 			else 
-				xsp = -oSpring.spd;
+				xsp = -_o_spring.spd;
 				
-			oSpring.image_speed = 1.00;
+			_o_spring.image_speed = 1.00;
 			
 			audio_play_sound(sndSpring, 0, false);
 		}
 	}
 	
-	oSpring = sensor.check_expanded(2, 0, function() { return sensor.collision_left(objSpringYellow);} );
+	_o_spring = sensor.check_expanded(2, 0, function() { return sensor.collision_left(objSpringYellow);} );
 	
-	if (oSpring) {
-		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle + 90)) < 60 &&
-			oSpring.image_speed == 0
+	if (_o_spring) {
+		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle + 90)) < 60 &&
+			_o_spring.image_speed == 0
 		) {	
 			
 			if (ground) 
-				gsp = oSpring.spd;
+				gsp = _o_spring.spd;
 			else 
-				xsp = oSpring.spd;
+				xsp = _o_spring.spd;
 				
-			oSpring.image_speed = 1.00;
+			_o_spring.image_speed = 1.00;
 			
 			audio_play_sound(sndSpring, 0, false);
 		}
 	}
 	
-	oSpring = sensor.check_expanded(0, 2, function() { return sensor.collision_top(objSpringYellow);} );
+	_o_spring = sensor.check_expanded(0, 2, function() { return sensor.collision_top(objSpringYellow);} );
 	
-	if (oSpring && !ground) {
-		if (abs(angle_difference(sensor.get_angle(), oSpring.image_angle + 180)) < 15 &&
-			oSpring.image_speed == 0
+	if (_o_spring && !ground) {
+		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle + 180)) < 15 &&
+			_o_spring.image_speed == 0
 		) {	
 			
-			ysp = oSpring.spd;
+			ysp = _o_spring.spd;
 				
-			oSpring.image_speed = 1.00;
+			_o_spring.image_speed = 1.00;
 			
 			audio_play_sound(sndSpring, 0, false);
 		}

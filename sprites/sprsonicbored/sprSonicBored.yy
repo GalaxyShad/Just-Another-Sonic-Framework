@@ -34,7 +34,7 @@
   "origin": 9,
   "parent": {
     "name": "Sonic",
-    "path": "folders/Sprites/Sonic.yy",
+    "path": "folders/Objects/Player/Sprites/Sonic.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
@@ -55,7 +55,7 @@
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
-    "playbackSpeed": 30.0,
+    "playbackSpeed": 60.0,
     "playbackSpeedType": 0,
     "showBackdrop": true,
     "showBackdropImage": false,

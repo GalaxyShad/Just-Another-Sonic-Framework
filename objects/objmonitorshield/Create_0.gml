@@ -14,7 +14,7 @@
 // Inherit the parent event
 event_inherited();
 item = ITEM_SHIELD;
-action = function() {
-	with objPlayer set_shield(SHIELD_CLASSIC);
+action = function(breaker) {	
+	with breaker player_set_shield(new ShieldClassic());
 };
 

@@ -14,8 +14,8 @@
     {"resourceType":"GMPSEmitter","resourceVersion":"1.0","name":"GM_Embers2","additiveBlend":true,"directionIncrease":4.0,"directionMax":360.0,"directionMin":0.0,"directionWiggle":1.0,"distribution":0,"editorColour":1090519039,"editorDrawShape":true,"emitCount":20,"enabled":true,"endColour":16777215,"GMPresetName":"","gravityDirection":270.0,"gravityForce":0.0,"headPosition":0.0,"lifetimeMax":25.0,"lifetimeMin":8.0,"linkedEmitter":null,"locked":false,"midColour":4293755000,"mode":1,"orientationIncrease":0.0,"orientationMax":0.0,"orientationMin":0.0,"orientationRelative":false,"orientationWiggle":0.0,"regionH":4.0,"regionW":4.0,"regionX":0.0,"regionY":0.0,"scaleX":1.0,"scaleY":1.0,"shape":1,"sizeIncrease":9.998679E-06,"sizeMax":0.5,"sizeMin":0.1,"sizeWiggle":0.4,"spawnOnDeathCount":0,"spawnOnDeathGMPreset":null,"spawnOnDeathId":null,"spawnOnUpdateCount":0,"spawnOnUpdateGMPreset":null,"spawnOnUpdateId":null,"speedIncrease":0.0,"speedMax":5.25,"speedMin":1.5,"speedWiggle":6.0,"spriteAnimate":false,"spriteId":null,"spriteRandom":false,"spriteStretch":true,"startColour":4294967295,"texture":9,},
   ],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Particles",
+    "path": "folders/Objects/Player/Particles.yy",
   },
   "showBackdrop": true,
   "showBackdropImage": false,

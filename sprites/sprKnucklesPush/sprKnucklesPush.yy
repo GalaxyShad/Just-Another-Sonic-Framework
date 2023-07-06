@@ -29,7 +29,7 @@
   "origin": 9,
   "parent": {
     "name": "Knuckles",
-    "path": "folders/Sprites/Knuckles.yy",
+    "path": "folders/Objects/Player/Sprites/Knuckles.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -1,76 +1,72 @@
-/// @description Вставьте описание здесь
-// Вы можете записать свой код в этом редакторе
 
-
-#macro SHIELD_NONE			0
-#macro SHIELD_CLASSIC		1
-#macro SHIELD_BUBBLE		2
-#macro SHIELD_FIRE			3
-#macro SHIELD_ELECTRIC		4
-
-oDj = instance_create_layer(x, y, layer, objDJ);
-
-shield = SHIELD_NONE;
-
-running_on_water = false;
-
-set_shield = function(_shield = SHIELD_NONE) {
-	if (physics.is_underwater() && 
-		(_shield == SHIELD_FIRE || _shield == SHIELD_ELECTRIC)
-	) return;
+var _VAR_CHECK_LIST = [
+	"SFX_COLOR_MAGIC",
+	"SFX_COLOR_MAGIC_SUPER",
 	
-	shield = _shield;
+	"SENSOR_FLOORBOX_NORMAL",
+	"SENSOR_FLOORBOX_ROLL",
 	
-	if (shield == SHIELD_NONE)
-		return;
-		
-	if (shield == SHIELD_BUBBLE)
-		player_underwater_regain_air();
+	"SENSOR_WALLBOX_NORMAL",
+	"SENSOR_WALLBOX_SLOPES",
 	
-	var _sounds = [
-		sndBlueShield, 
-		sndBubbleShield, 
-		sndFireShield, 
-		sndLightningShield
-	];
+	"sensor",
+	"state",
+	"physics",
 	
-	audio_play_sound(_sounds[_shield - 1], 0, 0);
-}
+	"animator",
+	
+	"PAL_CLASSIC",
+	"PAL_SUPER",
+];
 
-equip_speed_shoes = function() {
-	oDj.set_music("speed_shoes");
+array_foreach(_VAR_CHECK_LIST, function(_variable) {
+	if (!variable_instance_exists(id, _variable)) {
+		show_error(
+			"[CHARACTER INITIALISATION ERROR]\n" +
+			$"Variable [{_variable}] is not exist.\n" +
+			"You need to initialize this variable to create your character.\n",
+			true
+		)
+	}
+});
+
+var _VAR_TYPES_CHECK_MAP = {
+	sensor:			[Sensor,			"Sensor"		],
+	state:			[State,				"State"			],
+	physics:		[PlayerPhysics,		"PlayerPhysics"	],
+	animator:		[PlayerAnimator,	"PlayerAnimator"]
+};
+
+struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
+	var _instance_variable = variable_instance_get(id, _key);
 	
-	timer_speed_shoes.reset();
-	timer_speed_shoes.start();
-	
-	physics.apply_super_fast_shoes();	
-}
+	if (!is_instanceof(_instance_variable, _value[0])) {
+		show_error(
+			"[CHARACTER INITIALISATION ERROR]\n" +
+			$"Variable [{_key}] should be the type of [{_value[1]}].\n",
+			true
+		)	
+	}
+});
 
 show_debug_info = true;
 
-physics = new PlayerPhysics(,{
-	acceleration_speed:		0.1875,
-	deceleration_speed:		1,
-	top_speed:				10,
-	jump_force:				8,
-	air_acceleration_speed: 0.375,
-});
+o_dj = !instance_exists(objDJ) ? 
+	instance_create_layer(x, y, layer, objDJ) :
+	instance_find(objDJ, 0);
+camera = !instance_exists(objCamera) ? 
+	instance_create_layer(x, y, layer, objCamera) :
+	instance_find(objCamera, 0);
+	
+camera.FollowingObject = id;
 
-//physics.apply_super_form();
-//physics.apply_super_fast_shoes();
+PALLETE_SUPER_CYCLE_LENGTH = array_length(PAL_SUPER); 
 
-kgr = 3; //knuckles_glid_rotation
-glid_top=5;
+shield = undefined;
+
+running_on_water = false;
 
 animation_angle = 0;
-
-control_lock_timer = 0;
-
-idle_anim_timer = 0;
-
-using_shield_abbility = false;
-
-
 
 ground = false;
 
@@ -78,83 +74,82 @@ xsp = 0;
 ysp = 0;
 gsp = 0;
 
-camera = instance_create_layer(x, y, layer, objCamera);
-
-action = 0;
-
-peelout_timer = 0;
-
-inv_timer = 0;
-
-
-drpspd		= 8; //the base speed for a drop dash
-
 allow_jump		= true;
 allow_movement	= true;
 
-peelout_animation_spd = 0;
-
-water_shield_scale = {
-	xscale: 1,
-	yscale: 1,
-	
-	__xscale: 1,
-	__yscale: 1
-};
-
-
-#macro SENSOR_FLOORBOX_NORMAL	[8, 20]
-#macro SENSOR_FLOORBOX_ROLL		[7, 15]
-
-#macro SENSOR_WALLBOX_NORMAL	[10, 8]
-#macro SENSOR_WALLBOX_SLOPES	[10, 0]
-
-sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
-state = new State(id);
-PlayerStates();
-state.change_to("normal");
-
 remaining_air = 30;
 
-timer_underwater	= new Timer2(60, true, function() {
-	if (array_contains([25, 20, 15], remaining_air)) {
-		// warning chime	
-		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
-	} 
-	
-	if (remaining_air == 12) {
-		// drowning music	
-		show_debug_message("drowning music");
-		oDj.set_music("drowning");
-	} 
-	
-	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
-		// warning number bubble
-		var _number = (remaining_air / 2) - 1;
-		instance_create_depth(
-			x + 6 * image_xscale, y, -1000, objBubbleCountdown, { number: _number });
-	} 
-	
-	if (remaining_air == 0) {
-		// player drown	
-		audio_play_sound(sndPlrDrown, 0, 0);
-		state.change_to("die");
-	}
-	
-	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubble);
-	
-	remaining_air--;
-});
+#macro DELAY_UNDERWATER_EVENT		60
+#macro DURATION_SUPER_FAST_SHOES	21*60
+#macro DURATION_CONTROL_LOCK		30
+#macro DURATION_INVINCIBILITY		120
 
-timer_speed_shoes	= new Timer2(21 * 60, false, physics.cancel_super_fast_shoes);
+timer_underwater  = new Timer2(
+	DELAY_UNDERWATER_EVENT, 
+	true, 
+	function() { with self player_underwater_event(); }
+);
+
+timer_speed_shoes = new Timer2(
+	DURATION_SUPER_FAST_SHOES, 
+	false, 
+	function() { with self physics.cancel_super_fast_shoes(); }
+);
+
+timer_control_lock = new Timer2(
+	DURATION_CONTROL_LOCK,
+	false,
+	function() { with self allow_movement = true; }
+);
+
+timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
 
-is_key_left = 0;
-is_key_right = 0;
-is_key_up = 0;
-is_key_down = 0;
-is_key_action = 0;
+behavior_loop = new PlayerLoop(id);
+behavior_loop
+	.add(player_switch_sensor_radius)
+	
+	// Collisions
+	.add(player_behavior_collisions_ground)
+	.add(player_behavior_collisions_air)
+	
+	// Ground
+	.add(player_behavior_slope_decceleration)
+	.add(player_behavior_ground_movement)
+	.add(player_behavior_ground_friction)
+	.add(player_behavior_fall_off_slopes)
+	
+	// Air (!ground)
+	.add(player_behavior_apply_gravity)
+	.add(player_behavior_air_movement)
+	.add(player_behavior_air_drag)
+	.add(player_behavior_jump)
+;
 
-sprite_index_prev = 0;
+handle_loop = new PlayerLoop(id);
+handle_loop
+	.add(player_handle_layers)
+	.add(player_handle_rings)
+	.add(player_handle_springs)
+	.add(player_handle_spikes)
+	.add(player_handle_monitors)
+	.add(player_handle_moving_platforms)
+	.add(player_handle_water)
+	.add(player_handle_bubbles)
+;
 
-pSfxWaterRun = noone;
+visual_loop = new PlayerLoop(id);
+visual_loop
+	.add(player_behavior_visual_angle)
+	.add(player_behavior_visual_flip)
+	.add(player_behavior_visual_create_afterimage)
+;
+
+is_key_left				= false;
+is_key_right			= false;
+is_key_up				= false;
+is_key_down				= false;
+is_key_action			= false;
+is_key_action_pressed	= false;
+
+p_sfx_water_run			= -1;

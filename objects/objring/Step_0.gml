@@ -2,16 +2,16 @@
 // Вы можете записать свой код в этом редакторе
 
 if (mode == 0) {
-	var _oPlayer = instance_nearest(x, y, objPlayer);
+	var _o_player = instance_nearest(x, y, objPlayer);
 	
-	if (_oPlayer != noone) {
-		if ((distance_to_object(_oPlayer) < 64) && _oPlayer.shield == 4) {
+	if (_o_player != noone) {
+		if ((distance_to_object(_o_player) < 64) && is_instanceof(_o_player.shield, ShieldLightning)) {
 			is_magnetized = true;
 		}
 		
 		if (is_magnetized) {
-			var _sx = sign(_oPlayer.x - x);
-			var _sy = sign(_oPlayer.y - y);
+			var _sx = sign(_o_player.x - x);
+			var _sy = sign(_o_player.y - y);
 	
 			//check relative movement
 			var _tx = (sign(xsp) == _sx)

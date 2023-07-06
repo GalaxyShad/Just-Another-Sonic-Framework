@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Public",
+    "path": "folders/Objects/Player/Scripts/Public.yy",
   },
 }

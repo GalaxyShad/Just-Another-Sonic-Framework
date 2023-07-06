@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Object Handlers",
+    "path": "folders/Objects/Player/Scripts/Object Handlers.yy",
   },
 }
