@@ -20,17 +20,12 @@ if (!timer_invincibility.is_ticking() ||
 			);
 		}
 		
-		var _pal_classic = [ #2424b4, #2448d8, #4848fc, #6c6cfc ];
-		
-		var _pal_super = [ 
-			[ #ce9034, #ffac34, #ffce57, #ffff74 ],
-			[ #ffac74, #ffce90, #ffffac, #ffffce ], 
-			[ #ffffaa, #ffffaa, #ffffaa, #ffffaa ],
-			[ #ffac74, #ffce90, #ffffac, #ffffce ], 
-		];
-		
-		for (var i = 0; i <4; i++) {
-			_set_col(i+1, _pal_classic[i], _pal_super[(global.tick / 4) % 4][i]);
+		for (var i = 0; i < 4; i++) {
+			_set_col(
+				i+1, 
+				PAL_CLASSIC[i], 
+				PAL_SUPER[(global.tick / 4) % PALLETE_SUPER_CYCLE_LENGTH][i]
+			);
 		}
 	
 		draw_self();

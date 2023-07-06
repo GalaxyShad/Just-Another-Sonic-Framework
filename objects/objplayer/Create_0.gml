@@ -13,7 +13,10 @@ var _VAR_CHECK_LIST = [
 	"state",
 	"physics",
 	
-	"animator"
+	"animator",
+	
+	"PAL_CLASSIC",
+	"PAL_SUPER",
 ];
 
 array_foreach(_VAR_CHECK_LIST, function(_variable) {
@@ -56,6 +59,8 @@ camera = !instance_exists(objCamera) ?
 	instance_find(objCamera, 0);
 	
 camera.FollowingObject = id;
+
+PALLETE_SUPER_CYCLE_LENGTH = array_length(PAL_SUPER); 
 
 shield = undefined;
 
