@@ -9,7 +9,6 @@ function PlayerStateRoll() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_ground_friction);
 	}};
 	
-	
 	__slopes_decceleration = function(player) { with player {
 		var _sina = dsin(sensor.get_angle());
 		
@@ -17,7 +16,6 @@ function PlayerStateRoll() : BaseState() constructor {
 			physics.slope_factor_rollup : 
 			physics.slope_factor_rolldown);
 	}};
-	
 	
 	__apply_friction = function(player) { with player {
 		gsp -= min(abs(gsp), physics.friction_speed / 2) * sign(gsp);
@@ -50,13 +48,10 @@ function PlayerStateRoll() : BaseState() constructor {
 				state.change_to("normal");
 		}
 	};
-		
-	
 	
 	on_animate = function(player) { with player {
 		animator.set_image_speed(0.5 + abs(gsp) / 8.0);
 	}};
-	
 	
 	on_exit = function(player) { with player {
 		behavior_loop.enable(player_behavior_slope_decceleration);

@@ -15,6 +15,8 @@ draw_text(
 	$"gsp:				{gsp}\n" +
 	$"xsp:				{xsp}\n" +
 	$"ysp:				{ysp}\n" +
+	$"x:				{x}\n" +
+	$"y:				{y}\n" +
 	$"sensor_angle:		{sensor.get_angle()}\n" +
 	$"animation_angle:	{animation_angle}\n" +
 	$"\n" +
