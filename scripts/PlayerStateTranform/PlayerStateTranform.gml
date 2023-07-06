@@ -2,10 +2,13 @@
 
 
 function PlayerStateTransform() : BaseState() constructor {
+	__timer = undefined;
+	
 	on_start = function(player) { with player {
 		ground = false;
 		animator.set("transform");
 		allow_movement = false;
+		other.__timer = 30;
 	}};
 	
 	on_animate = function(player) { with player {
@@ -17,7 +20,9 @@ function PlayerStateTransform() : BaseState() constructor {
 			audio_play_sound(sndPlrTransform, 0,0);
 		}
 		
-		if (animator.is_animation_ended())
+		other.__timer--;
+		
+		if (other.__timer == 0)
 			state.change_to("normal");
 	}};
 	
