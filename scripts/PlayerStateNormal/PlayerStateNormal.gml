@@ -37,6 +37,13 @@ function PlayerStateNormal() : BaseState() constructor {
 		if (ground && gsp == 0 && _check_balanced) {
 			state.change_to("balancing");
 		}
+		
+		// Push
+		if ((is_key_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
+			(is_key_left  && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+		) {
+			state.change_to("push");
+		}
 	}};
 	
 	on_animate = function(player) { with player {

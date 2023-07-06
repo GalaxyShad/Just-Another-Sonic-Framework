@@ -1,50 +1,15 @@
-
-
-
-if (!ground) {
-	animation_angle += angle_difference(0, animation_angle) / 10;
-} else {
-	var _ang = (sensor.get_angle() >= 35 && sensor.get_angle() <= 325) ? sensor.get_angle() : 0;
-	animation_angle += angle_difference(_ang, animation_angle) / 4;
-}
-
-if (sprite_index == sprSonicRoll)
-	animation_angle = 0;
-
-if (animation_angle < 0) animation_angle = 360 + animation_angle;
-animation_angle = (abs(animation_angle) % 360);
-
-image_angle = animation_angle;
-
-if (!ground) {
-	if		(is_key_right)	image_xscale = 1;
-	else if (is_key_left)	image_xscale = -1;
-} else {
-	if		(is_key_right && gsp > 0)	image_xscale = 1;
-	else if (is_key_left  && gsp < 0)	image_xscale = -1;
-}
+array_foreach(visual_loop.get_loop(), function(_value, _index) {
+	if (visual_loop.is_function_available(_value)) _value();
+});
 
 state.animate();
 
 var _res = animator.animate();
+
+image_angle		= animation_angle;
 sprite_index	= _res[0];
 image_index		= _res[1];
 image_speed		= 0;
-
-if ((physics.is_super_fast_shoes_on() || (physics.is_super() && abs(gsp) >= 6)) && 
-	(global.tick % 8 == 0)
-) {
-	if (physics.is_super()) magic_color = #ffce57;
-	
-	instance_create_depth(x, y, depth+1, objSfxAfterImage, { 
-		SpriteIndex: sprite_index,
-		ImageIndex: image_index,
-		Angle: animation_angle,
-		Xscale: image_xscale,
-		Blend: physics.is_super() ? SFX_COLOR_MAGIC_SUPER : SFX_COLOR_MAGIC
-	});
-}
-
 
 if (physics.is_underwater() && !is_instanceof(shield, ShieldBubble))
 	timer_underwater.tick();

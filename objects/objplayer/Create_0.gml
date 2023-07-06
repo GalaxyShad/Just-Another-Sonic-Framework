@@ -119,6 +119,7 @@ behavior_loop
 	.add(player_behavior_air_movement)
 	.add(player_behavior_air_drag)
 	.add(player_behavior_jump)
+;
 
 handle_loop = new PlayerLoop(id);
 handle_loop
@@ -130,6 +131,13 @@ handle_loop
 	.add(player_handle_moving_platforms)
 	.add(player_handle_water)
 	.add(player_handle_bubbles)
+;
+
+visual_loop = new PlayerLoop(id);
+visual_loop
+	.add(player_behavior_visual_angle)
+	.add(player_behavior_visual_flip)
+	.add(player_behavior_visual_create_afterimage)
 ;
 
 is_key_left				= false;

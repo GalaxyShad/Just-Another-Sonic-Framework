@@ -6,6 +6,12 @@
 function player_behavior_collisions_ground() {
 	if (!ground) return;
 	
+	if ((gsp > 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
+		(gsp < 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+	) {
+		gsp = 0;
+	}
+	
 	var _gsp = gsp;
 
 	var _d = 16;
@@ -26,7 +32,7 @@ function player_behavior_collisions_ground() {
 
 function player_collisions_ground() {
 	if (!ground) return;
-	
+		
 	xsp = gsp *  sensor.get_angle_cos();  
 	ysp = gsp * -sensor.get_angle_sin();
 	
@@ -43,6 +49,8 @@ function player_collisions_ground() {
 		( (sensor.get_angle() <= 15 || sensor.get_angle() >= 345 ) && ground) ? 
 		SENSOR_WALLBOX_NORMAL : SENSOR_WALLBOX_SLOPES
 	);
+	
+	
 	
 	while (sensor.is_collision_solid_right()) {
 		sensor.set_position(
@@ -96,6 +104,12 @@ function player_collisions_ground() {
 
 function player_behavior_collisions_air() {
 	if (ground) return;
+	
+	if ((xsp > 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
+		(xsp < 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+	) {
+		xsp = 0;
+	}
 	
 	x += xsp;
 	y += ysp;
