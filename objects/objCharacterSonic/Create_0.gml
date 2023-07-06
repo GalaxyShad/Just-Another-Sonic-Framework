@@ -32,7 +32,7 @@ animator
 	.add("running",		sprSonicRun			)
 	.add("dash",		sprSonicDash		)
 	
-	//.add("curling",		sprSonicRoll		)
+	.add("curling",		sprSonicRoll		)
 	.add("dropdash",	sprSonicDropDash	).speed(.5)
 	
 	.add("spring",		sprSonicSpring		)

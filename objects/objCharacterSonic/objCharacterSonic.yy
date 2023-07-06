@@ -35,5 +35,8 @@
     "path": "sprites/sprSonic/sprSonic.yy",
   },
   "spriteMaskId": null,
+  "tags": [
+    "Character",
+  ],
   "visible": true,
 }

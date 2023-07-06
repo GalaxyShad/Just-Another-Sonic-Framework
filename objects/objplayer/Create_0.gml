@@ -46,10 +46,16 @@ struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
 	}
 });
 
-show_debug_info = false;
+show_debug_info = true;
 
-o_dj	= instance_create_layer(x, y, layer, objDJ);
-camera	= instance_create_layer(x, y, layer, objCamera);
+o_dj = !instance_exists(objDJ) ? 
+	instance_create_layer(x, y, layer, objDJ) :
+	instance_find(objDJ, 0);
+camera = !instance_exists(objCamera) ? 
+	instance_create_layer(x, y, layer, objCamera) :
+	instance_find(objCamera, 0);
+	
+camera.FollowingObject = id;
 
 shield = undefined;
 

@@ -1,10 +1,10 @@
-/// @description Вставьте описание здесь
-// Вы можете записать свой код в этом редакторе
-
-var _o_follow = objPlayer;
+var _o_follow = FollowingObject;
 
 if (!_o_follow)
 	exit;
+	
+if (!instance_exists(_o_follow))
+	return;
 	
 if (lag_timer > 0) {
 	lag_timer--;
@@ -30,9 +30,9 @@ if (_o_follow.x >= _vbox.right)
 if (_o_follow.x <= _vbox.left)
 	x += max(_follow_x - _vbox.left, -MAX_SPD)
 
-if (_o_follow == objPlayer) {	
-	if ( objPlayer.ground) {
-		if ( objPlayer.gsp <= 8)
+if (object_get_parent(_o_follow.object_index) == objPlayer) {	
+	if ( _o_follow.ground) {
+		if ( _o_follow.gsp <= 8)
 			y += clamp(_follow_y - y, -4, 4);
 		else 
 			y += clamp(_follow_y - y, -MAX_SPD, MAX_SPD);

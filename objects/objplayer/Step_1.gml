@@ -27,6 +27,11 @@ if (keyboard_check_pressed(ord("S"))) {
 	//animator.set("idle");
 }
 
+if (keyboard_check_pressed(ord("W"))) {
+	var _changer = instance_find(objCharacterChanger, 0);
+	_changer.change(id);
+}
+
 if keyboard_check(ord("2"))
 	game_set_speed(20, gamespeed_fps);
 else if keyboard_check(ord("1"))

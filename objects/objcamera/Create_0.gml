@@ -8,6 +8,8 @@ scale = 1;
 
 #macro MAX_SPD 16
 
+
+
 offset_x = 0;
 offset_y = 0;
 
