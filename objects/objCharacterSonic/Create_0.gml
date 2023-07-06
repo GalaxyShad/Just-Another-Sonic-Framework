@@ -11,10 +11,11 @@ SENSOR_WALLBOX_SLOPES	=	[10, 0];
 sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
 state  = create_basic_player_states();
 
-state.override("jump", new SonicStateJump());
-state.override("look_up", new SonicStateLookUp());
-state.add("peelout", new SonicStatePeelout());
-state.add("dropdash", new SonicStateDropDash());
+state.override("jump",		new SonicStateJump());
+state.override("look_up",	new SonicStateLookUp());
+
+state.add("peelout",	 new SonicStatePeelout());
+state.add("dropdash",	 new SonicStateDropDash());
 
 physics = new PlayerPhysics(,{
 	acceleration_speed:		0.1875,
@@ -57,10 +58,10 @@ animator
 	.add("transform",   sprSonicTransform	).stop_on_end().speed(.5)
 	
 	// === Super ===
-	.add_super("idle",		sprSuperSonic	 ).speed(0.25)
-	.add_super("walking",	sprSuperSonicWalk)
-	.add_super("running",	sprSuperSonicRun )
-	.add_super("dash",		sprSuperSonicDash )
+	.add_super("idle",		sprSuperSonic		).speed(0.25)
+	.add_super("walking",	sprSuperSonicWalk	)
+	.add_super("running",	sprSuperSonicRun	)
+	.add_super("dash",		sprSuperSonicDash	)
 	.add_super("look_up",	sprSuperSonicLookUp ).stop_on_end().speed(.25)
 	.add_super("look_down",	sprSuperSonicCrouch ).stop_on_end().speed(.25)
 ;

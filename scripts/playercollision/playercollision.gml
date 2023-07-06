@@ -1,13 +1,7 @@
 
-function player_handle_objects() {
-	player_handle_layers();
-	player_handle_springs();
-	player_handle_rings();
-	player_handle_spikes();
-	player_handle_monitors();
-	player_handle_moving_platforms();
-	player_handle_water();
-	
+
+
+function player_handle_bubbles() {
 	var _o_bubble = sensor.collision_object(objBigBubble);
 	if (_o_bubble) {
 		xsp = 0;
@@ -24,6 +18,29 @@ function player_handle_objects() {
 }
 
 function player_collision() {
+	if (ground) {
+		var _gsp = gsp;
+
+		var _d = 16;
+
+		gsp = _gsp % _d;
+		player_ground_collision();	
+
+		if (ground) {
+			for (var i = 0; i < floor(abs(_gsp) / _d) * _d; i+=_d) {
+				gsp = sign(_gsp)*_d;
+				player_ground_collision();	
+				if (!ground) break;
+			}
+		}
+
+		gsp = _gsp;
+	} else {
+		player_ground_collision();	
+	}
+}
+
+function player_ground_collision() {
 
 	if (ground) {
 		xsp = gsp *  dcos(sensor.get_angle());

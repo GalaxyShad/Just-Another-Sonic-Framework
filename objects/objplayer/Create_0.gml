@@ -99,6 +99,28 @@ timer_control_lock = new Timer2(
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
+
+behavior_loop = new PlayerLoop(id);
+behavior_loop
+	.add(player_switch_sensor_radius)
+	.add(player_collision)
+	.add(player_ground_movement)
+	.add(player_air_movement)
+
+handle_loop = new PlayerLoop(id);
+handle_loop
+	.add(player_handle_layers)
+	.add(player_handle_rings)
+	.add(player_handle_springs)
+	.add(player_handle_spikes)
+	.add(player_handle_monitors)
+	.add(player_handle_moving_platforms)
+	.add(player_handle_water)
+	.add(player_handle_bubbles)
+;
+
+
+
 is_key_left				= false;
 is_key_right			= false;
 is_key_up				= false;

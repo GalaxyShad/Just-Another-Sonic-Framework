@@ -11,35 +11,22 @@ if (state.current() == "die") {
 }
 
 
-player_switch_sensor_radius();
+struct_foreach(behavior_loop.get_loop(), function(_key, _value) {
+	var _fun = _value.func;
+			
+	if (_value.active == true)
+		_fun();
+});
 
-if (ground) {
-	var _gsp = gsp;
-
-	var _d = 16;
-
-	gsp = _gsp % _d;
-	player_collision();	
-
-	if (ground) {
-		for (var i = 0; i < floor(abs(_gsp) / _d) * _d; i+=_d) {
-			gsp = sign(_gsp)*_d;
-			player_collision();	
-			if (!ground) break;
-		}
-	}
-
-	gsp = _gsp;
-} else {
-	player_collision();	
-}
+struct_foreach(handle_loop.get_loop(), function(_key, _value) {
+	var _fun = _value.func;
+			
+	if (_value.active == true)
+		_fun();
+});
 
 
-//////////////////////////////////////////////////////
 
-player_ground_movement();
-player_air_movement();
-player_handle_objects();
 
 
 if (allow_jump && ground && is_key_action_pressed) {
