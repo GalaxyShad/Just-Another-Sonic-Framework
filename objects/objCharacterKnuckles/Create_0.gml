@@ -62,7 +62,7 @@ animator
 	.add("die",			sprKnucklesDie		).speed(0)
 	
 	
-	.add("glide",			sprKnucklesGlide		)
+	.add("glide",			sprKnucklesGlide	)
 	.add("glideRotation",	sprKnucklesUngroundedRotation)
 	.add("drop",			sprKnucklesDrop		).stop_on_end().speed(0.1)
 	.add("land",			sprKnucklesLand		).stop_on_end().speed(0)
