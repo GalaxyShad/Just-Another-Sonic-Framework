@@ -72,7 +72,6 @@ function State(_owner) constructor {
 			return;
 		}
 		
-		
 		__state()[$ _method_name](__owner);
 	}
 	

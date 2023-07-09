@@ -111,35 +111,27 @@ function player_behavior_collisions_air() {
 		xsp = 0;
 	}
 	
-	x += xsp;
+	repeat (abs(xsp)) {
+		var _x_collision = (xsp > 0) ? 
+			sensor.is_collision_solid_right() : 
+			sensor.is_collision_solid_left();
+		
+		if (_x_collision) {
+			xsp = 0;
+			break;
+		}
+		
+		x += sign(xsp);
+		sensor.set_position(x, y);
+	}
+	
+	x += frac(xsp);
 	y += ysp;
 	
 	sensor.set_position(x, y);
 	sensor.set_angle(0);
 	
-	var _sin_ang = sensor.get_angle_sin();
-	var _cos_ang = sensor.get_angle_cos();
-	
-	#region WallCollisions
-	while (sensor.is_collision_solid_right()) {
-		sensor.set_position(
-			sensor.get_position().x - _cos_ang,
-			sensor.get_position().y + _sin_ang
-		);
-	}
 
-	while (sensor.is_collision_solid_left()) {
-		sensor.set_position(
-			sensor.get_position().x + _cos_ang,
-			sensor.get_position().y - _sin_ang
-		);
-	}
-	
-	x += sensor.get_position().x - x;
-	y += sensor.get_position().y - y;
-	
-	#endregion
-		
 	#region Celling
 	if (sensor.is_collision_solid_top() && ysp < 0) {
 		sensor.set_angle(180);
