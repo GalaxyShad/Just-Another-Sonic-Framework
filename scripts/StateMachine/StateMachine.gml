@@ -24,7 +24,6 @@ function State(_owner) constructor {
 		
 		_state.super = function() {
 			__super_method(__owner);
-			//show_debug_message($"{__owner}");	
 		}
 		
 		__state_map[$ _state_name] = _state;
@@ -57,17 +56,9 @@ function State(_owner) constructor {
 			)
 		}
 		
-		var _prev = __state_map[$ __current_state];
-		
-		if (_prev != undefined && _prev[$ "on_exit"] != undefined) 
-			_prev.on_exit(__owner);
-			
+		__call_if_exists("on_exit");
 		__current_state = _new_state;
-		
-		var _new = __state();
-		
-		if (_new && _new[$ "on_start"] != undefined)
-			_new.on_start(__owner);
+		__call_if_exists("on_start");
 	};
 	
 
