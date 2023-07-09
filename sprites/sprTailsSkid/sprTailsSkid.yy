@@ -24,7 +24,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"70917cbe-4eee-4726-a705-f5ba5771203a","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 9,
+  "origin": 4,
   "parent": {
     "name": "Tails",
     "path": "folders/Objects/Player/Sprites/Tails.yy",
@@ -62,7 +62,7 @@
     "visibleRange": null,
     "volume": 1.0,
     "xorigin": 16,
-    "yorigin": 11,
+    "yorigin": 16,
   },
   "swatchColours": null,
   "swfPrecision": 2.525,

@@ -1,4 +1,6 @@
 
+tired = false;
+
 SFX_COLOR_MAGIC			=	#FC9000;
 SFX_COLOR_MAGIC_SUPER	=	#FFCE57;
 
@@ -23,7 +25,6 @@ add_basic_player_states(state);
 state.override("jump",		new TailsStateJump());
 
 state.add("fly",			new TailsStateFly());
-state.add("fly_tired",		new TailsStateFlyTired());
 
 physics = new PlayerPhysics();
 
@@ -42,7 +43,7 @@ animator
 	
 	.add("curling",		sprTailsRoll	)
 	
-	.add("spring",		sprTailsCorkscrew	)
+	.add("spring",		sprTailsCorkscrew)
 	.add("spindash",	sprTailsSpindash)
 	.add("push",		sprTailsPush	).speed(.125)
 	
@@ -52,7 +53,7 @@ animator
 	.add("balancing_b",	sprTailsBalancing).speed(.05)
 	
 	.add("hurt",		sprTailsHurt	).stop_on_end()
-	.add("breathe",		sprTailsSkid	).stop_on_end().speed(.5)	
+	.add("breathe",		sprTailsBreathe	).stop_on_end().speed(.5)	
 	
 	.add("die",			sprTailsDie		).speed(0)
 		

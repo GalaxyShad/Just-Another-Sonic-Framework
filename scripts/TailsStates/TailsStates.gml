@@ -9,31 +9,34 @@ function TailsStateJump() : PlayerStateJump() constructor {
 
 function TailsStateFly() : BaseState() constructor {
 	#macro FLY_GRAVITY_FORCE 0.03125
+	#macro FLY_FLYING_FORCE 0.125
 	
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		tired=false;
 		__time_fly=0;
 		__fly_action=false;
 	}};
 	
 	on_step = function(player) {with player {
-		
-		if(__fly_action && !sensor.is_collision_solid_top()) ysp-=0.125;
+		if(__fly_action && !sensor.is_collision_solid_top()) ysp-=FLY_FLYING_FORCE;
 		else ysp+=FLY_GRAVITY_FORCE;
-		
-		
-		if (ysp > 4) ysp = 4;
-		if (__time_fly < 480){
-			if(is_key_action_pressed) __fly_action=true;
+		if (__time_fly > 480) tired=true;
+		if(!tired){
+			if(is_key_action_pressed && ysp!=1) __fly_action=true;
 		}
-		else state.change_to("fly_tired");
-		if(ysp<-1) __fly_action=false;
+		if(ysp<-1 || tired) __fly_action=false;
 		__time_fly++;
 	}};
 	
 	on_animate = function(player) {with player {
-		if (!physics.is_underwater()) animator.set("fly");
-		else animator.set("swim");
+		if(tired){
+			if (!physics.is_underwater()) animator.set("fly_tired");
+			else animator.set("swim_tired");
+		}else{
+			if (!physics.is_underwater()) animator.set("fly");
+			else animator.set("swim");
+		}
 	}};
 	
 	on_landing = function(player) {with player {
@@ -44,28 +47,3 @@ function TailsStateFly() : BaseState() constructor {
 		behavior_loop.enable(player_behavior_apply_gravity);
 	}};
 }
-
-function TailsStateFlyTired() : BaseState() constructor {
-	on_start = function(player) {with (player) {
-		behavior_loop.disable(player_behavior_apply_gravity);
-	}};
-	
-	on_step = function(player) {with player {
-		ysp+=FLY_GRAVITY_FORCE;
-		if (ysp > 4) ysp = 4;
-	}};
-	
-	on_animate = function(player) {with player {
-		if (!physics.is_underwater()) animator.set("fly_tired");
-		else animator.set("swim_tired");
-	}};
-	
-	on_landing = function(player) {with player {
-		state.change_to("normal");
-	}};
-	
-	on_exit = function(player) {with (player) {
-		behavior_loop.enable(player_behavior_apply_gravity);
-	}};
-}
-
