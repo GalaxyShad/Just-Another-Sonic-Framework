@@ -17,6 +17,7 @@ function player_behavior_visual_angle() {
 
 
 function player_behavior_visual_flip() {
+	if(state.current() == "climbe") show_debug_message("Hi");
 	if (!ground) {
 		if		(is_key_right)	image_xscale = 1;
 		else if (is_key_left)	image_xscale = -1;

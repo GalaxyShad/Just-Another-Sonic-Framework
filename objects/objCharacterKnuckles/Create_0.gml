@@ -1,4 +1,6 @@
 
+drop_time = 0;
+
 SFX_COLOR_MAGIC			=	#D80024;
 SFX_COLOR_MAGIC_SUPER	=	#FFCE57;
 
@@ -63,7 +65,7 @@ animator
 	
 	
 	.add("glide",			sprKnucklesGlide	)
-	.add("glideRotation",	sprKnucklesUngroundedRotation)
+	.add("glideRotation",	sprKnucklesUngroundedRotation).speed(0.075)
 	.add("drop",			sprKnucklesDrop		).stop_on_end().speed(0.1)
 	.add("land",			sprKnucklesLand		).stop_on_end().speed(0)
 	.add("climbe",			sprKnucklesClimbe	).speed(0)

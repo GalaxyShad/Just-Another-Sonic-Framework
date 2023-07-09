@@ -15,6 +15,7 @@ function KnucklesStateGlide() : BaseState() constructor {
 	
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		visual_loop.disable(player_behavior_visual_flip);
 		allow_jump = false;
 		allow_movement = false;
 		animator.set("glide");
@@ -42,6 +43,7 @@ function KnucklesStateGlide() : BaseState() constructor {
 		allow_jump = true;	
 		allow_movement = true;
 		behavior_loop.enable(player_behavior_apply_gravity);
+		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
 
@@ -52,6 +54,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	
 	on_start = function(player) { with player {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		visual_loop.disable(player_behavior_visual_flip);
 		allow_jump = false;
 		allow_movement = false;
 		if(xsp>0) other.__a = 0;
@@ -81,19 +84,41 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) { with player {
-		allow_jump = true;	
+		allow_jump = true;
 		allow_movement = true;
-		behavior_loop.enable(player_behavior_apply_gravity);		
+		image_xscale *= -1;
+		behavior_loop.enable(player_behavior_apply_gravity);
+		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
 
 function KnucklesStateDrop() : BaseState() constructor {		
 	on_start = function(player) {with (player) {
+		allow_jump = false;
+		allow_movement = false;	
+		drop_time=0;
 		animator.set("drop");
 	}};
-			
+	
+	on_animate = function(player) {with (player) {
+		if(ground) animator.set("look_down");
+	}};
+	
+	on_step = function(player) {with (player) {
+		if(ground) {
+			drop_time++;
+			if(drop_time>10) state.change_to("normal");
+		}
+	}};
+	
 	on_landing = function(player) {with player {
-		state.change_to("look_down");
+		drop_time=0;
+		gsp=0;
+	}};
+	
+	on_exit = function(player) { with player {
+		allow_jump = true;
+		allow_movement = true;	
 	}};
 }
 
@@ -101,10 +126,11 @@ function KnucklesStateClimbe() : BaseState() constructor {
 	#macro CLIMBE_ACCELERATION	1
 		
 	on_start = function(player) {with (player) {
-		behavior_loop.disable(player_behavior_apply_gravity);		
+		behavior_loop.disable(player_behavior_apply_gravity);
+		visual_loop.disable(player_behavior_visual_flip);
 		allow_movement = false;
-		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale=1;
-		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale=-1;
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale = 1;
+		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale = -1;
 		animator.set("climbe");
 	}};
 	
@@ -127,9 +153,9 @@ function KnucklesStateClimbe() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
-		audio_play_sound(sndPlrJump, 0, false);
 		allow_movement = true;
 		behavior_loop.enable(player_behavior_apply_gravity);
+		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
 
