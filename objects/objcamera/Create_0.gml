@@ -1,7 +1,7 @@
 /// @description Вставьте описание здесь
 // Вы можете записать свой код в этом редакторе
 
-scale = 0.5;
+scale = 1;
 
 #macro VIEW_WIDTH	480 * scale//426
 #macro VIEW_HEIGHT	270 * scale//240

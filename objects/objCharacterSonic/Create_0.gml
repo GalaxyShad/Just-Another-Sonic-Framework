@@ -50,7 +50,7 @@ animator
 	.add("curling",		sprSonicRoll		)
 	.add("dropdash",	sprSonicDropDash	).speed(.5)
 	
-	.add("spring",		sprSonicSpring		)
+	.add("spring",		sprSonicSpring		).speed(.125)
 	.add("spindash",	sprSonicSpindash	)
 	.add("push",		sprSonicPush		).speed(.125)
 	
