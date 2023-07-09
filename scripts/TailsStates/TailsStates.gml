@@ -9,6 +9,7 @@ function TailsStateJump() : PlayerStateJump() constructor {
 
 function TailsStateFly() : BaseState() constructor {
 	#macro FLY_GRAVITY_FORCE 0.03125
+	
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_apply_gravity);
 		__time_fly=0;
@@ -17,7 +18,7 @@ function TailsStateFly() : BaseState() constructor {
 	
 	on_step = function(player) {with player {
 		
-		if(__fly_action) ysp-=0.125;
+		if(__fly_action && !sensor.is_collision_solid_top()) ysp-=0.125;
 		else ysp+=FLY_GRAVITY_FORCE;
 		
 		
@@ -50,7 +51,7 @@ function TailsStateFlyTired() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) {with player {
-		ysp+=0.125;
+		ysp+=FLY_GRAVITY_FORCE;
 		if (ysp > 4) ysp = 4;
 	}};
 	

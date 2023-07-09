@@ -122,8 +122,8 @@ function KnucklesStateClimbe() : BaseState() constructor {
 		}
 		ysp = 0;
 		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= CLIMBE_ACCELERATION;
-		if (is_key_down && !ground) ysp += CLIMBE_ACCELERATION;
-		//if (ground) state.change_to("normal");
+		if (is_key_down) ysp += CLIMBE_ACCELERATION;
+		if (ground) state.change_to("normal");
 	}};
 	
 	on_exit = function(player) {with (player) {
