@@ -284,8 +284,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		var _start_point = __floor_box.coords[3];
 		
 		if (is_collision_ground_right_edge()) {
-			show_debug_message("da");
-			
 			_dir = -1;
 			_start_point = __floor_box.coords[2];
 		}
@@ -328,18 +326,33 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			y: _right_point.y 
 		};
 		
-		//var _temp_angle = __angle;
-		//set_angle(round(_temp_angle / 10) * 10);
-		
 		for (var i = 0; i < __max_expand; i++) {
-			if (__is_collision_point_solid(_lpoint) || __collision_point(_lpoint, parPlatform) != noone) {
+			if ((__collision_point(_lpoint, parSolidNoAngle) != noone) ||
+				(__collision_point(_rpoint, parSolidNoAngle) != noone)
+			) {
+				_lpoint.is_found = true;
+				_rpoint.is_found = true;
+				
+				_lpoint.x = _rpoint.x;
+				_lpoint.y = _rpoint.y;
+				
+				break;
+			}
+			
+			if ((__is_collision_point_solid(_lpoint) || 
+				__collision_point(_lpoint, parPlatform) != noone)
+				//&& __collision_point(_lpoint, parSolidNoAngle) == noone
+			) {
 				_lpoint.is_found = true;
 			} else if (!_lpoint.is_found) {
 				_lpoint.x += __angle_sin;
 				_lpoint.y += __angle_cos;
 			}
 			
-			if (__is_collision_point_solid(_rpoint) || __collision_point(_rpoint, parPlatform) != noone) {
+			if ((__is_collision_point_solid(_rpoint) || 
+				__collision_point(_rpoint, parPlatform) != noone)
+				//&& __collision_point(_rpoint, parSolidNoAngle) == noone
+			) {
 				_rpoint.is_found = true;
 			} else if (!_rpoint.is_found) {
 				_rpoint.x += __angle_sin;
@@ -352,28 +365,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		if (_rpoint.is_found && _lpoint.is_found) {
 			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
 		}
-		
-		//set_angle(_temp_angle);
-		
-		/*
-		var tollerance = 5;
-		
-		if (abs(angle_difference(_new_angle, _temp_angle)) < tollerance)
-			_new_angle = _temp_angle;
-		
-		if (_new_angle >= 360 - tollerance || _new_angle <= 0 + tollerance)
-			_new_angle = 0;
-			
-		if (_new_angle >= 90 - tollerance && _new_angle <= 90 + tollerance)
-			_new_angle = 90;
-			
-		if (_new_angle >= 180 - tollerance && _new_angle <= 180 + tollerance)
-			_new_angle = 180;
-			
-		if (_new_angle >= 270 - tollerance  && _new_angle <= 270 + tollerance)
-			_new_angle = 270;
-		*/
-		
 		
 		return floor(_new_angle);
 	};
