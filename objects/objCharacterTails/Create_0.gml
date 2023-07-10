@@ -4,12 +4,11 @@ tired = false;
 SFX_COLOR_MAGIC			=	#FC9000;
 SFX_COLOR_MAGIC_SUPER	=	#FFCE57;
 
-PAL_CLASSIC = [ #2424b4, #2448d8, #4848fc, #6c6cfc ];
+PAL_CLASSIC = [ #900000, #B46C48, #FC9000, #FCB400 ];
 PAL_SUPER   = [ 
-	[ #ce9034, #ffac34, #ffce57, #ffff74 ],
-	[ #ffac74, #ffce90, #ffffac, #ffffce ], 
-	[ #ffffaa, #ffffaa, #ffffaa, #ffffaa ],
-	[ #ffac74, #ffce90, #ffffac, #ffffce ], 
+	[ #B46C48, #B46C48, #FCB424, #FCD848 ], 
+	[ #D86C48, #D86C48, #FCD848, #FCD890 ],
+	[ #FC9048, #FC9048, #FCD890, #FCFCB4 ], 
 ];
 
 SENSOR_FLOORBOX_NORMAL	=	[9, 15];
@@ -57,7 +56,7 @@ animator
 	
 	.add("die",			sprTailsDie		).speed(0)
 		
-	//.add("transform",   sprTailsTransform	).stop_on_end().speed(.5)/
+	.add("transform",   sprTailsTransform).stop_on_end().speed(.5)
 	.add("fly",			sprTailsFly		).speed(.125)
 	.add("fly_tired",	sprTailsFlyTired).speed(.125)
 	.add("swim",		sprTailsSwim	).speed(.125)

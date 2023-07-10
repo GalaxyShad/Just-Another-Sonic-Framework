@@ -4,12 +4,14 @@ drop_time = 0;
 SFX_COLOR_MAGIC			=	#D80024;
 SFX_COLOR_MAGIC_SUPER	=	#FFCE57;
 
-PAL_CLASSIC = [ #2424b4, #2448d8, #4848fc, #6c6cfc ];
+PAL_CLASSIC = [ #000000, #6C0024, #D80024, #FC486C ];
 PAL_SUPER   = [ 
-	[ #ce9034, #ffac34, #ffce57, #ffff74 ],
-	[ #ffac74, #ffce90, #ffffac, #ffffce ], 
-	[ #ffffaa, #ffffaa, #ffffaa, #ffffaa ],
-	[ #ffac74, #ffce90, #ffffac, #ffffce ], 
+	[ #000000, #6C0024, #D80048, #FC4890 ],
+	[ #000000, #902448, #FC486C, #FC6CB4 ], 
+	[ #000000, #B4486C, #FC6C90, #FC90D8 ],
+	[ #000000, #D86C90, #FC90B4, #FCB4FC ], 
+	[ #000000, #FC90B4, #FCB4D8, #FCD8FC ], 
+	[ #000000, #FCB4D8, #FCD8FC, #FCFCFC ], 
 ];
 
 SENSOR_FLOORBOX_NORMAL	=	[8, 20];
@@ -71,7 +73,7 @@ animator
 	.add("climbe",			sprKnucklesClimbe	).speed(0)
 	.add("clambering",		sprKnucklesClambering).stop_on_end().speed(0.1)
 	
-	//.add("transform",   sprKnucklesTransform	).stop_on_end().speed(.5)/
+	.add("transform",		sprKnucklesTransform).stop_on_end().speed(.5)
 ;
 animator.set("idle");
 
