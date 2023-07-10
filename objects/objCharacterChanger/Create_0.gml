@@ -9,7 +9,7 @@ count = 0;
 while (true) {
 	if (!object_exists(obj)) break;
 	
-	if (object_get_parent(obj) == objPlayer)
+	if (object_get_parent(obj) == objPlayer && obj != objCharacterTemplate)
 		array_push(characters, obj);
 		
 	obj++;	
