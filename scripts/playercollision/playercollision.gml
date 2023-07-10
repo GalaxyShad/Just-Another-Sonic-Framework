@@ -13,7 +13,6 @@ function player_behavior_collisions() {
 	y = sensor.get_position().y;
 }
 
-
 function player_collisions_ground() {
 	#macro GSP_SLICE 16
 
@@ -30,17 +29,14 @@ function player_collisions_ground() {
 function player_collisions_ground_gsp(_gsp) {
 	if (!ground) return;
 	
-	var _sin_ang = sensor.get_angle_sin();
-	var _cos_ang = sensor.get_angle_cos();
-	
 	if ((gsp > 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
 		(gsp < 0 && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
 	) {
 		gsp = 0;
 	}
 	
-	xsp = _gsp *  _cos_ang;
-	ysp = _gsp * -_sin_ang;
+	xsp = _gsp *  sensor.get_angle_cos();
+	ysp = _gsp * -sensor.get_angle_sin();
 	
 	sensor.set_position(
 		sensor.get_position().x + xsp,
@@ -49,27 +45,27 @@ function player_collisions_ground_gsp(_gsp) {
 	
 	while (sensor.is_collision_solid_right() && _gsp > 0) {
 		sensor.set_position(
-			sensor.get_position().x - _cos_ang,
-			sensor.get_position().y + _sin_ang
+			sensor.get_position().x - sensor.get_angle_cos(),
+			sensor.get_position().y + sensor.get_angle_sin()
 		);
 	}
 
 	while (sensor.is_collision_solid_left() && _gsp < 0) {
 		sensor.set_position(
-			sensor.get_position().x + _cos_ang,
-			sensor.get_position().y - _sin_ang
+			sensor.get_position().x + sensor.get_angle_cos(),
+			sensor.get_position().y - sensor.get_angle_sin()
 		);
 	}
 
 	while (sensor.is_collision_solid_bottom()) {
 		sensor.set_position(
-			sensor.get_position().x - _sin_ang,
-			sensor.get_position().y - _cos_ang
+			sensor.get_position().x - sensor.get_angle_sin(),
+			sensor.get_position().y - sensor.get_angle_cos()
 		);
 	}
 	
 	sensor.set_angle(sensor.get_ground_angle());
-	
+		
 	if (!sensor.is_collision_ground()) {
 		sensor.set_angle(0);
 		ground = false;	
@@ -79,15 +75,15 @@ function player_collisions_ground_gsp(_gsp) {
 	
 	while (!sensor.is_collision_solid_bottom()) {
 		sensor.set_position(
-			sensor.get_position().x + _sin_ang,
-			sensor.get_position().y + _cos_ang
+			sensor.get_position().x + sensor.get_angle_sin(),
+			sensor.get_position().y + sensor.get_angle_cos()
 		);
 	}
 		
 	while (sensor.is_collision_solid_bottom()) {
 		sensor.set_position(
-			sensor.get_position().x - _sin_ang / 1000,
-			sensor.get_position().y - _cos_ang / 1000
+			sensor.get_position().x - sensor.get_angle_sin() / 1000,
+			sensor.get_position().y - sensor.get_angle_cos() / 1000
 		);
 	}
 }
@@ -156,7 +152,6 @@ function player_collisions_air() {
 		}
 	}
 #endregion
-
 #region Ground
 	if (!ground && sensor.is_collision_solid_bottom() && ysp > 0) {
 		ground = true;

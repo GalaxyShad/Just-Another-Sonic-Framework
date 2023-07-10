@@ -287,7 +287,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		if (_default_ground_angle != 0)
 			return _default_ground_angle;
 		
-		var _n = __floor_box.hradius / 2;
+		var _n = 1;//ceil(__floor_box.hradius / 4);
 		
 		var _dir = 1; 
 		var _start_point = __floor_box.coords[3];
@@ -341,7 +341,12 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			if ((__collision_point(_lpoint, parSolidNoAngle) != noone) ||
 				(__collision_point(_rpoint, parSolidNoAngle) != noone)
 			) {
-				return 0;
+				_lpoint.is_found = true;
+				_rpoint.is_found = true;
+				
+				break;
+				
+				//return 0;
 			}
 			
 			if ((__is_collision_point_solid(_lpoint) || 
