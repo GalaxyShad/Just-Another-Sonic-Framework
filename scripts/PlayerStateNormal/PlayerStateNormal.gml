@@ -39,8 +39,8 @@ function PlayerStateNormal() : BaseState() constructor {
 		}
 		
 		// Push
-		if ((is_key_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
-			(is_key_left  && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+		if ((gsp >= 0 && is_key_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
+			(gsp <= 0 && is_key_left  && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
 		) {
 			if (ground) state.change_to("push");
 		}
