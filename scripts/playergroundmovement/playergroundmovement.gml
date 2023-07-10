@@ -6,18 +6,26 @@ function player_behavior_ground_movement() {
 	if (is_key_left) {
 		if (gsp > 0) {
 			gsp -= physics.deceleration_speed;  
-			if (gsp <= 0) gsp = -0.5;  		
+			
+			if (gsp <= 0) 
+				gsp = -0.5;  		
 		} else if (gsp > -physics.top_speed) {		
 			gsp -= physics.acceleration_speed;
-			if (gsp < -physics.top_speed) gsp = -physics.top_speed;  		
+			
+			if (gsp < -physics.top_speed) 
+				gsp = -physics.top_speed;  		
 		} 
 	} else if (is_key_right) {
 		if (gsp < 0) {
 			gsp += physics.deceleration_speed;  
-			if (gsp >= 0) gsp = 0.5;  
+			
+			if (gsp >= 0) 
+				gsp = 0.5;  
 		} else if (gsp < physics.top_speed) {
 			gsp += physics.acceleration_speed;
-			if (gsp > physics.top_speed) gsp = physics.top_speed;  
+			
+			if (gsp > physics.top_speed) 
+				gsp = physics.top_speed;  
 		}
 	}
 }
@@ -25,7 +33,7 @@ function player_behavior_ground_movement() {
 function player_behavior_slope_decceleration() {
 	if (!ground) return;
 	
-	var _slp_dec_value = physics.slope_factor * dsin(sensor.get_angle());
+	var _slp_dec_value = physics.slope_factor * sensor.get_angle_sin();
 	
 	if (abs(_slp_dec_value) >= 0.05078125)
 		gsp -= _slp_dec_value;

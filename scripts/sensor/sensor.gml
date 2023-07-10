@@ -116,6 +116,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__update_coords();
 	}
 	
+	angle_in_range = function(_low, _high) {
+		return (__angle >= _low) && (__angle <= _high);
+	}
+	
 	set_layer = function(_layer) { __layer = _layer; }
 	
 	get_layer = function() { return __layer; }
@@ -278,6 +282,11 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	};
 	
 	get_landing_ground_angle = function() {
+		var _default_ground_angle = get_ground_angle();
+		
+		if (_default_ground_angle != 0)
+			return _default_ground_angle;
+		
 		var _n = __floor_box.hradius / 2;
 		
 		var _dir = 1; 
@@ -317,11 +326,13 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
 		var _lpoint = { 
 			is_found: false, 
+			
 			x: _left_point.x, 
 			y: _left_point.y 
 		};
 		var _rpoint = { 
-			is_found: false, 
+			is_found: false,
+			
 			x: _right_point.x, 
 			y: _right_point.y 
 		};
@@ -330,18 +341,11 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			if ((__collision_point(_lpoint, parSolidNoAngle) != noone) ||
 				(__collision_point(_rpoint, parSolidNoAngle) != noone)
 			) {
-				_lpoint.is_found = true;
-				_rpoint.is_found = true;
-				
-				_lpoint.x = _rpoint.x;
-				_lpoint.y = _rpoint.y;
-				
-				break;
+				return 0;
 			}
 			
 			if ((__is_collision_point_solid(_lpoint) || 
 				__collision_point(_lpoint, parPlatform) != noone)
-				//&& __collision_point(_lpoint, parSolidNoAngle) == noone
 			) {
 				_lpoint.is_found = true;
 			} else if (!_lpoint.is_found) {
@@ -351,7 +355,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			
 			if ((__is_collision_point_solid(_rpoint) || 
 				__collision_point(_rpoint, parPlatform) != noone)
-				//&& __collision_point(_rpoint, parSolidNoAngle) == noone
 			) {
 				_rpoint.is_found = true;
 			} else if (!_rpoint.is_found) {

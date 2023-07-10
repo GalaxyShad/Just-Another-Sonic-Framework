@@ -110,8 +110,7 @@ behavior_loop
 	.add(player_switch_sensor_radius)
 	
 	// Collisions
-	.add(player_behavior_collisions_ground)
-	.add(player_behavior_collisions_air)
+	.add(player_behavior_collisions)
 	
 	// Ground
 	.add(player_behavior_slope_decceleration)
