@@ -1,53 +1,58 @@
 
-// Singleton
-//if (instance_exists(objDJ))
-	//instance_destroy();
 
-__music_map__ = {
+MUSIC_MAP = {
 	speed_shoes:	musSpeedShoes,
 	invincibility:	musInvincibility,
 	drowning:		musDrowning
 }
-#macro MUSIC_MAP __music_map__
 
-level_music			= Music;
-level_music_offset	= 0;
-current_music		= level_music; 
-
-
-
-set_music = function(_music_name) {
-	var _music = MUSIC_MAP[$ _music_name];
+__pause_main_music = function() {
+	var _music = instance_find(objLevelMusic, 0);
+	if (_music == noone) return;
 	
-	if (current_music == level_music) {
-		level_music_offset = audio_sound_get_track_position(current_music);
-	}
-		
-	audio_stop_sound(current_music);
+	_music.pause();
+};
+
+__resume_main_music = function() {
+	var _music = instance_find(objLevelMusic, 0);
+	if (_music = noone) return;
 	
-	if (!audio_is_playing(_music))
-		audio_play_sound(_music, 100, false, 1.0);
-		
-	current_music = _music;
+	_music.resume();
 };
 
-on_end = function(_music_name){};
-
-__play_default = function() {
-	if (!audio_is_playing(level_music))
-		audio_play_sound(level_music, 100, true, ,level_music_offset);	
-		
-	current_music = level_music;
+current = -1;
+play_speed_shoes = function() {
+	if (current == MUSIC_MAP[$ "drowning"]) return;
+	
+	__pause_main_music();
+	
+	if (current != -1) audio_stop_sound(current);
+	
+	current = MUSIC_MAP[$ "speed_shoes"];
+	
+	audio_play_sound(current, 0, false);
 };
 
-play_default = function() {
-	if (current_music != level_music)
-		audio_stop_sound(current_music);
-		
-	__play_default();
+play_invincibility = function() {
+	if (current == MUSIC_MAP[$ "drowning"]) return;
+	
+	__pause_main_music();
+	
+	if (current != -1) audio_stop_sound(current);
+	
+	current = MUSIC_MAP[$ "invincibility"];
+	
+	audio_play_sound(current, 0, false);
 };
 
-__play_default();
-
+play_drowning = function() {
+	__pause_main_music();
+	
+	if (current != -1) audio_stop_sound(current);
+	
+	current = MUSIC_MAP[$ "drowning"];
+	
+	audio_play_sound(current, 0, false);
+};
 
 

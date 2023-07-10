@@ -105,6 +105,10 @@ timer_control_lock = new Timer2(
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
+timer_powerup_invincibility = new Timer2(31 * 60, false);
+
+//powerup_invincibility = true;
+
 
 behavior_loop = new PlayerLoop(id);
 behavior_loop

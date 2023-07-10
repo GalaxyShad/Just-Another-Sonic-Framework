@@ -17,7 +17,7 @@ function player_underwater_event() {
 	if (remaining_air == 12) {
 		// drowning music	
 		show_debug_message("drowning music");
-		o_dj.set_music("drowning");
+		o_dj.play_drowning();
 	} 
 	
 	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {

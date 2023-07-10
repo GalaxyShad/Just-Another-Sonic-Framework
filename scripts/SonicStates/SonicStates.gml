@@ -10,11 +10,12 @@ function SonicStateJump() : PlayerStateJump() constructor {
 	
 	
 	override_on_step = function(player) { super(); with (player) {
-		if (is_key_action_pressed && !is_instanceof(shield, ShieldUseable)) {
-			state.change_to("dropdash");
-		}
+		if (!is_key_action_pressed)
+			return;
 		
-		if (!ground && is_key_action_pressed && !physics.is_super())  {
+		if (!is_instanceof(shield, ShieldUseable) || timer_powerup_invincibility.is_ticking()) {
+			state.change_to("dropdash");
+		} else if (!physics.is_super())  {
 			other.__use_shield(self);
 		}
 	}};
