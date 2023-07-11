@@ -57,6 +57,12 @@ struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
 	}
 });
 
+if (!variable_instance_exists(id, "draw_player")) {
+	draw_player = function() {
+		draw_self();	
+	}
+}
+
 show_debug_info = true;
 
 o_dj = !instance_exists(objDJ) ? 
@@ -165,3 +171,5 @@ is_key_action			= false;
 is_key_action_pressed	= false;
 
 p_sfx_water_run			= -1;
+
+

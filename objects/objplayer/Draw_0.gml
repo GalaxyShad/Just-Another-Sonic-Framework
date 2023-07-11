@@ -28,10 +28,10 @@ if (!timer_invincibility.is_ticking() ||
 			);
 		}
 	
-		draw_self();
+		draw_player();
 		shader_reset();
 	} else {
-		draw_self();	
+		draw_player();	
 	}
 }
 
