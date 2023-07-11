@@ -216,7 +216,7 @@ function KnucklesStateLand() : BaseState() constructor {
 	
 	on_exit = function(player) {with (player) {
 		behavior_loop.enable(player_behavior_ground_movement);
-		behavior_loop.disable(player_behavior_ground_friction);
+		behavior_loop.enable(player_behavior_ground_friction);
 		allow_jump = true;
 	}};
 }
