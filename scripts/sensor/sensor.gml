@@ -151,6 +151,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__update_coords();
 	}
 	
+	get_wall_box = function() {
+		return { hradius: __wall_box.hradius, vradius: __wall_box.vradius };
+	}
+	
 	__collision_line = function(_line, _object) {
 		return collision_line(
 			floor(__x + _line[0].x), floor(__y + _line[0].y),
