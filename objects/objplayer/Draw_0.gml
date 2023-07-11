@@ -35,6 +35,16 @@ if (!timer_invincibility.is_ticking() ||
 	}
 }
 
+if (running_on_water) {
+	draw_sprite_ext(
+		sprSfxWaterRun, 
+		global.tick / 2, 
+		x,
+		y + sensor.get_floor_box().vradius,
+		image_xscale, image_yscale, 0, c_white, 1
+	);	
+}
+
 if (shield != undefined && !physics.is_super() && !timer_powerup_invincibility.is_ticking())
 	shield.draw(x, y);
 	
