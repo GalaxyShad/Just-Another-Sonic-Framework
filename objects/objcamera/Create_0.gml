@@ -3,10 +3,10 @@
 
 scale = 1;
 
-#macro VIEW_WIDTH	480 * scale//426
-#macro VIEW_HEIGHT	270 * scale//240
+#macro VIEW_WIDTH	426 * scale// 426  480
+#macro VIEW_HEIGHT	240 * scale// 240  270
 
-#macro MAX_SPD 16
+#macro MAX_SPD 24
 
 
 

@@ -52,10 +52,12 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 
 	reset = function() {
 		if (__is_underwater) __cancel_underwater();
+		if (__is_super_fast_shoes_on) __cancel_super_fast_shoes(); 
 		
 		__is_super = false;
 		__apply_props(__default_props);
 		
+		if (__is_super_fast_shoes_on) __apply_super_fast_shoes(); 
 		if (__is_underwater) __apply_underwater();
 	};
 	
@@ -90,12 +92,13 @@ function PlayerPhysics(_custom_props = {}, _custom_superform_props = {}) constru
 	
 	apply_super_form = function() {
 		if (__is_underwater) __cancel_underwater();
+		if (__is_super_fast_shoes_on) __cancel_super_fast_shoes(); 
 		
 		__apply_props(__default_superform_props);
 		__is_super = true;
 		
+		if (__is_super_fast_shoes_on) __apply_super_fast_shoes(); 
 		if (__is_underwater) __apply_underwater();
-
 	};
 	
 /////////////////////////////////////////////////////////////////////////////

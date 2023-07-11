@@ -10,11 +10,12 @@ function SonicStateJump() : PlayerStateJump() constructor {
 	
 	
 	override_on_step = function(player) { super(); with (player) {
-		if (is_key_action_pressed && !is_instanceof(shield, ShieldUseable)) {
-			state.change_to("dropdash");
-		}
+		if (!is_key_action_pressed)
+			return;
 		
-		if (!ground && is_key_action_pressed && !physics.is_super())  {
+		if (!is_instanceof(shield, ShieldUseable) || timer_powerup_invincibility.is_ticking()) {
+			state.change_to("dropdash");
+		} else if (!physics.is_super())  {
 			other.__use_shield(self);
 		}
 	}};
@@ -96,6 +97,13 @@ function SonicStateDropDash() : BaseState() constructor {
 			gsp = _drpmax * sign(gsp);
 				
 		camera.set_lag_timer(15);
+		
+		instance_create_depth(
+			x, 
+			y + sensor.get_floor_box().vradius, 
+			depth-1, objSfxDropdashDust
+		).image_xscale = image_xscale;
+		
 	}};
 	
 	on_step = function(player) {with player {

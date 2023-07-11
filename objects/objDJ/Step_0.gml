@@ -1,5 +1,5 @@
 
-if ((!audio_sound_get_loop(current_music)) && (!audio_is_playing(current_music))) {
-	on_end(current_music);
-	__play_default();
+if ((!audio_sound_get_loop(current)) && (!audio_is_playing(current))) {
+	if (current != MUSIC_MAP[$ "drowning"])
+		__resume_main_music();
 }

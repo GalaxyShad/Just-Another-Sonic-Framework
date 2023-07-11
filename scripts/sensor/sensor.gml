@@ -116,6 +116,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__update_coords();
 	}
 	
+	angle_in_range = function(_low, _high) {
+		return (__angle >= _low) && (__angle <= _high);
+	}
+	
 	set_layer = function(_layer) { __layer = _layer; }
 	
 	get_layer = function() { return __layer; }
@@ -145,6 +149,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__wall_box.vradius = _box[1];
 		
 		__update_coords();
+	}
+	
+	get_wall_box = function() {
+		return { hradius: __wall_box.hradius, vradius: __wall_box.vradius };
 	}
 	
 	__collision_line = function(_line, _object) {
@@ -278,14 +286,17 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	};
 	
 	get_landing_ground_angle = function() {
-		var _n = __floor_box.hradius / 2;
+		var _default_ground_angle = get_ground_angle();
+		
+		if (_default_ground_angle != 0)
+			return _default_ground_angle;
+		
+		var _n = 1;//ceil(__floor_box.hradius / 4);
 		
 		var _dir = 1; 
 		var _start_point = __floor_box.coords[3];
 		
 		if (is_collision_ground_right_edge()) {
-			//show_debug_message("da");
-			
 			_dir = -1;
 			_start_point = __floor_box.coords[2];
 		}
@@ -319,27 +330,41 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
 		var _lpoint = { 
 			is_found: false, 
+			
 			x: _left_point.x, 
 			y: _left_point.y 
 		};
 		var _rpoint = { 
-			is_found: false, 
+			is_found: false,
+			
 			x: _right_point.x, 
 			y: _right_point.y 
 		};
 		
-		//var _temp_angle = __angle;
-		//set_angle(round(_temp_angle / 10) * 10);
-		
 		for (var i = 0; i < __max_expand; i++) {
-			if (__is_collision_point_solid(_lpoint) || __collision_point(_lpoint, parPlatform) != noone) {
+			if ((__collision_point(_lpoint, parSolidNoAngle) != noone) ||
+				(__collision_point(_rpoint, parSolidNoAngle) != noone)
+			) {
+				_lpoint.is_found = true;
+				_rpoint.is_found = true;
+				
+				break;
+				
+				//return 0;
+			}
+			
+			if ((__is_collision_point_solid(_lpoint) || 
+				__collision_point(_lpoint, parPlatform) != noone)
+			) {
 				_lpoint.is_found = true;
 			} else if (!_lpoint.is_found) {
 				_lpoint.x += __angle_sin;
 				_lpoint.y += __angle_cos;
 			}
 			
-			if (__is_collision_point_solid(_rpoint) || __collision_point(_rpoint, parPlatform) != noone) {
+			if ((__is_collision_point_solid(_rpoint) || 
+				__collision_point(_rpoint, parPlatform) != noone)
+			) {
 				_rpoint.is_found = true;
 			} else if (!_rpoint.is_found) {
 				_rpoint.x += __angle_sin;
@@ -352,28 +377,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		if (_rpoint.is_found && _lpoint.is_found) {
 			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
 		}
-		
-		//set_angle(_temp_angle);
-		
-		/*
-		var tollerance = 5;
-		
-		if (abs(angle_difference(_new_angle, _temp_angle)) < tollerance)
-			_new_angle = _temp_angle;
-		
-		if (_new_angle >= 360 - tollerance || _new_angle <= 0 + tollerance)
-			_new_angle = 0;
-			
-		if (_new_angle >= 90 - tollerance && _new_angle <= 90 + tollerance)
-			_new_angle = 90;
-			
-		if (_new_angle >= 180 - tollerance && _new_angle <= 180 + tollerance)
-			_new_angle = 180;
-			
-		if (_new_angle >= 270 - tollerance  && _new_angle <= 270 + tollerance)
-			_new_angle = 270;
-		*/
-		
 		
 		return floor(_new_angle);
 	};

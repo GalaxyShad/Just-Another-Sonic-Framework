@@ -62,6 +62,7 @@ show_debug_info = true;
 o_dj = !instance_exists(objDJ) ? 
 	instance_create_layer(x, y, layer, objDJ) :
 	instance_find(objDJ, 0);
+	
 camera = !instance_exists(objCamera) ? 
 	instance_create_layer(x, y, layer, objCamera) :
 	instance_find(objCamera, 0);
@@ -112,14 +113,17 @@ timer_control_lock = new Timer2(
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
+timer_powerup_invincibility = new Timer2(31 * 60, false);
+
+//powerup_invincibility = true;
+
 
 behavior_loop = new PlayerLoop(id);
 behavior_loop
 	.add(player_switch_sensor_radius)
 	
 	// Collisions
-	.add(player_behavior_collisions_ground)
-	.add(player_behavior_collisions_air)
+	.add(player_behavior_collisions)
 	
 	// Ground
 	.add(player_behavior_slope_decceleration)
