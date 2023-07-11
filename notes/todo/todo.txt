@@ -11,7 +11,7 @@
 
 # [+] [OPTIMIZATION] Collisions
 
-# [ ] [IMPROVEMENTS] New Sprites
+# [+] [IMPROVEMENTS] New Sprites
 
 # [ ] [COMMON ENGINE] Global Controller - change Window Size, fullscr
 
@@ -37,9 +37,9 @@
 	# [+] [TODO] Fire Shield
 	# [+] [TODO] Eggman
 	# [+] [TODO] Rings
-	# [ ] [TODO] Super fast shoes
+	# [+] [TODO] Super fast shoes
+	# [+] [TODO] Super
 	# [ ] [TODO] Invincibility
-	# [ ] [TODO] Super
 	# [ ] [TODO] 1 Up
 # [+] [TODO] Objects - spikes
 # [ ] [TODO] Objects - enemy
@@ -57,8 +57,8 @@
 # [+] [TODO] Player - get hit
 # [+] [TODO] Player - die
 
-# [ ] [TODO] Characters - Tails 
-# [ ] [TODO] Characters - Knux
+# [+-] [TODO] Characters - Tails 
+# [+-] [TODO] Characters - Knux
 
 # [ ] [TODO] HUD
 

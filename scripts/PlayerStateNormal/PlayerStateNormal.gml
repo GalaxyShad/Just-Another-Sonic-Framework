@@ -58,7 +58,6 @@ function PlayerStateNormal() : BaseState() constructor {
 			
 			return;
 		}
-		
 
 		if (_abs_gsp == 0) {
 			if (other.__idle_anim_timer >= 180 && other.__idle_anim_timer < 816)
@@ -75,7 +74,6 @@ function PlayerStateNormal() : BaseState() constructor {
 			else 
 				animator.set("dash");
 		}
-				
 				
 		if (animator.is(["walking", "running", "dash"])) {
 			animator.set_image_speed(0.125 + _abs_gsp / 24.0);

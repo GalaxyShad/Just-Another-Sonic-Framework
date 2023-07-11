@@ -70,6 +70,7 @@ function player_collisions_ground_gsp(_gsp) {
 	var _xsp = _gsp *  sensor.get_angle_cos();
 	var _ysp = _gsp * -sensor.get_angle_sin();
 	
+
 	sensor.set_position(
 		sensor.get_position().x + _xsp,
 		sensor.get_position().y + _ysp
@@ -129,6 +130,7 @@ function player_collisions_ground_gsp(_gsp) {
 function player_collisions_air() {
 	if (ground) return;
 	
+
 	sensor.set_angle(0);
 	
 #region WallCollisions
