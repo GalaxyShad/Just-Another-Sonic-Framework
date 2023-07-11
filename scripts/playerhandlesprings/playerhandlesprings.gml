@@ -17,7 +17,7 @@ function player_handle_springs(){
 	_o_spring = sensor.check_expanded(2, 0, function() { return sensor.collision_right(objSpringYellow);} );
 	if (_o_spring) {
 		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle - 90)) < 60 && _o_spring.image_speed == 0) {
-			if(state.current() != "roll") state.change_to("normal");
+			if(state.current() != "roll" && state.current() != "skid") state.change_to("normal");
 			if (ground) gsp = -_o_spring.spd;
 			else xsp = -_o_spring.spd;
 			_o_spring.image_speed = 1.00;
@@ -28,7 +28,7 @@ function player_handle_springs(){
 	_o_spring = sensor.check_expanded(2, 0, function() { return sensor.collision_left(objSpringYellow);} );
 	if (_o_spring) {
 		if (abs(angle_difference(sensor.get_angle(), _o_spring.image_angle + 90)) < 60 && _o_spring.image_speed == 0) {	
-			if(state.current() != "roll") state.change_to("normal");
+			if(state.current() != "roll" && state.current() != "skid") state.change_to("normal");
 			if (ground) gsp = _o_spring.spd;
 			else xsp = _o_spring.spd;
 			_o_spring.image_speed = 1.00;

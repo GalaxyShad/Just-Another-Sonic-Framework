@@ -36,7 +36,8 @@ draw_text(
 	$"\n" +
 	$"sprite_index:		{sprite_index}\n" +
 	$"image_index:		{image_index}\n" +
-	$"image_speed:		{image_speed}\n"
+	$"image_speed:		{image_speed}\n" +
+	$"image_xscale:		{image_xscale}\n"
 );
 
 

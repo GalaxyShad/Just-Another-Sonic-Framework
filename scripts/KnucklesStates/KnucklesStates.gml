@@ -51,15 +51,15 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	#macro GLIDE_ACCELERATION_ROTATION	2.8125
 	__a = undefined;
 	__t = undefined;
+	__r = undefined;
 	
 	on_start = function(player) { with player {
 		behavior_loop.disable(player_behavior_apply_gravity);
 		visual_loop.disable(player_behavior_visual_flip);
-		allow_jump = false;
 		allow_movement = false;
-		if(xsp>0) other.__a = 0;
-		if(xsp<0) other.__a= 180;
-		other.__t = abs(xsp);
+		other.__a = 90 - 90 * image_xscale;
+		other.__t = xsp;
+		other.__r = 1;
 		show_debug_message($"IT IS __T and XSP, {other.__t}, {xsp}");
 		animator.set("glideRotation");
 	}};
@@ -67,16 +67,23 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	on_step = function(player) {with player {
 		if(ysp<0.5) ysp += GLIDE_GRAVITY_FORCE;
 		if(ysp>0.5) ysp -= GLIDE_GRAVITY_FORCE;
-		if ((sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
-			(sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
-		) {
-			state.change_to("climbe");
-		}
+		if ((sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || (sensor.check_expanded(1, 0, sensor.is_collision_solid_left))) { state.change_to("climbe"); }
 		if (!is_key_action) state.change_to("drop");
-		other.__a -= GLIDE_ACCELERATION_ROTATION * sign(other.__t);
-		xsp = other.__t * dcos(other.__a);
+		
+		
+		if (is_key_left) other.__r=1;
+		if (is_key_right) other.__r=-1;
+		other.__a += GLIDE_ACCELERATION_ROTATION * sign(other.__t) * other.__r;
+		xsp = abs(other.__t) * dcos(other.__a);
+		
+		
 		show_debug_message($"{other.__a}, {dcos(other.__a)}");
 		if(dcos(other.__a)==1 || dcos(other.__a)==-1) state.change_to("glide");
+	}};
+	
+	on_animate = function(player) {with player {
+		animator.set("glideRotation");
+		animator.set_image_index(other.__a/45);
 	}};
 	
 	on_landing = function(player) {with player {
@@ -84,9 +91,8 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) { with player {
-		allow_jump = true;
 		allow_movement = true;
-		image_xscale *= -1;
+		if(sign(other.__t) != sign(xsp)) image_xscale *= -1;
 		behavior_loop.enable(player_behavior_apply_gravity);
 		visual_loop.enable(player_behavior_visual_flip);
 	}};
@@ -94,6 +100,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 
 function KnucklesStateDrop() : BaseState() constructor {		
 	on_start = function(player) {with (player) {
+		behavior_loop.disable(player_behavior_ground_movement);
 		allow_jump = false;
 		allow_movement = false;	
 		drop_time=0;
@@ -117,6 +124,7 @@ function KnucklesStateDrop() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) { with player {
+		behavior_loop.enable(player_behavior_ground_movement);
 		allow_jump = true;
 		allow_movement = true;	
 	}};
@@ -163,6 +171,7 @@ function KnucklesStateClambering() : BaseState() constructor {
 	on_start = function(player) {with (player) {
 		allow_jump = false;
 		allow_movement = false;
+		behavior_loop.disable(player_behavior_ground_movement);
 		time_climbeEx=40;
 		xsp=0;
 		y-=27;
@@ -176,6 +185,7 @@ function KnucklesStateClambering() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
+		behavior_loop.enable(player_behavior_ground_movement);
 		allow_jump = true;
 		allow_movement = true;
 	}};
@@ -183,23 +193,31 @@ function KnucklesStateClambering() : BaseState() constructor {
 
 function KnucklesStateLand() : BaseState() constructor {
 	on_start = function(player) {with (player) {
+		behavior_loop.disable(player_behavior_ground_movement);
+		behavior_loop.disable(player_behavior_ground_friction);
 		allow_jump = false;
-		allow_movement = false;
+		rise_time=0;
 		animator.set("land");
 	}};
 	
 	on_step = function(player) {with player {
+		if(xsp==0) {
+			rise_time++;
+			if (rise_time>10) state.change_to("normal");
+		}
+		gsp -= min(abs(gsp), 0.125) * sign(gsp);
 		
-		if (abs(xsp)<3) animator.set_image_speed(1);
-		if (abs(xsp)<2) state.change_to("normal");
+	}};
+	
+	on_animate = function(player) {with (player) {
+		if(xsp==0) animator.set_image_index(1);
+		else animator.set_image_index(0);
 	}};
 	
 	on_exit = function(player) {with (player) {
-		gsp = 0;
-		allow_jump = true;	
-		allow_movement = true;	
+		behavior_loop.enable(player_behavior_ground_movement);
+		behavior_loop.disable(player_behavior_ground_friction);
+		allow_jump = true;
 	}};
 }
-
-
 

@@ -128,6 +128,10 @@ function PlayerAnimator() constructor {
 		return __image_index;
 	};
 	
+	set_image_index = function(_image_index) {
+		__image_index=_image_index;
+	};
+	
 	animate = function() {
 		var _anim = __get_current_animation();
 		
