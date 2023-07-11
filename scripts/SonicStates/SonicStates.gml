@@ -97,6 +97,13 @@ function SonicStateDropDash() : BaseState() constructor {
 			gsp = _drpmax * sign(gsp);
 				
 		camera.set_lag_timer(15);
+		
+		instance_create_depth(
+			x, 
+			y + sensor.get_floor_box().vradius, 
+			depth-1, objSfxDropdashDust
+		).image_xscale = image_xscale;
+		
 	}};
 	
 	on_step = function(player) {with player {
