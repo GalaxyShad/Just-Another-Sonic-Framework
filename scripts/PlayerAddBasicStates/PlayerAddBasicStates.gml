@@ -4,7 +4,8 @@ function is_player_sphere() {
 		"jump",
 		"roll",
 		"dropdash",
-		//"glid",
+		"glide",
+		"glideRotation",
 		"land",
 	], state.current());
 }

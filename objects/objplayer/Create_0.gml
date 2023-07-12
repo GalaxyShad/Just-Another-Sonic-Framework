@@ -1,4 +1,12 @@
 
+var num = audio_get_listener_count();
+for( var i = 0; i < num; i++;)
+{
+    var info = audio_get_listener_info(i);
+    audio_set_master_gain(info[? "index"], 0.1);
+    ds_map_destroy(info);
+}
+
 var _VAR_CHECK_LIST = [
 	"SFX_COLOR_MAGIC",
 	"SFX_COLOR_MAGIC_SUPER",
@@ -48,6 +56,12 @@ struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
 		)	
 	}
 });
+
+if (!variable_instance_exists(id, "draw_player")) {
+	draw_player = function() {
+		draw_self();	
+	}
+}
 
 show_debug_info = true;
 
@@ -105,6 +119,10 @@ timer_control_lock = new Timer2(
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
+timer_powerup_invincibility = new Timer2(31 * 60, false);
+
+//powerup_invincibility = true;
+
 
 behavior_loop = new PlayerLoop(id);
 behavior_loop
@@ -153,3 +171,5 @@ is_key_action			= false;
 is_key_action_pressed	= false;
 
 p_sfx_water_run			= -1;
+
+

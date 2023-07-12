@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "shPlayerPalleteSwap",
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Sfx",
+    "path": "folders/Objects/Player/Sfx.yy",
   },
   "type": 1,
 }

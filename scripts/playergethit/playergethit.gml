@@ -2,8 +2,14 @@
 function player_get_hit(){
 	
 	
-	if (timer_invincibility.is_ticking() || state.current() == "hurt" || physics.is_super())
+	if (timer_invincibility.is_ticking() || 
+		state.current() == "hurt" || 
+		physics.is_super() ||
+		timer_powerup_invincibility.is_ticking()
+	) {
 		return;
+	}
+
 		
 	if (global.rings > 0 || shield != undefined) {
 		if (shield == undefined) {

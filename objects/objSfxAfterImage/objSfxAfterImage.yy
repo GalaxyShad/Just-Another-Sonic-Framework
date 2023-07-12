@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Player",
-    "path": "folders/Objects/Player.yy",
+    "name": "Sfx",
+    "path": "folders/Objects/Player/Sfx.yy",
   },
   "parentObjectId": null,
   "persistent": false,

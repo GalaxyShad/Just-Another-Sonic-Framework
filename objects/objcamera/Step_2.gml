@@ -32,8 +32,8 @@ if (_o_follow.x <= _vbox.left)
 
 if (object_get_parent(_o_follow.object_index) == objPlayer) {	
 	if ( _o_follow.ground) {
-		if ( _o_follow.gsp <= 8)
-			y += clamp(_follow_y - y, -4, 4);
+		if ( abs(_o_follow.gsp) <= 8)
+			y += clamp(_follow_y - y, -6, 6);
 		else 
 			y += clamp(_follow_y - y, -MAX_SPD, MAX_SPD);
 	} else {
@@ -45,7 +45,7 @@ if (object_get_parent(_o_follow.object_index) == objPlayer) {
 	}
 }
 else{
-	y += clamp(_follow_y - y, -4, 4);
+	y += clamp(_follow_y - y, -6, 6);
 }
 
 

@@ -28,15 +28,47 @@ if (!timer_invincibility.is_ticking() ||
 			);
 		}
 	
-		draw_self();
+		draw_player();
 		shader_reset();
 	} else {
-		draw_self();	
+		draw_player();	
 	}
 }
 
-if (shield != undefined && !physics.is_super())
+if (running_on_water) {
+	draw_sprite_ext(
+		sprSfxWaterRun, 
+		global.tick / 2, 
+		x,
+		y + sensor.get_floor_box().vradius,
+		image_xscale, image_yscale, 0, c_white, 1
+	);	
+}
+
+if (state.current() == "spindash") {
+	draw_sprite_ext(
+		sprSfxSpindashDust, 
+		global.tick / 2, 
+		x,
+		y + sensor.get_floor_box().vradius,
+		image_xscale, image_yscale, 0, c_white, 1
+	);	
+}
+
+if (shield != undefined && !physics.is_super() && !timer_powerup_invincibility.is_ticking())
 	shield.draw(x, y);
+	
+if (timer_powerup_invincibility.is_ticking()) {
+	var _dist = irandom_range(16, 20);
+	var _dir = irandom(16) * 22.5;
+	
+	instance_create_depth(
+		x + lengthdir_x(_dist, _dir), 
+		y + lengthdir_y(_dist, _dir), 
+		depth-2, objSfxInvicibilitySparkle
+	);	
+}
+	
 	
 if (!animator.is_animation_exists(animator.current())) {
 	draw_set_halign(fa_center);
