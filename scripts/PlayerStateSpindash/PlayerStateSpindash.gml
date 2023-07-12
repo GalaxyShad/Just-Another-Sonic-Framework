@@ -10,13 +10,15 @@ function PlayerStateSpindash() : BaseState() constructor {
 		
 		with player {
 			allow_jump = false;	
-			allow_movement = false;	
+			//allow_movement = false;
+			behavior_loop.disable(player_behavior_ground_movement);
 			animator.set("spindash");	
 		}
 	};
 	
 	on_exit = function(player) { with player {
-		allow_jump = true;	
+		behavior_loop.enable(player_behavior_ground_movement);
+		allow_jump = true;
 		allow_movement = true;	
 	}};
 	

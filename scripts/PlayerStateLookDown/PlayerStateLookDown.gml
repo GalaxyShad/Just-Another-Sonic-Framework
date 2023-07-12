@@ -3,13 +3,15 @@
 function PlayerStateLookDown() : BaseState() constructor {
 	on_start = function(player) { with player {
 		allow_jump = false;	
-		allow_movement = false;	
+		behavior_loop.disable(player_behavior_ground_movement);
+		//allow_movement = false;	
 		animator.set("look_down");
 	}};
 	
 	on_exit = function(player) { with player {
-		allow_jump = true;	
-		allow_movement = true;	
+		allow_jump = true;
+		behavior_loop.enable(player_behavior_ground_movement);
+		//allow_movement = true;	
 	}};
 	
 	on_step = function(player) { with player {
