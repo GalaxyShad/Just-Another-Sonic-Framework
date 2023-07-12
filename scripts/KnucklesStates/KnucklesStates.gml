@@ -17,7 +17,6 @@ function KnucklesStateGlide() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_apply_gravity);
 		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
-		allow_jump = false;
 		animator.set("glide");
 	}};
 	
@@ -40,7 +39,6 @@ function KnucklesStateGlide() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
-		allow_jump = true;
 		behavior_loop.enable(player_behavior_apply_gravity);
 		behavior_loop.enable(player_behavior_air_movement);
 		visual_loop.enable(player_behavior_visual_flip);
@@ -102,7 +100,8 @@ function KnucklesStateDrop() : BaseState() constructor {
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_ground_movement);
 		behavior_loop.disable(player_behavior_air_movement);
-		allow_jump = false;
+		behavior_loop.disable(player_behavior_jump);
+		//allow_jump = false;
 		drop_time=0;
 		animator.set("drop");
 	}};
@@ -126,7 +125,8 @@ function KnucklesStateDrop() : BaseState() constructor {
 	on_exit = function(player) { with player {
 		behavior_loop.enable(player_behavior_ground_movement);
 		behavior_loop.enable(player_behavior_air_movement);
-		allow_jump = true;
+		behavior_loop.enable(player_behavior_jump);
+		//allow_jump = true;
 	}};
 }
 
@@ -173,8 +173,9 @@ function KnucklesStateClimbe() : BaseState() constructor {
 
 function KnucklesStateClambering() : BaseState() constructor {
 	on_start = function(player) {with (player) {
-		allow_jump = false;
+		//allow_jump = false;
 		//allow_movement = false;
+		behavior_loop.disable(player_behavior_jump);
 		behavior_loop.disable(player_behavior_ground_movement);
 		time_climbeEx=40;
 		xsp=0;
@@ -189,8 +190,9 @@ function KnucklesStateClambering() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
+		behavior_loop.enable(player_behavior_jump);
 		behavior_loop.enable(player_behavior_ground_movement);
-		allow_jump = true;
+		//allow_jump = true;
 		//allow_movement = true;
 	}};
 }
@@ -199,7 +201,8 @@ function KnucklesStateLand() : BaseState() constructor {
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_ground_movement);
 		behavior_loop.disable(player_behavior_ground_friction);
-		allow_jump = false;
+		behavior_loop.disable(player_behavior_jump);
+		//allow_jump = false;
 		rise_time=0;
 		animator.set("land");
 	}};
@@ -221,7 +224,8 @@ function KnucklesStateLand() : BaseState() constructor {
 	on_exit = function(player) {with (player) {
 		behavior_loop.enable(player_behavior_ground_movement);
 		behavior_loop.enable(player_behavior_ground_friction);
-		allow_jump = true;
+		behavior_loop.enable(player_behavior_jump);
+		//allow_jump = true;
 	}};
 }
 

@@ -9,17 +9,19 @@ function PlayerStateSpindash() : BaseState() constructor {
 		__spinrev = 0;
 		
 		with player {
-			allow_jump = false;	
+			//allow_jump = false;	
 			//allow_movement = false;
+			behavior_loop.disable(player_behavior_jump);
 			behavior_loop.disable(player_behavior_ground_movement);
 			animator.set("spindash");	
 		}
 	};
 	
 	on_exit = function(player) { with player {
+		behavior_loop.enable(player_behavior_jump);
 		behavior_loop.enable(player_behavior_ground_movement);
-		allow_jump = true;
-		allow_movement = true;	
+		//allow_jump = true;
+		//allow_movement = true;	
 	}};
 	
 	on_step = function(player) {
