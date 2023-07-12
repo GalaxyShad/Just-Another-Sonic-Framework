@@ -17,7 +17,7 @@ function PlayerStateLookDown() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) { with player {
-		if (!is_key_down || !ground)
+		if (!is_key_down || !ground || is_key_left || is_key_right)
 			state.change_to("normal");
 		else if (abs(gsp) >= 1.0)
 			state.change_to("roll");
