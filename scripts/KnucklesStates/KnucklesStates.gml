@@ -15,9 +15,9 @@ function KnucklesStateGlide() : BaseState() constructor {
 	
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
 		allow_jump = false;
-		allow_movement = false;
 		animator.set("glide");
 	}};
 	
@@ -40,9 +40,9 @@ function KnucklesStateGlide() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
-		allow_jump = true;	
-		allow_movement = true;
+		allow_jump = true;
 		behavior_loop.enable(player_behavior_apply_gravity);
+		behavior_loop.enable(player_behavior_air_movement);
 		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
@@ -55,8 +55,8 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	
 	on_start = function(player) { with player {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
-		allow_movement = false;
 		other.__a = 90 - 90 * image_xscale;
 		other.__t = xsp;
 		other.__r = 1;
@@ -91,9 +91,9 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) { with player {
-		allow_movement = true;
 		if(sign(other.__t) != sign(xsp)) image_xscale *= -1;
 		behavior_loop.enable(player_behavior_apply_gravity);
+		behavior_loop.enable(player_behavior_air_movement);
 		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
@@ -101,8 +101,8 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 function KnucklesStateDrop() : BaseState() constructor {		
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_ground_movement);
+		behavior_loop.disable(player_behavior_air_movement);
 		allow_jump = false;
-		allow_movement = false;	
 		drop_time=0;
 		animator.set("drop");
 	}};
@@ -125,8 +125,8 @@ function KnucklesStateDrop() : BaseState() constructor {
 	
 	on_exit = function(player) { with player {
 		behavior_loop.enable(player_behavior_ground_movement);
+		behavior_loop.enable(player_behavior_air_movement);
 		allow_jump = true;
-		allow_movement = true;	
 	}};
 }
 
@@ -135,21 +135,18 @@ function KnucklesStateClimbe() : BaseState() constructor {
 		
 	on_start = function(player) {with (player) {
 		behavior_loop.disable(player_behavior_apply_gravity);
+		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
-		allow_movement = false;
+		//allow_movement = false;
 		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale = 1;
 		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale = -1;
 		animator.set("climbe");
 	}};
 	
 	on_step = function(player) {with player {
-		animator.set_image_speed(ysp/10);
-		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){ state.change_to("clambering"); }
-		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom)){ state.change_to("drop"); }
-		
 		if (is_key_action_pressed){
 			image_xscale *= -1;
-			xsp = (4) * sign(image_xscale);
+			xsp = 4 * image_xscale;
 			ysp = -4;
 			state.change_to("jump");
 			return;
@@ -157,12 +154,19 @@ function KnucklesStateClimbe() : BaseState() constructor {
 		ysp = 0;
 		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= CLIMBE_ACCELERATION;
 		if (is_key_down) ysp += CLIMBE_ACCELERATION;
-		if (ground) state.change_to("normal");
+		
+		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom) || sensor.check_expanded(-1, 1, sensor.is_collision_solid_bottom)){ state.change_to("drop"); return; }
+		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){ state.change_to("clambering"); return; }
+	}};
+	
+	on_animate = function(player) {with player {
+		animator.set_image_speed(ysp/10);
 	}};
 	
 	on_exit = function(player) {with (player) {
-		allow_movement = true;
+		//allow_movement = true;
 		behavior_loop.enable(player_behavior_apply_gravity);
+		behavior_loop.enable(player_behavior_air_movement);
 		visual_loop.enable(player_behavior_visual_flip);
 	}};
 }
