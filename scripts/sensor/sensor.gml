@@ -23,7 +23,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			{ x: 0, y : 0 },
 		]
 	};
-	
 	__wall_box = {
 		hradius : _wall_box[0],
 		vradius : _wall_box[1],
@@ -34,6 +33,15 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			{ x: 0, y : 0 },
 			{ x: 0, y : 0 },
 		]
+	};
+	
+	__lpoint = { 
+		x: 0, 
+		y: 0 
+	};
+	__rpoint = { 
+		x: 0, 
+		y: 0 
 	};
 	
 	/////////////////////////////////////////////////////////////////////
@@ -96,6 +104,17 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		draw_set_color(c_green);
 		draw_circle(__x, __y, 1, false);
 		
+		draw_set_color(c_blue); //left
+		draw_circle(
+			__x - 1 + __lpoint.x, __y + __lpoint.y, 
+			1, false
+		);
+		draw_set_color(c_lime) //right
+		draw_circle(
+			__x - 1 + __rpoint.x, __y + __rpoint.y, 
+			1, false
+		);
+		
 		draw_set_color(c_white);
 	};
 	
@@ -121,16 +140,13 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	}
 	
 	set_layer = function(_layer) { __layer = _layer; }
-	
 	get_layer = function() { return __layer; }
 	
 	get_angle = function() { return __angle; }
-	
 	get_angle_sin = function() { return __angle_sin; }
 	get_angle_cos = function() { return __angle_cos; }
 	
 	set_position = function(_x, _y) { __x = _x; __y = _y; }
-	
 	get_position = function() { return { x: __x, y: __y }; }
 	
 	set_floor_box = function(_box) {
@@ -139,7 +155,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		__update_coords();
 	}
-	
 	get_floor_box = function() {
 		return { hradius: __floor_box.hradius, vradius: __floor_box.vradius };
 	}
@@ -150,7 +165,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		__update_coords();
 	}
-	
 	get_wall_box = function() {
 		return { hradius: __wall_box.hradius, vradius: __wall_box.vradius };
 	}
@@ -162,7 +176,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			_object, true, true
 		);
 	}
-	
 	__collision_point = function(_point, _object) {
 		return collision_point(
 			floor(__x + _point.x), floor(__y + _point.y),
@@ -177,7 +190,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			(__collision_line(_line, parLow) != noone  && __layer == 1)
 		);
 	}
-	
 	__is_collision_point_solid = function(_point) {
 		return (
 			(__collision_point(_point, parSolid) != noone) || 
@@ -185,8 +197,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			(__collision_point(_point, parLow) != noone  && __layer == 1)
 		);
 	}
-	
-
 	
 	collision_object = function(_object, _expand = 0) {
 		return collision_rectangle(
@@ -197,44 +207,32 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			_object, true, true
 		);
 	};
-	
 	collision_bottom = function(_object, _expand = 0) { 
 		return __collision_line(FLOORBOX_BOTTOM_LINE, _object);
 	}
-	
 	collision_top = function(_object, _expand = 0) { 
 		return __collision_line(FLOORBOX_TOP_LINE, _object);
 	}
-	
 	collision_left = function(_object, _expand = 0) { 
 		return __collision_line(WALLBOX_LEFT_LINE, _object);
 	}
-	
 	collision_right = function(_object, _expand = 0) { 
 		return __collision_line(WALLBOX_RIGHT_LINE, _object);	
 	}
-	
 	
 	is_collision_solid_bottom = function() {
 		return __is_collision_line_solid(FLOORBOX_BOTTOM_LINE) || 
 			   collision_bottom(parPlatform) != noone;
 	};
-	
-	
 	is_collision_solid_top = function() {
 		return __is_collision_line_solid(FLOORBOX_TOP_LINE);
 	};
-	
-	
 	is_collision_solid_left = function() {
 		return __is_collision_line_solid(WALLBOX_LEFT_LINE);
 	};
-	
-	
 	is_collision_solid_right = function() {
 		return __is_collision_line_solid(WALLBOX_RIGHT_LINE);
 	};
-	
 	
 	check_expanded = function(_hexpand, _vexpand, _function) {
 		__floor_box.hradius += _hexpand;
@@ -253,7 +251,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		return _result;
 	}
-
+	
 	is_collision_ground = function() {
 		for (var i = 0; i < __max_expand; i++) {
 			if (check_expanded(0, i, is_collision_solid_bottom))
@@ -262,8 +260,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		return false;
 	};
-	
-	
 	is_collision_ground_left_edge = function() {
 		var _dst_point = {
 			x: __floor_box.coords[3].x + __max_expand * __angle_sin,
@@ -273,8 +269,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		return __is_collision_line_solid([__floor_box.coords[3], _dst_point]) ||
 			   __collision_line([__floor_box.coords[3], _dst_point], parPlatform) != noone;
 	};
-	
-	
 	is_collision_ground_right_edge = function() {
 		var _dst_point = {
 			x: __floor_box.coords[2].x + __max_expand * __angle_sin,
@@ -353,18 +347,14 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 				//return 0;
 			}
 			
-			if ((__is_collision_point_solid(_lpoint) || 
-				__collision_point(_lpoint, parPlatform) != noone)
-			) {
+			if ((__is_collision_point_solid(_lpoint) || __collision_point(_lpoint, parPlatform) != noone)) {
 				_lpoint.is_found = true;
 			} else if (!_lpoint.is_found) {
 				_lpoint.x += __angle_sin;
 				_lpoint.y += __angle_cos;
 			}
 			
-			if ((__is_collision_point_solid(_rpoint) || 
-				__collision_point(_rpoint, parPlatform) != noone)
-			) {
+			if ((__is_collision_point_solid(_rpoint) || __collision_point(_rpoint, parPlatform) != noone)) {
 				_rpoint.is_found = true;
 			} else if (!_rpoint.is_found) {
 				_rpoint.x += __angle_sin;
@@ -372,15 +362,26 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			}
 		}
 		
+		__lpoint.x=_lpoint.x;
+		__lpoint.y=_lpoint.y;
+		__rpoint.x=_rpoint.x;
+		__rpoint.y=_rpoint.y;
+		
 		var _new_angle = 0;
-					   
+		
 		if (_rpoint.is_found && _lpoint.is_found) {
+			//_new_angle = round(point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y)/9)*9;
 			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
 		}
 		
+		show_debug_message($"angle {floor(_new_angle)}, cos={dcos(_new_angle)}, sin={dsin(_new_angle)}");
+		show_debug_message($"xy left sensor {_left_point.x} {_left_point.y}");
+		show_debug_message($"xy left point {_lpoint.x} {_lpoint.y}");
+		show_debug_message($"xy left vector {_left_point.x-_lpoint.x} {_left_point.y-_lpoint.y}");
+		show_debug_message($"xy right sensor {_right_point.x} {_right_point.y}");
+		show_debug_message($"xy rigth point {_rpoint.x} {_rpoint.y}");
+		show_debug_message($"xy left vector {_right_point.x-_rpoint.x} {_right_point.y-_rpoint.y}");
 		return floor(_new_angle);
 	};
 	
-	
-
 }
