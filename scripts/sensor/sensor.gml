@@ -35,11 +35,11 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		]
 	};
 	
-	__lpoint = { 
+	__left_ground_point = { 
 		x: 0, 
 		y: 0 
 	};
-	__rpoint = { 
+	__right_ground_point = { 
 		x: 0, 
 		y: 0 
 	};
@@ -73,8 +73,6 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	#macro WALLBOX_LEFT_LINE	__get_wall_box_left()
 	#macro WALLBOX_RIGHT_LINE	__get_wall_box_right()
 	
-	
-	
 	draw = function() {
 		__update_coords();
 		
@@ -106,12 +104,12 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		
 		draw_set_color(c_blue); //left
 		draw_circle(
-			__x - 1 + __lpoint.x, __y + __lpoint.y, 
+			__x - 1 + __left_ground_point.x, __y + __left_ground_point.y, 
 			1, false
 		);
 		draw_set_color(c_lime) //right
 		draw_circle(
-			__x - 1 + __rpoint.x, __y + __rpoint.y, 
+			__x - 1 + __right_ground_point.x, __y + __right_ground_point.y, 
 			1, false
 		);
 		
@@ -362,10 +360,10 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			}
 		}
 		
-		__lpoint.x=_lpoint.x;
-		__lpoint.y=_lpoint.y;
-		__rpoint.x=_rpoint.x;
-		__rpoint.y=_rpoint.y;
+		__left_ground_point.x=_lpoint.x;
+		__left_ground_point.y=_lpoint.y;
+		__right_ground_point.x=_rpoint.x;
+		__right_ground_point.y=_rpoint.y;
 		
 		var _new_angle = 0;
 		
