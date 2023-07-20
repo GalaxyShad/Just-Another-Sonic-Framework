@@ -372,6 +372,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
 		}
 		
+		/*
 		show_debug_message($"angle {floor(_new_angle)}, cos={dcos(_new_angle)}, sin={dsin(_new_angle)}");
 		show_debug_message($"xy left sensor {_left_point.x} {_left_point.y}");
 		show_debug_message($"xy left point {_lpoint.x} {_lpoint.y}");
@@ -379,6 +380,7 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		show_debug_message($"xy right sensor {_right_point.x} {_right_point.y}");
 		show_debug_message($"xy rigth point {_rpoint.x} {_rpoint.y}");
 		show_debug_message($"xy left vector {_right_point.x-_rpoint.x} {_right_point.y-_rpoint.y}");
+		*/
 		return floor(_new_angle);
 	};
 	
