@@ -97,6 +97,7 @@
     {"name":"objHud","order":4,"path":"objects/objHud/objHud.yy",},
     {"name":"objCharacterTemplate","order":3,"path":"objects/objCharacterTemplate/objCharacterTemplate.yy",},
     {"name":"sprTailsSwim","order":29,"path":"sprites/sprTailsSwim/sprTailsSwim.yy",},
+    {"name":"sprEhzTileset","order":4,"path":"sprites/sprEhzTileset/sprEhzTileset.yy",},
     {"name":"ShieldUseable","order":1,"path":"scripts/ShieldUseable/ShieldUseable.yy",},
     {"name":"sprSonic","order":1,"path":"sprites/sprSonic/sprSonic.yy",},
     {"name":"sprSonicBoredEx","order":2,"path":"sprites/sprSonicBoredEx/sprSonicBoredEx.yy",},

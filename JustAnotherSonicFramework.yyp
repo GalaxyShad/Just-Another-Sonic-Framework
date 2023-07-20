@@ -130,6 +130,7 @@
     {"id":{"name":"objHud","path":"objects/objHud/objHud.yy",},},
     {"id":{"name":"objCharacterTemplate","path":"objects/objCharacterTemplate/objCharacterTemplate.yy",},},
     {"id":{"name":"sprTailsSwim","path":"sprites/sprTailsSwim/sprTailsSwim.yy",},},
+    {"id":{"name":"sprEhzTileset","path":"sprites/sprEhzTileset/sprEhzTileset.yy",},},
     {"id":{"name":"ShieldUseable","path":"scripts/ShieldUseable/ShieldUseable.yy",},},
     {"id":{"name":"sprSonic","path":"sprites/sprSonic/sprSonic.yy",},},
     {"id":{"name":"sprSonicBoredEx","path":"sprites/sprSonicBoredEx/sprSonicBoredEx.yy",},},
