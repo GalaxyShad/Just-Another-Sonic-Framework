@@ -47,7 +47,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.6.0.89",
+    "IDEVersion": "2023.11.1.129",
   },
   "resources": [
     {"id":{"name":"sprTailsSkid","path":"sprites/sprTailsSkid/sprTailsSkid.yy",},},
@@ -124,6 +124,7 @@
     {"id":{"name":"PlayerLanding","path":"scripts/PlayerLanding/PlayerLanding.yy",},},
     {"id":{"name":"PlayerStateSkid","path":"scripts/PlayerStateSkid/PlayerStateSkid.yy",},},
     {"id":{"name":"PlayerHandleWater","path":"scripts/PlayerHandleWater/PlayerHandleWater.yy",},},
+    {"id":{"name":"parEnemy","path":"objects/parEnemy/parEnemy.yy",},},
     {"id":{"name":"SprSurface43","path":"sprites/SprSurface43/SprSurface43.yy",},},
     {"id":{"name":"sprSuperSonicCrouch","path":"sprites/sprSuperSonicCrouch/sprSuperSonicCrouch.yy",},},
     {"id":{"name":"objSfxRingSparkle","path":"objects/objSfxRingSparkle/objSfxRingSparkle.yy",},},
@@ -133,6 +134,7 @@
     {"id":{"name":"ShieldUseable","path":"scripts/ShieldUseable/ShieldUseable.yy",},},
     {"id":{"name":"sprSonic","path":"sprites/sprSonic/sprSonic.yy",},},
     {"id":{"name":"sprSonicBoredEx","path":"sprites/sprSonicBoredEx/sprSonicBoredEx.yy",},},
+    {"id":{"name":"Object70","path":"objects/Object70/Object70.yy",},},
     {"id":{"name":"PlayerSwitchSensorRadius","path":"scripts/PlayerSwitchSensorRadius/PlayerSwitchSensorRadius.yy",},},
     {"id":{"name":"sprSpikes","path":"sprites/sprSpikes/sprSpikes.yy",},},
     {"id":{"name":"objLayerToLow","path":"objects/objLayerToLow/objLayerToLow.yy",},},
@@ -268,6 +270,7 @@
     {"id":{"name":"sndUnderwaterWarningChime","path":"sounds/sndUnderwaterWarningChime/sndUnderwaterWarningChime.yy",},},
     {"id":{"name":"PlayerHandleMovingPlatforms","path":"scripts/PlayerHandleMovingPlatforms/PlayerHandleMovingPlatforms.yy",},},
     {"id":{"name":"sprSonicBreathe","path":"sprites/sprSonicBreathe/sprSonicBreathe.yy",},},
+    {"id":{"name":"PlayerHandleEnemy","path":"scripts/PlayerHandleEnemy/PlayerHandleEnemy.yy",},},
     {"id":{"name":"parLow","path":"objects/parLow/parLow.yy",},},
     {"id":{"name":"sprShield","path":"sprites/sprShield/sprShield.yy",},},
     {"id":{"name":"PlayerStateRoll","path":"scripts/PlayerStateRoll/PlayerStateRoll.yy",},},
@@ -362,6 +365,7 @@
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmAnimation","path":"rooms/rmAnimation/rmAnimation.yy",},},
   ],
+  "templateType": null,
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
   ],
