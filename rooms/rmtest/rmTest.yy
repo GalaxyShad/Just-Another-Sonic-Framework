@@ -604,7 +604,9 @@
     {"name":"inst_2557CEDC","path":"rooms/rmTest/rmTest.yy",},
     {"name":"inst_2DC6B74F","path":"rooms/rmTest/rmTest.yy",},
     {"name":"inst_33DFCA78","path":"rooms/rmTest/rmTest.yy",},
-    {"name":"inst_7A4F67EC","path":"rooms/rmTest/rmTest.yy",},
+    {"name":"inst_6D9F0804","path":"rooms/rmTest/rmTest.yy",},
+    {"name":"inst_248F4039","path":"rooms/rmTest/rmTest.yy",},
+    {"name":"inst_7A8152A0","path":"rooms/rmTest/rmTest.yy",},
   ],
   "isDnd": false,
   "layers": [
@@ -912,7 +914,9 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2CC43B68","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objSpikes","path":"objects/objSpikes/objSpikes.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":5776.0,"y":272.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_31FE1653","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objSpikes","path":"objects/objSpikes/objSpikes.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":5744.0,"y":272.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_30DBD233","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objSpikes","path":"objects/objSpikes/objSpikes.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":5712.0,"y":272.0,},
-        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7A4F67EC","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"objBackgrounder","path":"objects/objBackgrounder/objBackgrounder.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":200.0,"y":2064.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6D9F0804","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Object70","path":"objects/Object70/Object70.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1104.0,"y":2168.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_248F4039","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Object70","path":"objects/Object70/Object70.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1208.0,"y":2160.0,},
+        {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7A8152A0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Object70","path":"objects/Object70/Object70.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":1312.0,"y":2152.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Solids","depth":0,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_7A3DA94F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Object345","path":"objects/Object345/Object345.yy",},"properties":[],"rotation":0.0,"scaleX":25.000002,"scaleY":2.0,"x":64.0,"y":2128.0,},

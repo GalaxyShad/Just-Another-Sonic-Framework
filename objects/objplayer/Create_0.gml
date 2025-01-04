@@ -154,6 +154,7 @@ handle_loop
 	.add(player_handle_moving_platforms)
 	.add(player_handle_water)
 	.add(player_handle_bubbles)
+	.add(player_handle_enemy)
 ;
 
 visual_loop = new PlayerLoop(id);
