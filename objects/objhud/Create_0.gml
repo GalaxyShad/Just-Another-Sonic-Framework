@@ -8,7 +8,7 @@ global.time = 0;
 
 global.tick = 0;
 
-
+global.font = font_add_sprite(sprNumbers, ord("0"), false, 1);
 
 
 

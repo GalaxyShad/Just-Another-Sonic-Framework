@@ -3,7 +3,8 @@
 
 function PlayerStateHurt() : BaseState() constructor {
 	on_start = function(player) {with (player) {
-		allow_movement = false;		
+		behavior_loop.disable(player_behavior_air_movement);
+		//allow_movement = false;		
 		
 		xsp = -2 * sign(image_xscale);
 		ysp = -4;
@@ -17,7 +18,8 @@ function PlayerStateHurt() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
-		allow_movement = true;			
+		behavior_loop.enable(player_behavior_air_movement);
+		//allow_movement = true;			
 	}};
 	
 	on_landing = function(player) {with (player) {

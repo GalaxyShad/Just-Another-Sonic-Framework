@@ -7,6 +7,7 @@ function PlayerStateTransform() : BaseState() constructor {
 	on_start = function(player) { with player {
 		ground = false;
 		animator.set("transform");
+		//behavior_loop.disable(player_behavior_air_movement);
 		allow_movement = false;
 		other.__timer = 30;
 	}};
@@ -27,6 +28,7 @@ function PlayerStateTransform() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {
-		player.allow_movement = true;	
+		player.allow_movement = true;
+		//behavior_loop.enable(player_behavior_air_movement);
 	};
 }

@@ -29,12 +29,16 @@ if (keyboard_check_pressed(ord("C"))) {
 	_changer.change(id);
 }
 
-if keyboard_check(ord("2"))
-	game_set_speed(20, gamespeed_fps);
-else if keyboard_check(ord("1"))
+if keyboard_check(ord("1"))
 	game_set_speed(60, gamespeed_fps);
+else if keyboard_check(ord("2"))
+	game_set_speed(20, gamespeed_fps);
 else if keyboard_check(ord("3"))
+	game_set_speed(10, gamespeed_fps);
+else if keyboard_check(ord("4"))
 	game_set_speed(5, gamespeed_fps);
+else if keyboard_check(ord("5"))
+	game_set_speed(1, gamespeed_fps);
 	
 
 
