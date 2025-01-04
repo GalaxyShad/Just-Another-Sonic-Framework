@@ -41,11 +41,13 @@ function SonicStateJump() : PlayerStateJump() constructor {
 
 function SonicStateLookUp() : PlayerStateLookUp() constructor {
 	override_on_start = function(player) { super(); with player {
-		allow_jump = false;	
+		//allow_jump = false;
+		behavior_loop.disable(player_behavior_jump);
 	}};
 	
 	override_on_exit = function(player) { super(); with player {
-		allow_jump = true;	
+		//allow_jump = true;
+		behavior_loop.enable(player_behavior_jump);
 	}};
 	
 	override_on_step = function(player) { super(); with (player) {
@@ -116,19 +118,23 @@ function SonicStateDropDash() : BaseState() constructor {
 
 function SonicStatePeelout() : BaseState() constructor {
 	__timer = 0;
-	
+
 	on_start = function(player) { with player {
 		audio_play_sound(sndPlrPeelCharge, 0, false);
 		other.__timer = 0;
-		allow_jump = false;	
-		player.allow_movement = false;	
+		//allow_jump = false;
+		//player.allow_movement = false;
+		behavior_loop.disable(player_behavior_jump);
+		behavior_loop.disable(player_behavior_ground_movement);
 	}};
-	
+
 	on_exit = function(player) { with player {
-		allow_jump = true;	
-		allow_movement = true;	
+		//allow_jump = true;
+		//allow_movement = true;
+		behavior_loop.enable(player_behavior_jump);
+		behavior_loop.enable(player_behavior_ground_movement);
 	}};
-	
+
 	on_step = function(player) { 
 		with player {
 			if (!is_key_up) {
