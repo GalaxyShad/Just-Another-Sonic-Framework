@@ -1,5 +1,162 @@
 
-function Sensor(_x, _y, _floor_box, _wall_box) constructor {
+function AngleMeasurer(position) constructor {
+	__position = position;
+
+	__radius = 10;
+
+	__left_point = [0, 0];
+	__right_point = [0, 0];
+
+	__radius = 9;
+
+	__layer = 0;
+
+	__angle = 0;
+
+	set_angle = function(_angle) {
+		__left_point = [
+			-__radius * dcos(_angle),
+			-__radius * -dsin(_angle)
+		];
+
+		__right_point = [
+			__radius * dcos(_angle),
+			__radius * -dsin(_angle)
+		];
+
+		__angle = _angle;
+	}
+
+	set_layer = function(_layer) {
+		__layer = _layer;
+	}
+
+	__collision_line = function(a, b, obj) {
+		return (collision_line(a[0], a[1], b[0], b[1], obj, true, true) != noone);
+	}
+
+	__collision_line_solid = function(a, b) {
+		return __collision_line(a, b, parSolid) 
+			|| __collision_line(a, b, parPlatform)
+			|| (__collision_line(a, b, parHigh) && __layer == 0)
+			|| (__collision_line(a, b, parLow) && __layer == 1);
+	}
+
+	__ground_point = function(_start_point) {
+		var point = [_start_point[0], _start_point[1]];
+		
+		for (var i = 0; i < 64; i++) {
+			if (__collision_line_solid(_start_point, point)) {
+				return point;
+			}
+
+			point[0] += dsin(__angle);
+			point[1] += dcos(__angle);
+		}
+
+		return undefined;
+	}
+
+	measure = function(on_point_found = function(){}) {
+		var start_point = [__position.x + __left_point[0], __position.y + __left_point[1]];
+
+		var point = [start_point[0], start_point[1]]
+
+		var gnd_point = undefined;
+
+		var first_point = undefined;
+
+		var angle = 0;
+		var count = 0;
+		var same_angle_count = 0;
+
+		var a = undefined;
+
+		var prev_angle = undefined;
+
+		var step = (__radius * 2) / 8;
+
+		for (var i = 0; i < __radius * 2 + 1; i += step) {
+			a = __ground_point(point);
+
+			if (a != undefined) {
+				if (first_point == undefined) {
+					first_point = [a[0], a[1]];
+				}
+
+				if (gnd_point != undefined) {
+					var n = point_direction(gnd_point[0], gnd_point[1], a[0], a[1]);
+
+					if (n != 0) {
+						angle += n;
+						count++;
+					} else {
+						same_angle_count++;
+					}
+
+					prev_angle = n;
+				}
+				
+				gnd_point = [a[0], a[1]];
+
+
+				on_point_found(point, a);
+			}
+
+			point[0] += dcos(__angle) * step ;
+			point[1] += -dsin(__angle) * step;	
+		}
+
+		if (same_angle_count > count) {
+			// if (first_point != undefined && a != undefined) {
+			// 	var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
+
+			// 	if (abs(angle_difference(t, __angle)) <= 30) {
+			// 		angle = t;
+			// 	} else {
+			// 		angle = __angle;
+			// 	}
+			// } else {
+			// 	angle = __angle;
+			// }
+
+			angle = __angle;
+			
+		} else  {
+			if (count == 0) count = 1;
+			angle /= count;
+		} 
+
+		draw_text_transformed(__position.x, __position.y - 24, 
+			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
+			0.4, 0.4, 0);
+
+		return angle;
+	}
+
+	draw = function() {
+		draw_set_color(c_green);
+		draw_circle(__position.x, __position.y, 1, false);
+		draw_line(
+			__position.x + __left_point[0], 
+			__position.y + __left_point[1], 
+			__position.x + __right_point[0], 
+			__position.y + __right_point[1]
+		);
+
+		var a = measure(function(start_point, p) {
+			draw_line(start_point[0], start_point[1], p[0], p[1]);
+		})
+
+		//draw_text_transformed(__position.x, __position.y - 12, string(a), 0.4, 0.4, 0);
+
+		draw_set_color(c_white);
+	}
+
+
+}
+
+function Sensor(_x, _y, _floor_box, _wall_box, _position) constructor {
 	
 	__x = _x;
 	__y = _y;
@@ -7,6 +164,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	__angle = 0;
 	__angle_sin = 0;
 	__angle_cos = 0;
+
+	__angle_measurer = new AngleMeasurer(_position);
 	
 	__layer = 0;
 	
@@ -114,6 +273,8 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		);
 		
 		draw_set_color(c_white);
+
+		__angle_measurer.draw();
 	};
 	
 	__genesis_mode_angle = function(_angle) {
@@ -131,13 +292,17 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 		__angle_cos = dcos(__angle);
 		
 		__update_coords();
+
+		var a = round(__angle / 90) * 90;
+
+		__angle_measurer.set_angle(a);
 	}
 	
 	angle_in_range = function(_low, _high) {
 		return (__angle >= _low) && (__angle <= _high);
 	}
 	
-	set_layer = function(_layer) { __layer = _layer; }
+	set_layer = function(_layer) { __layer = _layer; __angle_measurer.set_layer(_layer); }
 	get_layer = function() { return __layer; }
 	
 	get_angle = function() { return __angle; }
@@ -278,110 +443,11 @@ function Sensor(_x, _y, _floor_box, _wall_box) constructor {
 	};
 	
 	get_landing_ground_angle = function() {
-		var _default_ground_angle = get_ground_angle();
-		
-		if (_default_ground_angle != 0)
-			return _default_ground_angle;
-		
-		var _n = 1;//ceil(__floor_box.hradius / 4);
-		
-		var _dir = 1; 
-		var _start_point = __floor_box.coords[3];
-		
-		if (is_collision_ground_right_edge()) {
-			_dir = -1;
-			_start_point = __floor_box.coords[2];
-		}
-		
-		for (var i = 0; i <= _n; i++) {
-			var _apoint = { 
-				x: _start_point.x, 
-				y: _start_point.y 
-			};
-			
-			var _bpoint = { 
-				x: _start_point.x + __angle_cos * _dir, 
-				y: _start_point.y + __angle_sin * _dir
-			};
-
-
-			var _ang = (_dir == 1) ? 
-				get_ground_angle(_apoint, _bpoint) : 
-				get_ground_angle(_bpoint, _apoint);
-				
-			if (_ang != 0)
-				return _ang;
-				
-			_start_point.x += __angle_cos * _dir;
-			_start_point.y += __angle_sin * _dir;
-		}
-		
-		return 0;
+		return get_ground_angle();
 	};
 	
 	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
-		var _lpoint = { 
-			is_found: false, 
-			
-			x: _left_point.x, 
-			y: _left_point.y 
-		};
-		var _rpoint = { 
-			is_found: false,
-			
-			x: _right_point.x, 
-			y: _right_point.y 
-		};
-		
-		for (var i = 0; i < __max_expand; i++) {
-			if ((__collision_point(_lpoint, parSolidNoAngle) != noone) ||
-				(__collision_point(_rpoint, parSolidNoAngle) != noone)
-			) {
-				_lpoint.is_found = true;
-				_rpoint.is_found = true;
-				
-				break;
-				
-				//return 0;
-			}
-			
-			if ((__is_collision_point_solid(_lpoint) || __collision_point(_lpoint, parPlatform) != noone)) {
-				_lpoint.is_found = true;
-			} else if (!_lpoint.is_found) {
-				_lpoint.x += __angle_sin;
-				_lpoint.y += __angle_cos;
-			}
-			
-			if ((__is_collision_point_solid(_rpoint) || __collision_point(_rpoint, parPlatform) != noone)) {
-				_rpoint.is_found = true;
-			} else if (!_rpoint.is_found) {
-				_rpoint.x += __angle_sin;
-				_rpoint.y += __angle_cos;	
-			}
-		}
-		
-		__left_ground_point.x=_lpoint.x;
-		__left_ground_point.y=_lpoint.y;
-		__right_ground_point.x=_rpoint.x;
-		__right_ground_point.y=_rpoint.y;
-		
-		var _new_angle = 0;
-		
-		if (_rpoint.is_found && _lpoint.is_found) {
-			//_new_angle = round(point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y)/9)*9;
-			_new_angle = point_direction(_lpoint.x, _lpoint.y, _rpoint.x, _rpoint.y);
-		}
-		
-		/*
-		show_debug_message($"angle {floor(_new_angle)}, cos={dcos(_new_angle)}, sin={dsin(_new_angle)}");
-		show_debug_message($"xy left sensor {_left_point.x} {_left_point.y}");
-		show_debug_message($"xy left point {_lpoint.x} {_lpoint.y}");
-		show_debug_message($"xy left vector {_left_point.x-_lpoint.x} {_left_point.y-_lpoint.y}");
-		show_debug_message($"xy right sensor {_right_point.x} {_right_point.y}");
-		show_debug_message($"xy rigth point {_rpoint.x} {_rpoint.y}");
-		show_debug_message($"xy left vector {_right_point.x-_rpoint.x} {_right_point.y-_rpoint.y}");
-		*/
-		return floor(_new_angle);
+		return __angle_measurer.measure();
 	};
 	
 }

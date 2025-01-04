@@ -59,6 +59,7 @@
     {"name":"Object3453132","order":18,"path":"objects/Object3453132/Object3453132.yy",},
     {"name":"Object3457","order":8,"path":"objects/Object3457/Object3457.yy",},
     {"name":"Object70","order":10,"path":"objects/Object70/Object70.yy",},
+    {"name":"Object74","order":20,"path":"objects/Object74/Object74.yy",},
     {"name":"objEhz1CollisionsAll","order":10,"path":"objects/objEhz1CollisionsAll/objEhz1CollisionsAll.yy",},
     {"name":"objEhz1CollisionsPlatform","order":11,"path":"objects/objEhz1CollisionsPlatform/objEhz1CollisionsPlatform.yy",},
     {"name":"objHud","order":4,"path":"objects/objHud/objHud.yy",},

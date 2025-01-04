@@ -18,3 +18,6 @@ timer_speed_shoes.tick();
 timer_powerup_invincibility.tick();
 timer_invincibility.tick();
 
+position.x = x;
+position.y = y;
+

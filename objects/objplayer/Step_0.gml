@@ -1,4 +1,5 @@
-
+position.x = x;
+position.y = y;
 
 state.step();
 

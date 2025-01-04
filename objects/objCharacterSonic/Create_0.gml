@@ -16,7 +16,9 @@ SENSOR_FLOORBOX_ROLL	=	[7, 15];
 SENSOR_WALLBOX_NORMAL	=	[10, 8];
 SENSOR_WALLBOX_SLOPES	=	[10, 0];
 
-sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL);
+position = { x: x, y: y};
+
+sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL, position);
 state  = new State(self);
 add_basic_player_states(state);
 
