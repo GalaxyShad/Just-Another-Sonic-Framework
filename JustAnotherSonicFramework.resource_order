@@ -72,6 +72,7 @@
     {"name":"Sprite5857585960","order":14,"path":"sprites/Sprite5857585960/Sprite5857585960.yy",},
     {"name":"Room4","order":3,"path":"rooms/Room4/Room4.yy",},
     {"name":"sndRing","order":8,"path":"sounds/sndRing/sndRing.yy",},
+    {"name":"objBackgrounder","order":18,"path":"objects/objBackgrounder/objBackgrounder.yy",},
     {"name":"Object19","order":13,"path":"objects/Object19/Object19.yy",},
     {"name":"sprSonicRoll","order":8,"path":"sprites/sprSonicRoll/sprSonicRoll.yy",},
     {"name":"sprSonicSkid","order":10,"path":"sprites/sprSonicSkid/sprSonicSkid.yy",},
