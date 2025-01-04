@@ -42,7 +42,8 @@
 	# [ ] [TODO] Invincibility
 	# [ ] [TODO] 1 Up
 # [+] [TODO] Objects - spikes
-# [ ] [TODO] Objects - enemy
+# [+?] [TODO] Objects - enemy
+	Need more types
 # [ ] [TODO] Objects - moving platforms
 # [ ] [TODO] Objects - end level sign
 

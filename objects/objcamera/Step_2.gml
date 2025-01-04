@@ -1,3 +1,11 @@
+if (keyboard_check_pressed(ord("P"))) {
+	resize(scale + 1);	
+}
+
+if (keyboard_check_pressed(ord("O"))) {
+	resize(scale - 1);	
+}
+
 var _o_follow = FollowingObject;
 
 if (!_o_follow)
