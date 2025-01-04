@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerStateLookUp",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "States",
-    "path": "folders/Objects/Player/Scripts/States.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateLookUp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateLookUp",
+  "parent":{
+    "name":"States",
+    "path":"folders/Objects/Player/Scripts/States.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

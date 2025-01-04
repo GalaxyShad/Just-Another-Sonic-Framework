@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerStateJump",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "States",
-    "path": "folders/Objects/Player/Scripts/States.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateJump",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateJump",
+  "parent":{
+    "name":"States",
+    "path":"folders/Objects/Player/Scripts/States.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

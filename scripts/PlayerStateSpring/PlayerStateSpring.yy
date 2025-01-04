@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerStateSpring",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "States",
-    "path": "folders/Objects/Player/Scripts/States.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateSpring",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateSpring",
+  "parent":{
+    "name":"States",
+    "path":"folders/Objects/Player/Scripts/States.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

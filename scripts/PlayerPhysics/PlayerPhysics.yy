@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerPhysics",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Structs",
-    "path": "folders/Objects/Player/Scripts/Structs.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerPhysics",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerPhysics",
+  "parent":{
+    "name":"Structs",
+    "path":"folders/Objects/Player/Scripts/Structs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

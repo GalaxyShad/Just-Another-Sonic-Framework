@@ -1,9 +1,11 @@
 {
-  "resourceType": "GMNotes",
-  "resourceVersion": "1.1",
-  "name": "TODO",
-  "parent": {
-    "name": "JustAnotherSonicFramework",
-    "path": "JustAnotherSonicFramework.yyp",
+  "$GMNotes":"",
+  "%Name":"TODO",
+  "name":"TODO",
+  "parent":{
+    "name":"JustAnotherSonicFramework",
+    "path":"JustAnotherSonicFramework.yyp",
   },
+  "resourceType":"GMNotes",
+  "resourceVersion":"2.0",
 }

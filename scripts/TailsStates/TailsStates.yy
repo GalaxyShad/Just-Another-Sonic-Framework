@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "TailsStates",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Characters",
-    "path": "folders/Objects/Player/Characters.yy",
+  "$GMScript":"v1",
+  "%Name":"TailsStates",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"TailsStates",
+  "parent":{
+    "name":"Characters",
+    "path":"folders/Objects/Player/Characters.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

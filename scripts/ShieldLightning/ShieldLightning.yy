@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "ShieldLightning",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Shields",
-    "path": "folders/Objects/Player/Shields.yy",
+  "$GMScript":"v1",
+  "%Name":"ShieldLightning",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ShieldLightning",
+  "parent":{
+    "name":"Shields",
+    "path":"folders/Objects/Player/Shields.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

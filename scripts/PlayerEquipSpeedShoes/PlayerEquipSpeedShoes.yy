@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerEquipSpeedShoes",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Public",
-    "path": "folders/Objects/Player/Scripts/Public.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerEquipSpeedShoes",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerEquipSpeedShoes",
+  "parent":{
+    "name":"Public",
+    "path":"folders/Objects/Player/Scripts/Public.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

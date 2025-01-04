@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerHandleMonitors",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Object Handlers",
-    "path": "folders/Objects/Player/Scripts/Object Handlers.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerHandleMonitors",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerHandleMonitors",
+  "parent":{
+    "name":"Object Handlers",
+    "path":"folders/Objects/Player/Scripts/Object Handlers.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

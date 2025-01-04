@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "PlayerStateBreathe",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "States",
-    "path": "folders/Objects/Player/Scripts/States.yy",
+  "$GMScript":"v1",
+  "%Name":"PlayerStateBreathe",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"PlayerStateBreathe",
+  "parent":{
+    "name":"States",
+    "path":"folders/Objects/Player/Scripts/States.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

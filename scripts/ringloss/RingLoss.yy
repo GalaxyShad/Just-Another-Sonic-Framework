@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "RingLoss",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Scripts",
-    "path": "folders/Objects/Player/Scripts.yy",
+  "$GMScript":"v1",
+  "%Name":"RingLoss",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"RingLoss",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Objects/Player/Scripts.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

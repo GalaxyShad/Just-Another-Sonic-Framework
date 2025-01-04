@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "Sensor",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Structs",
-    "path": "folders/Objects/Player/Scripts/Structs.yy",
+  "$GMScript":"v1",
+  "%Name":"Sensor",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Sensor",
+  "parent":{
+    "name":"Structs",
+    "path":"folders/Objects/Player/Scripts/Structs.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
