@@ -24,6 +24,6 @@ function player_behavior_air_drag() {
 	if (ground) return;
 	
 	if (ysp < 0 && ysp > -4) {
-	    xsp -= (((xsp * 1000) div 125) / 256000);
+	    xsp -= (((xsp * 1_000) div 125) / 256_000);
 	}	
 }

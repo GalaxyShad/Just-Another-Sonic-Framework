@@ -103,14 +103,14 @@ function player_collisions_ground_gsp(_gsp) {
 	//if (!sensor.collision_object(objAngleStopper))
 		sensor.set_angle(sensor.get_ground_angle());
 		
-	if (!sensor.is_collision_ground() || 
-		(sensor.collision_object(objAngleStopper) && (!sensor.check_expanded(0, -15, sensor.is_collision_ground_right_edge) || 
-													  !sensor.check_expanded(0, -15, sensor.is_collision_ground_left_edge)))
-	) {
-		sensor.set_angle(_ang);
-		ground = false;	
-		return;
-	}
+	// if (!sensor.is_collision_ground() || 
+	// 	(sensor.collision_object(objAngleStopper) && (!sensor.check_expanded(0, -15, sensor.is_collision_ground_right_edge) || 
+	// 												  !sensor.check_expanded(0, -15, sensor.is_collision_ground_left_edge)))
+	// ) {
+	// 	sensor.set_angle(_ang);
+	// 	ground = false;	
+	// 	return;
+	// }
 
 	if (sensor.is_collision_ground_left_edge() && sensor.is_collision_ground_right_edge()) {
 		while (!sensor.is_collision_solid_bottom()) {
