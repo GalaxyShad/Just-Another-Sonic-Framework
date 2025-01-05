@@ -14,7 +14,20 @@ function SonicStateJump() : PlayerStateJump() constructor {
 			return;
 		
 		if (!is_instanceof(shield, ShieldUseable) || timer_powerup_invincibility.is_ticking()) {
-			state.change_to("dropdash");
+			
+			var a = collision_circle(player.x, player.y, 128, parEnemy, false, true);
+
+			if (a == noone) {
+				a = collision_circle(player.x, player.y, 128, objMonitor, false, true);
+			}
+
+			if (a != noone) {
+				player.x = a.x;
+				player.y = a.y;
+			}
+			
+			
+			//state.change_to("dropdash");
 		} else if (!physics.is_super())  {
 			other.__use_shield(self);
 		}

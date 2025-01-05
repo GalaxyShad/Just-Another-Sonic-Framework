@@ -10,8 +10,8 @@ surface_set_target(surface_water);
 draw_surface_stretched(application_surface, 0, 0, _surface_width, _surface_height);
 draw_set_color(c_white);
 
-//draw_set_alpha(1.0);
-draw_set_alpha(0.3);
+draw_set_alpha(1);
+//draw_set_alpha(0.3);
 draw_set_color(c_blue);
 draw_rectangle(0, 0, _surface_width,  _surface_height, false);
 draw_set_color(c_white);

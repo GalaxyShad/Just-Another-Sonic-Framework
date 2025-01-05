@@ -7,11 +7,13 @@ function player_handle_enemy() {
 		return;
 		
 	if (is_player_sphere()) {
+		instance_create_depth(_o_enemy.x, _o_enemy.y, -1, objEnemyFloatingScore);
 		instance_destroy(_o_enemy);
+
 		
 		if (!ground) {
 			if (ysp > 0)
-				ysp *= -1;
+				ysp = -ysp;
 			else 
 				ysp -= sign(ysp);
 		} 

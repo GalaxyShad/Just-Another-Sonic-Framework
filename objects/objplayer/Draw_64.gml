@@ -5,7 +5,7 @@ if (!show_debug_info)
 	
 
 draw_text(
-	16, 16,
+	camera_get_view_width(camera_get_default()) - 200, 16,
 	$"character:		{object_get_name(object_index)}\n"+
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+

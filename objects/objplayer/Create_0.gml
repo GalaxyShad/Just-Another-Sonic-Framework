@@ -67,7 +67,7 @@ if (!variable_instance_exists(id, "draw_player")) {
 				var a = point_direction(xprevious, yprevious, x, y) - 90;
 		
 				surface_set_target(jump_surface);
-				draw_clear(c_black);
+				draw_clear_alpha(c_black, 0);
 				draw_sprite_ext(sprite_index, image_index, 16, 16, image_xscale, image_yscale, -a, c_white, 1);
 				surface_reset_target();
 
