@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprNoAnimation",
-    "path":"sprites/sprNoAnimation/sprNoAnimation.yy",
+    "name":"sprMasher",
+    "path":"sprites/sprMasher/sprMasher.yy",
   },
   "spriteMaskId":null,
   "visible":true,

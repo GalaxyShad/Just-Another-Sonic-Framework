@@ -55,6 +55,8 @@ if (state.current() == "spindash") {
 	);	
 }
 
+
+
 if (shield != undefined && !physics.is_super() && !timer_powerup_invincibility.is_ticking())
 	shield.draw(x, y);
 	

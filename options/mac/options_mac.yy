@@ -29,7 +29,7 @@
   "option_mac_splash_png":"${base_options_dir}/mac/splash/splash.png",
   "option_mac_start_fullscreen":false,
   "option_mac_team_id":"",
-  "option_mac_texture_page":"2048x2048",
+  "option_mac_texture_page":"8192x8192",
   "option_mac_version":"1.0.0.0",
   "option_mac_vsync":false,
   "option_mac_x86_64":true,

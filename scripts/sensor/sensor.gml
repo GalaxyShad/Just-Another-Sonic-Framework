@@ -74,7 +74,8 @@ function AngleMeasurer(position) constructor {
 
 		var prev_angle = undefined;
 
-		var step = (__radius * 2) / 8;
+		var step = 1;
+		//var step = (__radius * 2) / 8;
 
 		for (var i = 0; i < __radius * 2 + 1; i += step) {
 			a = __ground_point(point);
@@ -108,19 +109,19 @@ function AngleMeasurer(position) constructor {
 		}
 
 		if (same_angle_count > count) {
-			// if (first_point != undefined && a != undefined) {
-			// 	var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
+			if (first_point != undefined && a != undefined) {
+				var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
 
-			// 	if (abs(angle_difference(t, __angle)) <= 30) {
-			// 		angle = t;
-			// 	} else {
-			// 		angle = __angle;
-			// 	}
-			// } else {
-			// 	angle = __angle;
-			// }
+				if (abs(angle_difference(t, __angle)) <= 30) {
+					angle = t;
+				} else {
+					angle = __angle;
+				}
+			} else {
+				angle = __angle;
+			}
 
-			angle = __angle;
+			//angle = __angle;
 			
 		} else  {
 			if (count == 0) count = 1;
