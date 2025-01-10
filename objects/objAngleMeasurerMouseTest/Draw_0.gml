@@ -4,8 +4,6 @@
 x = mouse_x;
 y = mouse_y;
 
-position.x = x;
-position.y = y;
 
 sen.set_angle(0);
 

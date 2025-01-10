@@ -57,45 +57,7 @@ struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
 
 if (!variable_instance_exists(id, "draw_player")) {
 	draw_player = function() {
-		if (animator.current() == "curling") {
-			if (!surface_exists(jump_surface)) {
-				jump_surface = surface_create(32, 32);
-			} else {
-		
-				var a = point_direction(xprevious, yprevious, x, y) - 90;
-		
-				surface_set_target(jump_surface);
-				draw_clear_alpha(c_black, 0);
-				draw_sprite_ext(sprite_index, image_index, 16, 16, image_xscale, image_yscale, -a, c_white, 1);
-				surface_reset_target();
-
-				var yyysp = ysp / 3;
-		
-				var xsc = abs(1 / ((yyysp != 0) ? yyysp : 1)); 
-				if (xsc > 1) xsc = 1;
-
-				var ysc = 1 / xsc;
-				if (ysc < 1)
-				ysc = 1;
-
-				if (ysc > 1.25) ysc = 1.25;
-				if (xsc < 0.75) xsc = 0.75;
-		
-				var half_width = surface_get_width(jump_surface) / 2;
-				var half_height = surface_get_height(jump_surface) / 2;
-		
-				var x_offset = x - half_width * xsc * dcos(a) + half_height * ysc * -dsin(a);
-				var y_offset = y - half_width * xsc * -dsin(a) - half_height * ysc * dcos(a);
-		
-			
-				draw_surface_ext(jump_surface,
-					x_offset,
-					y_offset,
-					xsc, ysc, a, c_white, 1);
-			}
-		} else {
-			draw_self();	
-		}
+		draw_self();	
 	}
 }
 

@@ -95,6 +95,10 @@ function AngleMeasurer(plr_inst) constructor {
 				}
 				
 				gnd_point = [a[0], a[1]];
+				
+				draw_set_color(c_green);
+				draw_line(point[0], point[1], a[0], a[1]);
+				draw_set_color(c_white);
 
 
 				on_point_found(point, a);
@@ -104,25 +108,45 @@ function AngleMeasurer(plr_inst) constructor {
 			point[1] += -dsin(__angle) * step;	
 		}
 
-		if (same_angle_count > count) {
-			if (first_point != undefined && a != undefined) {
-				var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
+		// if (same_angle_count > count) {
+		// 	if (first_point != undefined && a != undefined) {
+		// 		var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
 
-				if (abs(angle_difference(t, __angle)) <= 30) {
-					angle = t;
-				} else {
-					angle = __angle;
-				}
+		// 		if (abs(angle_difference(t, __angle)) <= 30) {
+		// 			angle = t;
+		// 		} else {
+		// 			angle = __angle;
+		// 		}
+		// 	} else {
+		// 		angle = __angle;
+		// 	}
+
+		// 	//angle = __angle;
+			
+		// } else  {
+		// 	if (count == 0) count = 1;
+		// 	angle /= count;
+		// } 
+
+		if (first_point != undefined && a != undefined) {
+			
+			var _e = 2;
+
+			var p1 = [first_point[0] - _e * dsin(__angle), first_point[1] - _e * dcos(__angle)];
+			var p2 = [a[0] - _e * dsin(__angle), a[1] - _e * dcos(__angle)];
+
+			draw_set_color(c_lime);
+			draw_line(p1[0], p1[1], p2[0], p2[1]);
+			draw_set_color(c_white);
+
+			if (!_cb_collision_line(__to_cb_arg(p1, p2))) {
+				angle = point_direction(p1[0], p1[1], p2[0], p2[1]);
 			} else {
 				angle = __angle;
 			}
-
-			//angle = __angle;
-			
-		} else  {
-			if (count == 0) count = 1;
-			angle /= count;
-		} 
+		} else {
+			angle = __angle;
+		}
 
 		draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
 			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
@@ -131,19 +155,18 @@ function AngleMeasurer(plr_inst) constructor {
 		return angle;
 	}
 
-	draw = function() {
+	draw = function(cb) {
 		draw_set_color(c_green);
 		draw_circle(__plr_inst.x, __plr_inst.y, 1, false);
 		draw_line(
-			__plr_inst.x + __left_point[0], 
-			__plr_inst.y + __left_point[1], 
+			__plr_inst.x +  __left_point[0], 
+			__plr_inst.y +  __left_point[1], 
 			__plr_inst.x + __right_point[0], 
 			__plr_inst.y + __right_point[1]
 		);
+		
+		measure(cb);
 
-		// var a = measure(function(start_point, p) {
-		// 	draw_line(start_point[0], start_point[1], p[0], p[1]);
-		// })
 
 		//draw_text_transformed(__position.x, __position.y - 12, string(a), 0.4, 0.4, 0);
 
@@ -495,7 +518,7 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	}
 
 	draw = function() {
-		//__angle_measurer.draw();
+		__angle_measurer.draw(__is_collision_line_solid_and_platform);
 		__floorSensor.draw();
 		
 		draw_set_color(c_green);
