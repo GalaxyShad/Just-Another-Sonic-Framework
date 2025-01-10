@@ -8,8 +8,9 @@ function player_behavior_visual_angle() {
 	if (!ground) {
 		animation_angle += angle_difference(0, animation_angle) / 10;
 	} else {
-		var _ang = (sensor.get_angle() >= 35 && sensor.get_angle() <= 325) ? 
-			sensor.get_angle() : 0;
+		var _ang = collision_detector.is_angle_in_range(35, 325) 
+			? collision_detector.get_angle_data().degrees
+			: 0;
 			
 		animation_angle += angle_difference(_ang, animation_angle) / 4;
 	}

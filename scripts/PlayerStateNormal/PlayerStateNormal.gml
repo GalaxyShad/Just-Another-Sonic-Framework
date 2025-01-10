@@ -30,17 +30,25 @@ function PlayerStateNormal() : BaseState() constructor {
 		}
 		
 		// Balancing
-		var _check_balanced = (sensor.check_expanded(-6, 0, function() { 
-			return (!sensor.is_collision_ground_left_edge() || !sensor.is_collision_ground_right_edge()); 
+		var _check_balanced = (collision_detector.check_expanded(-6, 0, function() { 
+			return (!collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeLeft) || 
+					!collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeRight)); 
 		}));
 		
 		if (ground && gsp == 0 && _check_balanced) {
 			state.change_to("balancing");
 		}
+
+		var col_left_wall = collision_detector.check_expanded(1, 0, function() {
+			return collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Left);
+		});
+		var col_right_wall = collision_detector.check_expanded(1, 0, function() {
+			return collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Right);
+		});
 		
 		// Push
-		if ((gsp >= 0 && is_key_right && sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
-			(gsp <= 0 && is_key_left  && sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+		if ((gsp >= 0 && is_key_right && col_right_wall) || 
+			(gsp <= 0 && is_key_left  && col_left_wall)
 		) {
 			if (ground) state.change_to("push");
 		}

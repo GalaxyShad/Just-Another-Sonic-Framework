@@ -104,7 +104,7 @@ function SonicStateDropDash() : BaseState() constructor {
 		if (sign(image_xscale) == sign(xsp))
 			gsp = (gsp / 4) + (_drpspd * sign(image_xscale));
 		else 
-			gsp = ((sensor.get_angle() == 0) ? 
+			gsp = ((collision_detector.get_angle_data().degrees == 0) ? 
 				0 : 
 				(gsp / 2)) + (_drpspd * sign(image_xscale));
 				
@@ -115,7 +115,7 @@ function SonicStateDropDash() : BaseState() constructor {
 		
 		instance_create_depth(
 			x, 
-			y + sensor.get_floor_box().vradius, 
+			y + collision_detector.get_radius().floor.height, 
 			depth-1, objSfxDropdashDust
 		).image_xscale = image_xscale;
 		

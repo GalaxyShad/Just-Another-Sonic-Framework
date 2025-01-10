@@ -1,6 +1,8 @@
 
-function AngleMeasurer(position) constructor {
-	__position = position;
+/// @param {Asset.GMObject} plr_inst
+function AngleMeasurer(plr_inst) constructor {
+
+	__plr_inst = plr_inst;
 
 	__radius = 10;
 
@@ -8,8 +10,6 @@ function AngleMeasurer(position) constructor {
 	__right_point = [0, 0];
 
 	__radius = 9;
-
-	__layer = 0;
 
 	__angle = 0;
 
@@ -31,22 +31,18 @@ function AngleMeasurer(position) constructor {
 		__layer = _layer;
 	}
 
-	__collision_line = function(a, b, obj) {
-		return (collision_line(a[0], a[1], b[0], b[1], obj, true, true) != noone);
+	__to_cb_arg = function(a, b) {
+		return {
+			start_point: {x: a[0], y: a[1]},
+			end_point:   {x: b[0], y: b[1]}
+		};
 	}
 
-	__collision_line_solid = function(a, b) {
-		return __collision_line(a, b, parSolid) 
-			|| __collision_line(a, b, parPlatform)
-			|| (__collision_line(a, b, parHigh) && __layer == 0)
-			|| (__collision_line(a, b, parLow) && __layer == 1);
-	}
-
-	__ground_point = function(_start_point) {
+	__ground_point = function(_start_point, _cb_collision_line) {
 		var point = [_start_point[0], _start_point[1]];
 		
 		for (var i = 0; i < 64; i++) {
-			if (__collision_line_solid(_start_point, point)) {
+			if (_cb_collision_line(__to_cb_arg(_start_point, point))) {
 				return point;
 			}
 
@@ -57,8 +53,8 @@ function AngleMeasurer(position) constructor {
 		return undefined;
 	}
 
-	measure = function(on_point_found = function(){}) {
-		var start_point = [__position.x + __left_point[0], __position.y + __left_point[1]];
+	measure = function(_cb_collision_line, on_point_found = function(){}) {
+		var start_point = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
 
 		var point = [start_point[0], start_point[1]]
 
@@ -78,7 +74,7 @@ function AngleMeasurer(position) constructor {
 		//var step = (__radius * 2) / 8;
 
 		for (var i = 0; i < __radius * 2 + 1; i += step) {
-			a = __ground_point(point);
+			a = __ground_point(point, _cb_collision_line);
 
 			if (a != undefined) {
 				if (first_point == undefined) {
@@ -128,7 +124,7 @@ function AngleMeasurer(position) constructor {
 			angle /= count;
 		} 
 
-		draw_text_transformed(__position.x, __position.y - 24, 
+		draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
 			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
 			0.4, 0.4, 0);
 
@@ -137,17 +133,17 @@ function AngleMeasurer(position) constructor {
 
 	draw = function() {
 		draw_set_color(c_green);
-		draw_circle(__position.x, __position.y, 1, false);
+		draw_circle(__plr_inst.x, __plr_inst.y, 1, false);
 		draw_line(
-			__position.x + __left_point[0], 
-			__position.y + __left_point[1], 
-			__position.x + __right_point[0], 
-			__position.y + __right_point[1]
+			__plr_inst.x + __left_point[0], 
+			__plr_inst.y + __left_point[1], 
+			__plr_inst.x + __right_point[0], 
+			__plr_inst.y + __right_point[1]
 		);
 
-		var a = measure(function(start_point, p) {
-			draw_line(start_point[0], start_point[1], p[0], p[1]);
-		})
+		// var a = measure(function(start_point, p) {
+		// 	draw_line(start_point[0], start_point[1], p[0], p[1]);
+		// })
 
 		//draw_text_transformed(__position.x, __position.y - 12, string(a), 0.4, 0.4, 0);
 
@@ -157,298 +153,404 @@ function AngleMeasurer(position) constructor {
 
 }
 
-function Sensor(_x, _y, _floor_box, _wall_box, _position) constructor {
-	
-	__x = _x;
-	__y = _y;
-	
-	__angle = 0;
-	__angle_sin = 0;
-	__angle_cos = 0;
 
-	__angle_measurer = new AngleMeasurer(_position);
+/// @param {Asset.GMObject} _plr_inst
+function FloorWallSensor(_plr_inst) constructor {
 	
-	__layer = 0;
-	
-	__max_expand = 24;
-	
-	__floor_box = {
-		hradius : _floor_box[0],
-		vradius : _floor_box[1],
+	plr_inst = _plr_inst;
+
+	wall_sensor = {
+		radius: 10,
+		points: {
+			left:  { x: 0, y: 0 },
+			right: { x: 0, y: 0 }
+		}
+	}
+
+	floor_sensor = {
+		radius: {
+			width: 9,
+			height: 20
+		},
+		points: {
+			top: {
+				left:  { x: 0, y: 0 },
+				right: { x: 0, y: 0 },
+			},
+
+			bottom: {
+				left:  { x: 0, y: 0 },
+				right: { x: 0, y: 0 },
+			},
+			
+			ext_bottom: {
+				left:  { x: 0, y: 0 },
+				right: { x: 0, y: 0 },
+			}
+
+		}
+	}
+
+	angle_data = {
+		sin: 0,
+		cos: 0,
+		degrees: 0
+	}
+
+	__offset_point = function(offset, angle_info) {
+		return {
+			x: (offset.x * +angle_info.cos) + (offset.y * angle_info.sin),
+			y: (offset.x * -angle_info.sin) + (offset.y * angle_info.cos)
+		}
+	}
+
+	__draw_line = function(p1, p2, color) {
+		draw_set_color(color);
+		draw_line_color(
+			plr_inst.x + p1.x, plr_inst.y + p1.y, 
+			plr_inst.x + p2.x, plr_inst.y + p2.y,
+			color,
+			c_white
+		);
+		draw_set_color(c_white);
+	}
+
+	__update_points = function() {
+		floor_sensor.points = {
+			top: {
+				left:  __offset_point({x: -floor_sensor.radius.width, y: -floor_sensor.radius.height}, angle_data),
+				right: __offset_point({x: +floor_sensor.radius.width, y: -floor_sensor.radius.height}, angle_data),
+			},
+
+			bottom: {
+				left:  __offset_point({x: -floor_sensor.radius.width, y: +floor_sensor.radius.height}, angle_data),
+				right: __offset_point({x: +floor_sensor.radius.width, y: +floor_sensor.radius.height}, angle_data),
+			},
+
+			ext_bottom: {
+				left:  __offset_point({x: -floor_sensor.radius.width, y: +floor_sensor.radius.height+8}, angle_data),
+				right: __offset_point({x: +floor_sensor.radius.width, y: +floor_sensor.radius.height+8}, angle_data),
+			},
+		}
+
+		wall_sensor.points = {
+			left:  __offset_point({x: -wall_sensor.radius , y: 0}, angle_data),
+			right: __offset_point({x: +wall_sensor.radius , y: 0}, angle_data),
+		}
+	}
+
+	set_angle = function(degrees) {
+		angle_data = {
+			sin: dsin(degrees),
+			cos: dcos(degrees),
+			degrees: degrees
+		}
+
+		__update_points();
+	}
+
+	get_angle_data = function() {
+		return {
+			sin: angle_data.sin,
+			cos: angle_data.cos,
+			degrees: angle_data.degrees
+		};
+	}
+
+	enum SensorLines {
+		Top,
+		Bottom,
+
+		Left,
+		Right,
+
+		Floor,
+
+		LeftEdge,
+		RightEdge
+	}
+
+	get_lines = function(lines_type) {
+		var pack = function(left, right) {
+			return { 
+				start_point: { 
+					x: plr_inst.x + left.x,  
+					y: plr_inst.y + left.y,
+				},  
+				end_point: {
+					x: plr_inst.x + right.x,
+					y: plr_inst.y + right.y,
+				}
+			};
+		}
+
+		switch (lines_type) {
+			case SensorLines.Top:
+				return [pack(floor_sensor.points.top.left, floor_sensor.points.top.right)];
+			case SensorLines.Bottom: 
+				return [pack(floor_sensor.points.bottom.left, floor_sensor.points.bottom.right)];
+			case SensorLines.Left:
+				return [pack(wall_sensor.points.left, {x: 0, y: 0})];
+			case SensorLines.Right:
+				return [pack({x: 0, y: 0}, wall_sensor.points.right)];
+
+			case SensorLines.Floor:
+				return [
+					pack(floor_sensor.points.bottom.left, floor_sensor.points.ext_bottom.right),
+					pack(floor_sensor.points.bottom.right, floor_sensor.points.ext_bottom.left)
+				];
+
+			case SensorLines.LeftEdge:
+				return [pack(floor_sensor.points.bottom.left, floor_sensor.points.ext_bottom.left)];
+			case SensorLines.RightEdge:
+				return [pack(floor_sensor.points.bottom.right, floor_sensor.points.ext_bottom.right)];
+		}
+	}
+
+	set_radius = function(floor_radius, wall_radius) {
+		floor_sensor.radius.width = floor_radius.width;
+		floor_sensor.radius.height = floor_radius.height;
+
+		wall_sensor.radius = wall_radius;
+
+		__update_points();
+	}
+
+	get_radius = function() {
+		return {
+			floor: {
+				width:  floor_sensor.radius.width,
+				height: floor_sensor.radius.height
+			},
+			wall: wall_sensor.radius
+		}
+	}
+
+	draw = function() {
+		__draw_line(floor_sensor.points.top.left, floor_sensor.points.top.right, c_green);
+		__draw_line(floor_sensor.points.bottom.left, floor_sensor.points.bottom.right, c_red);
+
+		__draw_line(floor_sensor.points.bottom.left, floor_sensor.points.ext_bottom.left, c_purple);
+		__draw_line(floor_sensor.points.bottom.right, floor_sensor.points.ext_bottom.right, c_purple);
+		__draw_line(floor_sensor.points.bottom.left, floor_sensor.points.ext_bottom.right, c_fuchsia);
+		__draw_line(floor_sensor.points.bottom.right, floor_sensor.points.ext_bottom.left, c_fuchsia);
+
 		
-		coords : [
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-		]
-	};
-	__wall_box = {
-		hradius : _wall_box[0],
-		vradius : _wall_box[1],
-		
-		coords : [
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-			{ x: 0, y : 0 },
-		]
-	};
-	
-	__left_ground_point = { 
-		x: 0, 
-		y: 0 
-	};
-	__right_ground_point = { 
-		x: 0, 
-		y: 0 
-	};
+		__draw_line(wall_sensor.points.left, {x: 0, y: 0}, c_purple);
+		__draw_line(wall_sensor.points.right, {x: 0, y: 0}, c_aqua);
+	}
+
+	set_angle(0);
+}
+
+enum PlayerCollisionDetectorSensor {
+	MainDefault,
+	MainCircle,
+	MainRect,
+
+	Top,
+	Bottom,
+	Left,
+	Right,
+
+	FloorExtend,
+	EdgeLeft,
+	EdgeRight
+};
+
+enum PlayerCollisionDetectorLayer {
+	High, Low
+};
+
+/// @param {Asset.GMObject} _plr_inst
+function PlayerCollisionDetector(_plr_inst) constructor {
+	__plr_inst = _plr_inst;
+
+	__layer = PlayerCollisionDetectorLayer.Low;
+
+	__angle_measurer = new AngleMeasurer(_plr_inst);
+	__floorSensor = new FloorWallSensor(_plr_inst);
 	
 	/////////////////////////////////////////////////////////////////////
 	
-	__update_coords = function() {
-		for (var i = 0; i < 4; i++) {
-			var _hsign = (i == 1 || i == 2) ? -1 : 1;
-			var _vsign = (i == 2 || i == 3) ? -1 : 1;
-			
-			__floor_box.coords[i].x =	- __floor_box.hradius *  __angle_cos * _hsign
-										- __floor_box.vradius *  __angle_sin * _vsign;
-			__floor_box.coords[i].y =	- __floor_box.hradius * -__angle_sin * _hsign
-										- __floor_box.vradius *  __angle_cos * _vsign;								  
-	
-			__wall_box.coords[i].x  =	- __wall_box.hradius *  __angle_cos * _hsign
-										- __wall_box.vradius *  __angle_sin * _vsign;
-			__wall_box.coords[i].y  =	- __wall_box.hradius * -__angle_sin * _hsign
-										- __wall_box.vradius *  __angle_cos * _vsign;	
-		}
-	};
-	
-	__get_floor_box_bottom	= function() { return [__floor_box.coords[2], __floor_box.coords[3]]; }
-	__get_floor_box_top		= function() { return [__floor_box.coords[0], __floor_box.coords[1]]; }
-	__get_wall_box_left		= function() { return [__wall_box.coords[0], __wall_box.coords[3]]; }
-	__get_wall_box_right	= function() { return [__wall_box.coords[1], __wall_box.coords[2]]; }
-	
-	#macro FLOORBOX_BOTTOM_LINE	__get_floor_box_bottom()
-	#macro FLOORBOX_TOP_LINE	__get_floor_box_top()
-	#macro WALLBOX_LEFT_LINE	__get_wall_box_left()
-	#macro WALLBOX_RIGHT_LINE	__get_wall_box_right()
-	
-	draw = function() {
-		__update_coords();
-		
-		for (var i = 0; i < 4; i++) {
-			var _curr = i;
-			var _next = (i+1) % 4;
-			
-			draw_set_color(make_color_hsv(i * 50, 255, 255));
-			draw_circle(
-				__x + __floor_box.coords[_curr].x - 1, __y + __floor_box.coords[_curr].y, 
-				1, false
-			);
-			
-			draw_set_color(c_aqua);	
-			draw_line(
-				__x + __floor_box.coords[_curr].x - 1, __y + __floor_box.coords[_curr].y,
-				__x + __floor_box.coords[_next].x - 1, __y + __floor_box.coords[_next].y
-			);	
-			
-			draw_set_color(c_red);	
-			draw_line(
-				__x + __wall_box.coords[_curr].x - 1, __y + __wall_box.coords[_curr].y,
-				__x + __wall_box.coords[_next].x - 1, __y + __wall_box.coords[_next].y
-			);	
-		}
-		
-		draw_set_color(c_green);
-		draw_circle(__x, __y, 1, false);
-		
-		draw_set_color(c_blue); //left
-		draw_circle(
-			__x - 1 + __left_ground_point.x, __y + __left_ground_point.y, 
-			1, false
-		);
-		draw_set_color(c_lime) //right
-		draw_circle(
-			__x - 1 + __right_ground_point.x, __y + __right_ground_point.y, 
-			1, false
-		);
-		
-		draw_set_color(c_white);
-
-		__angle_measurer.draw();
-	};
-	
-	__genesis_mode_angle = function(_angle) {
-		if (_angle >= 000 && _angle <= 045) return 0;
-		if (_angle >= 046 && _angle <= 134) return 90;
-		if (_angle >= 135 && _angle <= 225) return 180;
-		if (_angle >= 226 && _angle <= 314) return 270;
-		return 0;
-	}
-	
-	set_angle = function(_angle) {
-		__angle = _angle;
-		
-		__angle_sin = dsin(__angle);
-		__angle_cos = dcos(__angle);
-		
-		__update_coords();
-
-		var a = round(__angle / 90) * 90;
-
-		__angle_measurer.set_angle(a);
-	}
-	
-	angle_in_range = function(_low, _high) {
-		return (__angle >= _low) && (__angle <= _high);
-	}
-	
-	set_layer = function(_layer) { __layer = _layer; __angle_measurer.set_layer(_layer); }
-	get_layer = function() { return __layer; }
-	
-	get_angle = function() { return __angle; }
-	get_angle_sin = function() { return __angle_sin; }
-	get_angle_cos = function() { return __angle_cos; }
-	
-	set_position = function(_x, _y) { __x = _x; __y = _y; }
-	get_position = function() { return { x: __x, y: __y }; }
-	
-	set_floor_box = function(_box) {
-		__floor_box.hradius = _box[0];
-		__floor_box.vradius = _box[1];
-		
-		__update_coords();
-	}
-	get_floor_box = function() {
-		return { hradius: __floor_box.hradius, vradius: __floor_box.vradius };
-	}
-	
-	set_wall_box = function(_box) {
-		__wall_box.hradius = _box[0];
-		__wall_box.vradius = _box[1];
-		
-		__update_coords();
-	}
-	get_wall_box = function() {
-		return { hradius: __wall_box.hradius, vradius: __wall_box.vradius };
-	}
-	
 	__collision_line = function(_line, _object) {
 		return collision_line(
-			floor(__x + _line[0].x), floor(__y + _line[0].y),
-			floor(__x + _line[1].x), floor(__y + _line[1].y),
+			_line.start_point.x, _line.start_point.y,
+			_line.end_point.x, _line.end_point.y,
 			_object, true, true
 		);
-	}
-	__collision_point = function(_point, _object) {
-		return collision_point(
-			floor(__x + _point.x), floor(__y + _point.y),
-			_object, true, true
-		);	
 	}
 	
 	__is_collision_line_solid = function(_line) {
 		return (
 			(__collision_line(_line, parSolid) != noone) || 
-			(__collision_line(_line, parHigh) != noone && __layer == 0) ||
-			(__collision_line(_line, parLow) != noone  && __layer == 1)
+			(__collision_line(_line, parHigh)  != noone && __layer == PlayerCollisionDetectorLayer.High) ||
+			(__collision_line(_line, parLow)   != noone && __layer == PlayerCollisionDetectorLayer.Low)
 		);
 	}
-	__is_collision_point_solid = function(_point) {
-		return (
-			(__collision_point(_point, parSolid) != noone) || 
-			(__collision_point(_point, parHigh) != noone && __layer == 0) ||
-			(__collision_point(_point, parLow) != noone  && __layer == 1)
-		);
+
+	__is_collision_line_solid_and_platform = function(_line) {
+		return __is_collision_line_solid(_line) || (__collision_line(_line, parPlatform) != noone);
 	}
-	
-	collision_object = function(_object, _expand = 0) {
-		return collision_rectangle(
-			__x - __floor_box.hradius - _expand,
-			__y - __floor_box.vradius - _expand,
-			__x + __floor_box.hradius + _expand,
-			__y + __floor_box.vradius + _expand,
-			_object, true, true
-		);
-	};
-	collision_bottom = function(_object, _expand = 0) { 
-		return __collision_line(FLOORBOX_BOTTOM_LINE, _object);
+
+	set_layer = function(layer) {
+		__layer = layer;
 	}
-	collision_top = function(_object, _expand = 0) { 
-		return __collision_line(FLOORBOX_TOP_LINE, _object);
+
+	__get_line_type = function(sensor_type) {
+		switch (sensor_type) {
+			case PlayerCollisionDetectorSensor.Top: return SensorLines.Top;
+			case PlayerCollisionDetectorSensor.Bottom: return SensorLines.Bottom;
+			case PlayerCollisionDetectorSensor.Left: return SensorLines.Left;
+			case PlayerCollisionDetectorSensor.Right: return SensorLines.Right;
+
+			case PlayerCollisionDetectorSensor.EdgeLeft: return SensorLines.LeftEdge;
+			case PlayerCollisionDetectorSensor.EdgeRight: return SensorLines.RightEdge;
+
+			case PlayerCollisionDetectorSensor.FloorExtend: return SensorLines.Floor;
+		}
 	}
-	collision_left = function(_object, _expand = 0) { 
-		return __collision_line(WALLBOX_LEFT_LINE, _object);
-	}
-	collision_right = function(_object, _expand = 0) { 
-		return __collision_line(WALLBOX_RIGHT_LINE, _object);	
-	}
-	
-	is_collision_solid_bottom = function() {
-		return __is_collision_line_solid(FLOORBOX_BOTTOM_LINE) || 
-			   collision_bottom(parPlatform) != noone;
-	};
-	is_collision_solid_top = function() {
-		return __is_collision_line_solid(FLOORBOX_TOP_LINE);
-	};
-	is_collision_solid_left = function() {
-		return __is_collision_line_solid(WALLBOX_LEFT_LINE);
-	};
-	is_collision_solid_right = function() {
-		return __is_collision_line_solid(WALLBOX_RIGHT_LINE);
-	};
-	
-	check_expanded = function(_hexpand, _vexpand, _function) {
-		__floor_box.hradius += _hexpand;
-		__floor_box.vradius += _vexpand;
-		__wall_box.hradius  += _hexpand;
-		__wall_box.vradius  += _vexpand;
-		__update_coords();
+
+	__collision_floor_wall_sensor_line_solid = function(sensor) {
+		var f = (sensor == PlayerCollisionDetectorSensor.Bottom || 
+			sensor == PlayerCollisionDetectorSensor.FloorExtend ||
+			sensor == PlayerCollisionDetectorSensor.EdgeLeft ||
+			sensor == PlayerCollisionDetectorSensor.EdgeRight
+		   ) 
+		   ? __is_collision_line_solid_and_platform 
+		   : __is_collision_line_solid;
+
+		var line_list = __floorSensor.get_lines(__get_line_type(sensor));
 		
-		var _result = _function();
+		for (var i = 0; i < array_length(line_list); i++) {
+			var line = line_list[i];
+
+			return f(line);
+		}
+
+		return false;
+	}
+
+	__collision_floor_wall_sensor_line_object = function(sensor, obj) {
+		var line_list = __floorSensor.get_lines(__get_line_type(sensor));
 		
-		__floor_box.hradius -= _hexpand;
-		__floor_box.vradius -= _vexpand;
-		__wall_box.hradius  -= _hexpand;
-		__wall_box.vradius  -= _vexpand;
-		__update_coords();
+		for (var i = 0; i < array_length(line_list); i++) {
+			var line = line_list[i];
+
+			return __collision_line(line, obj);
+		}
+
+		return noone;
+	}
+
+	collision_object = function(obj, sensor_type) {
+		if (sensor_type == PlayerCollisionDetectorSensor.MainDefault) {
+			return collision_ellipse(
+				__plr_inst.x - __floorSensor.get_radius().wall,
+				__plr_inst.y - __floorSensor.get_radius().floor.height,
+				__plr_inst.x + __floorSensor.get_radius().wall,
+				__plr_inst.y + __floorSensor.get_radius().floor.height,
+				obj, 
+				true, true
+			);
+		}
+
+		return __collision_floor_wall_sensor_line_object(sensor_type, obj);
+	}
+
+	collision_object_exp = function(sensor_type, obj, _hexpand, _vexpand) {
+		return check_expanded(_hexpand, _vexpand, collision_object, obj, sensor_type);
+	}
+	
+	is_collision_solid = function(sensor) {
+		return __collision_floor_wall_sensor_line_solid(sensor);
+	}
+	
+	check_expanded = function(_hexpand, _vexpand, _function, _arg_a = undefined, _arg_b = undefined) {
+		var radius = __floorSensor.get_radius();
+
+		radius.floor.width  += _hexpand;
+		radius.floor.height += _vexpand;
+		radius.wall += _hexpand;
+
+		__floorSensor.set_radius(radius.floor, radius.wall);
+		
+		var _result;
+
+		if (_arg_b != undefined ) {
+			_result = _function(_arg_a, _arg_b); 
+		} else if (_arg_a != undefined ) {
+			_result = _function(_arg_a); 
+		} else {
+			_result = _function();
+		}
+		
+		radius.floor.width  -= _hexpand;
+		radius.floor.height -= _vexpand;
+		radius.wall -= _hexpand;
+
+		__floorSensor.set_radius(radius.floor, radius.wall);
 		
 		return _result;
 	}
-	
-	is_collision_ground = function() {
-		for (var i = 0; i < __max_expand; i++) {
-			if (check_expanded(0, i, is_collision_solid_bottom))
-				return true;
-		}
+
+	draw = function() {
+		//__angle_measurer.draw();
+		__floorSensor.draw();
 		
-		return false;
-	};
-	is_collision_ground_left_edge = function() {
-		var _dst_point = {
-			x: __floor_box.coords[3].x + __max_expand * __angle_sin,
-			y: __floor_box.coords[3].y + __max_expand * __angle_cos
-		};
-		
-		return __is_collision_line_solid([__floor_box.coords[3], _dst_point]) ||
-			   __collision_line([__floor_box.coords[3], _dst_point], parPlatform) != noone;
-	};
-	is_collision_ground_right_edge = function() {
-		var _dst_point = {
-			x: __floor_box.coords[2].x + __max_expand * __angle_sin,
-			y: __floor_box.coords[2].y + __max_expand * __angle_cos
-		};
-		
-		return __is_collision_line_solid([__floor_box.coords[2], _dst_point]) || 
-			  __collision_line([__floor_box.coords[2], _dst_point], parPlatform) != noone;
+		draw_set_color(c_green);
+		draw_circle(__plr_inst.x, __plr_inst.y, 1, false);
+
+		draw_ellipse(
+			__plr_inst.x - __floorSensor.get_radius().wall,
+			__plr_inst.y - __floorSensor.get_radius().floor.height,
+			__plr_inst.x + __floorSensor.get_radius().wall,
+			__plr_inst.y + __floorSensor.get_radius().floor.height,
+			true
+		);
+
+		draw_set_color(c_white);
+
+		draw_text(
+			__plr_inst.x+20, __plr_inst.y-20, 
+			string(is_collision_solid(PlayerCollisionDetectorSensor.FloorExtend)) 
+			+ " " + string(is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) 
+		);
+		draw_text(__plr_inst.x, __plr_inst.y-10, string(is_collision_solid(PlayerCollisionDetectorSensor.Left)));
+		draw_text(__plr_inst.x+20, __plr_inst.y-10, string(is_collision_solid(PlayerCollisionDetectorSensor.Right)));
+	
+
+	
 	};
 	
-	get_landing_ground_angle = function() {
-		return get_ground_angle();
-	};
-	
-	get_ground_angle = function(_left_point = __floor_box.coords[3], _right_point = __floor_box.coords[2]) {
-		return __angle_measurer.measure();
-	};
-	
+	set_angle = function(_angle) {
+		__floorSensor.set_angle(_angle);
+
+		var a = round(_angle / 90) * 90;
+
+		__angle_measurer.set_angle(a);
+	}
+
+	is_angle_in_range = function(a, b) {
+		return    __floorSensor.get_angle_data().degrees >= a 
+			   && __floorSensor.get_angle_data().degrees <= b; 
+	}
+
+	get_angle_data = function() {
+		return __floorSensor.get_angle_data();
+	}
+
+	set_radius = function(floor, wall) {
+		__floorSensor.set_radius(floor, wall);
+	}
+
+	get_radius = function() {
+		return __floorSensor.get_radius();
+	}
+
+	measure_angle = function() {
+		return __angle_measurer.measure(__is_collision_line_solid_and_platform);
+	}
 }
+
+

@@ -2,8 +2,8 @@
 
 function PlayerStateBalancing() : BaseState() constructor {
 	on_start = function(player) { with player {
-		if ((image_xscale == 1  && sensor.is_collision_ground_left_edge()) || 
-			(image_xscale == -1 && sensor.is_collision_ground_right_edge())
+		if ((image_xscale == 1  && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeLeft)) || 
+			(image_xscale == -1 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeRight))
 		)
 			animator.set("balancing_a");
 		else

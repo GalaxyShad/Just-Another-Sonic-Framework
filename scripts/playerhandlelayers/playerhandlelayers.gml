@@ -2,15 +2,15 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377
 function player_handle_layers() {
 	
-	if (sensor.collision_object(objLayerSwitch)) {
-		sensor.set_layer((gsp > 0) ? 1 : 0);	
+	if (place_meeting(x, y, objLayerSwitch)) {
+		collision_detector.set_layer((gsp > 0) ? 1 : 0);	
 	}
 	
-	if (sensor.collision_object(objLayerToHigh)) {
-		sensor.set_layer(0);	
+	if (place_meeting(x, y,objLayerToHigh)) {
+		collision_detector.set_layer(0);	
 	}
 	
-	if (sensor.collision_object(objLayerToLow)) {
-		sensor.set_layer(1);
+	if (place_meeting(x, y,objLayerToLow)) {
+		collision_detector.set_layer(1);
 	}
 }

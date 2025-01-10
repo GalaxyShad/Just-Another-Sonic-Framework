@@ -36,7 +36,7 @@ function player_behavior_ground_movement() {
 function player_behavior_slope_decceleration() {
 	if (!ground) return;
 	
-	var _slp_dec_value = physics.slope_factor * sensor.get_angle_sin();
+	var _slp_dec_value = physics.slope_factor * collision_detector.get_angle_data().sin;
 	
 	if (abs(_slp_dec_value) >= 0.05078125)
 		gsp -= _slp_dec_value;
@@ -55,15 +55,16 @@ function player_behavior_fall_off_slopes() {
 	// Sonic 3 method
 	#macro FALL_OFF_SPEED_VALUE 2.5
 	
-	if (!timer_control_lock.is_ticking() && abs(gsp) < FALL_OFF_SPEED_VALUE && 
-		sensor.angle_in_range(35, 326)
+	if (!timer_control_lock.is_ticking() 
+		&& abs(gsp) < FALL_OFF_SPEED_VALUE 
+		&& collision_detector.is_angle_in_range(35, 326)
 	) { 
 		timer_control_lock.reset_and_start();
 			
-		if (sensor.angle_in_range(69, 293)) {
+		if (collision_detector.is_angle_in_range(69, 293)) {
 			ground = false;
 		} else {
-			gsp += (sensor.get_angle() < 180) ? -0.5 : +0.5;	
+			gsp += (collision_detector.get_angle_data().degrees < 180) ? -0.5 : +0.5;	
 		}
 	} else {
 		timer_control_lock.tick();		

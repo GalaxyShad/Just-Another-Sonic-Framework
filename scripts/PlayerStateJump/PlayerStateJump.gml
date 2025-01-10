@@ -9,11 +9,6 @@ function PlayerStateJump() : BaseState() constructor {
 	}};
 	
 	on_landing = function(player) { with (player) {	
-		sensor.set_position(
-			sensor.get_position().x,
-			sensor.get_position().y - (SENSOR_FLOORBOX_NORMAL[1] - SENSOR_FLOORBOX_ROLL[1])
-		)
-		
 		state.change_to("normal");	
 	}};
 

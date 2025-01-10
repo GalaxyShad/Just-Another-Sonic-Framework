@@ -2,8 +2,20 @@
 
 function PlayerStatePush() : BaseState() constructor {
 	on_step = function(player) { with player {
-	    if ((sensor.check_expanded(1, 0, sensor.is_collision_solid_right) && (!is_key_right || gsp < 0)) || 
-			(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)  && (!is_key_left  || gsp > 0))
+
+		var is_edge_left = collision_detector.check_expanded(
+			1, 0, 
+			collision_detector.is_collision_solid, 
+			PlayerCollisionDetectorSensor.EdgeLeft
+		);
+		var is_edge_right = collision_detector.check_expanded(
+			1, 0, 
+			collision_detector.is_collision_solid, 
+			PlayerCollisionDetectorSensor.EdgeRight
+		);
+
+	    if ((is_edge_right && (!is_key_right || gsp < 0)) || 
+		    (is_edge_left  && (!is_key_left  || gsp > 0))
 	    ) {
 	      state.change_to("normal");
 	    }

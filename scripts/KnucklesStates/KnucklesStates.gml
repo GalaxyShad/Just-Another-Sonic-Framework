@@ -24,8 +24,8 @@ function KnucklesStateGlide() : BaseState() constructor {
 		if(ysp<0.5) ysp += GLIDE_GRAVITY_FORCE;
 		if(ysp>0.5) ysp -= GLIDE_GRAVITY_FORCE;
 		if (ysp > 16) ysp = 16;
-		if ((sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || 
-			(sensor.check_expanded(1, 0, sensor.is_collision_solid_left))
+		if ((collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Left)) || 
+			(collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right))
 		) {
 			state.change_to("climbe");
 		}
@@ -65,7 +65,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	on_step = function(player) {with player {
 		if(ysp<0.5) ysp += GLIDE_GRAVITY_FORCE;
 		if(ysp>0.5) ysp -= GLIDE_GRAVITY_FORCE;
-		if ((sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) || (sensor.check_expanded(1, 0, sensor.is_collision_solid_left))) { state.change_to("climbe"); }
+		if ((collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetector.Left)) || (collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right))) { state.change_to("climbe"); }
 		if (!is_key_action) state.change_to("drop");
 		
 		
@@ -138,8 +138,8 @@ function KnucklesStateClimbe() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
 		//allow_movement = false;
-		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_right)) image_xscale = 1;
-		if(sensor.check_expanded(1, 0, sensor.is_collision_solid_left)) image_xscale = -1;
+		if(collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetector.Left)) image_xscale = 1;
+		if(collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right)) image_xscale = -1;
 		animator.set("climbe");
 	}};
 	
@@ -152,11 +152,11 @@ function KnucklesStateClimbe() : BaseState() constructor {
 			return;
 		}
 		ysp = 0;
-		if (is_key_up && !sensor.check_expanded(0, 1, sensor.is_collision_solid_top)) ysp -= CLIMBE_ACCELERATION;
+		if (is_key_up && !collision_detector.check_expanded(0, 1, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Top)) ysp -= CLIMBE_ACCELERATION;
 		if (is_key_down) ysp += CLIMBE_ACCELERATION;
 		
-		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_bottom) || sensor.check_expanded(-1, 1, sensor.is_collision_solid_bottom)){ state.change_to("drop"); return; }
-		if(!sensor.check_expanded(1, 0, sensor.is_collision_solid_top)){ state.change_to("clambering"); return; }
+		if(!collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Bottom) || collision_detector.check_expanded(-1, 1, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Bottom)) { state.change_to("drop"); return; }
+		if(!collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Top)){ state.change_to("clambering"); return; }
 	}};
 	
 	on_animate = function(player) {with player {

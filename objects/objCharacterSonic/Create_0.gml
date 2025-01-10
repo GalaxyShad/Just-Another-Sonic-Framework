@@ -16,9 +16,9 @@ SENSOR_FLOORBOX_ROLL	=	[7, 15];
 SENSOR_WALLBOX_NORMAL	=	[10, 8];
 SENSOR_WALLBOX_SLOPES	=	[10, 0];
 
-position = { x: x, y: y};
+position = { x: x, y: y };
 
-sensor = new Sensor(x, y, SENSOR_FLOORBOX_NORMAL, SENSOR_WALLBOX_NORMAL, position);
+collision_detector = new PlayerCollisionDetector(self);
 state  = new State(self);
 add_basic_player_states(state);
 

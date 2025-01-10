@@ -5,7 +5,7 @@ if (!show_debug_info)
 	
 
 draw_text(
-	camera_get_view_width(camera_get_default()) - 200, 16,
+	camera_get_view_width(camera_get_default()) - 300, 16,
 	$"character:		{object_get_name(object_index)}\n"+
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+
@@ -17,7 +17,7 @@ draw_text(
 	$"ysp:				{ysp}\n" +
 	$"x:				{x}\n" +
 	$"y:				{y}\n" +
-	$"sensor_angle:		{sensor.get_angle()}\n" +
+	$"sensor_angle_data: deg: {collision_detector.get_angle_data().degrees} | cos: {collision_detector.get_angle_data().cos} | sin: {collision_detector.get_angle_data().sin}  \n" +
 	$"animation_angle:	{animation_angle}\n" +
 	$"\n" +
 	$"allow_jump:		{allow_jump}\n" +

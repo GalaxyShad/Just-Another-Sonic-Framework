@@ -2,14 +2,14 @@
 
 function PlayerStateSkid() : BaseState() constructor {
 	__create_dust_sfx = function(player) {
-		var _offset_y = player.sensor.get_floor_box().vradius;
+		var _offset_y = player.collision_detector.get_radius().floor.height;
 		var _offset_x = player.image_xscale * 12;
 		
 		instance_create_depth(
-			player.x + _offset_y *  player.sensor.get_angle_sin()
-				     + _offset_x *  player.sensor.get_angle_cos(), 
-			player.y + _offset_y *  player.sensor.get_angle_cos()
-				     + _offset_x * -player.sensor.get_angle_sin(), 
+			player.x + _offset_y *  player.collision_detector.get_angle_data().sin
+				     + _offset_x *  player.collision_detector.get_angle_data().cos, 
+			player.y + _offset_y *  player.collision_detector.get_angle_data().cos
+				     + _offset_x * -player.collision_detector.get_angle_data().sin, 
 			player.depth-1, 
 			objSfxSkidDust 
 		);

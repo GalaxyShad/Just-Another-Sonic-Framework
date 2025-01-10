@@ -1,7 +1,7 @@
 
 function player_handle_enemy() {
 	
-	var _o_enemy = sensor.collision_object(parEnemy, 0);
+	var _o_enemy = collision_detector.collision_object(parEnemy, PlayerCollisionDetectorSensor.MainDefault);
 	
 	if (_o_enemy == noone)
 		return;

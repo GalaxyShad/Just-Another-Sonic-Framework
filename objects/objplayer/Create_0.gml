@@ -17,7 +17,6 @@ var _VAR_CHECK_LIST = [
 	"SENSOR_WALLBOX_NORMAL",
 	"SENSOR_WALLBOX_SLOPES",
 	
-	"sensor",
 	"state",
 	"physics",
 	
@@ -39,7 +38,6 @@ array_foreach(_VAR_CHECK_LIST, function(_variable) {
 });
 
 var _VAR_TYPES_CHECK_MAP = {
-	sensor:			[Sensor,			"Sensor"		],
 	state:			[State,				"State"			],
 	physics:		[PlayerPhysics,		"PlayerPhysics"	],
 	animator:		[PlayerAnimator,	"PlayerAnimator"]

@@ -40,7 +40,7 @@ if (running_on_water) {
 		sprSfxWaterRun, 
 		global.tick / 2, 
 		x,
-		y + sensor.get_floor_box().vradius,
+		y + collision_detector.get_radius().floor.height, 
 		image_xscale, image_yscale, 0, c_white, 1
 	);	
 }
@@ -50,7 +50,7 @@ if (state.current() == "spindash") {
 		sprSfxSpindashDust, 
 		global.tick / 2, 
 		x,
-		y + sensor.get_floor_box().vradius,
+		y + collision_detector.get_radius().floor.height,
 		image_xscale, image_yscale, 0, c_white, 1
 	);	
 }
@@ -78,5 +78,6 @@ if (!animator.is_animation_exists(animator.current())) {
 	draw_set_halign(fa_left);
 }
 
-if (show_debug_info) 
-	sensor.draw();
+if (show_debug_info) {
+	collision_detector.draw();
+}

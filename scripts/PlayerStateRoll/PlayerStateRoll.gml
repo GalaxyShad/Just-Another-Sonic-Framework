@@ -10,7 +10,7 @@ function PlayerStateRoll() : BaseState() constructor {
 	}};
 	
 	__slopes_decceleration = function(player) { with player {
-		var _sina = dsin(sensor.get_angle());
+		var _sina = collision_detector.get_angle_data().sin;
 		
 		gsp -= _sina * ((sign(gsp) == sign(_sina)) ? 
 			physics.slope_factor_rollup : 

@@ -1,4 +1,4 @@
-
+audio_set_master_gain(0,0);
 
 MUSIC_MAP = {
 	speed_shoes:	musSpeedShoes,
