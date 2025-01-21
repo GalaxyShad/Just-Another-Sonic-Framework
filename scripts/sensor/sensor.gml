@@ -549,7 +549,8 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	set_angle = function(_angle) {
 		__floorSensor.set_angle(_angle);
 
-		var a = round(_angle / 90) * 90;
+		//var a = round(_angle / 90) * 90;
+		var a = _angle;
 
 		__angle_measurer.set_angle(a);
 	}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrParalaxerScripts",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrParalaxerScripts",
+  "parent":{
+    "name":"JustAnotherSonicFramework",
+    "path":"JustAnotherSonicFramework.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
