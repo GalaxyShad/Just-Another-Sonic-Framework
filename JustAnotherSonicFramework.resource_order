@@ -114,8 +114,8 @@
     {"name":"partWaterRun","order":2,"path":"particles/partWaterRun/partWaterRun.yy",},
     {"name":"psInvincibility","order":8,"path":"particles/psInvincibility/psInvincibility.yy",},
     {"name":"rmAnimation","order":2,"path":"rooms/rmAnimation/rmAnimation.yy",},
+    {"name":"rmEmeraldHillZoneAct1","order":3,"path":"rooms/rmEmeraldHillZoneAct1/rmEmeraldHillZoneAct1.yy",},
     {"name":"rmTest","order":1,"path":"rooms/rmTest/rmTest.yy",},
-    {"name":"Room4","order":3,"path":"rooms/Room4/Room4.yy",},
     {"name":"Room5","order":4,"path":"rooms/Room5/Room5.yy",},
     {"name":"KnucklesStates","order":1,"path":"scripts/KnucklesStates/KnucklesStates.yy",},
     {"name":"PlayerAddBasicStates","order":5,"path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},
@@ -373,6 +373,8 @@
     {"name":"Tails","order":1,"path":"sprites/Tails/Tails.yy",},
     {"name":"Tails2","order":2,"path":"sprites/Tails2/Tails2.yy",},
     {"name":"Tails3","order":3,"path":"sprites/Tails3/Tails3.yy",},
+    {"name":"uu","order":21,"path":"sprites/uu/uu.yy",},
     {"name":"TileSet1","order":5,"path":"tilesets/TileSet1/TileSet1.yy",},
+    {"name":"tsS2Solids","order":22,"path":"tilesets/tsS2Solids/tsS2Solids.yy",},
   ],
 }
