@@ -403,17 +403,24 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 			_object, true, true
 		);
 	}
-	
+
 	__is_collision_line_solid = function(_line) {
+		var _main 		= layer_tilemap_get_id("solidmap_main");
+		var _high 		= layer_tilemap_get_id("solidmap_high");
+		var _low 		= layer_tilemap_get_id("solidmap_low");
+		
 		return (
-			(__collision_line(_line, parSolid) != noone) || 
-			(__collision_line(_line, parHigh)  != noone && __layer == PlayerCollisionDetectorLayer.High) ||
-			(__collision_line(_line, parLow)   != noone && __layer == PlayerCollisionDetectorLayer.Low)
+			((__collision_line(_line, parSolid) != noone || __collision_line(_line, _main))) || 
+			((__collision_line(_line, parHigh)  != noone || __collision_line(_line, _high)) && __layer == PlayerCollisionDetectorLayer.High) ||
+			((__collision_line(_line, parLow)   != noone || __collision_line(_line, _low))  && __layer == PlayerCollisionDetectorLayer.Low)
 		);
 	}
 
 	__is_collision_line_solid_and_platform = function(_line) {
-		return __is_collision_line_solid(_line) || (__collision_line(_line, parPlatform) != noone);
+		var _platform 	= layer_tilemap_get_id("solidmap_platform");
+
+		return __is_collision_line_solid(_line) || 
+			   (__collision_line(_line, parPlatform) != noone || __collision_line(_line, _platform) != noone);
 	}
 
 	set_layer = function(layer) {
