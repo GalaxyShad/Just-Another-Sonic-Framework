@@ -32,6 +32,7 @@
     {"name":"Sonic 2 Sprites Credits","order":23,"path":"notes/Sonic 2 Sprites Credits/Sonic 2 Sprites Credits.yy",},
     {"name":"TODO","order":3,"path":"notes/TODO/TODO.yy",},
     {"name":"objAngleMeasurerMouseTest","order":20,"path":"objects/objAngleMeasurerMouseTest/objAngleMeasurerMouseTest.yy",},
+    {"name":"objAngleRounder","order":28,"path":"objects/objAngleRounder/objAngleRounder.yy",},
     {"name":"objAnimationTest","order":5,"path":"objects/objAnimationTest/objAnimationTest.yy",},
     {"name":"objBackgrounder","order":19,"path":"objects/objBackgrounder/objBackgrounder.yy",},
     {"name":"objBigBubble","order":3,"path":"objects/objBigBubble/objBigBubble.yy",},

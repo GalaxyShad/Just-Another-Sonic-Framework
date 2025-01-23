@@ -59,6 +59,7 @@
     {"id":{"name":"Sonic 2 Sprites Credits","path":"notes/Sonic 2 Sprites Credits/Sonic 2 Sprites Credits.yy",},},
     {"id":{"name":"TODO","path":"notes/TODO/TODO.yy",},},
     {"id":{"name":"objAngleMeasurerMouseTest","path":"objects/objAngleMeasurerMouseTest/objAngleMeasurerMouseTest.yy",},},
+    {"id":{"name":"objAngleRounder","path":"objects/objAngleRounder/objAngleRounder.yy",},},
     {"id":{"name":"objAnimationTest","path":"objects/objAnimationTest/objAnimationTest.yy",},},
     {"id":{"name":"objBackgrounder","path":"objects/objBackgrounder/objBackgrounder.yy",},},
     {"id":{"name":"objBackZoneTest","path":"objects/objBackZoneTest/objBackZoneTest.yy",},},

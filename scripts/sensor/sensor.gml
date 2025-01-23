@@ -53,7 +53,56 @@ function AngleMeasurer(plr_inst) constructor {
 		return undefined;
 	}
 
+	measure_edges = function(_cb_collision_line) {
+		var _left_start_point  = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
+		var _right_start_point = [__plr_inst.x + __right_point[0], __plr_inst.y + __right_point[1]];
+
+		var _left  = __ground_point(_left_start_point, _cb_collision_line);
+		var _right = __ground_point(_right_start_point, _cb_collision_line);
+
+		var _angle = __angle;
+
+		if (_left != undefined && _right != undefined) {
+			_left[0] -= dsin(_angle);
+			_left[1] -= dcos(_angle);
+
+			_right[0] -= dsin(_angle);
+			_right[1] -= dcos(_angle);
+
+			_angle = point_direction(_left[0], _left[1], _right[0], _right[1]);
+		}
+
+		return {
+			angle: _angle,
+			left: _left,
+			right: _right
+		};
+	}
+
 	measure = function(_cb_collision_line, on_point_found = function(){}) {
+		var _res = measure_edges(_cb_collision_line);
+		
+		if (_res.left == undefined || _res.right == undefined) {
+			return _res.angle;
+		}
+
+		draw_set_color(c_green);
+		draw_line(_res.left[0], _res.left[1], _res.right[0], _res.right[1]);
+		draw_text(_res.left[0], _res.left[1], string(_res.angle));
+		draw_set_color(c_white);
+
+		if (__angle == 0 && abs(angle_difference(0, _res.angle)) > 15) {
+			if (_cb_collision_line(__to_cb_arg(_res.left, _res.right))) {
+				return 0;
+			} 
+		}
+
+		return _res.angle;
+	}	
+
+	measure_each = function(_cb_collision_line, on_point_found = function(){}) {
+		return measure_edges(_cb_collision_line);
+		
 		var start_point = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
 
 		var point = [start_point[0], start_point[1]]
@@ -148,9 +197,9 @@ function AngleMeasurer(plr_inst) constructor {
 			angle = __angle;
 		}
 
-		draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
-			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
-			0.4, 0.4, 0);
+		// draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
+		// 	string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
+		// 	0.4, 0.4, 0);
 
 		return angle;
 	}
@@ -393,6 +442,11 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 
 	__angle_measurer = new AngleMeasurer(_plr_inst);
 	__floorSensor = new FloorWallSensor(_plr_inst);
+
+	_main 		= layer_tilemap_get_id("solidmap_main");
+	_high 		= layer_tilemap_get_id("solidmap_high");
+	_low 		= layer_tilemap_get_id("solidmap_low");
+	_platform 	= layer_tilemap_get_id("solidmap_platform");
 	
 	/////////////////////////////////////////////////////////////////////
 	
@@ -405,22 +459,23 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	}
 
 	__is_collision_line_solid = function(_line) {
-		var _main 		= layer_tilemap_get_id("solidmap_main");
-		var _high 		= layer_tilemap_get_id("solidmap_high");
-		var _low 		= layer_tilemap_get_id("solidmap_low");
+		
 		
 		return (
-			((__collision_line(_line, parSolid) != noone || __collision_line(_line, _main))) || 
-			((__collision_line(_line, parHigh)  != noone || __collision_line(_line, _high)) && __layer == PlayerCollisionDetectorLayer.High) ||
-			((__collision_line(_line, parLow)   != noone || __collision_line(_line, _low))  && __layer == PlayerCollisionDetectorLayer.Low)
+			(__collision_line(_line, parSolid) != noone) || 
+			(__collision_line(_line, parHigh)  != noone)  && __layer == PlayerCollisionDetectorLayer.High ||
+			(__collision_line(_line, parLow)   != noone)  && __layer == PlayerCollisionDetectorLayer.Low  ||
+			
+			(_main != -1 && __collision_line(_line, _main) != noone) || 
+			(_high != -1 && __collision_line(_line, _high)  != noone)  && __layer == PlayerCollisionDetectorLayer.High ||
+			(_low  != -1 && __collision_line(_line, _low)   != noone)  && __layer == PlayerCollisionDetectorLayer.Low  
 		);
 	}
 
 	__is_collision_line_solid_and_platform = function(_line) {
-		var _platform 	= layer_tilemap_get_id("solidmap_platform");
-
 		return __is_collision_line_solid(_line) || 
-			   (__collision_line(_line, parPlatform) != noone || __collision_line(_line, _platform) != noone);
+			   (__collision_line(_line, parPlatform) != noone || 
+			   (_platform != -1 && __collision_line(_line, _platform) != noone));
 	}
 
 	set_layer = function(layer) {
@@ -556,7 +611,7 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	set_angle = function(_angle) {
 		__floorSensor.set_angle(_angle);
 
-		//var a = round(_angle / 90) * 90;
+		// var a = round(_angle / 90) * 90;
 		var a = _angle;
 
 		__angle_measurer.set_angle(a);
@@ -580,7 +635,13 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	}
 
 	measure_angle = function() {
-		return __angle_measurer.measure(__is_collision_line_solid_and_platform);
+		var _res = __angle_measurer.measure(__is_collision_line_solid_and_platform);
+
+		if (collision_object(objAngleRounder, PlayerCollisionDetectorSensor.FloorExtend)) {
+			return round(_res / 90) * 90;
+		}
+
+		return _res;
 	}
 }
 
