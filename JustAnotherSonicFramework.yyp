@@ -106,6 +106,7 @@
     {"id":{"name":"objLayerToHigh","path":"objects/objLayerToHigh/objLayerToHigh.yy",},},
     {"id":{"name":"objLayerToLow","path":"objects/objLayerToLow/objLayerToLow.yy",},},
     {"id":{"name":"objLevelMusic","path":"objects/objLevelMusic/objLevelMusic.yy",},},
+    {"id":{"name":"objMenu","path":"objects/objMenu/objMenu.yy",},},
     {"id":{"name":"objMonitor","path":"objects/objMonitor/objMonitor.yy",},},
     {"id":{"name":"objMonitorBroken","path":"objects/objMonitorBroken/objMonitorBroken.yy",},},
     {"id":{"name":"objMonitorEggman","path":"objects/objMonitorEggman/objMonitorEggman.yy",},},

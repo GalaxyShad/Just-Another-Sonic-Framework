@@ -78,6 +78,7 @@
     {"name":"objLayerToHigh","order":6,"path":"objects/objLayerToHigh/objLayerToHigh.yy",},
     {"name":"objLayerToLow","order":7,"path":"objects/objLayerToLow/objLayerToLow.yy",},
     {"name":"objLevelMusic","order":14,"path":"objects/objLevelMusic/objLevelMusic.yy",},
+    {"name":"objMenu","order":27,"path":"objects/objMenu/objMenu.yy",},
     {"name":"objMonitorBroken","order":1,"path":"objects/objMonitorBroken/objMonitorBroken.yy",},
     {"name":"objMonitorEggman","order":2,"path":"objects/objMonitorEggman/objMonitorEggman.yy",},
     {"name":"objMonitorIcon","order":2,"path":"objects/objMonitorIcon/objMonitorIcon.yy",},

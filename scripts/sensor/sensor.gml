@@ -197,9 +197,9 @@ function AngleMeasurer(plr_inst) constructor {
 			angle = __angle;
 		}
 
-		// draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
-		// 	string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
-		// 	0.4, 0.4, 0);
+		draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
+			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
+			0.4, 0.4, 0);
 
 		return angle;
 	}
@@ -593,19 +593,6 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 			__plr_inst.y + __floorSensor.get_radius().floor.height,
 			true
 		);
-
-		draw_set_color(c_white);
-
-		draw_text(
-			__plr_inst.x+20, __plr_inst.y-20, 
-			string(is_collision_solid(PlayerCollisionDetectorSensor.FloorExtend)) 
-			+ " " + string(is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) 
-		);
-		draw_text(__plr_inst.x, __plr_inst.y-10, string(is_collision_solid(PlayerCollisionDetectorSensor.Left)));
-		draw_text(__plr_inst.x+20, __plr_inst.y-10, string(is_collision_solid(PlayerCollisionDetectorSensor.Right)));
-	
-
-	
 	};
 	
 	set_angle = function(_angle) {
