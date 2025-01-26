@@ -14,3 +14,12 @@ function player_handle_layers() {
 		collision_detector.set_layer(1);
 	}
 }
+
+function player_handle_corksew() {
+
+	if (collision_detector.collision_object(objCorksewTrigger, PlayerCollisionDetectorSensor.MainDefault) && 
+		 abs(gsp) > 1
+	) {
+		state.change_to("corksew");
+	}
+}

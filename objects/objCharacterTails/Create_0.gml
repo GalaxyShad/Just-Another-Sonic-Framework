@@ -42,6 +42,8 @@ animator
 	.add("walking",		sprTailsWalk	)
 	.add("running",		sprTailsRun		)
 	.add("dash",		sprTailsDash	)
+
+	.add("corksew", 	sprTailsCorkscrew)
 	
 	.add("curling",		sprTailsRoll	)
 	

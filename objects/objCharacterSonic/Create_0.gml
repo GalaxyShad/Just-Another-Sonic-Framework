@@ -48,6 +48,8 @@ animator
 	.add("walking",		sprSonicWalk		)
 	.add("running",		sprSonicRun			)
 	.add("dash",		sprSonicDash		)
+
+	.add("corksew", 	sprSonicCorcksew)
 	
 	.add("curling",		sprSonicRoll		)
 	.add("dropdash",	sprSonicDropDash	).speed(.5)
