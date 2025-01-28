@@ -153,6 +153,7 @@ handle_loop
 	.add(player_handle_water)
 	.add(player_handle_bubbles)
 	.add(player_handle_enemy)
+	.add(player_handle_corksew)
 ;
 
 visual_loop = new PlayerLoop(id);

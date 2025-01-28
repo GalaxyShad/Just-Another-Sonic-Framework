@@ -56,6 +56,8 @@ animator
 	.add("dash",		sprKnucklesRun		)
 	
 	.add("curling",		sprKnucklesRoll		)
+
+	.add("corksew", 	sprKnucklesCorcksew)
 	
 	.add("spring",		sprKnucklesSpring	)
 	.add("spindash",	sprKnucklesSpindash	)
