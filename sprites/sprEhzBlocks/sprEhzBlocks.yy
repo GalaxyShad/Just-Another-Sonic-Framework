@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"sprEhzBlocks",
   "bboxMode":0,
-  "bbox_bottom":303,
+  "bbox_bottom":351,
   "bbox_left":0,
   "bbox_right":511,
   "bbox_top":0,

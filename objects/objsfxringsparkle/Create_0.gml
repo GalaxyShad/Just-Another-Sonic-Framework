@@ -8,7 +8,7 @@ part_system_draw_order(_ps, true);
 
 //Emitter
 var _ptype1 = part_type_create();
-part_type_shape(_ptype1, pt_shape_spark);
+part_type_shape(_ptype1, pt_shape_sphere);
 part_type_size(_ptype1, 0.125, 0.25, 0, 0.1);
 part_type_scale(_ptype1, 1, 1);
 part_type_speed(_ptype1, 0, 1, 0, 0);
@@ -21,10 +21,14 @@ part_type_blend(_ptype1, true);
 part_type_life(_ptype1, 3, 6);
 
 var _pemit1 = part_emitter_create(_ps);
-part_emitter_region(_ps, _pemit1, -8, 8, -8, 8, ps_shape_ellipse, ps_distr_linear);
-part_emitter_stream(_ps, _pemit1, _ptype1, 1);
+part_emitter_region(_ps, _pemit1, -16, 16, -16, 16, ps_shape_ellipse, ps_distr_linear);
+part_emitter_burst(_ps, _pemit1, _ptype1, 8);
+
+//part_emitter_burst()
 
 part_system_position(_ps, x, y);
+part_system_depth(_ps, depth-1);
+
 
 
 
