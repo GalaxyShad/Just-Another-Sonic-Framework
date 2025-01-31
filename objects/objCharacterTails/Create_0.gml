@@ -47,7 +47,7 @@ animator
 	
 	.add("curling",		sprTailsRoll	)
 	
-	.add("spring",		sprTailsCorkscrew)
+	.add("spring",		sprTailsSpring)
 	.add("spindash",	sprTailsSpindash)
 	.add("push",		sprTailsPush	).speed(.125)
 	

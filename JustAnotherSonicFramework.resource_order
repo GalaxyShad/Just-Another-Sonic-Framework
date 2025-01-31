@@ -204,6 +204,7 @@
     {"name":"sndWaterSplash","order":21,"path":"sounds/sndWaterSplash/sndWaterSplash.yy",},
     {"name":"_95306","order":1,"path":"sprites/_95306/_95306.yy",},
     {"name":"Knuckles","order":2,"path":"sprites/Knuckles/Knuckles.yy",},
+    {"name":"knux_cd","order":29,"path":"sprites/knux_cd/knux_cd.yy",},
     {"name":"sprAngleStopper","order":11,"path":"sprites/sprAngleStopper/sprAngleStopper.yy",},
     {"name":"sprApostrophe","order":5,"path":"sprites/sprApostrophe/sprApostrophe.yy",},
     {"name":"sprBackZoneTest","order":1,"path":"sprites/sprBackZoneTest/sprBackZoneTest.yy",},

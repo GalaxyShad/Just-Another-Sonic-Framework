@@ -6,7 +6,7 @@ function PlayerStateSpring() : BaseState() constructor {
 	
 	on_animate = function(player) { with player {
 		if (ysp <= 0)	{
-			animator.set_image_speed(0.125 + abs(ysp) / 10);
+			animator.set_image_speed(max(0.05, abs(ysp) / 16) * (animator.get_frames_count() / 5));
 			animator.set("spring");
 		}
 	}};

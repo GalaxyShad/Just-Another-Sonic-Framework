@@ -246,6 +246,7 @@
     {"id":{"name":"_95305","path":"sprites/_95305/_95305.yy",},},
     {"id":{"name":"_95306","path":"sprites/_95306/_95306.yy",},},
     {"id":{"name":"Knuckles","path":"sprites/Knuckles/Knuckles.yy",},},
+    {"id":{"name":"knux_cd","path":"sprites/knux_cd/knux_cd.yy",},},
     {"id":{"name":"sprAngleStopper","path":"sprites/sprAngleStopper/sprAngleStopper.yy",},},
     {"id":{"name":"sprApostrophe","path":"sprites/sprApostrophe/sprApostrophe.yy",},},
     {"id":{"name":"sprBackZoneTest","path":"sprites/sprBackZoneTest/sprBackZoneTest.yy",},},
@@ -444,8 +445,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
-    {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
+    {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmAnimation","path":"rooms/rmAnimation/rmAnimation.yy",},},
   ],
   "templateType":null,

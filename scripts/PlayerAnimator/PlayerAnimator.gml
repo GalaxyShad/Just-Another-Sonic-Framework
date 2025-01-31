@@ -127,6 +127,10 @@ function PlayerAnimator() constructor {
 	get_image_index = function() {
 		return __image_index;
 	};
+
+	get_frames_count = function() {
+		return __get_current_animation().frames;
+	}
 	
 	set_image_index = function(_image_index) {
 		__image_index=_image_index;
