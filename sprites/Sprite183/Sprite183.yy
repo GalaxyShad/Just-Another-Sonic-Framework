@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"sprEHZ1",
+    "path":"folders/Scenes/EHZ1/sprEHZ1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

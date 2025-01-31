@@ -6,8 +6,8 @@
   "name":"objEhz1CollisionsPlatform",
   "overriddenProperties":[],
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"tempEHZ1",
+    "path":"folders/Scenes/EHZ1/tempEHZ1.yy",
   },
   "parentObjectId":{
     "name":"parPlatform",

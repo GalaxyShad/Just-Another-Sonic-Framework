@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"tempEHZ1",
+    "path":"folders/Scenes/EHZ1/tempEHZ1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

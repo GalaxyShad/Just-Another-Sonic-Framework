@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"bgEHZ1",
+    "path":"folders/Scenes/EHZ1/bgEHZ1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
