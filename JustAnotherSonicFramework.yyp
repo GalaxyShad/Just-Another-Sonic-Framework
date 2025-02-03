@@ -445,8 +445,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
-    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
+    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmAnimation","path":"rooms/rmAnimation/rmAnimation.yy",},},
   ],
   "templateType":null,
