@@ -25,6 +25,7 @@ add_basic_player_states(state);
 state.override("jump",		new SonicStateJump());
 state.override("look_up",	new SonicStateLookUp());
 
+state.add("transform",	 new PlayerStateTransform(11));
 state.add("peelout",	 new SonicStatePeelout());
 state.add("dropdash",	 new SonicStateDropDash());
 

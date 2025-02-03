@@ -24,7 +24,6 @@ function add_basic_player_states(_state) {
 		.add("hurt",		new PlayerStateHurt())
 		.add("die",			new PlayerStateDie())
 		.add("spring",		new PlayerStateSpring())
-		.add("transform",	new PlayerStateTransform())
 		.add("breathe",		new PlayerStateBreathe())
 		.add("corksew",		new PlayerStateCorksew())
 	;

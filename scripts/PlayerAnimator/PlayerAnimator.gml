@@ -17,6 +17,8 @@ function PlayerAnimator() constructor {
 	__is_ended	   = false;
 	
 	__sprite_index_previous = undefined;
+
+	__on_animation_finished = undefined;
 	
 	
 	__create_default = function(_name, _sprite, _is_super = false) {
@@ -135,6 +137,10 @@ function PlayerAnimator() constructor {
 	set_image_index = function(_image_index) {
 		__image_index=_image_index;
 	};
+
+	on_animation_finished = function(cb) {
+		__on_animation_finished = cb;
+	}
 	
 	animate = function() {
 		var _anim = __get_current_animation();
@@ -146,6 +152,10 @@ function PlayerAnimator() constructor {
 			} else {
 				__image_index = _anim.frames - 1;
 				__is_ended = true;
+			}
+
+			if (__on_animation_finished != undefined) {
+				__on_animation_finished();
 			}
 		}
 			

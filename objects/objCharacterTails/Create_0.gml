@@ -27,6 +27,7 @@ add_basic_player_states(state);
 state.override("jump",		new TailsStateJump());
 
 state.add("fly",			new TailsStateFly());
+state.add("transform",	    new PlayerStateTransform(2));
 
 physics = new PlayerPhysics();
 
@@ -61,7 +62,7 @@ animator
 	
 	.add("die",			sprTailsDie		).speed(0)
 		
-	.add("transform",   sprTailsTransform).stop_on_end().speed(.5)
+	.add("transform",   sprTailsTransform).loop_from(1).speed(.25)
 	.add("fly",			sprTailsFly		).speed(.125)
 	.add("fly_tired",	sprTailsFlyTired).speed(.125)
 	.add("swim",		sprTailsSwim	).speed(.125)

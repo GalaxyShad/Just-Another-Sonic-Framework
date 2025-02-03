@@ -31,14 +31,16 @@ collision_detector = new PlayerCollisionDetector(self);
 state  = new State(self);
 add_basic_player_states(state);
 
-state.override("jump",		new KnucklesStateJump());
+state.override("jump",		new KnucklesStateJump())
 
-state.add("glide",			new KnucklesStateGlide());
-state.add("glideRotation",	new KnucklesStateGlideRotation());
-state.add("land",			new KnucklesStateLand());
-state.add("drop",			new KnucklesStateDrop());
-state.add("climbe",			new KnucklesStateClimbe());
-state.add("clambering",		new KnucklesStateClambering());
+state
+	.add("glide",			new KnucklesStateGlide())
+	.add("glideRotation",	new KnucklesStateGlideRotation())
+	.add("land",			new KnucklesStateLand())
+	.add("drop",			new KnucklesStateDrop())
+	.add("climbe",			new KnucklesStateClimbe())
+	.add("clambering",		new KnucklesStateClambering())
+	.add("transform",		new PlayerStateTransform(2))
 
 physics = new PlayerPhysics();
 
@@ -81,7 +83,7 @@ animator
 	.add("climbe",			sprKnucklesClimbe	).speed(0)
 	.add("clambering",		sprKnucklesClambering).stop_on_end().speed(0.1)
 	
-	.add("transform",		sprKnucklesTransform).stop_on_end().speed(.5)
+	.add("transform",		sprKnucklesTransform).loop_from(1).speed(.25)
 ;
 animator.set("idle");
 

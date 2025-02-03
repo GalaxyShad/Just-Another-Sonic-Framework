@@ -1,25 +1,38 @@
 
 
 
-function PlayerStateTransform() : BaseState() constructor {
+function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 	__timer = undefined;
+	__is_transformed = false; 
+	__plr_ins = undefined;
+	__transform_frame = _transform_frame;
+
+	on_step = function(p) {
+		if (p.animator.get_image_index() >= __transform_frame && !__is_transformed) {
+			with (p) {
+				player_set_super_form();					
+				audio_play_sound(sndPlrTransform, 0, 0);
+			}
+
+			__is_transformed = true;
+		}
+	}
 	
-	on_start = function(player) { with player {
-		ground = false;
-		animator.set("transform");
+	on_start = function(p) { 
+		p.ground = false;
+		p.animator.set("transform");
+
 		//behavior_loop.disable(player_behavior_air_movement);
-		allow_movement = false;
-		other.__timer = 30;
-	}};
+		p.allow_movement = false;
+
+		__plr_ins = p;
+		__timer = 60;
+		__is_transformed = false;
+	};
 	
 	on_animate = function(player) { with player {
 		ysp = 0;
 		xsp = 0;
-		
-		if (animator.get_image_index() >= 12 && !physics.is_super()) {
-			player_set_super_form();	
-			audio_play_sound(sndPlrTransform, 0,0);
-		}
 		
 		other.__timer--;
 		
@@ -28,6 +41,7 @@ function PlayerStateTransform() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {
+		player.animator.on_animation_finished(undefined);
 		player.allow_movement = true;
 		//behavior_loop.enable(player_behavior_air_movement);
 	};
