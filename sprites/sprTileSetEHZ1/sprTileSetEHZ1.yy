@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"sprTileSetEHZ1",
   "bboxMode":0,
-  "bbox_bottom":255,
+  "bbox_bottom":319,
   "bbox_left":0,
   "bbox_right":511,
   "bbox_top":0,

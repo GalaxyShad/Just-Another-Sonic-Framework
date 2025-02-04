@@ -1,9 +1,9 @@
 if (keyboard_check_pressed(ord("P"))) {
-	resize(scale + 1);	
+	resize(scale * 2);	
 }
 
 if (keyboard_check_pressed(ord("O"))) {
-	resize(scale - 1);	
+	resize(scale / 2);	
 }
 
 var _o_follow = FollowingObject;
