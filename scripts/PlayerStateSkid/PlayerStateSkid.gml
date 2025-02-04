@@ -11,7 +11,9 @@ function PlayerStateSkid() : BaseState() constructor {
 			player.y + _offset_y *  player.collision_detector.get_angle_data().cos
 				     + _offset_x * -player.collision_detector.get_angle_data().sin, 
 			player.depth-1, 
-			objSfxSkidDust 
+			objSfxSkidDust, {
+				vspeed: -1
+			}
 		);
 	};
 	
