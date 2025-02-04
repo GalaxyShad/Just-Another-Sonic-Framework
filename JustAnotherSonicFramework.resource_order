@@ -47,6 +47,7 @@
     {"name":"objBubbleCountdown","order":8,"path":"objects/objBubbleCountdown/objBubbleCountdown.yy",},
     {"name":"objBubbleMaker","order":16,"path":"objects/objBubbleMaker/objBubbleMaker.yy",},
     {"name":"objCamera","order":4,"path":"objects/objCamera/objCamera.yy",},
+    {"name":"objCameraSonicWorlds","order":20,"path":"objects/objCameraSonicWorlds/objCameraSonicWorlds.yy",},
     {"name":"objCharacterChanger","order":9,"path":"objects/objCharacterChanger/objCharacterChanger.yy",},
     {"name":"objCharacterKnuckles","order":5,"path":"objects/objCharacterKnuckles/objCharacterKnuckles.yy",},
     {"name":"objCharacterSonic","order":4,"path":"objects/objCharacterSonic/objCharacterSonic.yy",},

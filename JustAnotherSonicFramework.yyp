@@ -75,6 +75,7 @@
     {"id":{"name":"objBubbleCountdown","path":"objects/objBubbleCountdown/objBubbleCountdown.yy",},},
     {"id":{"name":"objBubbleMaker","path":"objects/objBubbleMaker/objBubbleMaker.yy",},},
     {"id":{"name":"objCamera","path":"objects/objCamera/objCamera.yy",},},
+    {"id":{"name":"objCameraSonicWorlds","path":"objects/objCameraSonicWorlds/objCameraSonicWorlds.yy",},},
     {"id":{"name":"objCharacterChanger","path":"objects/objCharacterChanger/objCharacterChanger.yy",},},
     {"id":{"name":"objCharacterKnuckles","path":"objects/objCharacterKnuckles/objCharacterKnuckles.yy",},},
     {"id":{"name":"objCharacterSonic","path":"objects/objCharacterSonic/objCharacterSonic.yy",},},

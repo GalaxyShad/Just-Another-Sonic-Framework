@@ -67,9 +67,13 @@ o_dj = !instance_exists(objDJ) ?
 	instance_create_layer(x, y, layer, objDJ) :
 	instance_find(objDJ, 0);
 	
-camera = !instance_exists(objCamera) ? 
-	instance_create_layer(x, y, layer, objCamera) :
-	instance_find(objCamera, 0);
+camera = !instance_exists(objCameraSonicWorlds) ? 
+	instance_create_layer(x, y, layer, objCameraSonicWorlds) :
+	instance_find(objCameraSonicWorlds, 0);
+
+// camera = !instance_exists(objCamera) ? 
+// 	instance_create_layer(x, y, layer, objCamera) :
+// 	instance_find(objCamera, 0);
 	
 camera.FollowingObject = id;
 

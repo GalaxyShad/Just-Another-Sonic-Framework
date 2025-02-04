@@ -83,4 +83,8 @@ function State(_owner) constructor {
 	current = function() { 
 		return __current_state; 
 	};
+
+	is_one_of = function(_state_names) {
+		return array_contains(_state_names, __current_state);
+	}
 }
