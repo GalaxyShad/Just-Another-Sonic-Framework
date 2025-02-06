@@ -105,6 +105,7 @@
     {"name":"objSfxDropdashDust","order":11,"path":"objects/objSfxDropdashDust/objSfxDropdashDust.yy",},
     {"name":"objSfxExplosion","order":8,"path":"objects/objSfxExplosion/objSfxExplosion.yy",},
     {"name":"objSfxInvicibilitySparkle","order":3,"path":"objects/objSfxInvicibilitySparkle/objSfxInvicibilitySparkle.yy",},
+    {"name":"objSfxMotobugExhaust","order":8,"path":"objects/objSfxMotobugExhaust/objSfxMotobugExhaust.yy",},
     {"name":"objSfxRingSparkle","order":5,"path":"objects/objSfxRingSparkle/objSfxRingSparkle.yy",},
     {"name":"objSfxSkidDust","order":9,"path":"objects/objSfxSkidDust/objSfxSkidDust.yy",},
     {"name":"objSfxWaterRun","order":6,"path":"objects/objSfxWaterRun/objSfxWaterRun.yy",},

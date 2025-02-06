@@ -24,6 +24,10 @@ if (keyboard_check_pressed(ord("S"))) {
 	}
 }
 
+if (keyboard_check_pressed(ord("X"))) {
+	state.change_to((state.current() == "noclip") ? "normal" : "noclip");
+}
+
 if (keyboard_check_pressed(ord("C"))) {
 	var _changer = instance_find(objCharacterChanger, 0);
 	_changer.change(id);

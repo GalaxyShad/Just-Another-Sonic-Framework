@@ -88,3 +88,35 @@ function PlayerStateNormal() : BaseState() constructor {
 		} 
 	}};
 }
+
+function PlayerStateNoclip() : BaseState() constructor {
+	on_start = function(p) {
+		p.ground = false;
+		p.behavior_loop.disable(player_behavior_collisions);
+		p.behavior_loop.disable(player_behavior_apply_gravity);
+
+		p.handle_loop.disable_all();
+
+		p.animator.set("skid");
+	}
+
+	on_step = function(p) {
+		p.x += p.xsp;
+		p.y += p.ysp;
+
+		if (keyboard_check(vk_up)) { 
+			p.ysp -= 0.1; 
+		} else if (keyboard_check(vk_down)) { 
+			p.ysp += 0.1; 
+		} else { 
+			p.ysp = 0; 
+		}
+	}
+
+	on_exit = function(p) {
+		p.behavior_loop.enable(player_behavior_collisions);
+		p.behavior_loop.enable(player_behavior_apply_gravity);
+
+		p.handle_loop.enable_all();
+	}
+}

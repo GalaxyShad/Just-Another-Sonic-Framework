@@ -24,5 +24,10 @@ if (
 if (hspeed != 0)
 	image_xscale = -sign(hspeed); 
 
+if (tick % 10 == 0) {
+	instance_create_depth(x + 20 * image_xscale, y, depth+1, objSfxMotobugExhaust, { hspeed: 1 * image_xscale });
+}
+
+tick++;
 
 

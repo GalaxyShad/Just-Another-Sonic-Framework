@@ -26,6 +26,8 @@ function add_basic_player_states(_state) {
 		.add("spring",		new PlayerStateSpring())
 		.add("breathe",		new PlayerStateBreathe())
 		.add("corksew",		new PlayerStateCorksew())
+
+		.add("noclip",		new PlayerStateNoclip())
 	;
 
 	_state.change_to("normal");

@@ -4,7 +4,7 @@
   "bboxMode":0,
   "bbox_bottom":28,
   "bbox_left":0,
-  "bbox_right":47,
+  "bbox_right":39,
   "bbox_top":0,
   "collisionKind":1,
   "collisionTolerance":0,
@@ -26,7 +26,7 @@
   ],
   "name":"sprMotobug",
   "nineSlice":null,
-  "origin":9,
+  "origin":4,
   "parent":{
     "name":"Sprites",
     "path":"folders/Objects/Enemies/Sprites.yy",
@@ -87,7 +87,7 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":18,
+    "xorigin":20,
     "yorigin":14,
   },
   "swatchColours":null,
@@ -98,5 +98,5 @@
   },
   "type":0,
   "VTile":false,
-  "width":48,
+  "width":40,
 }

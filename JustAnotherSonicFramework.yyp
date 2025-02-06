@@ -134,6 +134,7 @@
     {"id":{"name":"objSfxDropdashDust","path":"objects/objSfxDropdashDust/objSfxDropdashDust.yy",},},
     {"id":{"name":"objSfxExplosion","path":"objects/objSfxExplosion/objSfxExplosion.yy",},},
     {"id":{"name":"objSfxInvicibilitySparkle","path":"objects/objSfxInvicibilitySparkle/objSfxInvicibilitySparkle.yy",},},
+    {"id":{"name":"objSfxMotobugExhaust","path":"objects/objSfxMotobugExhaust/objSfxMotobugExhaust.yy",},},
     {"id":{"name":"objSfxRingSparkle","path":"objects/objSfxRingSparkle/objSfxRingSparkle.yy",},},
     {"id":{"name":"objSfxSkidDust","path":"objects/objSfxSkidDust/objSfxSkidDust.yy",},},
     {"id":{"name":"objSfxWaterRun","path":"objects/objSfxWaterRun/objSfxWaterRun.yy",},},
