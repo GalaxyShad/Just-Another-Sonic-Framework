@@ -27,6 +27,7 @@ function KnucklesStateGlide() : BaseState() constructor {
 		if ((collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Left)) || 
 			(collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right))
 		) {
+			audio_play_sound(sndGrab, 0, false);
 			state.change_to("climbe");
 		}
 		if (!is_key_action) state.change_to("drop");
@@ -119,6 +120,7 @@ function KnucklesStateDrop() : BaseState() constructor {
 	
 	on_landing = function(player) {with player {
 		drop_time=0;
+		audio_play_sound(sndLand, 0, false);
 		gsp=0;
 	}};
 	
@@ -204,6 +206,7 @@ function KnucklesStateLand() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_jump);
 		//allow_jump = false;
 		rise_time=0;
+
 		animator.set("land");
 	}};
 	

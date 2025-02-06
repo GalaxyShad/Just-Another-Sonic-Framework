@@ -16,6 +16,8 @@ function TailsStateFly() : BaseState() constructor {
 		__tired			= false;
 		__time_fly		= 0;
 		__fly_action	= false;
+
+		audio_play_sound(sndFlying, 0, true);
 	}};
 	
 	on_step = function(player) {with player {
@@ -53,6 +55,7 @@ function TailsStateFly() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) {with (player) {
+		audio_stop_sound(sndFlying);
 		behavior_loop.enable(player_behavior_apply_gravity);
 	}};
 }
