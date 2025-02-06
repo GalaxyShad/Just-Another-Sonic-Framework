@@ -38,7 +38,7 @@ if mode != 1
 
 ysp += 0.09375;
 
-if (place_meeting(x, y+ysp, parSolid)) {
+if (place_meeting(x, y+ysp, parSolid) || place_meeting(x, y+ysp, parPlatform)) {
 	ysp *= -0.75;	
 }
 
