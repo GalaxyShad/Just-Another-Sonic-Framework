@@ -139,7 +139,7 @@ function player_collisions_air() {
 
 		collision_detector.set_angle(180);
 
-		collision_detector.set_angle(collision_detector.measure_angle());
+		collision_detector.set_angle(collision_detector.measure_angle(true));
 		
 		
 		if (collision_detector.is_angle_in_range(91, 135) || collision_detector.is_angle_in_range(226, 270)) {
@@ -162,8 +162,12 @@ function player_collisions_air() {
 		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
 			y--;
 		}
-			
-		collision_detector.set_angle(collision_detector.measure_angle());
+		
+		var _ang = collision_detector.measure_angle(true);
+
+		show_debug_message(_ang);
+
+		collision_detector.set_angle(_ang);
 		
 		var _RANGE_SHALLOW		= collision_detector.is_angle_in_range(  0,  23) || 
 								  collision_detector.is_angle_in_range(339, 360);

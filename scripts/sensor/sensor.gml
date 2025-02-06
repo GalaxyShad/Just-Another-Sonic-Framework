@@ -27,6 +27,10 @@ function AngleMeasurer(plr_inst) constructor {
 		__angle = _angle;
 	}
 
+	get_angle = function() {
+		return __angle;
+	}
+
 	set_layer = function(_layer) {
 		__layer = _layer;
 	}
@@ -79,14 +83,23 @@ function AngleMeasurer(plr_inst) constructor {
 		};
 	}
 
-	measure = function(_cb_collision_line, on_point_found = function(){}) {
+	measure = function(_cb_collision_line, is_landing) {
 		var _res = measure_edges(_cb_collision_line);
+		// _res = measure_each(_cb_collision_line);
 		
 		if (_res.left == undefined || _res.right == undefined) {
-			return _res.angle;
+			if (_res.left == undefined && _res.right == undefined && !is_landing) {
+				return _res.angle;
+			} else {
+				_res = measure_each(_cb_collision_line);
+	
+				if (_res.angle == undefined) {
+					return _res.angle;
+				}
+			}
 		}
 
-		draw_set_color(c_green);
+		draw_set_color(c_red);
 		draw_line(_res.left[0], _res.left[1], _res.right[0], _res.right[1]);
 		draw_text(_res.left[0], _res.left[1], string(_res.angle));
 		draw_set_color(c_white);
@@ -101,107 +114,52 @@ function AngleMeasurer(plr_inst) constructor {
 	}	
 
 	measure_each = function(_cb_collision_line, on_point_found = function(){}) {
-		return measure_edges(_cb_collision_line);
-		
-		var start_point = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
+		var _start_measure_point = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
 
-		var point = [start_point[0], start_point[1]]
+		var _step = 1;
 
-		var gnd_point = undefined;
+		var _start_point = undefined;
+		var _end_point = undefined;
 
-		var first_point = undefined;
+		for (var i = 0; i < __radius * 2 + 1; i += _step) {
+			var _point = [
+				_start_measure_point[0] + dcos(__angle) * i, 
+				_start_measure_point[1] + -dsin(__angle) * i
+			];
 
-		var angle = 0;
-		var count = 0;
-		var same_angle_count = 0;
+			var _found_point = __ground_point(_point, _cb_collision_line);
 
-		var a = undefined;
+			if (_found_point == undefined) continue;
 
-		var prev_angle = undefined;
-
-		var step = 1;
-		//var step = (__radius * 2) / 8;
-
-		for (var i = 0; i < __radius * 2 + 1; i += step) {
-			a = __ground_point(point, _cb_collision_line);
-
-			if (a != undefined) {
-				if (first_point == undefined) {
-					first_point = [a[0], a[1]];
-				}
-
-				if (gnd_point != undefined) {
-					var n = point_direction(gnd_point[0], gnd_point[1], a[0], a[1]);
-
-					if (n != 0) {
-						angle += n;
-						count++;
-					} else {
-						same_angle_count++;
-					}
-
-					prev_angle = n;
-				}
-				
-				gnd_point = [a[0], a[1]];
-				
-				draw_set_color(c_green);
-				draw_line(point[0], point[1], a[0], a[1]);
-				draw_set_color(c_white);
-
-
-				on_point_found(point, a);
-			}
-
-			point[0] += dcos(__angle) * step ;
-			point[1] += -dsin(__angle) * step;	
-		}
-
-		// if (same_angle_count > count) {
-		// 	if (first_point != undefined && a != undefined) {
-		// 		var t = point_direction(first_point[0], first_point[1], a[0], a[1]);
-
-		// 		if (abs(angle_difference(t, __angle)) <= 30) {
-		// 			angle = t;
-		// 		} else {
-		// 			angle = __angle;
-		// 		}
-		// 	} else {
-		// 		angle = __angle;
-		// 	}
-
-		// 	//angle = __angle;
-			
-		// } else  {
-		// 	if (count == 0) count = 1;
-		// 	angle /= count;
-		// } 
-
-		if (first_point != undefined && a != undefined) {
-			
-			var _e = 2;
-
-			var p1 = [first_point[0] - _e * dsin(__angle), first_point[1] - _e * dcos(__angle)];
-			var p2 = [a[0] - _e * dsin(__angle), a[1] - _e * dcos(__angle)];
-
-			draw_set_color(c_lime);
-			draw_line(p1[0], p1[1], p2[0], p2[1]);
-			draw_set_color(c_white);
-
-			if (!_cb_collision_line(__to_cb_arg(p1, p2))) {
-				angle = point_direction(p1[0], p1[1], p2[0], p2[1]);
+			if (_start_point == undefined) {
+				_start_point = [_found_point[0], _found_point[1]];
+			} else if (_found_point == undefined) {
+				break;
 			} else {
-				angle = __angle;
+				_end_point = [_found_point[0], _found_point[1]];
 			}
-		} else {
-			angle = __angle;
 		}
 
-		draw_text_transformed(__plr_inst.x, __plr_inst.y - 24, 
-			string(angle) + " diff:" + string(count) + " same:" + string(same_angle_count), 
-			0.4, 0.4, 0);
+		var _angle = undefined;
 
-		return angle;
+		if (_start_point != undefined && _end_point != undefined) {
+			_angle = point_direction(
+				_start_point[0], 	_start_point[1],
+				_end_point[0], 		_end_point[1]
+			);
+
+			_start_point[0] -= dsin(_angle) * 5;
+			_start_point[1] -= dcos(_angle) * 5;
+
+			_end_point[0] -= dsin(_angle) * 5;
+			_end_point[1] -= dcos(_angle) * 5;
+		}
+		
+		return {
+			angle: _angle,
+			left: _start_point,
+			right: _end_point
+		};
 	}
 
 	draw = function(cb) {
@@ -598,10 +556,16 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	set_angle = function(_angle) {
 		__floorSensor.set_angle(_angle);
 
+		var a = round(_angle / 4) * 4;
 		// var a = round(_angle / 90) * 90;
-		var a = _angle;
+		// var a = _angle;
 
+		var _current_angle = __angle_measurer.get_angle();
 		__angle_measurer.set_angle(a);
+
+		if (__angle_measurer.measure(__is_collision_line_solid_and_platform) == _current_angle) {
+			__angle_measurer.set_angle(_current_angle);
+		}
 	}
 
 	is_angle_in_range = function(a, b) {
@@ -621,8 +585,8 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 		return __floorSensor.get_radius();
 	}
 
-	measure_angle = function() {
-		var _res = __angle_measurer.measure(__is_collision_line_solid_and_platform);
+	measure_angle = function(is_landing = false) {
+		var _res = __angle_measurer.measure(__is_collision_line_solid_and_platform, is_landing);
 
 		if (collision_object(objAngleRounder, PlayerCollisionDetectorSensor.FloorExtend)) {
 			return round(_res / 90) * 90;
