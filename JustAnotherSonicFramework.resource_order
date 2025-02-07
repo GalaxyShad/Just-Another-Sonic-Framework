@@ -127,6 +127,7 @@
     {"name":"rmEHZ1","order":3,"path":"rooms/rmEHZ1/rmEHZ1.yy",},
     {"name":"rmTest","order":2,"path":"rooms/rmTest/rmTest.yy",},
     {"name":"KnucklesStates","order":1,"path":"scripts/KnucklesStates/KnucklesStates.yy",},
+    {"name":"Player","order":10,"path":"scripts/Player/Player.yy",},
     {"name":"PlayerAddBasicStates","order":5,"path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},
     {"name":"PlayerAirBehaviors","order":2,"path":"scripts/PlayerAirBehaviors/PlayerAirBehaviors.yy",},
     {"name":"PlayerAnimator","order":1,"path":"scripts/PlayerAnimator/PlayerAnimator.yy",},

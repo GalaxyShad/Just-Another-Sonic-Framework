@@ -1,6 +1,6 @@
 
-function PlayerLoop(_player) constructor {
-	__player = _player;
+
+function PlayerLoop() constructor {
 	__function_accessibility = {};
 	__function_list = [];
 	

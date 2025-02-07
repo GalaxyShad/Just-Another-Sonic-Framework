@@ -160,6 +160,7 @@
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"id":{"name":"BaseShield","path":"scripts/BaseShield/BaseShield.yy",},},
     {"id":{"name":"KnucklesStates","path":"scripts/KnucklesStates/KnucklesStates.yy",},},
+    {"id":{"name":"Player","path":"scripts/Player/Player.yy",},},
     {"id":{"name":"PlayerAddBasicStates","path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},},
     {"id":{"name":"PlayerAirBehaviors","path":"scripts/PlayerAirBehaviors/PlayerAirBehaviors.yy",},},
     {"id":{"name":"PlayerAnimator","path":"scripts/PlayerAnimator/PlayerAnimator.yy",},},

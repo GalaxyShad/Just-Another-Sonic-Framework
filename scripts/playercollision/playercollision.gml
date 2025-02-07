@@ -1,5 +1,4 @@
-
-function player_collision_room_borders() {
+function player_collision_room_borders(_p) {
 	var _sensor_right = x + collision_detector.get_radius().wall;
 	var _sensor_left  = x - collision_detector.get_radius().wall;
 	
@@ -18,188 +17,205 @@ function player_collision_room_borders() {
 	}
 }
 
-function player_behavior_collisions() {
-	// sensor.set_wall_box(
-	// 	(!sensor.angle_in_range(16, 344) && ground) ? 
-	// 		SENSOR_WALLBOX_NORMAL : SENSOR_WALLBOX_SLOPES
-	// );
+enum PushDir {
+	Left,
+	Right,
+	Top,
+	Bottom
+};
 
-	// TODO
+/// @param {Struct.Player} p  
+function player_behavior_collisions(p) {
 
-	var f = ground ? player_collisions_ground : player_collisions_air;
+
+	var f = p.inst.ground 
+		? player_collisions_ground 
+		: player_collisions_air;
 	
-	f();
+	f(p);
 	
 	player_collision_room_borders();
-	
-	//x = sensor.get_position().x;
-	//y = sensor.get_position().y;
 }
 
-function player_collisions_ground() {
-	#macro GSP_SLICE 16
-
-	player_collisions_ground_gsp(gsp);	
+/// @param {Struct.Player} p  
+function player_collisions_ground(p) {
+	var _gsp_slice = 8;
 	
 	if (!ground) {
 		return;
 	}
+
+	player_collisions_ground_gsp(gsp % _gsp_slice, p);	
 	
+	for (var i = 0; i < (abs(gsp) div _gsp_slice) * _gsp_slice; i += _gsp_slice) {
+		player_collisions_ground_gsp(sign(gsp) * _gsp_slice, p);	
 		
-	// for (var i = 0; i < (abs(gsp) div GSP_SLICE) * GSP_SLICE; i += GSP_SLICE) {
-	// 	player_collisions_ground_gsp(sign(gsp) * GSP_SLICE);	
-		
-	// 	xsp = gsp *  sensor.get_angle_cos();
-	// 	ysp = gsp * -sensor.get_angle_sin();
-		
-	// 	if (!ground) {
-	// 		return;
-	// 	}
-	// }
+		if (!ground) {
+			return;
+		}
+	}
 }
 
-function player_collisions_ground_gsp(_gsp) {
+/// @param {Struct.Player} p  
+function player_collision_walls(p) {
+
+	var _is_colliding_left  = false;
+	var _is_colliding_right = false;
+
+	// Push from right wall 
+	repeat 128 {
+		if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Right)) {
+			p.inst.x -= p.collider.get_angle_data().cos;
+			p.inst.y += p.collider.get_angle_data().sin;
+	
+			_is_colliding_right = true;
+		} else {
+			break;
+		}
+	}
+
+	// Push from left wall 
+	repeat 128 {
+		if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Left)) {
+			p.inst.x += p.collider.get_angle_data().cos;
+			p.inst.y -= p.collider.get_angle_data().sin;
+	
+			_is_colliding_left = true;
+		} else {
+			break;
+		}
+	}
+
+	var _spd = p.inst.ground ? p.inst.gsp : p.inst.xsp;
+
+	if (
+		(_is_colliding_left  && _spd < 0) || 
+		(_is_colliding_right && _spd > 0)
+	) {
+		if (p.inst.ground) { 
+			p.inst.gsp = 0;
+		} else {
+			p.inst.xsp = 0;
+		}
+	}
+}
+
+/// @param {Struct.Player} p  
+function player_collisions_ground_gsp(_gsp, p) {
 	if (!ground) return;
 
-	xsp = _gsp *  collision_detector.get_angle_data().cos;
-	ysp = _gsp * -collision_detector.get_angle_data().sin;
+	xsp = _gsp *  p.collider.get_angle_data().cos;
+	ysp = _gsp * -p.collider.get_angle_data().sin;
 
 	x += xsp;
 	y += ysp;
 	
-	if ((gsp > 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Right)) || 
-		(gsp < 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Left))
-	) {
-		gsp = 0;
+	if (!p.collider.is_collision_solid(PlayerCollisionDetectorSensor.FloorExtend)) {
+		p.inst.ground = false;
+		p.collider.set_angle(0);
+		return;
+	}
 
-		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Right)) {
-			x -= collision_detector.get_angle_data().cos;
-			y += collision_detector.get_angle_data().sin;
-		}
+	player_collision_walls(p);
 	
-		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Left)) {
-			x += collision_detector.get_angle_data().cos;
-			y -= collision_detector.get_angle_data().sin;
+	p.collider.set_angle(p.collider.measure_angle());
+
+	repeat 128 {
+		if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Bottom) == true) {
+			p.inst.x -= p.collider.get_angle_data().sin;
+			p.inst.y -= p.collider.get_angle_data().cos;
+		} else {
+			break;
 		}
 	}
-	
-	if (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.FloorExtend)) {
-		
-		
-		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
-			x -= collision_detector.get_angle_data().sin;
-			y -= collision_detector.get_angle_data().cos;
-		}
 
-		while (!collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
-			x += collision_detector.get_angle_data().sin;
-			y += collision_detector.get_angle_data().cos;
+	repeat 128 {
+		if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Bottom) == false) {
+			p.inst.x += p.collider.get_angle_data().sin;
+			p.inst.y += p.collider.get_angle_data().cos;
+		} else {
+			break;
 		}
-		
-		collision_detector.set_angle(collision_detector.measure_angle());
-	} else {
-		ground = false;
 	}
 }
 
-function player_collisions_air() {
+/// @param {Struct.Player} p  
+function player_collisions_air(p) {
 	if (ground) return;
 	
-	collision_detector.set_angle(0);
+	p.collider.set_angle(0);
 	
-#region WallCollisions
-
 	x += xsp;
 	y += ysp;
 	
-	if ((xsp > 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Right)) || 
-		(xsp < 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Left))
-	) {
-		while (xsp > 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Right)) {
-			x--;
-		}
-
-		while (xsp < 0 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Left)) {
-			x++;
-		}
-
-		xsp = 0;
-	}
-
-#endregion
-
-#region CellingAndGroundCollisions
-	
+	player_collision_walls(p);
 
 #region Celling
-	if (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Top) && ysp < 0) {
-		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Top)) {
-			y++;
+	if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Top) && ysp < 0) {
+		repeat 128 {
+			if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Top)) {
+				y++;
+			}
 		}
 
-		collision_detector.set_angle(180);
+		p.collider.set_angle(180);
 
-		collision_detector.set_angle(collision_detector.measure_angle(true));
+		p.collider.set_angle(p.collider.measure_angle(true));
 		
 		
-		if (collision_detector.is_angle_in_range(91, 135) || collision_detector.is_angle_in_range(226, 270)) {
+		if (p.collider.is_angle_in_range(91, 135) || p.collider.is_angle_in_range(226, 270)) {
 			ground = true;
-			gsp	   = ysp * -sign(collision_detector.get_angle_data().sin);
+			gsp	   = ysp * -sign(p.collider.get_angle_data().sin);
 			
 			player_landing();
 			
 			return;
 		} else {
-			collision_detector.set_angle(0);	
+			p.collider.set_angle(0);	
 			ysp = 0;
 		}
 	}
 #endregion
 #region Ground
-	if (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom) && ysp > 0) {
+	if (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Bottom) && ysp > 0) {
 		ground = true;
 
-		while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
-			y--;
+		repeat 128 {
+			while (p.collider.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
+				y--;
+			}
 		}
 		
-		var _ang = collision_detector.measure_angle(true);
+		var _ang = p.collider.measure_angle(true);
 
-		show_debug_message(_ang);
-
-		collision_detector.set_angle(_ang);
+		p.collider.set_angle(_ang);
 		
-		var _RANGE_SHALLOW		= collision_detector.is_angle_in_range(  0,  23) || 
-								  collision_detector.is_angle_in_range(339, 360);
+		var _RANGE_SHALLOW		= p.collider.is_angle_in_range(  0,  23) || 
+								  p.collider.is_angle_in_range(339, 360);
 
-		var _RANGE_SLOPE		= collision_detector.is_angle_in_range( 24,  45) || 
-								  collision_detector.is_angle_in_range(316, 338);
+		var _RANGE_SLOPE		= p.collider.is_angle_in_range( 24,  45) || 
+								  p.collider.is_angle_in_range(316, 338);
 
-		var _RANGE_STEEP_SLOPE	= collision_detector.is_angle_in_range( 46,  90) || 
-								  collision_detector.is_angle_in_range(271, 315);
+		var _RANGE_STEEP_SLOPE	= p.collider.is_angle_in_range( 46,  90) || 
+								  p.collider.is_angle_in_range(271, 315);
 		
 		if (_RANGE_SHALLOW) {
 			gsp = xsp;
-		} else if (_RANGE_SLOPE) {
+		} else {
 			if (abs(xsp) > abs(ysp)) {
 				gsp = xsp;
-			} else {
-				gsp = ysp / 2 * -sign(collision_detector.get_angle_data().sin);
+			} else if (_RANGE_SLOPE) {
+				gsp = ysp / 2 * -sign(p.collider.get_angle_data().sin);
+			} else if (_RANGE_STEEP_SLOPE) {
+				gsp = ysp * -sign(p.collider.get_angle_data().sin);
 			}
-		} else if (_RANGE_STEEP_SLOPE) {
-			if (abs(xsp) > abs(ysp)) {
-				gsp = xsp;
-			} else {
-				gsp = ysp * -sign(collision_detector.get_angle_data().sin);
-			}
-		}
+		} 
 			
-		xsp = gsp *  collision_detector.get_angle_data().cos; 
-		ysp = gsp * -collision_detector.get_angle_data().sin;
+		xsp = gsp *  p.collider.get_angle_data().cos; 
+		ysp = gsp * -p.collider.get_angle_data().sin;
 			
 		player_landing();
 	}
-#endregion
 #endregion
 
 }

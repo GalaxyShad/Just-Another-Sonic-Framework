@@ -123,10 +123,15 @@ timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
 timer_powerup_invincibility = new Timer2(31 * 60, false);
 
-//powerup_invincibility = true;
+plr = new Player(
+	self,
+	collision_detector,
+	state,
+	animator,
+	physics
+)
 
-
-behavior_loop = new PlayerLoop(id);
+behavior_loop = new PlayerLoop();
 behavior_loop
 	.add(player_switch_sensor_radius)
 	
@@ -146,7 +151,7 @@ behavior_loop
 	.add(player_behavior_jump)
 ;
 
-handle_loop = new PlayerLoop(id);
+handle_loop = new PlayerLoop();
 handle_loop
 	.add(player_handle_layers)
 	.add(player_handle_rings)
@@ -160,7 +165,7 @@ handle_loop
 	.add(player_handle_corksew)
 ;
 
-visual_loop = new PlayerLoop(id);
+visual_loop = new PlayerLoop();
 visual_loop
 	.add(player_behavior_visual_angle)
 	.add(player_behavior_visual_flip)

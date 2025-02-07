@@ -1,5 +1,5 @@
 array_foreach(visual_loop.get_loop(), function(_value, _index) {
-	if (visual_loop.is_function_available(_value)) _value();
+	if (visual_loop.is_function_available(_value)) _value(plr);
 });
 
 state.animate();

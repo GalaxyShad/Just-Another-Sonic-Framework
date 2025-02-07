@@ -1,12 +1,20 @@
 
 
 if (collision_line(x, y, x, y+64, parSolid, true, true)) {
-	while (!collision_line(x, y, x, y+15, parSolid, true, true)) {
-		y++;
+	repeat 128 {
+		if (!collision_line(x, y, x, y+15, parSolid, true, true)) {
+			y++;
+		} else {
+			break;
+		}
 	}
 	
-	while (collision_line(x, y, x, y+15, parSolid, true, true)) {
-		y--;	
+	repeat 128 {
+		if (collision_line(x, y, x, y+15, parSolid, true, true)) {
+			y--;	
+		} else {
+			break;
+		}
 	}
 	
 } else {
