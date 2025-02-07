@@ -44,8 +44,10 @@ function AngleMeasurer(plr_inst) constructor {
 
 	__ground_point = function(_start_point, _cb_collision_line) {
 		var point = [_start_point[0], _start_point[1]];
+
+		var _MAX_POINT = 128;
 		
-		for (var i = 0; i < 64; i++) {
+		for (var i = 0; i < 20 + _MAX_POINT; i++) {
 			if (_cb_collision_line(__to_cb_arg(_start_point, point))) {
 				return point;
 			}
@@ -57,7 +59,7 @@ function AngleMeasurer(plr_inst) constructor {
 		return undefined;
 	}
 
-	measure_edges = function(_cb_collision_line) {
+	measure_edges = function(_cb_collision_line, _is_landing) {
 		var _left_start_point  = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
 		var _right_start_point = [__plr_inst.x + __right_point[0], __plr_inst.y + __right_point[1]];
 
@@ -67,11 +69,13 @@ function AngleMeasurer(plr_inst) constructor {
 		var _angle = __angle;
 
 		if (_left != undefined && _right != undefined) {
-			_left[0] -= dsin(_angle);
-			_left[1] -= dcos(_angle);
+			var _expand = _is_landing ? 3 : 1;
 
-			_right[0] -= dsin(_angle);
-			_right[1] -= dcos(_angle);
+			_left[0] -= dsin(_angle) * _expand;
+			_left[1] -= dcos(_angle) * _expand;
+
+			_right[0] -= dsin(_angle) * _expand;
+			_right[1] -= dcos(_angle) * _expand;
 
 			_angle = point_direction(_left[0], _left[1], _right[0], _right[1]);
 		}
@@ -84,28 +88,20 @@ function AngleMeasurer(plr_inst) constructor {
 	}
 
 	measure = function(_cb_collision_line, is_landing) {
-		var _res = measure_edges(_cb_collision_line);
-		// _res = measure_each(_cb_collision_line);
+		var _res = measure_edges(_cb_collision_line, is_landing);
 		
 		if (_res.left == undefined || _res.right == undefined) {
-			if (_res.left == undefined && _res.right == undefined && !is_landing) {
-				return _res.angle;
-			} else {
-				_res = measure_each(_cb_collision_line);
-	
-				if (_res.angle == undefined) {
-					return _res.angle;
-				}
-			}
+			return _res.angle;
 		}
 
 		draw_set_color(c_red);
 		draw_line(_res.left[0], _res.left[1], _res.right[0], _res.right[1]);
-		draw_text(_res.left[0], _res.left[1], string(_res.angle));
+		
 		draw_set_color(c_white);
 
 		if (__angle == 0 && abs(angle_difference(0, _res.angle)) > 15) {
 			if (_cb_collision_line(__to_cb_arg(_res.left, _res.right))) {
+				draw_text(_res.left[0], _res.left[1], string(_res.angle));
 				return 0;
 			} 
 		}
@@ -595,5 +591,3 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 		return _res;
 	}
 }
-
-
