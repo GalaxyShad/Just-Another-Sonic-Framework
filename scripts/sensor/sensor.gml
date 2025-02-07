@@ -170,13 +170,8 @@ function AngleMeasurer(plr_inst) constructor {
 		
 		measure(cb);
 
-
-		//draw_text_transformed(__position.x, __position.y - 12, string(a), 0.4, 0.4, 0);
-
 		draw_set_color(c_white);
 	}
-
-
 }
 
 
@@ -187,6 +182,7 @@ function FloorWallSensor(_plr_inst) constructor {
 
 	wall_sensor = {
 		radius: 10,
+		vertical_offset: 0,
 		points: {
 			left:  { x: 0, y: 0 },
 			right: { x: 0, y: 0 }
@@ -260,9 +256,13 @@ function FloorWallSensor(_plr_inst) constructor {
 		}
 
 		wall_sensor.points = {
-			left:  __offset_point({x: -wall_sensor.radius , y: 0}, angle_data),
-			right: __offset_point({x: +wall_sensor.radius , y: 0}, angle_data),
+			left:  __offset_point({x: -wall_sensor.radius , y: wall_sensor.vertical_offset}, angle_data),
+			right: __offset_point({x: +wall_sensor.radius , y: wall_sensor.vertical_offset}, angle_data),
 		}
+	}
+
+	set_wall_vertical_offset = function(offset) {
+		wall_sensor.vertical_offset = offset;
 	}
 
 	set_angle = function(degrees) {
@@ -562,6 +562,10 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 		if (__angle_measurer.measure(__is_collision_line_solid_and_platform) == _current_angle) {
 			__angle_measurer.set_angle(_current_angle);
 		}
+	}
+
+	set_wall_sensor_vertical_offset = function(offset) {
+		__floorSensor.set_wall_vertical_offset(offset);
 	}
 
 	is_angle_in_range = function(a, b) {
