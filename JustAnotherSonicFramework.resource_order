@@ -163,6 +163,7 @@
     {"name":"PlayerUnderwater","order":7,"path":"scripts/PlayerUnderwater/PlayerUnderwater.yy",},
     {"name":"PlayerVisualBehavior","order":5,"path":"scripts/PlayerVisualBehavior/PlayerVisualBehavior.yy",},
     {"name":"RingLoss","order":9,"path":"scripts/RingLoss/RingLoss.yy",},
+    {"name":"scrGitConstants","order":31,"path":"scripts/scrGitConstants/scrGitConstants.yy",},
     {"name":"scrParalaxerScripts","order":19,"path":"scripts/scrParalaxerScripts/scrParalaxerScripts.yy",},
     {"name":"Sensor","order":3,"path":"scripts/Sensor/Sensor.yy",},
     {"name":"ShieldBubble","order":4,"path":"scripts/ShieldBubble/ShieldBubble.yy",},

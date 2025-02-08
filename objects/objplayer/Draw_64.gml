@@ -4,8 +4,12 @@ if (!show_debug_info)
 	exit;
 	
 
+
+
+
 draw_text(
 	camera_get_view_width(camera_get_default()) - 300, 16,
+	$"version:			{GIT_COMMIT_ID} {GIT_UNIX_TIMESTAMP}\n"+
 	$"character:		{object_get_name(object_index)}\n"+
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+

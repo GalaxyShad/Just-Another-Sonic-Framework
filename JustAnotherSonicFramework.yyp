@@ -201,6 +201,7 @@
     {"id":{"name":"PlayerUnderwater","path":"scripts/PlayerUnderwater/PlayerUnderwater.yy",},},
     {"id":{"name":"PlayerVisualBehavior","path":"scripts/PlayerVisualBehavior/PlayerVisualBehavior.yy",},},
     {"id":{"name":"RingLoss","path":"scripts/RingLoss/RingLoss.yy",},},
+    {"id":{"name":"scrGitConstants","path":"scripts/scrGitConstants/scrGitConstants.yy",},},
     {"id":{"name":"scrParalaxerScripts","path":"scripts/scrParalaxerScripts/scrParalaxerScripts.yy",},},
     {"id":{"name":"Sensor","path":"scripts/Sensor/Sensor.yy",},},
     {"id":{"name":"ShieldBubble","path":"scripts/ShieldBubble/ShieldBubble.yy",},},

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrGitConstants",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrGitConstants",
+  "parent":{
+    "name":"JustAnotherSonicFramework",
+    "path":"JustAnotherSonicFramework.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

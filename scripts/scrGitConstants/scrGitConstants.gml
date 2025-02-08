@@ -1,0 +1,2 @@
+#macro GIT_COMMIT_ID "73a0fcc"
+#macro GIT_UNIX_TIMESTAMP "1738956015"
