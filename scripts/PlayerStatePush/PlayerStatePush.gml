@@ -6,12 +6,12 @@ function PlayerStatePush() : BaseState() constructor {
 		var is_edge_left = collision_detector.check_expanded(
 			1, 0, 
 			collision_detector.is_collision_solid, 
-			PlayerCollisionDetectorSensor.EdgeLeft
+			PlayerCollisionDetectorSensor.Left
 		);
 		var is_edge_right = collision_detector.check_expanded(
 			1, 0, 
 			collision_detector.is_collision_solid, 
-			PlayerCollisionDetectorSensor.EdgeRight
+			PlayerCollisionDetectorSensor.Right
 		);
 
 	    if ((is_edge_right && (!is_key_right || gsp < 0)) || 
