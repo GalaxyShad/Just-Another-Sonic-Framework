@@ -27,7 +27,7 @@
   ],
   "name":"sprMonitor",
   "nineSlice":null,
-  "origin":9,
+  "origin":4,
   "parent":{
     "name":"Sprites",
     "path":"folders/Objects/Monitors/Sprites.yy",
@@ -92,7 +92,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":16,
-    "yorigin":14,
+    "yorigin":16,
   },
   "swatchColours":null,
   "swfPrecision":2.525,
