@@ -17,7 +17,7 @@ function PlayerStatePush() : BaseState() constructor {
 	    if ((is_edge_right && (!is_key_right || gsp < 0)) || 
 		    (is_edge_left  && (!is_key_left  || gsp > 0))
 	    ) {
-	      state.change_to("normal");
+	    	state.change_to("normal");
 	    }
     
 		xsp = 0;
