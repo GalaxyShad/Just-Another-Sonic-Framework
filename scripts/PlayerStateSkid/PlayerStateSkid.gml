@@ -24,7 +24,7 @@ function PlayerStateSkid() : BaseState() constructor {
 			state.change_to("normal");	
 		}
 		
-		if (global.tick % 5 == 0) {
+		if (global.tick % 3 == 0) {
 			other.__create_dust_sfx(player);
 		}
 	}};
