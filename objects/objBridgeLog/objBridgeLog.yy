@@ -10,8 +10,8 @@
     "path":"folders/Objects.yy",
   },
   "parentObjectId":{
-    "name":"parSolid",
-    "path":"objects/parSolid/parSolid.yy",
+    "name":"parPlatform",
+    "path":"objects/parPlatform/parPlatform.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
