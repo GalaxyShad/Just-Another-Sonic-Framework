@@ -14,6 +14,7 @@ for (var i = 0; i < array_length(segment_list); i++) {
    }
 }
 
+// https://info.sonicretro.org/SPG:Game_Objects
 
 var _maximum_dip = undefined;
 // Get the current maximum dip for the bridge via current_log
@@ -44,6 +45,6 @@ for (var i = 0; i < segment_count; i ++)
    // Get y of current log using max dip and log distance. This is the final Y Position for the log
    var _log = segment_list[i];
    
-   _log.y = y + _maximum_dip * dsin(90 * log_distance);
+   _log.y = lerp(_log.y, y + _maximum_dip * dsin(90 * log_distance), 0.25);
 }
 

@@ -163,6 +163,7 @@ handle_loop
 	.add(player_handle_bubbles)
 	.add(player_handle_enemy)
 	.add(player_handle_corksew)
+	.add(player_handle_projectile)
 ;
 
 visual_loop = new PlayerLoop();

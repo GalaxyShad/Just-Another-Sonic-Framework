@@ -22,3 +22,12 @@ function player_handle_enemy() {
 		player_get_hit();			
 	}	
 }
+
+function player_handle_projectile() {
+	var _o_projectile = collision_detector.collision_object(objProjectile, PlayerCollisionDetectorSensor.MainDefault);
+	
+	if (_o_projectile != noone) {
+		player_get_hit();
+	}
+
+}
