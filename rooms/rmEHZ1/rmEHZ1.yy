@@ -74,6 +74,7 @@
     {"name":"inst_151B8FC3","path":"rooms/rmEHZ1/rmEHZ1.yy",},
     {"name":"inst_D8DFADA","path":"rooms/rmEHZ1/rmEHZ1.yy",},
     {"name":"inst_1B727ED","path":"rooms/rmEHZ1/rmEHZ1.yy",},
+    {"name":"inst_4B5F9E8","path":"rooms/rmEHZ1/rmEHZ1.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -205,6 +206,7 @@
         {"$GMRInstance":"v1","%Name":"inst_151B8FC3","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_151B8FC3","objectId":{"name":"objCorksewTrigger","path":"objects/objCorksewTrigger/objCorksewTrigger.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":5.8749995,"scaleY":1.5,"x":9604.0,"y":592.0,},
         {"$GMRInstance":"v1","%Name":"inst_D8DFADA","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_D8DFADA","objectId":{"name":"objCorksewTrigger","path":"objects/objCorksewTrigger/objCorksewTrigger.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":6.062499,"scaleY":1.5,"x":9216.0,"y":592.0,},
         {"$GMRInstance":"v1","%Name":"inst_1B727ED","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1B727ED","objectId":{"name":"objEnemyCoconuts","path":"objects/objEnemyCoconuts/objEnemyCoconuts.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":172.0,"y":584.0,},
+        {"$GMRInstance":"v1","%Name":"inst_4B5F9E8","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_4B5F9E8","objectId":{"name":"objEnemyBuzzer","path":"objects/objEnemyBuzzer/objEnemyBuzzer.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":496.0,"y":556.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRLayer":"","%Name":"solidmap","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[
         {"$GMRTileLayer":"","%Name":"solidmap_main","depth":300,"effectEnabled":true,"effectType":"_filter_tintfilter","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"solidmap_main","properties":[
