@@ -2,11 +2,14 @@
 function player_handle_springs() {
 
 	var f = function(s) {
+		var _spring_angle = 0;
 		var _o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 2, 2);
-
+		if (_o_spring == noone){	
+			_o_spring = collision_detector.collision_object_exp(s, objSpringYellowDiagonal, 2, 2);
+			_spring_angle = -45;
+		}
 		if (_o_spring == noone) return noone;
 
-		var _spring_angle = 0;
 
 		switch (s) {
 			case PlayerCollisionDetectorSensor.Bottom: _spring_angle = 0; break;

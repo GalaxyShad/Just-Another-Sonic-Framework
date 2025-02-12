@@ -1,2 +1,1 @@
-#macro GIT_COMMIT_ID "ddb4494"
-#macro GIT_UNIX_TIMESTAMP "1739384912"
+
