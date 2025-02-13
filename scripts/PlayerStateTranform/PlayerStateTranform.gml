@@ -75,11 +75,11 @@ function PlayerStateCorksew() : BaseState() constructor {
 
 		if (_corksew != noone) {
 			var _w = sprite_get_width(_corksew.sprite_index)  * _corksew.image_xscale;
-			var _h = (sprite_get_height(_corksew.sprite_index) + 8) * _corksew.image_yscale;
+			var _h = (sprite_get_height(_corksew.sprite_index) + 8 - 20) * _corksew.image_yscale;
 
 			__corkPos = (p.x - _corksew.x) / _w;
 
-			p.x += __spd * dcos(point_direction(p.xprevious, p.yprevious, p.x, p.y));
+			p.x += __spd;// * dcos(point_direction(p.xprevious, p.yprevious, p.x, p.y));
 			p.y = _corksew.y+_h - abs(dsin(__corkPos * 180)) * _h;
 		} else {
 			p.state.change_to("normal");

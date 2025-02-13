@@ -46,13 +46,22 @@ function player_collisions_ground(p) {
 	}
 
 	player_collisions_ground_gsp(gsp % _gsp_slice, p);	
-	
-	for (var i = 0; i < (abs(gsp) div _gsp_slice) * _gsp_slice; i += _gsp_slice) {
-		player_collisions_ground_gsp(sign(gsp) * _gsp_slice, p);	
-		
+
+	xsp = gsp *  p.collider.get_angle_data().cos;
+	ysp = gsp * -p.collider.get_angle_data().sin;
+
+	for (var i = 0; i < (abs(gsp) div _gsp_slice) * _gsp_slice; i += _gsp_slice) {		
 		if (!ground) {
+
+			xsp = gsp * p.collider.get_angle_data().cos;
+			ysp = gsp * -p.collider.get_angle_data().sin;
+
 			return;
 		}
+		
+		player_collisions_ground_gsp(sign(gsp) * _gsp_slice, p);	
+
+		
 	}
 }
 
@@ -104,15 +113,14 @@ function player_collision_walls(p) {
 function player_collisions_ground_gsp(_gsp, p) {
 	if (!ground) return;
 
-	xsp = _gsp *  p.collider.get_angle_data().cos;
-	ysp = _gsp * -p.collider.get_angle_data().sin;
-
-	x += xsp;
-	y += ysp;
+	x += _gsp *  p.collider.get_angle_data().cos;
+	y += _gsp * -p.collider.get_angle_data().sin;
 	
 	if (!p.collider.is_collision_solid(PlayerCollisionDetectorSensor.FloorExtend)) {
 		p.inst.ground = false;
+
 		p.collider.set_angle(0);
+		
 		return;
 	}
 

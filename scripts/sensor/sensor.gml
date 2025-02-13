@@ -427,9 +427,15 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 	}
 
 	__is_collision_line_solid_and_platform = function(_line) {
+
+		var _col_platform_obj = __collision_line(_line, parPlatform);
+		var _is_not_floor = __floorSensor.get_angle_data().degrees >= 90 && 
+					        __floorSensor.get_angle_data().degrees <= 270;
+
+
 		return __is_collision_line_solid(_line) || 
-			   (__collision_line(_line, parPlatform) != noone || 
-			   (_platform != -1 && __collision_line(_line, _platform) != noone));
+			   ((_col_platform_obj != noone && !_is_not_floor) || 
+			   (_platform != -1 && __collision_line(_line, _platform) != noone && !_is_not_floor));
 	}
 
 	set_layer = function(layer) {
