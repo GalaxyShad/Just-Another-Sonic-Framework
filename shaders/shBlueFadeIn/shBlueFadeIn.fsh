@@ -11,12 +11,14 @@ void main()
 	vec4 texColor = texture2D( gm_BaseTexture, v_vTexcoord );
     vec3 color = texColor.rgb;
 
-    color.r = max(color.r - reductionFactor, 0.0);
-    color.g = max(color.g - reductionFactor, 0.0);
+    color.b = min(reductionFactor, color.b);
 
-    if (reductionFactor >= 0.25)
-    {
-        color.b = max(color.b - reductionFactor + 0.25, 0.0);
+    if (reductionFactor >= 1) {
+        color.r = min(reductionFactor - 1, color.r);
+        color.g = min(reductionFactor - 1, color.g);
+    } else {
+        color.r = 0;
+        color.g = 0;
     }
 
     gl_FragColor = vec4(color, texColor.a);

@@ -1,7 +1,7 @@
 {
   "$GMShader":"",
-  "%Name":"shBlueFade",
-  "name":"shBlueFade",
+  "%Name":"shBlueFadeIn",
+  "name":"shBlueFadeIn",
   "parent":{
     "name":"Sfx",
     "path":"folders/Objects/Player/Sfx.yy",
