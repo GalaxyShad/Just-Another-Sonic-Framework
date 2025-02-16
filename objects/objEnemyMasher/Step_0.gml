@@ -1,6 +1,6 @@
 
 
-vspeed += 0.18;
+vspeed += 0.09375;
 
 if (y > ystart)
 	vspeed = -5;

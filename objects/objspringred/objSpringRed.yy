@@ -1,12 +1,12 @@
 {
   "$GMObject":"",
   "%Name":"objSpringRed",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"objSpringRed",
-  "overriddenProperties":[],
+  "overriddenProperties":[
+    {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objSpringYellow","path":"objects/objSpringYellow/objSpringYellow.yy",},"propertyId":{"name":"spd","path":"objects/objSpringYellow/objSpringYellow.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
+  ],
   "parent":{
     "name":"Objects",
     "path":"folders/Objects.yy",

@@ -4,12 +4,8 @@ function player_handle_springs() {
 	var f = function(s) {
 		var _spring_angle = 0;
 		var _o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 2, 2);
-		if (_o_spring == noone){	
-			_o_spring = collision_detector.collision_object_exp(s, objSpringYellowDiagonal, 2, 2);
-			_spring_angle = -45;
-		}
-		if (_o_spring == noone) return noone;
 
+		if (_o_spring == noone) return noone;
 
 		switch (s) {
 			case PlayerCollisionDetectorSensor.Bottom: _spring_angle = 0; break;
@@ -32,8 +28,14 @@ function player_handle_springs() {
 	if (_o_spring != noone) {
 		if (!ground) ysp = 0;
 
-		ysp += -_o_spring.spd * dcos(_o_spring.image_angle);
-		xsp += -_o_spring.spd * dsin(_o_spring.image_angle);
+		if (_o_spring.reset_plr_speed) {
+			xsp = -_o_spring.xsp;
+			ysp = -_o_spring.ysp;
+		} else {
+			xsp += -_o_spring.xsp;
+			ysp += -_o_spring.ysp;
+		}
+
 
 		ground = false;
 
