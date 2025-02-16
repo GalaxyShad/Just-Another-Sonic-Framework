@@ -63,6 +63,7 @@
   },
   "name":"JustAnotherSonicFramework",
   "resources":[
+    {"id":{"name":"fntTitleCard","path":"fonts/fntTitleCard/fntTitleCard.yy",},},
     {"id":{"name":"Sonic 2 Sprites Credits","path":"notes/Sonic 2 Sprites Credits/Sonic 2 Sprites Credits.yy",},},
     {"id":{"name":"TODO","path":"notes/TODO/TODO.yy",},},
     {"id":{"name":"objAngleMeasurerMouseTest","path":"objects/objAngleMeasurerMouseTest/objAngleMeasurerMouseTest.yy",},},
@@ -156,6 +157,7 @@
     {"id":{"name":"objSpringRedDiagonal","path":"objects/objSpringRedDiagonal/objSpringRedDiagonal.yy",},},
     {"id":{"name":"objSpringYellow","path":"objects/objSpringYellow/objSpringYellow.yy",},},
     {"id":{"name":"objSpringYellowDiagonal","path":"objects/objSpringYellowDiagonal/objSpringYellowDiagonal.yy",},},
+    {"id":{"name":"objTitleCard","path":"objects/objTitleCard/objTitleCard.yy",},},
     {"id":{"name":"objWaterLevel","path":"objects/objWaterLevel/objWaterLevel.yy",},},
     {"id":{"name":"parEnemy","path":"objects/parEnemy/parEnemy.yy",},},
     {"id":{"name":"parHigh","path":"objects/parHigh/parHigh.yy",},},
@@ -169,6 +171,7 @@
     {"id":{"name":"partWaterRun","path":"particles/partWaterRun/partWaterRun.yy",},},
     {"id":{"name":"psInvincibility","path":"particles/psInvincibility/psInvincibility.yy",},},
     {"id":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
+    {"id":{"name":"rmEnemiesTest","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},},
     {"id":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"id":{"name":"BaseShield","path":"scripts/BaseShield/BaseShield.yy",},},
@@ -482,6 +485,7 @@
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
+    {"roomId":{"name":"rmEnemiesTest","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[

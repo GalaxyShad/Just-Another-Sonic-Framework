@@ -36,6 +36,7 @@
     {"name":"Test Level","order":1,"path":"folders/Test Level.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"fntTitleCard","order":34,"path":"fonts/fntTitleCard/fntTitleCard.yy",},
     {"name":"Sonic 2 Sprites Credits","order":23,"path":"notes/Sonic 2 Sprites Credits/Sonic 2 Sprites Credits.yy",},
     {"name":"TODO","order":4,"path":"notes/TODO/TODO.yy",},
     {"name":"objAngleMeasurerMouseTest","order":20,"path":"objects/objAngleMeasurerMouseTest/objAngleMeasurerMouseTest.yy",},
@@ -126,6 +127,7 @@
     {"name":"objSpringRedDiagonal","order":30,"path":"objects/objSpringRedDiagonal/objSpringRedDiagonal.yy",},
     {"name":"objSpringYellow","order":11,"path":"objects/objSpringYellow/objSpringYellow.yy",},
     {"name":"objSpringYellowDiagonal","order":29,"path":"objects/objSpringYellowDiagonal/objSpringYellowDiagonal.yy",},
+    {"name":"objTitleCard","order":33,"path":"objects/objTitleCard/objTitleCard.yy",},
     {"name":"objWaterLevel","order":10,"path":"objects/objWaterLevel/objWaterLevel.yy",},
     {"name":"parEnemy","order":3,"path":"objects/parEnemy/parEnemy.yy",},
     {"name":"parHigh","order":2,"path":"objects/parHigh/parHigh.yy",},
@@ -137,6 +139,7 @@
     {"name":"partWaterRun","order":2,"path":"particles/partWaterRun/partWaterRun.yy",},
     {"name":"psInvincibility","order":8,"path":"particles/psInvincibility/psInvincibility.yy",},
     {"name":"rmEHZ1","order":3,"path":"rooms/rmEHZ1/rmEHZ1.yy",},
+    {"name":"rmEnemiesTest","order":32,"path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},
     {"name":"rmTest","order":2,"path":"rooms/rmTest/rmTest.yy",},
     {"name":"KnucklesStates","order":1,"path":"scripts/KnucklesStates/KnucklesStates.yy",},
     {"name":"Player","order":10,"path":"scripts/Player/Player.yy",},
