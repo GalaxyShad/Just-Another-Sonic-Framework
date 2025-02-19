@@ -10,6 +10,8 @@ function player_landing() {
 	}
 	
 	state.landing();
+
+	plr.bounced_chain_count = 0;
 	
 	player_switch_sensor_radius();	
 }

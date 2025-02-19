@@ -19,6 +19,8 @@ function Player(
 
     ground = false;
 
+    bounced_chain_count = 0;
+
     collider_radius = {
         base: {
             vertical: 20,
