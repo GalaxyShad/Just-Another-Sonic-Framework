@@ -19,8 +19,9 @@ if (lag_timer > 0) {
 	exit;
 }
 	
+var _is_plr = object_get_parent(_o_follow.object_index) == objPlayer;
 
-if (object_get_parent(_o_follow.object_index) == objPlayer) {	
+if (_is_plr) {
 	if ( (abs(_o_follow.gsp) >= 5 && _o_follow.ground) || (abs(_o_follow.xsp) >= 5) ) {
 		var _max_offset = 120;
 		var _speed_factor = 0.03;
@@ -28,7 +29,7 @@ if (object_get_parent(_o_follow.object_index) == objPlayer) {
 		var _follow_angle = point_direction(_o_follow.xprevious, _o_follow.yprevious, _o_follow.x, _o_follow.y);
 
 		offset_x += (lengthdir_x(_max_offset, _follow_angle) - offset_x) * _speed_factor;
-		offset_y += (lengthdir_y(_max_offset, _follow_angle) - offset_y) * _speed_factor;
+		offset_y += (lengthdir_y(_max_offset / 2, _follow_angle) - offset_y) * _speed_factor;
 
 		offset_x = clamp(offset_x, -_max_offset, _max_offset);
 		offset_y = clamp(offset_y, -_max_offset, _max_offset);
@@ -40,23 +41,34 @@ if (object_get_parent(_o_follow.object_index) == objPlayer) {
 		offset_x = clamp(offset_x, -_max_offset, _max_offset);
 	} else {
 		offset_x += -offset_x * 0.1;
+		offset_y += -offset_y * 0.1;
 	}
+}
 
-	follow_x += (_o_follow.x + offset_x - follow_x) * 0.2;
-	follow_y += (_o_follow.y + offset_y - follow_y) * 0.2;
+follow_x += (_o_follow.x + offset_x - follow_x) * 0.2;
+follow_y += (_o_follow.y + offset_y - follow_y) * 0.2;
 
+if (_is_plr) {
 	if (_o_follow.ground == false) {
 		margin_vertical = lerp(margin_vertical, 32, 0.2);
 	} else {
 		margin_vertical = lerp(margin_vertical, 0, 0.1);
 	}
+} else {
+	margin_vertical = 0;
+}
 
+if (_is_plr) {
 	if (follow_x > x ) 		 x = follow_x;
 	if (follow_x < x - 16 )  x = follow_x + 16;
-
+	
 	if (follow_y > y + margin_vertical) y = follow_y - margin_vertical;
 	if (follow_y < y - margin_vertical) y = follow_y + margin_vertical;
+} else {
+	x = follow_x;
+	y = follow_y;
 }
+
 
 var _cx = clamp(x - VIEW_WIDTH  / 2, 0, room_width - VIEW_WIDTH);
 var _cy = clamp(y - VIEW_HEIGHT / 2, 0, room_height - VIEW_HEIGHT);
