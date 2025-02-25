@@ -2,8 +2,8 @@
 function KnucklesStateJump() : PlayerStateJump() constructor {	
 	override_on_step = function(player) { super(); with (player) {
 		if (is_key_action_pressed) {
-			if (ysp<0) ysp = 0;
-			xsp = 4 * sign(image_xscale);
+			if (plr.ysp<0) plr.ysp = 0;
+			plr.xsp = 4 * sign(image_xscale);
 			state.change_to("glide");
 		}
 	}};
@@ -21,9 +21,9 @@ function KnucklesStateGlide() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) {with player {
-		if(ysp<0.5) ysp += GLIDE_GRAVITY_FORCE;
-		if(ysp>0.5) ysp -= GLIDE_GRAVITY_FORCE;
-		if (ysp > 16) ysp = 16;
+		if(plr.ysp<0.5) plr.ysp += GLIDE_GRAVITY_FORCE;
+		if(plr.ysp>0.5) plr.ysp -= GLIDE_GRAVITY_FORCE;
+		if (plr.ysp > 16) plr.ysp = 16;
 		if ((collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Left)) || 
 			(collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right))
 		) {
@@ -31,8 +31,8 @@ function KnucklesStateGlide() : BaseState() constructor {
 			state.change_to("climbe");
 		}
 		if (!is_key_action) state.change_to("drop");
-		xsp += GLIDE_ACCELERATION * sign(xsp);
-		if((is_key_left && xsp>0) || (is_key_right && xsp<0)) state.change_to("glideRotation");
+		plr.xsp += GLIDE_ACCELERATION * sign(plr.xsp);
+		if((is_key_left && plr.xsp>0) || (is_key_right && plr.xsp<0)) state.change_to("glideRotation");
 	}};
 	
 	on_landing = function(player) {with player {
@@ -57,15 +57,15 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_air_movement);
 		visual_loop.disable(player_behavior_visual_flip);
 		other.__a = 90 - 90 * image_xscale;
-		other.__t = xsp;
+		other.__t = plr.xsp;
 		other.__r = 1;
-		show_debug_message($"IT IS __T and XSP, {other.__t}, {xsp}");
+		show_debug_message($"IT IS __T and plr.XSP, {other.__t}, {plr.xsp}");
 		animator.set("glideRotation");
 	}};
 	
 	on_step = function(player) {with player {
-		if(ysp<0.5) ysp += GLIDE_GRAVITY_FORCE;
-		if(ysp>0.5) ysp -= GLIDE_GRAVITY_FORCE;
+		if(plr.ysp<0.5) plr.ysp += GLIDE_GRAVITY_FORCE;
+		if(plr.ysp>0.5) plr.ysp -= GLIDE_GRAVITY_FORCE;
 		if ((collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Left)) || (collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Right))) { state.change_to("climbe"); }
 		if (!is_key_action) state.change_to("drop");
 		
@@ -73,7 +73,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 		if (is_key_left) other.__r=1;
 		if (is_key_right) other.__r=-1;
 		other.__a += GLIDE_ACCELERATION_ROTATION * sign(other.__t) * other.__r;
-		xsp = abs(other.__t) * dcos(other.__a);
+		plr.xsp = abs(other.__t) * dcos(other.__a);
 		
 		
 		show_debug_message($"{other.__a}, {dcos(other.__a)}");
@@ -90,7 +90,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	}};
 	
 	on_exit = function(player) { with player {
-		if(sign(other.__t) != sign(xsp)) image_xscale *= -1;
+		if(sign(other.__t) != sign(plr.xsp)) image_xscale *= -1;
 		behavior_loop.enable(player_behavior_apply_gravity);
 		behavior_loop.enable(player_behavior_air_movement);
 		visual_loop.enable(player_behavior_visual_flip);
@@ -108,11 +108,11 @@ function KnucklesStateDrop() : BaseState() constructor {
 	}};
 	
 	on_animate = function(player) {with (player) {
-		if(ground) animator.set("look_down");
+		if(plr.ground) animator.set("look_down");
 	}};
 	
 	on_step = function(player) {with (player) {
-		if(ground) {
+		if(plr.ground) {
 			drop_time++;
 			if(drop_time>10) state.change_to("normal");
 		}
@@ -121,7 +121,7 @@ function KnucklesStateDrop() : BaseState() constructor {
 	on_landing = function(player) {with player {
 		drop_time=0;
 		audio_play_sound(sndLand, 0, false);
-		gsp=0;
+		plr.gsp=0;
 	}};
 	
 	on_exit = function(player) { with player {
@@ -148,21 +148,21 @@ function KnucklesStateClimbe() : BaseState() constructor {
 	on_step = function(player) {with player {
 		if (is_key_action_pressed){
 			image_xscale *= -1;
-			xsp = 4 * image_xscale;
-			ysp = -4;
+			plr.xsp = 4 * image_xscale;
+			plr.ysp = -4;
 			state.change_to("jump");
 			return;
 		}
-		ysp = 0;
-		if (is_key_up && !collision_detector.check_expanded(0, 1, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Top)) ysp -= CLIMBE_ACCELERATION;
-		if (is_key_down) ysp += CLIMBE_ACCELERATION;
+		plr.ysp = 0;
+		if (is_key_up && !collision_detector.check_expanded(0, 1, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Top)) plr.ysp -= CLIMBE_ACCELERATION;
+		if (is_key_down) plr.ysp += CLIMBE_ACCELERATION;
 		
 		if(!collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Bottom) || collision_detector.check_expanded(-1, 1, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Bottom)) { state.change_to("drop"); return; }
 		if(!collision_detector.check_expanded(1, 0, collision_detector.is_collision_solid, PlayerCollisionDetectorSensor.Top)){ state.change_to("clambering"); return; }
 	}};
 	
 	on_animate = function(player) {with player {
-		animator.set_image_speed(ysp/10);
+		animator.set_image_speed(plr.ysp/10);
 	}};
 	
 	on_exit = function(player) {with (player) {
@@ -180,7 +180,7 @@ function KnucklesStateClambering() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_jump);
 		behavior_loop.disable(player_behavior_ground_movement);
 		time_climbeEx=40;
-		xsp=0;
+		plr.xsp=0;
 		y-=27;
 		x+=19*sign(image_xscale);
 		animator.set("clambering");
@@ -211,16 +211,16 @@ function KnucklesStateLand() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) {with player {
-		if(xsp==0) {
+		if(plr.xsp==0) {
 			rise_time++;
 			if (rise_time>10) state.change_to("normal");
 		}
-		gsp -= min(abs(gsp), 0.125) * sign(gsp);
+		plr.gsp -= min(abs(plr.gsp), 0.125) * sign(plr.gsp);
 		
 	}};
 	
 	on_animate = function(player) {with (player) {
-		if(xsp==0) animator.set_image_index(1);
+		if(plr.xsp==0) animator.set_image_index(1);
 		else animator.set_image_index(0);
 	}};
 	

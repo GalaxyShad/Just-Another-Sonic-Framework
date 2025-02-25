@@ -39,8 +39,8 @@ if (_o_follow.x <= _vbox.left)
 	x += max(_follow_x - _vbox.left, -MAX_SPD)
 
 if (object_get_parent(_o_follow.object_index) == objPlayer) {	
-	if ( _o_follow.ground) {
-		if ( abs(_o_follow.gsp) <= 8)
+	if ( _o_follow.plr.ground) {
+		if ( abs(_o_follow.plr.gsp) <= 8)
 			y += clamp(_follow_y - y, -6, 6);
 		else 
 			y += clamp(_follow_y - y, -MAX_SPD, MAX_SPD);

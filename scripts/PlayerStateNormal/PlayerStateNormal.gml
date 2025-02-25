@@ -10,20 +10,20 @@ function PlayerStateNormal() : BaseState() constructor {
 	
 	on_step = function(player) { with player {
 		// Look Up and Down
-		if (ground && is_key_up && gsp == 0)
+		if (plr.ground && is_key_up && plr.gsp == 0)
 			state.change_to("look_up");
-		if (ground && is_key_down && gsp == 0)
+		if (plr.ground && is_key_down && plr.gsp == 0)
 			state.change_to("look_down");
 			
 		// To Roll
-		if (ground && is_key_down && abs(gsp) >= 1) {
+		if (plr.ground && is_key_down && abs(plr.gsp) >= 1) {
 			state.change_to("roll");
 			audio_play_sound(sndPlrRoll, 0, false);
 		}
 		
 		// Skid
-		if (ground && abs(gsp) >= 4 && 
-			((gsp < 0 && is_key_right) || (gsp > 0 && is_key_left))
+		if (plr.ground && abs(plr.gsp) >= 4 && 
+			((plr.gsp < 0 && is_key_right) || (plr.gsp > 0 && is_key_left))
 		) {
 			state.change_to("skid");
 			audio_play_sound(sndPlrBraking, 0, false);
@@ -35,7 +35,7 @@ function PlayerStateNormal() : BaseState() constructor {
 					!collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeRight)); 
 		}));
 		
-		if (ground && gsp == 0 && _check_balanced) {
+		if (plr.ground && plr.gsp == 0 && _check_balanced) {
 			state.change_to("balancing");
 		}
 
@@ -47,20 +47,20 @@ function PlayerStateNormal() : BaseState() constructor {
 		});
 		
 		// Push
-		if ((gsp >= 0 && is_key_right && col_right_wall) || 
-			(gsp <= 0 && is_key_left  && col_left_wall)
+		if ((plr.gsp >= 0 && is_key_right && col_right_wall) || 
+			(plr.gsp <= 0 && is_key_left  && col_left_wall)
 		) {
-			if (ground) state.change_to("push");
+			if (plr.ground) state.change_to("push");
 		}
 	}};
 	
 	on_animate = function(player) { with player {
-		var _abs_gsp = abs(gsp);
+		var _abs_gsp = abs(plr.gsp);
 		
-		other.__idle_anim_timer = (ground && _abs_gsp == 0) ? 
+		other.__idle_anim_timer = (plr.ground && _abs_gsp == 0) ? 
 			other.__idle_anim_timer+1 : 0;
 			
-		if (!ground) {
+		if (!plr.ground) {
 			animator.set("walking");
 			animator.set_image_speed(0.125 + _abs_gsp / 24.0);
 			
@@ -91,7 +91,7 @@ function PlayerStateNormal() : BaseState() constructor {
 
 function PlayerStateNoclip() : BaseState() constructor {
 	on_start = function(p) {
-		p.ground = false;
+		p.plr.ground = false;
 		p.behavior_loop.disable(player_behavior_collisions);
 		p.behavior_loop.disable(player_behavior_apply_gravity);
 
@@ -101,15 +101,15 @@ function PlayerStateNoclip() : BaseState() constructor {
 	}
 
 	on_step = function(p) {
-		p.x += p.xsp;
-		p.y += p.ysp;
+		p.x += p.plr.xsp;
+		p.y += p.plr.ysp;
 
 		if (keyboard_check(vk_up)) { 
-			p.ysp -= 0.1; 
+			p.plr.ysp -= 0.1; 
 		} else if (keyboard_check(vk_down)) { 
-			p.ysp += 0.1; 
+			p.plr.ysp += 0.1; 
 		} else { 
-			p.ysp = 0; 
+			p.plr.ysp = 0; 
 		}
 	}
 

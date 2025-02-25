@@ -6,8 +6,8 @@ if (plr != noone) {
 	var _x = plr.x;
 	var _y = plr.y;
 	
-	_x = ball_start_pos.x + plr.xsp * 8;
-	_y = ball_start_pos.y + plr.ysp * 8; 
+	_x = ball_start_pos.x + plr.plr.xsp * 8;
+	_y = ball_start_pos.y + plr.plr.ysp * 8; 
 	
 	ball_pos.x += (_x - ball_pos.x) / 4;
 	ball_pos.y += (_y - ball_pos.y) / 4;

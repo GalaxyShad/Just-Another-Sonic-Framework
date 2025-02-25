@@ -22,19 +22,19 @@ function TailsStateFly() : BaseState() constructor {
 	
 	on_step = function(player) {with player {
 		if(__fly_action && !collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Top)) 
-			ysp -= FLY_FLYING_FORCE;
+			plr.ysp -= FLY_FLYING_FORCE;
 		else 
-			ysp += FLY_GRAVITY_FORCE;
+			plr.ysp += FLY_GRAVITY_FORCE;
 			
 		if (__time_fly > 480) 
 			__tired = true;
 			
 		if(!__tired) {
-			if (is_key_action_pressed && ysp != 1) 
+			if (is_key_action_pressed && plr.ysp != 1) 
 				__fly_action = true;
 		}
 		
-		if (ysp < -1 || __tired) 
+		if (plr.ysp < -1 || __tired) 
 			__fly_action = false;
 		
 		__time_fly++;

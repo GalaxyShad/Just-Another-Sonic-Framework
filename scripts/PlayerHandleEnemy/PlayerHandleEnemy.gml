@@ -33,11 +33,11 @@ function player_handle_enemy(p) {
 		});
 		instance_destroy(_o_enemy);
 
-		if (!ground) {
-			if (ysp > 0)
-				ysp = -ysp;
+		if (!plr.ground) {
+			if (plr.ysp > 0)
+				plr.ysp = -plr.ysp;
 			else 
-				ysp -= sign(ysp);
+				plr.ysp -= sign(plr.ysp);
 		} 
 			
 	} else {

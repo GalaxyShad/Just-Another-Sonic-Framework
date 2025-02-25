@@ -5,7 +5,7 @@ function player_handle_moving_platforms() {
 		function () { return collision_detector.collision_object(objMovingPlatform, PlayerCollisionDetectorSensor.MainDefault) }
 	);  
 
-	if (ground && _o_moving_platform) {
+	if (plr.ground && _o_moving_platform) {
 		x += _o_moving_platform.x - _o_moving_platform.xprevious; 
 	}
 }

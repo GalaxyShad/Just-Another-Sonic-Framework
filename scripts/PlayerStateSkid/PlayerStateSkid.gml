@@ -18,8 +18,8 @@ function PlayerStateSkid() : BaseState() constructor {
 	};
 	
 	on_step = function(player) { with player {
-		if (abs(gsp) <= 0.5 || !ground || 
-		    ((gsp < 0 && is_key_left) || (gsp > 0 && is_key_right))
+		if (abs(plr.gsp) <= 0.5 || !plr.ground || 
+		    ((plr.gsp < 0 && is_key_left) || (plr.gsp > 0 && is_key_right))
 		) {
 			state.change_to("normal");	
 		}

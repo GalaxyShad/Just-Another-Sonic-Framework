@@ -1,13 +1,13 @@
 
 function player_behavior_jump() {
-	if (!ground) 
+	if (!plr.ground) 
 		return;
 	
 	if (allow_jump && is_key_action_pressed) {
-		ground = false;
+		plr.ground = false;
 	
-		ysp -= physics.jump_force * collision_detector.get_angle_data().cos; 
-		xsp -= physics.jump_force * collision_detector.get_angle_data().sin; 
+		plr.ysp -= physics.jump_force * collision_detector.get_angle_data().cos; 
+		plr.xsp -= physics.jump_force * collision_detector.get_angle_data().sin; 
 	
 		state.change_to("jump");
 	

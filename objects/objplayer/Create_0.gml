@@ -85,12 +85,6 @@ running_on_water = false;
 
 animation_angle = 0;
 
-ground = false;
-
-xsp = 0;
-ysp = 0;
-gsp = 0;
-
 allow_jump		= true;
 allow_movement	= true;
 

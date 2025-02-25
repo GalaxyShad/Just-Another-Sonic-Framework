@@ -12,7 +12,7 @@ function PlayerStateLookUp() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) { with (player) {
-		if (!is_key_up || !ground || gsp != 0)
+		if (!is_key_up || !plr.ground || plr.gsp != 0)
 			state.change_to("normal");
 	}};
 }

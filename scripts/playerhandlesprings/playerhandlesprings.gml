@@ -26,18 +26,18 @@ function player_handle_springs() {
 
 	var _o_spring = f(PlayerCollisionDetectorSensor.Bottom);
 	if (_o_spring != noone) {
-		if (!ground) ysp = 0;
+		if (!plr.ground) plr.ysp = 0;
 
 		if (_o_spring.reset_plr_speed) {
-			xsp = -_o_spring.xsp;
-			ysp = -_o_spring.ysp;
+			plr.xsp = -_o_spring.xsp;
+			plr.ysp = -_o_spring.ysp;
 		} else {
-			xsp += -_o_spring.xsp;
-			ysp += -_o_spring.ysp;
+			plr.xsp += -_o_spring.xsp;
+			plr.ysp += -_o_spring.ysp;
 		}
 
 
-		ground = false;
+		plr.ground = false;
 
 		state.change_to("spring");
 
@@ -51,10 +51,10 @@ function player_handle_springs() {
 		if (state.current() != "roll" && state.current() != "skid") 
 			state.change_to("normal");
 		
-		if (ground) 
-			gsp = -_o_spring.spd;
+		if (plr.ground) 
+			plr.gsp = -_o_spring.spd;
 		else 
-			xsp = -_o_spring.spd;
+			plr.xsp = -_o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 
@@ -66,10 +66,10 @@ function player_handle_springs() {
 		if (state.current() != "roll" && state.current() != "skid") 
 			state.change_to("normal");
 		
-		if (ground) 
-			gsp = _o_spring.spd;
+		if (plr.ground) 
+			plr.gsp = _o_spring.spd;
 		else 
-			xsp = _o_spring.spd;
+			plr.xsp = _o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 
@@ -77,8 +77,8 @@ function player_handle_springs() {
 	}
 	
 	_o_spring = f(PlayerCollisionDetectorSensor.Top);
-	if (_o_spring && !ground) {
-		ysp = _o_spring.spd;
+	if (_o_spring && !plr.ground) {
+		plr.ysp = _o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 

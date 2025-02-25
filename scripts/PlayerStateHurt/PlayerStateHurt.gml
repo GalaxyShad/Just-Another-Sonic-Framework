@@ -6,12 +6,12 @@ function PlayerStateHurt() : BaseState() constructor {
 		behavior_loop.disable(player_behavior_air_movement);
 		//allow_movement = false;		
 		
-		xsp = -2 * sign(image_xscale);
-		ysp = -4;
+		plr.xsp = -2 * sign(image_xscale);
+		plr.ysp = -4;
 		
 		if (physics.is_underwater()) {
-			xsp /= 2;
-			ysp /= 2;
+			plr.xsp /= 2;
+			plr.ysp /= 2;
 		}
 		
 		animator.set("hurt");
@@ -27,7 +27,7 @@ function PlayerStateHurt() : BaseState() constructor {
 		
 		state.change_to("normal");
 		
-		gsp = 0;
-		xsp = 0;
+		plr.gsp = 0;
+		plr.xsp = 0;
 	}};
 }

@@ -13,12 +13,12 @@ draw_text(
 	$"character:		{object_get_name(object_index)}\n"+
 	$"fps:				{fps}\n"+
 	$"tick:				{global.tick}\n"+
-	$"ground:			{ground}\n" +
+	$"ground:			{plr.ground}\n" +
 	$"action:			{state.current()}\n"+
 	$"animation:		{animator.current()}\n"+
-	$"gsp:				{gsp}\n" +
-	$"xsp:				{xsp}\n" +
-	$"ysp:				{ysp}\n" +
+	$"gsp:				{plr.gsp}\n" +
+	$"xsp:				{plr.xsp}\n" +
+	$"ysp:				{plr.ysp}\n" +
 	$"x:				{x}\n" +
 	$"y:				{y}\n" +
 	$"sensor_angle_data: deg: {collision_detector.get_angle_data().degrees} | cos: {collision_detector.get_angle_data().cos} | sin: {collision_detector.get_angle_data().sin}  \n" +

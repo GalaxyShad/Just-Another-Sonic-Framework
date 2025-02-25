@@ -2,8 +2,8 @@
 function player_handle_bubbles() { 
 	var _o_bubble = collision_detector.collision_object(objBigBubble, PlayerCollisionDetectorSensor.MainDefault);
 	if (_o_bubble) {
-		xsp = 0;
-		ysp = 0;
+		plr.xsp = 0;
+		plr.ysp = 0;
 		
 		state.change_to("breathe");
 		
@@ -26,8 +26,8 @@ function player_handle_water() {
 	
 	if (_is_entering || _is_exiting) {
 		if (_is_entering) {
-			xsp /= 2;
-			ysp /= 4;
+			plr.xsp /= 2;
+			plr.ysp /= 4;
 			
 			physics.apply_underwater();
 			
@@ -36,7 +36,7 @@ function player_handle_water() {
 				
 			timer_underwater.start();
 		} else {
-			ysp *= 2;
+			plr.ysp *= 2;
 			physics.cancel_underwater();
 			
 			player_underwater_regain_air();

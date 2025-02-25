@@ -22,7 +22,7 @@ if (lag_timer > 0) {
 var _is_plr = object_get_parent(_o_follow.object_index) == objPlayer;
 
 if (_is_plr) {
-	if ( (abs(_o_follow.gsp) >= 5 && _o_follow.ground) || (abs(_o_follow.xsp) >= 5) ) {
+	if ( (abs(_o_follow.plr.gsp) >= 5 && _o_follow.plr.ground) || (abs(_o_follow.plr.xsp) >= 5) ) {
 		var _max_offset = 120;
 		var _speed_factor = 0.03;
 
@@ -49,7 +49,7 @@ follow_x += (_o_follow.x + offset_x - follow_x) * 0.2;
 follow_y += (_o_follow.y + offset_y - follow_y) * 0.2;
 
 if (_is_plr) {
-	if (_o_follow.ground == false) {
+	if (_o_follow.plr.ground == false) {
 		margin_vertical = lerp(margin_vertical, 32, 0.2);
 	} else {
 		margin_vertical = lerp(margin_vertical, 0, 0.1);

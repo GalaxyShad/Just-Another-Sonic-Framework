@@ -5,7 +5,7 @@ if (_plr != noone) {
     if (!is_activated) {
         if (_plr.x > x) {
             is_activated = true;
-            rotation *= max(floor(_plr.xsp / 2), 2);
+            rotation *= max(floor(_plr.plr.xsp / 2), 2);
         }
     }
 

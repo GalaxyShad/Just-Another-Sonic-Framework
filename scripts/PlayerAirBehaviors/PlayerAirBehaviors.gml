@@ -1,29 +1,29 @@
 
 function player_behavior_apply_gravity() {
-	if (ground) return;
+	if (plr.ground) return;
 		
-	ysp += physics.gravity_force;
+	plr.ysp += physics.gravity_force;
 	
-	if (ysp > 16) 
-		ysp = 16;
+	if (plr.ysp > 16) 
+		plr.ysp = 16;
 }
 
 function player_behavior_air_movement() {
-	if (ground) return;
+	if (plr.ground) return;
 	
 	if (!allow_movement)
 		return;
 
-	if (is_key_left && xsp > -physics.top_speed) 
-		xsp -= physics.air_acceleration_speed;
-	else if (is_key_right && xsp < physics.top_speed) 
-		xsp += physics.air_acceleration_speed;
+	if (is_key_left && plr.xsp > -physics.top_speed) 
+		plr.xsp -= physics.air_acceleration_speed;
+	else if (is_key_right && plr.xsp < physics.top_speed) 
+		plr.xsp += physics.air_acceleration_speed;
 }
 
 function player_behavior_air_drag() {
-	if (ground) return;
+	if (plr.ground) return;
 	
-	if (ysp < 0 && ysp > -4) {
-	    xsp -= (((xsp * 1_000) div 125) / 256_000);
+	if (plr.ysp < 0 && plr.ysp > -4) {
+	    plr.xsp -= (((plr.xsp * 1_000) div 125) / 256_000);
 	}	
 }

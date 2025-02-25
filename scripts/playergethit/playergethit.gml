@@ -22,7 +22,7 @@ function player_get_hit(){
 			
 		global.rings = 0;
 			
-		ground = false;	
+		plr.ground = false;	
 			
 		state.change_to("hurt");	
 	} else {

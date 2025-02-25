@@ -1,54 +1,54 @@
 
 
 function player_behavior_ground_movement() {
-	if (!ground) return;
+	if (!plr.ground) return;
 	
 	if (timer_control_lock.is_ticking())
 		return;
 	
 	if (is_key_left) {
-		if (gsp > 0) {
-			gsp -= physics.deceleration_speed;  
+		if (plr.gsp > 0) {
+			plr.gsp -= physics.deceleration_speed;  
 			
-			if (gsp <= 0) 
-				gsp = -0.5;  		
-		} else if (gsp > -physics.top_speed) {		
-			gsp -= physics.acceleration_speed;
+			if (plr.gsp <= 0) 
+				plr.gsp = -0.5;  		
+		} else if (plr.gsp > -physics.top_speed) {		
+			plr.gsp -= physics.acceleration_speed;
 			
-			if (gsp < -physics.top_speed) 
-				gsp = -physics.top_speed;  		
+			if (plr.gsp < -physics.top_speed) 
+				plr.gsp = -physics.top_speed;  		
 		} 
 	} else if (is_key_right) {
-		if (gsp < 0) {
-			gsp += physics.deceleration_speed;  
+		if (plr.gsp < 0) {
+			plr.gsp += physics.deceleration_speed;  
 			
-			if (gsp >= 0) 
-				gsp = 0.5;  
-		} else if (gsp < physics.top_speed) {
-			gsp += physics.acceleration_speed;
+			if (plr.gsp >= 0) 
+				plr.gsp = 0.5;  
+		} else if (plr.gsp < physics.top_speed) {
+			plr.gsp += physics.acceleration_speed;
 			
-			if (gsp > physics.top_speed) 
-				gsp = physics.top_speed;  
+			if (plr.gsp > physics.top_speed) 
+				plr.gsp = physics.top_speed;  
 		}
 	}
 }
 
 function player_behavior_slope_decceleration() {
-	if (!ground) return;
+	if (!plr.ground) return;
 	
 	var _slp_dec_value = physics.slope_factor * collision_detector.get_angle_data().sin;
 	
 	if (abs(_slp_dec_value) >= 0.05078125)
-		gsp -= _slp_dec_value;
+		plr.gsp -= _slp_dec_value;
 }
 
 function player_behavior_ground_friction() {
-	if (!ground) return;
+	if (!plr.ground) return;
 	
 	if (is_key_left || is_key_right)
 		return;
 			
-	gsp -= min(abs(gsp), physics.friction_speed) * sign(gsp);
+	plr.gsp -= min(abs(plr.gsp), physics.friction_speed) * sign(plr.gsp);
 }
 
 function player_behavior_fall_off_slopes() {
@@ -56,15 +56,15 @@ function player_behavior_fall_off_slopes() {
 	#macro FALL_OFF_SPEED_VALUE 2.5
 	
 	if (!timer_control_lock.is_ticking() 
-		&& abs(gsp) < FALL_OFF_SPEED_VALUE 
+		&& abs(plr.gsp) < FALL_OFF_SPEED_VALUE 
 		&& collision_detector.is_angle_in_range(35, 326)
 	) { 
 		timer_control_lock.reset_and_start();
 			
 		if (collision_detector.is_angle_in_range(69, 293)) {
-			ground = false;
+			plr.ground = false;
 		} else {
-			gsp += (collision_detector.get_angle_data().degrees < 180) ? -0.5 : +0.5;	
+			plr.gsp += (collision_detector.get_angle_data().degrees < 180) ? -0.5 : +0.5;	
 		}
 	} else {
 		timer_control_lock.tick();		

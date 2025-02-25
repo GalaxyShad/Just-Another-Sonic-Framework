@@ -19,7 +19,7 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 	}
 	
 	on_start = function(p) { 
-		p.ground = false;
+		p.plr.ground = false;
 		p.animator.set("transform");
 
 		//behavior_loop.disable(player_behavior_air_movement);
@@ -31,8 +31,8 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 	};
 	
 	on_animate = function(player) { with player {
-		ysp = 0;
-		xsp = 0;
+		plr.ysp = 0;
+		plr.xsp = 0;
 		
 		other.__timer--;
 		
@@ -58,10 +58,10 @@ function PlayerStateCorksew() : BaseState() constructor {
 		player.behavior_loop.disable(player_behavior_air_movement);
 		player.behavior_loop.disable(player_behavior_apply_gravity);
 	
-		__spd = player.gsp;
+		__spd = player.plr.gsp;
 		
 	with player {
-		ground = false;
+		plr.ground = false;
 		animator.set("curling");
 		//behavior_loop.disable(player_behavior_air_movement);
 	}};

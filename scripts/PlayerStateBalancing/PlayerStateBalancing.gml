@@ -11,7 +11,7 @@ function PlayerStateBalancing() : BaseState() constructor {
 	}};
 	
 	on_step = function(player) { with player {
-		if (gsp != 0 || !ground)
+		if (plr.gsp != 0 || !player.plr.ground)
 			state.change_to("normal");
 	}};
 }

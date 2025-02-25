@@ -12,45 +12,45 @@ function PlayerStateRoll() : BaseState() constructor {
 	__slopes_decceleration = function(player) { with player {
 		var _sina = collision_detector.get_angle_data().sin;
 		
-		gsp -= _sina * ((sign(gsp) == sign(_sina)) ? 
+		plr.gsp -= _sina * ((sign(plr.gsp) == sign(_sina)) ? 
 			physics.slope_factor_rollup : 
 			physics.slope_factor_rolldown);
 	}};
 	
 	__apply_friction = function(player) { with player {
-		gsp -= min(abs(gsp), physics.friction_speed / 2) * sign(gsp);
+		plr.gsp -= min(abs(plr.gsp), physics.friction_speed / 2) * sign(plr.gsp);
 	}};
 	
 	__movement = function(player) { with player {
 		if (is_key_left) {
-			if (gsp > 0) {
-				gsp -= physics.roll_deceleration_speed;  
-				if (gsp <= 0) gsp = -0.5;  		
+			if (plr.gsp > 0) {
+				plr.gsp -= physics.roll_deceleration_speed;  
+				if (plr.gsp <= 0) gsp = -0.5;  		
 			}
 		} else if (is_key_right) {
-			if (gsp < 0) {
-				gsp += physics.roll_deceleration_speed;  
-				if (gsp >= 0) gsp = 0.5;  
+			if (plr.gsp < 0) {
+				plr.gsp += physics.roll_deceleration_speed;  
+				if (plr.gsp >= 0) plr.gsp = 0.5;  
 			} 
 		}
 	}};
 	
 	on_step = function(player) {
 
-		if (player.ground) {
+		if (player.plr.ground) {
 			__slopes_decceleration(player);
 			__movement(player);
 			__apply_friction(player);
 		}
 
 		with player {
-			if (abs(gsp) < 0.5)
+			if (abs(plr.gsp) < 0.5)
 				state.change_to("normal");
 		}
 	};
 	
 	on_animate = function(player) { with player {
-		animator.set_image_speed(0.5 + abs(gsp) / 8.0);
+		animator.set_image_speed(0.5 + abs(plr.gsp) / 8.0);
 	}};
 	
 	on_exit = function(player) { with player {

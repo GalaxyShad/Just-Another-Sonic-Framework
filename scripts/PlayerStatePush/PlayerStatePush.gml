@@ -14,14 +14,14 @@ function PlayerStatePush() : BaseState() constructor {
 			PlayerCollisionDetectorSensor.Right
 		);
 
-	    if ((is_edge_right && (!is_key_right || gsp < 0)) || 
-		    (is_edge_left  && (!is_key_left  || gsp > 0))
+	    if ((is_edge_right && (!is_key_right || plr.gsp < 0)) || 
+		    (is_edge_left  && (!is_key_left  || plr.gsp > 0))
 	    ) {
 	    	state.change_to("normal");
 	    }
     
-		xsp = 0;
-		gsp = 0;
+		plr.xsp = 0;
+		plr.gsp = 0;
     }};
   
 	on_animate = function(player) { with player {

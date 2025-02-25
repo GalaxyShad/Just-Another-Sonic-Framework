@@ -64,7 +64,7 @@ function SonicStateLookUp() : PlayerStateLookUp() constructor {
 	}};
 	
 	override_on_step = function(player) { super(); with (player) {
-		if (ground && is_key_action)
+		if (plr.ground && is_key_action)
 			state.change_to("peelout");
 	}};
 }
@@ -101,15 +101,15 @@ function SonicStateDropDash() : BaseState() constructor {
 		var _drpspd = physics.is_super() ? DROPDASH_SPEED_SUPER : DROPDASH_SPEED;
 		var _drpmax = physics.is_super() ? DROPDASH_MAX_SUPER : DROPDASH_MAX;
 		
-		if (sign(image_xscale) == sign(xsp))
-			gsp = (gsp / 4) + (_drpspd * sign(image_xscale));
+		if (sign(image_xscale) == sign(plr.xsp))
+			plr.gsp = (gsp / 4) + (_drpspd * sign(image_xscale));
 		else 
-			gsp = ((collision_detector.get_angle_data().degrees == 0) ? 
+			plr.gsp = ((collision_detector.get_angle_data().degrees == 0) ? 
 				0 : 
-				(gsp / 2)) + (_drpspd * sign(image_xscale));
+				(plr.gsp / 2)) + (_drpspd * sign(image_xscale));
 				
-		if (abs(gsp) > _drpmax) 
-			gsp = _drpmax * sign(gsp);
+		if (abs(plr.gsp) > _drpmax) 
+			plr.gsp = _drpmax * sign(plr.gsp);
 				
 		camera.set_lag_timer(15);
 		
@@ -152,7 +152,7 @@ function SonicStatePeelout() : BaseState() constructor {
 		with player {
 			if (!is_key_up) {
 				if (other.__timer >= 30) {
-					gsp = 12 * image_xscale;
+					plr.gsp = 12 * image_xscale;
 			
 					audio_stop_sound(sndPlrPeelCharge);
 					audio_play_sound(sndPlrPeelRelease, 0, false);
