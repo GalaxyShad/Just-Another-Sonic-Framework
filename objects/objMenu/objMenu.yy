@@ -10,8 +10,8 @@
   "name":"objMenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Hud",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Solids",
-    "path":"folders/Test Level/Solids.yy",
+    "path":"folders/Just Another Sonic Framework/Test Level/Solids.yy",
   },
   "parentObjectId":{
     "name":"parPlatform",

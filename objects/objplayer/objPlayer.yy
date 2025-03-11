@@ -15,7 +15,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Player",
-    "path":"folders/Objects/Player.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player.yy",
   },
   "parentObjectId":null,
   "persistent":false,

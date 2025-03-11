@@ -8,8 +8,8 @@
   "name":"objCharacterChanger",
   "overriddenProperties":[],
   "parent":{
-    "name":"Player",
-    "path":"folders/Objects/Player.yy",
+    "name":"TEST",
+    "path":"folders/Just Another Sonic Framework/Objects/TEST.yy",
   },
   "parentObjectId":null,
   "persistent":false,

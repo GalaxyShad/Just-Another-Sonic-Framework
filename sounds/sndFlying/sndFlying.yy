@@ -13,7 +13,7 @@
   "name":"sndFlying",
   "parent":{
     "name":"Sounds",
-    "path":"folders/Objects/Player/Sounds.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

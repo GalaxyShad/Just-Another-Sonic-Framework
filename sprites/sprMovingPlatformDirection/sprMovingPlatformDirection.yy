@@ -26,7 +26,7 @@
   "origin":3,
   "parent":{
     "name":"Editor",
-    "path":"folders/Objects/Sprites/Editor.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Editor.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

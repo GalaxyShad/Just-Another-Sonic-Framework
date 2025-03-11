@@ -8,8 +8,8 @@
   "name":"objSfxMotobugExhaust",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "name":"Motobug",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S1/Motobug.yy",
   },
   "parentObjectId":null,
   "persistent":false,

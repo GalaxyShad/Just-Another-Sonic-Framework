@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Knuckles",
-    "path":"folders/Objects/Player/Sprites/Knuckles.yy",
+    "name":"IMAGES",
+    "path":"folders/Just Another Sonic Framework/IMAGES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

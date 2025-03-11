@@ -9,8 +9,8 @@
   "name":"objAnimationTest",
   "overriddenProperties":[],
   "parent":{
-    "name":"__Hidden",
-    "path":"folders/Objects/__Hidden.yy",
+    "name":"TEST",
+    "path":"folders/Just Another Sonic Framework/Objects/TEST.yy",
   },
   "parentObjectId":null,
   "persistent":false,

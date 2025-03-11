@@ -6,7 +6,7 @@
   "name":"PlayerStateBreathe",
   "parent":{
     "name":"States",
-    "path":"folders/Objects/Player/Scripts/States.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Scripts/States.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

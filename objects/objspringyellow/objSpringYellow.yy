@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Placeable",
-    "path":"folders/Placeable.yy",
+    "path":"folders/Just Another Sonic Framework/Placeable.yy",
   },
   "parentObjectId":{
     "name":"parSolidNoAngle",

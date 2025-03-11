@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies.yy",
   },
   "parentObjectId":null,
   "persistent":false,

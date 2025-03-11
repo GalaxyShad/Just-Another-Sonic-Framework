@@ -10,8 +10,8 @@
   "name":"objCamera",
   "overriddenProperties":[],
   "parent":{
-    "name":"__Hidden",
-    "path":"folders/Objects/__Hidden.yy",
+    "name":"Hud",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud.yy",
   },
   "parentObjectId":null,
   "persistent":false,

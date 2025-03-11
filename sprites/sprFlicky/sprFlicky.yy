@@ -28,7 +28,7 @@
   "origin":9,
   "parent":{
     "name":"Flicky",
-    "path":"folders/Objects/Enemies/__Internal/Sprites/Flicky.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/Flicky.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

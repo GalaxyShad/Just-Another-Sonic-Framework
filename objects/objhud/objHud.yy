@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Hud",
-    "path":"folders/Objects/__Hidden/Hud.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud.yy",
   },
   "parentObjectId":null,
   "persistent":false,

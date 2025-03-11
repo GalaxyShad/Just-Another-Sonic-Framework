@@ -6,7 +6,7 @@
   "name":"PlayerHandleSprings",
   "parent":{
     "name":"Object Handlers",
-    "path":"folders/Objects/Player/Scripts/Object Handlers.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Scripts/Object Handlers.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

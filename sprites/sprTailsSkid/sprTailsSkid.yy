@@ -27,7 +27,7 @@
   "origin":4,
   "parent":{
     "name":"Tails",
-    "path":"folders/Objects/Player/Sprites/Tails.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sprites/Tails.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

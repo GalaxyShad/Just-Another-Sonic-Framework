@@ -12,8 +12,8 @@
   "out_tilehborder":2,
   "out_tilevborder":2,
   "parent":{
-    "name":"EHZ1",
-    "path":"folders/Scenes/EHZ1.yy",
+    "name":"Tilesets",
+    "path":"folders/Just Another Sonic Framework/Tilesets.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

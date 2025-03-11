@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Objects/Enemies/__Internal/Sprites.yy",
+    "name":"IMAGES",
+    "path":"folders/Just Another Sonic Framework/IMAGES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

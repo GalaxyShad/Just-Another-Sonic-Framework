@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Flicky",
-    "path":"folders/Objects/Enemies/__Internal/Sprites/Flicky.yy",
+    "name":"IMAGES",
+    "path":"folders/Just Another Sonic Framework/IMAGES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

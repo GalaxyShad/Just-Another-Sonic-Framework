@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Monitors",
-    "path":"folders/Placeable/Monitors.yy",
+    "path":"folders/Just Another Sonic Framework/Placeable/Monitors.yy",
   },
   "parentObjectId":{
     "name":"objMonitor",

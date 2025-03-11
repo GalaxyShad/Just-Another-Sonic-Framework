@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Objects/Sprites.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

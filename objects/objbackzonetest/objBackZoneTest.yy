@@ -8,8 +8,8 @@
   "name":"objBackZoneTest",
   "overriddenProperties":[],
   "parent":{
-    "name":"Test Level",
-    "path":"folders/Test Level.yy",
+    "name":"TEST",
+    "path":"folders/Just Another Sonic Framework/Objects/TEST.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -6,8 +6,8 @@
   "name":"parSolid",
   "overriddenProperties":[],
   "parent":{
-    "name":"Parents",
-    "path":"folders/Objects/__Hidden/Parents.yy",
+    "name":"Solids",
+    "path":"folders/Just Another Sonic Framework/Objects/Solids.yy",
   },
   "parentObjectId":null,
   "persistent":false,

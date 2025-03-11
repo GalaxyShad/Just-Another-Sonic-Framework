@@ -9,8 +9,8 @@
   "name":"objAngleMeasurerMouseTest",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"TEST",
+    "path":"folders/Just Another Sonic Framework/Objects/TEST.yy",
   },
   "parentObjectId":null,
   "persistent":false,

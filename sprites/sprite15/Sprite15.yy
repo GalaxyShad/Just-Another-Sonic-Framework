@@ -45,7 +45,7 @@
   "origin":0,
   "parent":{
     "name":"Collisions",
-    "path":"folders/Objects/Sprites/Collisions.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Collisions.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

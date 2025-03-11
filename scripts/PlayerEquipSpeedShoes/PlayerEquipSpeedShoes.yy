@@ -6,7 +6,7 @@
   "name":"PlayerEquipSpeedShoes",
   "parent":{
     "name":"Public",
-    "path":"folders/Objects/Player/Scripts/Public.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Scripts/Public.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

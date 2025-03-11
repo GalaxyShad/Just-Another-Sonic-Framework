@@ -29,8 +29,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Objects/Enemies/__Internal/Sprites.yy",
+    "name":"Crabmeat",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S1/Crabmeat.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -33,8 +33,8 @@
   "out_tilehborder":0,
   "out_tilevborder":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Tilesets",
+    "path":"folders/Just Another Sonic Framework/Tilesets.yy",
   },
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",

@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
-    "path":"folders/Objects.yy",
+    "path":"folders/Just Another Sonic Framework/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

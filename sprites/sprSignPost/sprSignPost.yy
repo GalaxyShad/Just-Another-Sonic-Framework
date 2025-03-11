@@ -26,7 +26,7 @@
   "origin":7,
   "parent":{
     "name":"SignPost",
-    "path":"folders/Objects/Sprites/SignPost.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/SignPost.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

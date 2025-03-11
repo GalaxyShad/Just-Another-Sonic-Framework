@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Checkpoint",
-    "path":"folders/Objects/Sprites/Checkpoint.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Checkpoint.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

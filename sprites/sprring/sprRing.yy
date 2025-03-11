@@ -29,7 +29,7 @@
   "origin":4,
   "parent":{
     "name":"Ring",
-    "path":"folders/Objects/Sprites/Ring.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Ring.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

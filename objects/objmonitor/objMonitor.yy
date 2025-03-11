@@ -12,7 +12,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Hidden",
-    "path":"folders/Placeable/Monitors/Hidden.yy",
+    "path":"folders/Just Another Sonic Framework/Placeable/Monitors/Hidden.yy",
   },
   "parentObjectId":{
     "name":"parSolidNoAngle",
