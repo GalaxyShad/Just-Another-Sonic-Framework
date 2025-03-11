@@ -9,8 +9,8 @@
   "name":"objBuzzerProjectile",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "name":"Projectiles",
+    "path":"folders/Objects/Enemies/Sonic 2/Projectiles.yy",
   },
   "parentObjectId":{
     "name":"objProjectile",

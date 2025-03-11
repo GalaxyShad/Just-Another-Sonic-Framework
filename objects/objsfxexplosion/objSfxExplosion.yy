@@ -9,8 +9,8 @@
   "name":"objSfxExplosion",
   "overriddenProperties":[],
   "parent":{
-    "name":"__Hidden",
-    "path":"folders/Objects/__Hidden.yy",
+    "name":"SFX",
+    "path":"folders/Objects/__Hidden/SFX.yy",
   },
   "parentObjectId":null,
   "persistent":false,

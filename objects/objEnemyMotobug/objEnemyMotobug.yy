@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "path":"folders/Placeable/Enemies.yy",
   },
   "parentObjectId":{
     "name":"parEnemy",

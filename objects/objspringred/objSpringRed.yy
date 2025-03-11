@@ -8,8 +8,8 @@
     {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objSpringYellow","path":"objects/objSpringYellow/objSpringYellow.yy",},"propertyId":{"name":"spd","path":"objects/objSpringYellow/objSpringYellow.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"16",},
   ],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Placeable",
+    "path":"folders/Placeable.yy",
   },
   "parentObjectId":{
     "name":"objSpringYellow",

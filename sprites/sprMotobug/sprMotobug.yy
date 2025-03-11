@@ -29,7 +29,7 @@
   "origin":4,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Objects/Enemies/Sprites.yy",
+    "path":"folders/Objects/Enemies/__Internal/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

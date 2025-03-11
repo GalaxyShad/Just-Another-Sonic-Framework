@@ -26,7 +26,7 @@
   "origin":4,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Objects/Monitors/Sprites.yy",
+    "path":"folders/Placeable/Monitors/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

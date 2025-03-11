@@ -28,7 +28,7 @@
   "origin":4,
   "parent":{
     "name":"Sfx",
-    "path":"folders/Objects/Enemies/Sfx.yy",
+    "path":"folders/Objects/Enemies/__Internal/Sprites/Sfx.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

@@ -10,8 +10,8 @@
   "name":"objEnemyCoconuts",
   "overriddenProperties":[],
   "parent":{
-    "name":"Sonic 2",
-    "path":"folders/Objects/Enemies/Sonic 2.yy",
+    "name":"Enemies",
+    "path":"folders/Placeable/Enemies.yy",
   },
   "parentObjectId":{
     "name":"parEnemy",

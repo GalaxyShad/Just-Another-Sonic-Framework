@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Buzzer",
-    "path":"folders/Objects/Enemies/Sprites/Buzzer.yy",
+    "path":"folders/Objects/Enemies/__Internal/Sprites/Buzzer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

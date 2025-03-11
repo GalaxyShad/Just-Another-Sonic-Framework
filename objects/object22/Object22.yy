@@ -6,8 +6,8 @@
   "name":"Object22",
   "overriddenProperties":[],
   "parent":{
-    "name":"Test Level",
-    "path":"folders/Test Level.yy",
+    "name":"Solids",
+    "path":"folders/Test Level/Solids.yy",
   },
   "parentObjectId":{
     "name":"parLow",

@@ -6,8 +6,8 @@
   "name":"objSpikes",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Placeable",
+    "path":"folders/Placeable.yy",
   },
   "parentObjectId":{
     "name":"parSolidNoAngle",

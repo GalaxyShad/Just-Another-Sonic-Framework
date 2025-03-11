@@ -29,7 +29,7 @@
   "origin":0,
   "parent":{
     "name":"Sfx",
-    "path":"folders/Objects/Enemies/Sfx.yy",
+    "path":"folders/Objects/Enemies/__Internal/Sprites/Sfx.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

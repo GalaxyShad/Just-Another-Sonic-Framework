@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Hidden",
-    "path":"folders/Objects/Monitors/Hidden.yy",
+    "path":"folders/Placeable/Monitors/Hidden.yy",
   },
   "parentObjectId":null,
   "persistent":false,

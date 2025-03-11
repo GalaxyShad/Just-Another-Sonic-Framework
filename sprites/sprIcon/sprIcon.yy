@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Hud",
-    "path":"folders/Objects/__Hidden/Hud.yy",
+    "name":"Sprites",
+    "path":"folders/Objects/__Hidden/Hud/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

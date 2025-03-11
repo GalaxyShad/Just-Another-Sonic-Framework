@@ -39,8 +39,8 @@
   "resourceType":"GMTileSet",
   "resourceVersion":"2.0",
   "spriteId":{
-    "name":"uu",
-    "path":"sprites/uu/uu.yy",
+    "name":"sprTsS2Solids",
+    "path":"sprites/sprTsS2Solids/sprTsS2Solids.yy",
   },
   "spriteNoExport":false,
   "textureGroupId":{

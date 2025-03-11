@@ -173,7 +173,9 @@ function PlayerAnimator() constructor {
 	
 	__init__ = function() {
 		__create_default("__no_anim", sprNoAnimation);
-	}();
+	};
+
+	__init__();
 	
 	
 }

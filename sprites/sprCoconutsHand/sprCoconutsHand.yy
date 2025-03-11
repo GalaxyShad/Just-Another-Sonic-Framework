@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Coconuts",
-    "path":"folders/Objects/Enemies/Sprites/Coconuts.yy",
+    "path":"folders/Objects/Enemies/__Internal/Sprites/Coconuts.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

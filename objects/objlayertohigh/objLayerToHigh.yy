@@ -6,8 +6,8 @@
   "name":"objLayerToHigh",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Layering",
+    "path":"folders/Placeable/Layering.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -8,8 +8,8 @@
   "name":"objLevelMusic",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Editor",
+    "path":"folders/Placeable/Editor.yy",
   },
   "parentObjectId":null,
   "persistent":false,

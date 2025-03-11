@@ -10,8 +10,8 @@
   "name":"objHud",
   "overriddenProperties":[],
   "parent":{
-    "name":"__Hidden",
-    "path":"folders/Objects/__Hidden.yy",
+    "name":"Hud",
+    "path":"folders/Objects/__Hidden/Hud.yy",
   },
   "parentObjectId":null,
   "persistent":false,

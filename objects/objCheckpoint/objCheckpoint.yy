@@ -10,8 +10,8 @@
   "name":"objCheckpoint",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Placeable",
+    "path":"folders/Placeable.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -6,8 +6,8 @@
   "name":"objCorksewTrigger",
   "overriddenProperties":[],
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Placeable",
+    "path":"folders/Placeable.yy",
   },
   "parentObjectId":null,
   "persistent":false,

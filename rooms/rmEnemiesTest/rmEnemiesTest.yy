@@ -23,8 +23,8 @@
   ],
   "name":"rmEnemiesTest",
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Scenes",
+    "path":"folders/Scenes.yy",
   },
   "parentRoom":null,
   "physicsSettings":{
