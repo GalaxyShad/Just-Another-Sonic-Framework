@@ -92,7 +92,7 @@ function PlayerStateNormal() : BaseState() constructor {
 function PlayerStateNoclip() : BaseState() constructor {
 	on_start = function(p) {
 		p.plr.ground = false;
-		p.behavior_loop.disable(player_behavior_collisions);
+		p.behavior_loop.disable(player_behavior_collisions_solid);
 		p.behavior_loop.disable(player_behavior_apply_gravity);
 
 		p.handle_loop.disable_all();
@@ -114,7 +114,7 @@ function PlayerStateNoclip() : BaseState() constructor {
 	}
 
 	on_exit = function(p) {
-		p.behavior_loop.enable(player_behavior_collisions);
+		p.behavior_loop.enable(player_behavior_collisions_solid);
 		p.behavior_loop.enable(player_behavior_apply_gravity);
 
 		p.handle_loop.enable_all();

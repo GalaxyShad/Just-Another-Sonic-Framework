@@ -53,7 +53,7 @@ function PlayerStateCorksew() : BaseState() constructor {
 	
 	on_start = function(player) {
 
-		player.behavior_loop.disable(player_behavior_collisions);
+		player.behavior_loop.disable(player_behavior_collisions_solid);
 		player.behavior_loop.disable(player_behavior_air_drag);
 		player.behavior_loop.disable(player_behavior_air_movement);
 		player.behavior_loop.disable(player_behavior_apply_gravity);
@@ -94,7 +94,7 @@ function PlayerStateCorksew() : BaseState() constructor {
 	on_exit = function(player) {
 
 		with player {
-			behavior_loop.enable(player_behavior_collisions);
+			behavior_loop.enable(player_behavior_collisions_solid);
 			behavior_loop.enable(player_behavior_air_drag);
 			behavior_loop.enable(player_behavior_air_movement);
 			behavior_loop.enable(player_behavior_apply_gravity);

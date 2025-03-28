@@ -34,8 +34,10 @@ function player_behavior_ground_movement() {
 }
 
 function player_behavior_slope_decceleration() {
+	return;
+
 	if (!plr.ground) return;
-	
+
 	var _slp_dec_value = physics.slope_factor * collision_detector.get_angle_data().sin;
 	
 	if (abs(_slp_dec_value) >= 0.05078125)
@@ -52,6 +54,8 @@ function player_behavior_ground_friction() {
 }
 
 function player_behavior_fall_off_slopes() {
+	return;
+
 	// Sonic 3 method
 	#macro FALL_OFF_SPEED_VALUE 2.5
 	

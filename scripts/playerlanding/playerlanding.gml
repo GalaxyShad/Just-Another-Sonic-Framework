@@ -1,4 +1,5 @@
 
+/// @param {Struct.Player} p  
 function player_landing() {
 	var _states = ["roll", "spring"]; 
 	

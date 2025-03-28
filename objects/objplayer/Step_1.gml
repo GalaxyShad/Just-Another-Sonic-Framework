@@ -30,7 +30,8 @@ if (keyboard_check_pressed(ord("X"))) {
 
 if (keyboard_check_pressed(ord("C"))) {
 	var _changer = instance_find(objCharacterChanger, 0);
-	_changer.change(id);
+	if (_changer != noone)
+		_changer.change(id);
 }
 
 if keyboard_check(ord("1"))

@@ -10,8 +10,8 @@
   "name":"objMonitorIcon",
   "overriddenProperties":[],
   "parent":{
-    "name":"Hidden",
-    "path":"folders/Just Another Sonic Framework/Placeable/Monitors/Hidden.yy",
+    "name":"Monitors",
+    "path":"folders/Just Another Sonic Framework/Objects/Monitors.yy",
   },
   "parentObjectId":null,
   "persistent":false,
