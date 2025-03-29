@@ -43,7 +43,6 @@ function player_handle_springs(plr) {
 			plr.ysp += -_o_spring.ysp;
 		}
 
-
 		plr.ground = false;
 
 		plr.state_machine.change_to("spring");

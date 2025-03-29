@@ -4,11 +4,11 @@ function player_switch_sensor_radius(plr) {
 	var _box;
 	
 	if (plr.state_machine.is_one_of(["roll", "jump", "dropdash"])) {
-		_box = plr.collider_radius.base;
+		_box = plr.collider_radius.curling;
 	} else if (plr.inst.object_index == objCharacterKnuckles && plr.state_machine.is_one_of(["glide", "glideRotation", "climbe", "land"])) {
 		_box = SENSOR_FLOORBOX_SPECIAL;
 	} else {
-		_box = plr.collider_radius.curling;
+		_box = plr.collider_radius.base;
 	}
 
 	plr.collider.set_radius({ 
