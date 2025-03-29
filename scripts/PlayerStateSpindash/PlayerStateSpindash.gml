@@ -3,52 +3,48 @@
 function PlayerStateSpindash() : BaseState() constructor {
 	__spinrev = 0;
 	
-	on_start = function(player) {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
 		audio_sound_pitch(sndPlrSpindashCharge, 1);
 		audio_play_sound(sndPlrSpindashCharge, 0, false);
+		
 		__spinrev = 0;
 		
-		with player {
-			//allow_jump = false;	
-			//allow_movement = false;
-			behavior_loop.disable(player_behavior_jump);
-			behavior_loop.disable(player_behavior_ground_movement);
-			animator.set("spindash");	
-		}
+		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.animator.set("spindash");	
 	};
 	
-	on_exit = function(player) { with player {
-		behavior_loop.enable(player_behavior_jump);
-		behavior_loop.enable(player_behavior_ground_movement);
-		//allow_jump = true;
-		//allow_movement = true;	
-	}};
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) { 
+		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+	};
 	
-	on_step = function(player) {
-		with player {
-			if (!is_key_down) {
-				plr.gsp = (8 + (floor(other.__spinrev) / 2)) * sign(image_xscale);
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
+
+		if (!(plr.input_y() > 0)) {
+			plr.gsp = (8 + (floor(other.__spinrev) / 2)) * sign(plr.inst.image_xscale);
+	
+			audio_stop_sound(sndPlrSpindashCharge);
+			audio_play_sound(sndPlrSpindashRelease, 0, false);
 		
-				audio_stop_sound(sndPlrSpindashCharge);
-				audio_play_sound(sndPlrSpindashRelease, 0, false);
-			
-				state.change_to("roll");
-		
-				camera.set_lag_timer(15);
-			}
+			plr.state_machine.change_to("roll");
+	
+			plr.inst.camera.set_lag_timer(15);
 		}
+
 	
-		if (player.is_key_action_pressed) {
+		if (plr.is_input_jump()) {
 			__spinrev += (__spinrev < 8) ? 2 : 0;
 		
 			audio_stop_sound(sndPlrSpindashCharge);
 		
 			audio_sound_pitch(sndPlrSpindashCharge, 1 + __spinrev / 10);
 			audio_play_sound(sndPlrSpindashCharge, 0, false);
-		
 		}
 	
 		__spinrev -= (((__spinrev * 1000) div 125) / 256000);
-		
 	};
 }

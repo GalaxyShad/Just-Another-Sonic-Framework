@@ -1,3 +1,7 @@
+character_builder = new CharacterBuilder(self);
+
+event_inherited();
+exit;
 
 SFX_COLOR_MAGIC			=	#0F52BA;
 SFX_COLOR_MAGIC_SUPER	=	#FFCE57;

@@ -4,16 +4,18 @@
 function PlayerStateBreathe() : BaseState() constructor {
 	__timer = undefined;
 	
-	on_start = function(player) {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
 		__timer = 20;
-		player.animator.set("breathe");
+		plr.animator.set("breathe");
 	};
 	
-	on_step = function(player) {
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
 		if (__timer > 0)
 			__timer--;
-		else with player {
-			state.change_to("normal");
+		else {
+			plr.state_machine.change_to("normal");
 		}
 	};
 }

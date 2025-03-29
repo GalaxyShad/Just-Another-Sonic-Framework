@@ -23,7 +23,7 @@ function State(_owner) constructor {
 		}
 		
 		_state.super = function() {
-			__super_method(__owner);
+			__super_method(__owner.plr);
 		}
 		
 		__state_map[$ _state_name] = _state;
@@ -41,7 +41,7 @@ function State(_owner) constructor {
 		}
 		
 		_state.super = function() {
-			__super_method(__owner);
+			__super_method(__owner.plr);
 		}
 		
 		__state_map[$ _state_name] = _state;
@@ -68,11 +68,11 @@ function State(_owner) constructor {
 		
 		if (__state()[$ "override_" + _method_name] != undefined) {
 			__super_method = __state()[$ _method_name];
-			__state()[$ "override_" + _method_name](__owner);
+			__state()[$ "override_" + _method_name](__owner.plr);
 			return;
 		}
 		
-		__state()[$ _method_name](__owner);
+		__state()[$ _method_name](__owner.plr);
 	}
 	
 

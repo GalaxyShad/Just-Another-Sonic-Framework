@@ -1,28 +1,27 @@
 
 
 function PlayerStateLookDown() : BaseState() constructor {
-	on_start = function(player) { with player {
-		//allow_jump = false;
-		//allow_movement = false;
-		behavior_loop.disable(player_behavior_jump);
-		behavior_loop.disable(player_behavior_ground_movement);
-		animator.set("look_down");
-	}};
+	/// @param {Struct.Player} plr
+	on_start = function(plr) { 
+		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.animator.set("look_down");
+	};
 	
-	on_exit = function(player) { with player {
-		//allow_jump = true;
-		//allow_movement = true;
-		behavior_loop.enable(player_behavior_jump);
-		behavior_loop.enable(player_behavior_ground_movement);
-	}};
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) { 
+		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+	};
 	
-	on_step = function(player) { with player {
-		if (!is_key_down || !plr.ground || is_key_left || is_key_right)
-			state.change_to("normal");
+	/// @param {Struct.Player} plr
+	on_step = function(plr) { 
+		if (plr.input_y() < 1 || !plr.ground || plr.input_x() != 0)
+			plr.state_machine.change_to("normal");
 		else if (abs(plr.gsp) >= 1.0)
-			state.change_to("roll");
+			plr.state_machine.change_to("roll");
 			
-		if (plr.ground && is_key_action_pressed)
-			state.change_to("spindash");	
-	}};
+		if (plr.ground && plr.is_input_jump())
+			plr.state_machine.change_to("spindash");	
+	};
 }

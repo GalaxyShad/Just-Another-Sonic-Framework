@@ -33,7 +33,7 @@ if (_is_plr) {
 
 		offset_x = clamp(offset_x, -_max_offset, _max_offset);
 		offset_y = clamp(offset_y, -_max_offset, _max_offset);
-	} else if (_o_follow.state.is_one_of(["spindash", "peelout"])) {
+	} else if (_o_follow.plr.state_machine.is_one_of(["spindash", "peelout"])) {
 		var _max_offset = 120;
 		
 		offset_x += (_max_offset - offset_x) * 0.1 * _o_follow.image_xscale;

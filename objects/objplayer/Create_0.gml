@@ -1,4 +1,6 @@
 
+
+
 var num = audio_get_listener_count();
 for( var i = 0; i < num; i++)
 {
@@ -7,53 +9,14 @@ for( var i = 0; i < num; i++)
     ds_map_destroy(info);
 }
 
-var _VAR_CHECK_LIST = [
-	"SFX_COLOR_MAGIC",
-	"SFX_COLOR_MAGIC_SUPER",
-	
-	"SENSOR_FLOORBOX_NORMAL",
-	"SENSOR_FLOORBOX_ROLL",
-	
-	"SENSOR_WALLBOX_NORMAL",
-	"SENSOR_WALLBOX_SLOPES",
-	
-	"state",
-	"physics",
-	
-	"animator",
-	
-	"PAL_CLASSIC",
-	"PAL_SUPER",
-];
-
-array_foreach(_VAR_CHECK_LIST, function(_variable) {
-	if (!variable_instance_exists(id, _variable)) {
-		show_error(
-			"[CHARACTER INITIALISATION ERROR]\n" +
-			$"Variable [{_variable}] is not exist.\n" +
-			"You need to initialize this variable to create your character.\n",
-			true
-		)
-	}
-});
-
-var _VAR_TYPES_CHECK_MAP = {
-	state:			[State,				"State"			],
-	physics:		[PlayerPhysics,		"PlayerPhysics"	],
-	animator:		[PlayerAnimator,	"PlayerAnimator"]
-};
-
-struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
-	var _instance_variable = variable_instance_get(id, _key);
-	
-	if (!is_instanceof(_instance_variable, _value[0])) {
-		show_error(
-			"[CHARACTER INITIALISATION ERROR]\n" +
-			$"Variable [{_key}] should be the type of [{_value[1]}].\n",
-			true
-		)	
-	}
-});
+if (!variable_instance_exists(id, "character_builder")) {
+	show_error(
+		"[CHARACTER INITIALISATION ERROR]\n" +
+		$"character_builder not exists.\n" +
+		"You need to initialize this variable to create your character.\n",
+		true
+	)
+}
 
 if (!variable_instance_exists(id, "draw_player")) {
 	draw_player = function() {
@@ -76,8 +39,6 @@ camera = !instance_exists(objCameraSonicWorlds) ?
 // 	instance_find(objCamera, 0);
 	
 camera.FollowingObject = id;
-
-PALLETE_SUPER_CYCLE_LENGTH = array_length(PAL_SUPER); 
 
 shield = undefined;
 
@@ -117,13 +78,8 @@ timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
 timer_powerup_invincibility = new Timer2(31 * 60, false);
 
-plr = new Player(
-	self,
-	collision_detector,
-	state,
-	animator,
-	physics
-)
+plr = character_builder.build();
+plr.state_machine.change_to("normal");
 
 behavior_loop = new PlayerLoop();
 behavior_loop
@@ -148,8 +104,6 @@ behavior_loop
 	.add(player_behavior_ground_movement)
 	.add(player_behavior_ground_friction)
 	.add(player_behavior_fall_off_slopes)
-	
-	
 ;
 
 handle_loop = new PlayerLoop();

@@ -15,6 +15,6 @@
 event_inherited();
 item = ITEM_SUPER;
 action = function(breaker) {
-	with breaker state.change_to("transform");
+	with breaker plr.state_machine.change_to("transform");
 };
 

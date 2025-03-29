@@ -1,15 +1,15 @@
-
-function player_behavior_jump() {
+/// @param {Struct.Player} plr
+function player_behavior_jump(plr) {
 	if (!plr.ground) 
 		return;
 	
-	if (allow_jump && is_key_action_pressed) {
+	if (plr.is_input_jump()) {
 		plr.ground = false;
 	
-		plr.ysp -= physics.jump_force * collision_detector.get_angle_data().cos; 
-		plr.xsp -= physics.jump_force * collision_detector.get_angle_data().sin; 
+		plr.ysp -= plr.physics.jump_force * plr.collider.get_angle_data().cos; 
+		plr.xsp -= plr.physics.jump_force * plr.collider.get_angle_data().sin; 
 	
-		state.change_to("jump");
+		plr.state_machine.change_to("jump");
 	
 		audio_play_sound(sndPlrJump, 0, false);
 	} 

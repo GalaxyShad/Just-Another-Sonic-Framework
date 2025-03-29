@@ -7,9 +7,10 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 	__plr_ins = undefined;
 	__transform_frame = _transform_frame;
 
-	on_step = function(p) {
-		if (p.animator.get_image_index() >= __transform_frame && !__is_transformed) {
-			with (p) {
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
+		if (plr.animator.get_image_index() >= __transform_frame && !__is_transformed) {
+			with (plr.inst) {
 				player_set_super_form();					
 				audio_play_sound(sndPlrTransform, 0, 0);
 			}
@@ -18,32 +19,34 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 		}
 	}
 	
-	on_start = function(p) { 
-		p.plr.ground = false;
-		p.animator.set("transform");
+	/// @param {Struct.Player} plr
+	on_start = function(plr) { 
+		plr.ground = false;
+		plr.animator.set("transform");
 
-		//behavior_loop.disable(player_behavior_air_movement);
-		p.allow_movement = false;
+		plr.inst.behavior_loop.disable(player_behavior_air_movement);
 
-		__plr_ins = p;
+		__plr_ins = plr.inst;
 		__timer = 60;
 		__is_transformed = false;
 	};
 	
-	on_animate = function(player) { with player {
+	/// @param {Struct.Player} plr
+	on_animate = function(plr) { 
 		plr.ysp = 0;
 		plr.xsp = 0;
 		
 		other.__timer--;
 		
 		if (other.__timer == 0)
-			state.change_to("normal");
-	}};
+			plr.state_machine.change_to("normal");
+	};
 	
-	on_exit = function(player) {
-		player.animator.on_animation_finished(undefined);
-		player.allow_movement = true;
-		//behavior_loop.enable(player_behavior_air_movement);
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) {
+		plr.animator.on_animation_finished(undefined);
+
+		plr.inst.behavior_loop.enable(player_behavior_air_movement);
 	};
 }
 
@@ -51,56 +54,49 @@ function PlayerStateCorksew() : BaseState() constructor {
 	__spd = 0;
 	__corkPos = 0;
 	
-	on_start = function(player) {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
 
-		player.behavior_loop.disable(player_behavior_collisions_solid);
-		player.behavior_loop.disable(player_behavior_air_drag);
-		player.behavior_loop.disable(player_behavior_air_movement);
-		player.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.inst.behavior_loop.disable(player_behavior_collisions_solid);
+		plr.inst.behavior_loop.disable(player_behavior_air_drag);
+		plr.inst.behavior_loop.disable(player_behavior_air_movement);
+		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
 	
-		__spd = player.plr.gsp;
-		
-	with player {
+		__spd = plr.gsp;
+	
 		plr.ground = false;
-		animator.set("curling");
-		//behavior_loop.disable(player_behavior_air_movement);
-	}};
+		plr.animator.set("curling");
+	};
 
-	on_step = function(p) {
-
-		
-
-		var _corksew = p.collision_detector.collision_object(
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
+		var _corksew = plr.collider.collision_object(
 			objCorksewTrigger, PlayerCollisionDetectorSensor.MainDefault);
 
 		if (_corksew != noone) {
 			var _w = sprite_get_width(_corksew.sprite_index)  * _corksew.image_xscale;
 			var _h = (sprite_get_height(_corksew.sprite_index) + 8 - 20) * _corksew.image_yscale;
 
-			__corkPos = (p.x - _corksew.x) / _w;
+			__corkPos = (plr.inst.x - _corksew.x) / _w;
 
-			p.x += __spd;// * dcos(point_direction(p.xprevious, p.yprevious, p.x, p.y));
-			p.y = _corksew.y+_h - abs(dsin(__corkPos * 180)) * _h;
+			plr.inst.x += __spd;
+			plr.inst.y = _corksew.y+_h - abs(dsin(__corkPos * 180)) * _h;
 		} else {
-			p.state.change_to("normal");
+			plr.state_machine.change_to("normal");
 		}
 	}
 
-	on_animate = function(p) {
-		p.animator.set("corksew");
-		p.animator.set_image_index( (floor(__corkPos * 11)) );
+	/// @param {Struct.Player} plr
+	on_animate = function(plr) {
+		plr.animator.set("corksew");
+		plr.animator.set_image_index( (floor(__corkPos * 11)) );
 	}
 	
-	on_exit = function(player) {
-
-		with player {
-			behavior_loop.enable(player_behavior_collisions_solid);
-			behavior_loop.enable(player_behavior_air_drag);
-			behavior_loop.enable(player_behavior_air_movement);
-			behavior_loop.enable(player_behavior_apply_gravity);
-		}
-
-		// player.allow_movement = true;
-		//behavior_loop.enable(player_behavior_air_movement);
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) {
+		plr.inst.behavior_loop.enable(player_behavior_collisions_solid);
+		plr.inst.behavior_loop.enable(player_behavior_air_drag);
+		plr.inst.behavior_loop.enable(player_behavior_air_movement);
+		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
 	};
 }

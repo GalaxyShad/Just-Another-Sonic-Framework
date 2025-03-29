@@ -1,11 +1,11 @@
-
-function player_handle_bubbles() { 
-	var _o_bubble = collision_detector.collision_object(objBigBubble, PlayerCollisionDetectorSensor.MainDefault);
+/// @param {Struct.Player} plr
+function player_handle_bubbles(plr) { 
+	var _o_bubble = plr.collider.collision_object(objBigBubble, PlayerCollisionDetectorSensor.MainDefault);
 	if (_o_bubble) {
 		plr.xsp = 0;
 		plr.ysp = 0;
 		
-		state.change_to("breathe");
+		plr.state_machine.change_to("breathe");
 		
 		instance_destroy(_o_bubble);
 		
@@ -15,36 +15,36 @@ function player_handle_bubbles() {
 	}
 }
 
-
-function player_handle_water() {
-	var _water = instance_nearest(x, y, objWaterLevel);
+/// @param {Struct.Player} plr
+function player_handle_water(plr) {
+	var _water = instance_nearest(plr.inst.x, plr.inst.y, objWaterLevel);
 	if (_water == noone) 
 		return;
 	
-	var _is_entering = (y > _water.y)  && !physics.is_underwater();
-	var _is_exiting  = (y <= _water.y)	&&  physics.is_underwater();
+	var _is_entering = (plr.inst.y > _water.y)  && !plr.physics.is_underwater();
+	var _is_exiting  = (plr.inst.y <= _water.y) &&  plr.physics.is_underwater();
 	
 	if (_is_entering || _is_exiting) {
 		if (_is_entering) {
 			plr.xsp /= 2;
 			plr.ysp /= 4;
 			
-			physics.apply_underwater();
+			plr.physics.apply_underwater();
 			
-			if (is_shield_water_flushable(shield))
-				shield = undefined;
+			if (is_shield_water_flushable(plr.inst.shield))
+				plr.inst.shield = undefined;
 				
-			timer_underwater.start();
+			plr.inst.timer_underwater.start();
 		} else {
 			plr.ysp *= 2;
-			physics.cancel_underwater();
+			plr.physics.cancel_underwater();
 			
 			player_underwater_regain_air();
 		}
 		
 		var _particle = part_system_create(ParticleSystem2);
 		part_system_depth	(_particle, -20	);
-		part_system_position(_particle, x, y);
+		part_system_position(_particle, plr.inst.x, plr.inst.y);
 		
 		audio_play_sound(sndWaterSplash, 0, 0);
 	}

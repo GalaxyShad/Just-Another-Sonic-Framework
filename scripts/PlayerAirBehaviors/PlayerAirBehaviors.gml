@@ -1,26 +1,26 @@
 
-function player_behavior_apply_gravity() {
+/// @param {Struct.Player} plr
+function player_behavior_apply_gravity(plr) {
 	if (plr.ground) return;
 		
-	plr.ysp += physics.gravity_force;
+	plr.ysp += plr.physics.gravity_force;
 	
 	if (plr.ysp > 16) 
 		plr.ysp = 16;
 }
 
-function player_behavior_air_movement() {
+/// @param {Struct.Player} plr
+function player_behavior_air_movement(plr) {
 	if (plr.ground) return;
-	
-	if (!allow_movement)
-		return;
 
-	if (is_key_left && plr.xsp > -physics.top_speed) 
-		plr.xsp -= physics.air_acceleration_speed;
-	else if (is_key_right && plr.xsp < physics.top_speed) 
-		plr.xsp += physics.air_acceleration_speed;
+	if (plr.input_x() < 0 && plr.xsp > -plr.physics.top_speed) 
+		plr.xsp -= plr.physics.air_acceleration_speed;
+	else if (plr.input_x() > 0 && plr.xsp < plr.physics.top_speed) 
+		plr.xsp += plr.physics.air_acceleration_speed;
 }
 
-function player_behavior_air_drag() {
+/// @param {Struct.Player} plr
+function player_behavior_air_drag(plr) {
 	if (plr.ground) return;
 	
 	if (plr.ysp < 0 && plr.ysp > -4) {

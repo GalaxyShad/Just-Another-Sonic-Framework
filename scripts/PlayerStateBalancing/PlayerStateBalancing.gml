@@ -1,17 +1,19 @@
 
 
 function PlayerStateBalancing() : BaseState() constructor {
-	on_start = function(player) { with player {
-		if ((image_xscale == 1  && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeLeft)) || 
-			(image_xscale == -1 && collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.EdgeRight))
+	/// @param {Struct.Player} plr
+	on_start = function(plr) { 
+		if ((plr.inst.image_xscale == 1  && plr.collider.is_collision_solid(PlayerCollisionDetectorSensor.EdgeLeft)) || 
+			(plr.inst.image_xscale == -1 && plr.collider.is_collision_solid(PlayerCollisionDetectorSensor.EdgeRight))
 		)
-			animator.set("balancing_a");
+			plr.animator.set("balancing_a");
 		else
-			animator.set("balancing_b");
-	}};
+			plr.animator.set("balancing_b");
+	};
 	
-	on_step = function(player) { with player {
-		if (plr.gsp != 0 || !player.plr.ground)
-			state.change_to("normal");
-	}};
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
+		if (plr.gsp != 0 || !plr.ground)
+			plr.state_machine.change_to("normal");
+	};
 }

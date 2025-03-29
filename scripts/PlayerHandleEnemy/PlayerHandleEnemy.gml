@@ -13,19 +13,19 @@ function calculate_bounced_score(_bounced) {
 	return 10000;
 }
 
-/// @param {Struct.Player} p  
-function player_handle_enemy(p) {
+/// @param {Struct.Player} plr  
+function player_handle_enemy(plr) {
 	
-	var _o_enemy = collision_detector.collision_object(parEnemy, PlayerCollisionDetectorSensor.MainDefault);
+	var _o_enemy = plr.collider.collision_object(parEnemy, PlayerCollisionDetectorSensor.MainDefault);
 	
 	if (_o_enemy == noone)
 		return;
 		
 	if (is_player_sphere()) {
 
-		p.bounced_chain_count++;
+		plr.bounced_chain_count++;
 
-		var _score_to_add = calculate_bounced_score(p.bounced_chain_count);
+		var _score_to_add = calculate_bounced_score(plr.bounced_chain_count);
 		score += _score_to_add;
 
 		instance_create_depth(_o_enemy.x, _o_enemy.y, -1, objEnemyFloatingScore, {
@@ -45,8 +45,9 @@ function player_handle_enemy(p) {
 	}	
 }
 
-function player_handle_projectile() {
-	var _o_projectile = collision_detector.collision_object(objProjectile, PlayerCollisionDetectorSensor.MainDefault);
+/// @param {Struct.Player} plr 
+function player_handle_projectile(plr) {
+	var _o_projectile = plr.collider.collision_object(objProjectile, PlayerCollisionDetectorSensor.MainDefault);
 	
 	if (_o_projectile != noone) {
 		player_get_hit();
