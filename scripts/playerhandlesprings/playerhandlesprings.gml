@@ -3,7 +3,13 @@ function player_handle_springs() {
 
 	var f = function(s) {
 		var _spring_angle = 0;
-		var _o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 2, 2);
+		var _o_spring;
+		
+		if (s == PlayerCollisionDetectorSensor.Bottom || s == PlayerCollisionDetectorSensor.Top) {
+			_o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 0, 2);
+		} else {
+			_o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 2, 0);
+		}
 
 		if (_o_spring == noone) return noone;
 
