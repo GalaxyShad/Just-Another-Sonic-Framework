@@ -25,7 +25,7 @@ function PlayerStateSpindash() : BaseState() constructor {
 	on_step = function(plr) {
 
 		if (!(plr.input_y() > 0)) {
-			plr.gsp = (8 + (floor(other.__spinrev) / 2)) * sign(plr.inst.image_xscale);
+			plr.gsp = (8 + (floor(__spinrev) / 2)) * sign(plr.inst.image_xscale);
 	
 			audio_stop_sound(sndPlrSpindashCharge);
 			audio_play_sound(sndPlrSpindashRelease, 0, false);

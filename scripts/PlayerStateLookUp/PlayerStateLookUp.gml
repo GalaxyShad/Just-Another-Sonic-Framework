@@ -2,7 +2,7 @@
 function PlayerStateLookUp() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) { 
-		plr.inst.disable(player_behavior_ground_movement);
+		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
 		plr.animator.set("look_up");
 	};
 	

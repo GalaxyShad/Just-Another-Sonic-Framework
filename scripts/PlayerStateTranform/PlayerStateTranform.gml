@@ -36,9 +36,9 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 		plr.ysp = 0;
 		plr.xsp = 0;
 		
-		other.__timer--;
+		__timer--;
 		
-		if (other.__timer == 0)
+		if (__timer == 0)
 			plr.state_machine.change_to("normal");
 	};
 	

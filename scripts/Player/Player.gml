@@ -53,19 +53,27 @@ function Player(
     input_x = function() {
         if (keyboard_check(vk_left) && keyboard_check(vk_right)) return 0;
 
-        if (keyboard_check(vk_left)) return -1;
-        else if (keyboard_check(vk_right)) return 1;
+        if      (keyboard_check(vk_left))   return -1;
+        else if (keyboard_check(vk_right))  return 1;
+
+        return 0;
     }
 
     input_y = function() {
         if (keyboard_check(vk_up) && keyboard_check(vk_down)) return 0;
 
-        if (keyboard_check(vk_up)) return -1;
-        else if (keyboard_check(vk_down)) return 1;
+        if      (keyboard_check(vk_up))     return -1;
+        else if (keyboard_check(vk_down))   return 1;
+
+        return 0;
     }
 
     is_input_jump = function() {
         return keyboard_check(ord("Z"));
+    }
+
+    is_input_jump_pressed = function() {
+        return keyboard_check_pressed(ord("Z"));
     }
 
     is_can_break_monitor = function() {
@@ -77,6 +85,19 @@ function Player(
             "glideRotation",
             "land"
         ]);
+    }
+
+    is_can_destroy_enemy = function() {
+        return state_machine.is_one_of([
+            "jump",
+            "roll",
+            "dropdash",
+            "glide",
+            "glideRotation",
+            "land"
+        ]) 
+        || inst.timer_invincibility.is_ticking()
+        || physics.is_super()
     }
 };
 
@@ -90,7 +111,9 @@ function CharacterBuilder(_instance) constructor {
     add_basic_player_states(__state_machine);
 
     __collider = new PlayerCollisionDetector(__instance);
-    __physics = new PlayerPhysics();
+
+    __custom_physics_props = undefined;
+    __custom_super_physics_props = undefined;
 
     __collider_radius = {
         base: {
@@ -122,6 +145,16 @@ function CharacterBuilder(_instance) constructor {
 
     configure_states = function(state_func) {
         state_func(__state_machine);
+        return self;
+    }
+
+    configure_physics = function(_phys) {
+        __custom_physics_props = _phys;
+        return self;
+    }
+
+    configure_physics_super = function(_phys) {
+        __custom_super_physics_props = _phys;
         return self;
     }
 
@@ -168,12 +201,14 @@ function CharacterBuilder(_instance) constructor {
     }
 
     build = function() {
+        var _physics = new PlayerPhysics(__custom_physics_props, __custom_super_physics_props);
+
         var _p = new Player(
             __instance,
             __collider,
             __state_machine,
             __animator,
-            __physics
+            _physics
         );
 
         _p.palette.sfx_color = __palette.vfx_color;

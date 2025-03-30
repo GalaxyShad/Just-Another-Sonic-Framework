@@ -16,7 +16,7 @@ function PlayerStateLookDown() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_step = function(plr) { 
-		if (plr.input_y() < 1 || !plr.ground || plr.input_x() != 0)
+		if ((plr.input_y() != 1) || !plr.ground || plr.input_x() != 0)
 			plr.state_machine.change_to("normal");
 		else if (abs(plr.gsp) >= 1.0)
 			plr.state_machine.change_to("roll");

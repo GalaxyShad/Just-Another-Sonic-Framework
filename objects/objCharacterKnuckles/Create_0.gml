@@ -75,10 +75,6 @@ character_builder
 			.add("transform",		sprKnucklesTransform).loop_from(1).speed(.25)
 	})
 
-drop_time = 0;
-
-SENSOR_FLOORBOX_SPECIAL	=	[10,10]; //Glide and Climbe
-
 // Inherit the parent event
 event_inherited();
 

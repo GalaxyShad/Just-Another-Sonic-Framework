@@ -45,6 +45,8 @@ function State(_owner) constructor {
 		}
 		
 		__state_map[$ _state_name] = _state;
+
+		return self;
 	}
 	
 	change_to = function(_new_state) {

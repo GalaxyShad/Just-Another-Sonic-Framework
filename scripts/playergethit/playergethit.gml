@@ -1,22 +1,21 @@
 
-function player_get_hit(){
-	
-	
-	if (timer_invincibility.is_ticking() || 
-		state.current() == "hurt" || 
-		physics.is_super() ||
-		timer_powerup_invincibility.is_ticking()
+/// @param {Struct.Player} plr
+function player_get_hit(plr){
+	if (plr.inst.timer_invincibility.is_ticking() || 
+		plr.state_machine.current() == "hurt" || 
+		plr.physics.is_super() ||
+		plr.inst.timer_powerup_invincibility.is_ticking()
 	) {
 		return;
 	}
 
 		
-	if (global.rings > 0 || shield != undefined) {
-		if (shield == undefined) {
-			ring_loss(x, y);
+	if (global.rings > 0 || plr.inst.shield != undefined) {
+		if (plr.inst.shield == undefined) {
+			ring_loss(plr.inst.x, plr.inst.y);
 			audio_play_sound(sndLoseRings, 0, false);
 		} else {
-			shield = undefined;
+			plr.inst.shield = undefined;
 			audio_play_sound(sndHurt, 0, false);	
 		}
 			
@@ -24,8 +23,8 @@ function player_get_hit(){
 			
 		plr.ground = false;	
 			
-		state.change_to("hurt");	
+		plr.state_machine.change_to("hurt");	
 	} else {
-		state.change_to("die");
+		plr.state_machine.change_to("die");
 	}
 }

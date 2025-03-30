@@ -21,7 +21,7 @@ function player_handle_enemy(plr) {
 	if (_o_enemy == noone)
 		return;
 		
-	if (is_player_sphere()) {
+	if (plr.is_can_destroy_enemy()) {
 
 		plr.bounced_chain_count++;
 
@@ -41,7 +41,7 @@ function player_handle_enemy(plr) {
 		} 
 			
 	} else {
-		player_get_hit();			
+		player_get_hit(plr);			
 	}	
 }
 
@@ -50,7 +50,7 @@ function player_handle_projectile(plr) {
 	var _o_projectile = plr.collider.collision_object(objProjectile, PlayerCollisionDetectorSensor.MainDefault);
 	
 	if (_o_projectile != noone) {
-		player_get_hit();
+		player_get_hit(plr);
 	}
 
 }

@@ -1,5 +1,7 @@
 
-function BaseState() constructor {};
+function BaseState() constructor {
+	super = function() {}
+};
 
 
 
@@ -99,6 +101,7 @@ function PlayerStateNoclip() : BaseState() constructor {
 		plr.ground = false;
 		plr.inst.behavior_loop.disable(player_behavior_collisions_solid);
 		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.inst.behavior_loop.disable(player_behavior_apply_speed);
 
 		plr.inst.handle_loop.disable_all();
 
@@ -106,24 +109,25 @@ function PlayerStateNoclip() : BaseState() constructor {
 	}
 
 	/// @param {Struct.Player} plr
-	on_step = function(p) {
-		p.x += p.plr.xsp;
-		p.y += p.plr.ysp;
+	on_step = function(plr) {
+		plr.inst.x += plr.xsp;
+		plr.inst.y += plr.ysp;
 
 		if (keyboard_check(vk_up)) { 
-			p.plr.ysp -= 0.1; 
+			plr.ysp -= 0.1; 
 		} else if (keyboard_check(vk_down)) { 
-			p.plr.ysp += 0.1; 
+			plr.ysp += 0.1; 
 		} else { 
-			p.plr.ysp = 0; 
+			plr.ysp = 0; 
 		}
 	}
 
 	/// @param {Struct.Player} plr
-	on_exit = function(p) {
-		p.behavior_loop.enable(player_behavior_collisions_solid);
-		p.behavior_loop.enable(player_behavior_apply_gravity);
+	on_exit = function(plr) {
+		plr.inst.behavior_loop.enable(player_behavior_collisions_solid);
+		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.inst.behavior_loop.enable(player_behavior_apply_speed);
 
-		p.handle_loop.enable_all();
+		plr.inst.handle_loop.enable_all();
 	}
 }

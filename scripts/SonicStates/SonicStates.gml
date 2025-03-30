@@ -1,72 +1,64 @@
 
 function SonicStateJump() : PlayerStateJump() constructor {
-	__use_shield = function(player) { with player {
-		if (!is_instanceof(shield, ShieldUseable)) return;
+	/// @param {Struct.Player} plr
+	__use_shield = function(plr) { 
+		if (!is_instanceof(plr.inst.shield, ShieldUseable)) return;
 		
-		if (shield.is_ability_used()) return;
+		if (plr.inst.shield.is_ability_used()) return;
 		
-		shield.use_ability(player);
-	}};
+		plr.inst.shield.use_ability(plr.inst);
+	};
 	
-	
-	override_on_step = function(player) { super(); with (player) {
-		if (!is_key_action_pressed)
+	/// @param {Struct.Player} plr
+	override_on_step = function(plr) { 
+		super(); 
+		if (!plr.is_input_jump())
 			return;
 		
-		if (!is_instanceof(shield, ShieldUseable) || timer_powerup_invincibility.is_ticking()) {
-			
-			var a = collision_circle(player.x, player.y, 128, parEnemy, false, true);
-
-			if (a == noone) {
-				a = collision_circle(player.x, player.y, 128, objMonitor, false, true);
-			}
-
-			if (a != noone) {
-				player.x = a.x;
-				player.y = a.y;
-			}
-			
-			
-			//state.change_to("dropdash");
-		} else if (!physics.is_super())  {
+		if (!is_instanceof(plr.inst.shield, ShieldUseable) || plr.inst.timer_powerup_invincibility.is_ticking()) {
+			plr.state_machine.change_to("dropdash");
+		} else if (!plr.physics.is_super())  {
 			other.__use_shield(self);
 		}
-	}};
+	};
 	
-	
-	override_on_landing = function(player) {
-		with player {		
-			if (is_instanceof(shield, ShieldUseable)) {			
-				if (is_instanceof(shield, ShieldBubble) && shield.is_ability_used()) {
-					shield.bounce(self);
-					shield.reset_ability();
-					return;	
-				}
-			
-				shield.reset_ability();
+	/// @param {Struct.Player} plr
+	override_on_landing = function(plr) {
+		if (is_instanceof(plr.inst.shield, ShieldUseable)) {			
+			if (is_instanceof(plr.inst.shield, ShieldBubble) && plr.inst.shield.is_ability_used()) {
+				plr.inst.shield.bounce(self);
+				plr.inst.shield.reset_ability();
+				return;	
 			}
-		}
 		
+			plr.inst.shield.reset_ability();
+		}
+
 		super();
 	};
 }
 
 
 function SonicStateLookUp() : PlayerStateLookUp() constructor {
-	override_on_start = function(player) { super(); with player {
-		//allow_jump = false;
-		behavior_loop.disable(player_behavior_jump);
-	}};
+	/// @param {Struct.Player} plr
+	override_on_start = function(plr) { 
+		super(); 
+		plr.inst.behavior_loop.disable(player_behavior_jump);
+	};
 	
-	override_on_exit = function(player) { super(); with player {
-		//allow_jump = true;
-		behavior_loop.enable(player_behavior_jump);
-	}};
+	/// @param {Struct.Player} plr
+	override_on_exit = function(plr) { 
+		super(); 
+		plr.inst.behavior_loop.enable(player_behavior_jump);
+	};
 	
-	override_on_step = function(player) { super(); with (player) {
-		if (plr.ground && is_key_action)
-			state.change_to("peelout");
-	}};
+	/// @param {Struct.Player} plr
+	override_on_step = function(plr) { 
+		super(); 
+		
+		if (plr.ground && plr.is_input_jump())
+			plr.state_machine.change_to("peelout");
+	};
 }
 
 
@@ -78,108 +70,105 @@ function SonicStateDropDash() : BaseState() constructor {
 	
 	__drop_timer = 0;
 	
-	on_start = function(player) {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
 		__drop_timer = 0;
 		
 		audio_play_sound(sndPlrDropDash, 0, false);
 		
-		with player {
-			animator.set("dropdash");
-			//animator.set_image_speed(0.5 + abs(gsp) / 8.0);
-		}
+		plr.animator.set("dropdash");
 	};
 		
-	on_landing = function(player) {with player {
-		if (other.__drop_timer < 20) {
-			state.change_to("normal");
+	/// @param {Struct.Player} plr
+	on_landing = function(plr) {
+		if (__drop_timer < 20) {
+			plr.state_machine.change_to("normal");
 			return;
 		}
 		
-		state.change_to("roll");
+		plr.state_machine.change_to("roll");
 		audio_play_sound(sndPlrSpindashRelease, 0, false);
 		
-		var _drpspd = physics.is_super() ? DROPDASH_SPEED_SUPER : DROPDASH_SPEED;
-		var _drpmax = physics.is_super() ? DROPDASH_MAX_SUPER : DROPDASH_MAX;
+		var _drpspd = plr.physics.is_super() ? DROPDASH_SPEED_SUPER : DROPDASH_SPEED;
+		var _drpmax = plr.physics.is_super() ? DROPDASH_MAX_SUPER : DROPDASH_MAX;
 		
-		if (sign(image_xscale) == sign(plr.xsp))
-			plr.gsp = (gsp / 4) + (_drpspd * sign(image_xscale));
+		if (sign(plr.inst.image_xscale) == sign(plr.xsp))
+			plr.gsp = (plr.gsp / 4) + (_drpspd * sign(plr.inst.image_xscale));
 		else 
-			plr.gsp = ((collision_detector.get_angle_data().degrees == 0) ? 
+			plr.gsp = ((plr.collider.get_angle_data().degrees == 0) ? 
 				0 : 
-				(plr.gsp / 2)) + (_drpspd * sign(image_xscale));
+				(plr.gsp / 2)) + (_drpspd * sign(plr.inst.image_xscale));
 				
 		if (abs(plr.gsp) > _drpmax) 
 			plr.gsp = _drpmax * sign(plr.gsp);
 				
-		camera.set_lag_timer(15);
+		plr.inst.camera.set_lag_timer(15);
 		
 		instance_create_depth(
-			x, 
-			y + collision_detector.get_radius().floor.height, 
-			depth-1, objSfxDropdashDust
-		).image_xscale = image_xscale;
-		
-	}};
+			plr.inst.x, 
+			plr.inst.y + plr.collider.get_radius().floor.height, 
+			plr.inst.depth-1, objSfxDropdashDust
+		).image_xscale = plr.inst.image_xscale;
+	};
 	
-	on_step = function(player) {with player {
-		if (!is_key_action)
-			state.change_to("jump");
+	/// @param {Struct.Player} plr
+	on_step = function(plr) {
+		if (!plr.is_input_jump())
+			plr.state_machine.change_to("jump");
 			
-		other.__drop_timer++;
-	}};
+		__drop_timer++;
+	};
 }
 
 function SonicStatePeelout() : BaseState() constructor {
 	__timer = 0;
 
-	on_start = function(player) { with player {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) { 
 		audio_play_sound(sndPlrPeelCharge, 0, false);
-		other.__timer = 0;
-		//allow_jump = false;
-		//player.allow_movement = false;
-		behavior_loop.disable(player_behavior_jump);
-		behavior_loop.disable(player_behavior_ground_movement);
-	}};
+		__timer = 0;
+	
+		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+	};
 
-	on_exit = function(player) { with player {
-		//allow_jump = true;
-		//allow_movement = true;
-		behavior_loop.enable(player_behavior_jump);
-		behavior_loop.enable(player_behavior_ground_movement);
-	}};
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) {
+		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+	};
 
-	on_step = function(player) { 
-		with player {
-			if (!is_key_up) {
-				if (other.__timer >= 30) {
-					plr.gsp = 12 * image_xscale;
-			
-					audio_stop_sound(sndPlrPeelCharge);
-					audio_play_sound(sndPlrPeelRelease, 0, false);
-			
-					camera.set_lag_timer(15);
-				} else {
-					other.__timer = 0;		
-				}
+	/// @param {Struct.Player} plr
+	on_step = function(plr) { 
+		if (!(plr.input_y() < 0)) {
+			if (__timer >= 30) {
+				plr.gsp = 12 * plr.inst.image_xscale;
 		
-				state.change_to("normal");
+				audio_stop_sound(sndPlrPeelCharge);
+				audio_play_sound(sndPlrPeelRelease, 0, false);
+		
+				plr.inst.camera.set_lag_timer(15);
+			} else {
+				__timer = 0;		
 			}
-			
+	
+			plr.state_machine.change_to("normal");
 		}
-		
+			
 		__timer++;
 		if __timer > 30
 			__timer = 30;
 	};
 	
-	on_animate = function(player) { with player {
-		animator.set_image_speed(0.25 + other.__timer / 25);
+	/// @param {Struct.Player} plr
+	on_animate = function(plr) { 
+		plr.animator.set_image_speed(0.25 + __timer / 25);
 		
-		if (other.__timer < 15)
-			animator.set("walking");
-		else if (other.__timer < 30)
-			animator.set("running");
+		if (__timer < 15)
+			plr.animator.set("walking");
+		else if (__timer < 30)
+			plr.animator.set("running");
 		else
-			animator.set("dash");
-	}};	
+			plr.animator.set("dash");
+	};	
 }

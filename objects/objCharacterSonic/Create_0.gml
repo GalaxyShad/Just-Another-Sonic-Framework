@@ -54,24 +54,22 @@ character_builder
 			.add_super("look_down",	sprSuperSonicCrouch ).stop_on_end().speed(.25);
 	})
 
+	.configure_physics_super({
+			acceleration_speed:		0.1875,
+			deceleration_speed:		1,
+			top_speed:				10,
+			jump_force:				8,
+			air_acceleration_speed: 0.375,
+	})
+
+	.configure_states(function (st) {
+		st
+			.override("jump",		new SonicStateJump())
+			.override("look_up",	new SonicStateLookUp())
+			
+			.add("transform",	 new PlayerStateTransform(11))
+			.add("peelout",	 new SonicStatePeelout())
+			.add("dropdash",	 new SonicStateDropDash())
+	})
+
 event_inherited();
-exit;
-
-state.override("jump",		new SonicStateJump());
-state.override("look_up",	new SonicStateLookUp());
-
-state.add("transform",	 new PlayerStateTransform(11));
-state.add("peelout",	 new SonicStatePeelout());
-state.add("dropdash",	 new SonicStateDropDash());
-
-// physics = new PlayerPhysics(,{
-// 	acceleration_speed:		0.1875,
-// 	deceleration_speed:		1,
-// 	top_speed:				10,
-// 	jump_force:				8,
-// 	air_acceleration_speed: 0.375,
-// });
-
-// Inherit the parent event
-event_inherited();
-

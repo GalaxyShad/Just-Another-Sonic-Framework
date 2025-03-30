@@ -17,6 +17,6 @@ function player_handle_spikes(plr) {
 		(_o_spikes_left	  && _get_angle(_o_spikes_left.image_angle + 90)  < ANGLE_TOLLERANCE) ||
 		(_o_spikes_right  && _get_angle(_o_spikes_right.image_angle - 90) < ANGLE_TOLLERANCE)
 	) {
-		player_get_hit();
+		player_get_hit(plr);
 	}
 }
