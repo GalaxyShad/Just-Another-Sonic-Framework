@@ -53,8 +53,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"Hud_text",
-    "path":"folders/Objects/__Hidden/Hud/Hud_text.yy",
+    "name":"Sprites",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

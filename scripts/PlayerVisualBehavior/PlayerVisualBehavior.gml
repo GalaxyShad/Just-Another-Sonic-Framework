@@ -1,46 +1,45 @@
-
-function player_behavior_visual_angle() {
-	if (animator.current() == "curling") {
-		animation_angle = 0;
+/// @param {Struct.Player} plr
+function player_behavior_visual_angle(plr) {
+	if (plr.animator.current() == "curling") {
+		plr.animation_angle = 0;
 		return;
 	}
 	
-	if (!ground) {
-		animation_angle += angle_difference(0, animation_angle) / 10;
+	if (!plr.ground) {
+		plr.animation_angle += angle_difference(0, plr.animation_angle) / 10;
 	} else {
-		var _ang = collision_detector.is_angle_in_range(35, 325) 
-			? collision_detector.get_angle_data().degrees
+		var _ang = plr.collider.is_angle_in_range(35, 325) 
+			? plr.collider.get_angle_data().degrees
 			: 0;
 			
-		animation_angle += angle_difference(_ang, animation_angle) / 4;
+		plr.animation_angle += angle_difference(_ang, plr.animation_angle) / 4;
 	}
 }
 
-
-function player_behavior_visual_flip() {
-	if(state.current() == "climbe") show_debug_message("Hi");
-	if (!ground) {
-		if		(is_key_right)	image_xscale = 1;
-		else if (is_key_left)	image_xscale = -1;
+/// @param {Struct.Player} plr
+function player_behavior_visual_flip(plr) {
+	if (!plr.ground) {
+		if		(plr.input_x() > 0)	image_xscale = 1;
+		else if (plr.input_x() < 0)	image_xscale = -1;
 	} else {
-		if		(is_key_right && gsp > 0)	image_xscale = 1;
-		else if (is_key_left  && gsp < 0)	image_xscale = -1;
+		if		(plr.input_x() > 0 && plr.gsp > 0)	image_xscale = 1;
+		else if (plr.input_x() < 0 && plr.gsp < 0)	image_xscale = -1;
 	}
 }
 
-
-function player_behavior_visual_create_afterimage() {
-	if (!(physics.is_super_fast_shoes_on() || (physics.is_super() && abs(gsp) >= 6)))
+/// @param {Struct.Player} plr
+function player_behavior_visual_create_afterimage(plr) {
+	if (!(plr.physics.is_super_fast_shoes_on() || (plr.physics.is_super() && abs(plr.gsp) >= 6)))
 		return;
 	
 	if (global.tick % 8 != 0) return;
 	
-	instance_create_depth(x, y, depth+1, objSfxAfterImage, { 
-		SpriteIndex:	sprite_index,
-		ImageIndex:		image_index,
-		Angle:			animation_angle,
-		Xscale:			image_xscale,
-		Blend:			physics.is_super() ? SFX_COLOR_MAGIC_SUPER : SFX_COLOR_MAGIC
+	instance_create_depth(plr.inst.x, plr.inst.y, plr.inst.depth+1, objSfxAfterImage, { 
+		SpriteIndex:	plr.inst.sprite_index,
+		ImageIndex:		plr.inst.image_index,
+		Angle:			plr.animation_angle,
+		Xscale:			plr.inst.image_xscale,
+		Blend:			plr.physics.is_super() ? plr.palette.sfx_color_super : plr.palette.sfx_color
 	});
 }
 

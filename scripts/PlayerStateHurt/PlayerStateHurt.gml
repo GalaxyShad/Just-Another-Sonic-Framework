@@ -2,32 +2,34 @@
 
 
 function PlayerStateHurt() : BaseState() constructor {
-	on_start = function(player) {with (player) {
-		behavior_loop.disable(player_behavior_air_movement);
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
+		plr.inst.behavior_loop.disable(player_behavior_air_movement);
 		//allow_movement = false;		
 		
-		xsp = -2 * sign(image_xscale);
-		ysp = -4;
+		plr.xsp = -2 * sign(plr.inst.image_xscale);
+		plr.ysp = -4;
 		
-		if (physics.is_underwater()) {
-			xsp /= 2;
-			ysp /= 2;
+		if (plr.physics.is_underwater()) {
+			plr.xsp /= 2;
+			plr.ysp /= 2;
 		}
 		
-		animator.set("hurt");
-	}};
+		plr.animator.set("hurt");
+	};
 	
-	on_exit = function(player) {with (player) {
-		behavior_loop.enable(player_behavior_air_movement);
-		//allow_movement = true;			
-	}};
+	/// @param {Struct.Player} plr
+	on_exit = function(plr) {
+		plr.inst.behavior_loop.enable(player_behavior_air_movement);
+	};
 	
-	on_landing = function(player) {with (player) {
-		timer_invincibility.reset_and_start();
+	/// @param {Struct.Player} plr
+	on_landing = function(plr) {
+		plr.inst.timer_invincibility.reset_and_start();
 		
-		state.change_to("normal");
+		plr.state_machine.change_to("normal");
 		
-		gsp = 0;
-		xsp = 0;
-	}};
+		plr.gsp = 0;
+		plr.xsp = 0;
+	};
 }

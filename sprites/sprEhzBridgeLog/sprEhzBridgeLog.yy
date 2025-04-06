@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Bridge",
+    "path":"folders/Just Another Sonic Framework/Objects/Bridge.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

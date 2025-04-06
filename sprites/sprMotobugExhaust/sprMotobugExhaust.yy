@@ -27,8 +27,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sfx",
-    "path":"folders/Objects/Enemies/Sfx.yy",
+    "name":"Motobug",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S1/Motobug.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

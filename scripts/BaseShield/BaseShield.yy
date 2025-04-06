@@ -6,7 +6,7 @@
   "name":"BaseShield",
   "parent":{
     "name":"Interfaces",
-    "path":"folders/Objects/Player/Shields/Interfaces.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Shields/Interfaces.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

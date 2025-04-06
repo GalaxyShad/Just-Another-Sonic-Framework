@@ -6,7 +6,7 @@
   "name":"ShieldFlame",
   "parent":{
     "name":"Shields",
-    "path":"folders/Objects/Player/Shields.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Shields.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

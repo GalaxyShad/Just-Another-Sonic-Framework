@@ -10,8 +10,8 @@
   "name":"objMovingPlatform",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Solids",
+    "path":"folders/Just Another Sonic Framework/Objects/Solids.yy",
   },
   "parentObjectId":{
     "name":"parPlatform",

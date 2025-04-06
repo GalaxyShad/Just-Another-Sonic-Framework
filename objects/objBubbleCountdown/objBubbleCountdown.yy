@@ -9,8 +9,8 @@
   "name":"objBubbleCountdown",
   "overriddenProperties":[],
   "parent":{
-    "name":"Player",
-    "path":"folders/Objects/Player.yy",
+    "name":"SFX",
+    "path":"folders/Just Another Sonic Framework/Objects/SFX.yy",
   },
   "parentObjectId":null,
   "persistent":false,

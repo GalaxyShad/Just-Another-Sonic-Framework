@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Coconuts",
-    "path":"folders/Objects/Enemies/Sprites/Coconuts.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S2/Coconuts.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

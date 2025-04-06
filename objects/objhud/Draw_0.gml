@@ -9,7 +9,7 @@ var _x = camera_get_view_x(view_camera[view_current]);
 var _y = camera_get_view_y(view_camera[view_current]);
 
 draw_sprite(sprScore,0,_x+17,_y+9);
-var _score = 666;
+var _score = score;
 draw_text(_x+65,_y+9,_score);
 
 draw_sprite(sprTime,

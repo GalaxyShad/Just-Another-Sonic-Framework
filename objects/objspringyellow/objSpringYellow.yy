@@ -9,8 +9,8 @@
   "name":"objSpringYellow",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Placeable",
+    "path":"folders/Just Another Sonic Framework/Placeable.yy",
   },
   "parentObjectId":{
     "name":"parSolidNoAngle",

@@ -22,7 +22,7 @@ action = function(breaker) {
 };
 
 destroy = function(breaker) {
-	var _o_icon = instance_create_depth(x, y+2, 5, objMonitorIcon);
+	var _o_icon = instance_create_depth(x, y-16, depth-1, objMonitorIcon);
 	
 	_o_icon.image_index = item;
 	_o_icon.action = action;

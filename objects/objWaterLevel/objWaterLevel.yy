@@ -10,8 +10,8 @@
   "name":"objWaterLevel",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Editor",
+    "path":"folders/Just Another Sonic Framework/Placeable/Editor.yy",
   },
   "parentObjectId":null,
   "persistent":false,

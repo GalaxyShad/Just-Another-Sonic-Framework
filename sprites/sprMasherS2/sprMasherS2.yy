@@ -26,8 +26,8 @@
   "nineSlice":null,
   "origin":9,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Objects/Enemies/Sprites.yy",
+    "name":"Masher",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S2/Masher.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

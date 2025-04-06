@@ -6,7 +6,7 @@
   "name":"KnucklesStates",
   "parent":{
     "name":"Characters",
-    "path":"folders/Objects/Player/Characters.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Characters.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

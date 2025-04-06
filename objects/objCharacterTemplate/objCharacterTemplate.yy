@@ -9,7 +9,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Characters",
-    "path":"folders/Objects/Player/Characters.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Characters.yy",
   },
   "parentObjectId":{
     "name":"objPlayer",

@@ -6,8 +6,8 @@
   "name":"Object3457",
   "overriddenProperties":[],
   "parent":{
-    "name":"Test Level",
-    "path":"folders/Test Level.yy",
+    "name":"Solids",
+    "path":"folders/Just Another Sonic Framework/Test Level/Solids.yy",
   },
   "parentObjectId":{
     "name":"parSolid",

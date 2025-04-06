@@ -1,11 +1,12 @@
-
-function player_handle_moving_platforms() {
-	var _o_moving_platform = collision_detector.check_expanded(
+/// @param {Struct.Player} plr
+function player_handle_moving_platforms(plr) {
+	var _o_moving_platform = plr.collider.check_expanded(
 		6, 6,
-		function () { return collision_detector.collision_object(objMovingPlatform, PlayerCollisionDetectorSensor.MainDefault) }
+		function (plr) { return plr.collider.collision_object(objMovingPlatform, PlayerCollisionDetectorSensor.MainDefault) },
+		plr
 	);  
 
-	if (ground && _o_moving_platform) {
-		x += _o_moving_platform.x - _o_moving_platform.xprevious; 
+	if (plr.ground && _o_moving_platform) {
+		plr.inst.x += _o_moving_platform.x - _o_moving_platform.xprevious; 
 	}
 }

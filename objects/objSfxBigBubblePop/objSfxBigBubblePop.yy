@@ -10,7 +10,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Bubbles",
-    "path":"folders/Objects/__Hidden/Bubbles.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Bubbles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -27,8 +27,8 @@ function ShieldBubble(_player) : ShieldUseable() constructor {
 		__scale.target_xscale = 0.5;
 		__scale.target_yscale = 1.5;
 					
-		player.xsp = 0;
-		player.ysp = 8;
+		player.plr.xsp = 0;
+		player.plr.ysp = 8;
 		
 		__used = true;
 	};
@@ -40,10 +40,10 @@ function ShieldBubble(_player) : ShieldUseable() constructor {
 				y -= collision_detector.get_angle_data().cos;
 			}
 			
-			xsp -= BOUNCE_FORCE * collision_detector.get_angle_data().sin;
-			ysp -= BOUNCE_FORCE * collision_detector.get_angle_data().cos;
+			plr.xsp -= BOUNCE_FORCE * collision_detector.get_angle_data().sin;
+			plr.ysp -= BOUNCE_FORCE * collision_detector.get_angle_data().cos;
 			
-			ground = false;
+			plr.ground = false;
 		}
 			
 		__scale.xscale = 2.0;

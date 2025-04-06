@@ -6,7 +6,7 @@
   "name":"PlayerAnimator",
   "parent":{
     "name":"Structs",
-    "path":"folders/Objects/Player/Scripts/Structs.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Scripts/Structs.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

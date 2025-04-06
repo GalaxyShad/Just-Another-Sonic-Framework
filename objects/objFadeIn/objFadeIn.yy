@@ -10,8 +10,8 @@
   "name":"objFadeIn",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Hud",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud.yy",
   },
   "parentObjectId":null,
   "persistent":false,

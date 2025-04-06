@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"tempEHZ1",
-    "path":"folders/Scenes/EHZ1/tempEHZ1.yy",
+    "name":"tempEHZ1maps",
+    "path":"folders/Just Another Sonic Framework/IMAGES/tempEHZ1maps.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

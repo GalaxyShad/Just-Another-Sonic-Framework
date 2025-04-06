@@ -26,8 +26,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"Tails",
-    "path":"folders/Objects/Player/Sprites/Tails.yy",
+    "name":"IMAGES",
+    "path":"folders/Just Another Sonic Framework/IMAGES.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

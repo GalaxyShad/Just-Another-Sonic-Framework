@@ -8,8 +8,8 @@
   "name":"parEnemy",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "name":"Parents",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/Parents.yy",
   },
   "parentObjectId":null,
   "persistent":false,

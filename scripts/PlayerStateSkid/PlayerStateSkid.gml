@@ -1,36 +1,40 @@
 
 
 function PlayerStateSkid() : BaseState() constructor {
-	__create_dust_sfx = function(player) {
-		var _offset_y = player.collision_detector.get_radius().floor.height;
-		var _offset_x = player.image_xscale * 12;
+
+	/// @param {Struct.Player} plr
+	__create_dust_sfx = function(plr) {
+		var _offset_y = plr.collider.get_radius().floor.height;
+		var _offset_x = plr.inst.image_xscale * 12;
 		
 		instance_create_depth(
-			player.x + _offset_y *  player.collision_detector.get_angle_data().sin
-				     + _offset_x *  player.collision_detector.get_angle_data().cos, 
-			player.y + _offset_y *  player.collision_detector.get_angle_data().cos
-				     + _offset_x * -player.collision_detector.get_angle_data().sin, 
-			player.depth-1, 
+			plr.inst.x + _offset_y *  plr.collider.get_angle_data().sin
+				       + _offset_x *  plr.collider.get_angle_data().cos, 
+			plr.inst.y + _offset_y *  plr.collider.get_angle_data().cos
+				       + _offset_x * -plr.collider.get_angle_data().sin, 
+			plr.inst.depth-1, 
 			objSfxSkidDust, {
 				vspeed: -1
 			}
 		);
 	};
 	
-	on_step = function(player) { with player {
-		if (abs(gsp) <= 0.5 || !ground || 
-		    ((gsp < 0 && is_key_left) || (gsp > 0 && is_key_right))
+	/// @param {Struct.Player} plr
+	on_step = function(plr) { 
+		if (abs(plr.gsp) <= 0.5 || !plr.ground || 
+		    ((plr.gsp < 0 && plr.input_x() < 0) || (plr.gsp > 0 && plr.input_x() > 0))
 		) {
-			state.change_to("normal");	
+			plr.state_machine.change_to("normal");	
 		}
 		
 		if (global.tick % 3 == 0) {
-			other.__create_dust_sfx(player);
+			__create_dust_sfx(plr);
 		}
-	}};
+	};
 	
-	on_start = function(player) { 
-		player.animator.set("skid");
-		__create_dust_sfx(player);
+	/// @param {Struct.Player} plr
+	on_start = function(plr) { 
+		plr.animator.set("skid");
+		__create_dust_sfx(plr);
 	};
 }

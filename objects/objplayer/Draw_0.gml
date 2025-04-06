@@ -3,7 +3,7 @@
 if (!timer_invincibility.is_ticking() || 
 	(timer_invincibility.is_ticking() && global.tick % 10 >= 5)
 ) {
-	if (physics.is_super()) {
+	if (plr.physics.is_super()) {
 		shader_set(shPlayerPalleteSwap);
 		var _set_col = function(_index, _col_old, _col_new) {
 			shader_set_uniform_f(
@@ -23,8 +23,8 @@ if (!timer_invincibility.is_ticking() ||
 		for (var i = 0; i < 4; i++) {
 			_set_col(
 				i+1, 
-				PAL_CLASSIC[i], 
-				PAL_SUPER[(global.tick / 4) % PALLETE_SUPER_CYCLE_LENGTH][i]
+				plr.palette.base_color_list[i], 
+				plr.palette.super_form_color_list[(global.tick / 4) % array_length(plr.palette.super_form_color_list)][i]
 			);
 		}
 	
@@ -40,22 +40,22 @@ if (running_on_water) {
 		sprSfxWaterRun, 
 		global.tick / 2, 
 		x,
-		y + collision_detector.get_radius().floor.height, 
+		y + plr.collider.get_radius().floor.height, 
 		image_xscale, image_yscale, 0, c_white, 1
 	);	
 }
 
-if (state.current() == "spindash") {
+if (plr.state_machine.current() == "spindash") {
 	draw_sprite_ext(
 		sprSfxSpindashDust, 
 		global.tick / 2, 
 		x,
-		y + collision_detector.get_radius().floor.height,
+		y + plr.collider.get_radius().floor.height,
 		image_xscale, image_yscale, 0, c_white, 1
 	);	
 }
 
-if (shield != undefined && !physics.is_super() && !timer_powerup_invincibility.is_ticking())
+if (shield != undefined && !plr.physics.is_super() && !timer_powerup_invincibility.is_ticking())
 	shield.draw(x, y);
 	
 if (timer_powerup_invincibility.is_ticking()) {
@@ -70,12 +70,12 @@ if (timer_powerup_invincibility.is_ticking()) {
 }
 	
 	
-if (!animator.is_animation_exists(animator.current())) {
+if (!plr.animator.is_animation_exists(plr.animator.current())) {
 	draw_set_halign(fa_center);
-	draw_text(x, y + 10, $"{animator.current()}");	
+	draw_text(x, y + 10, $"{plr.animator.current()}");	
 	draw_set_halign(fa_left);
 }
 
 if (show_debug_info) {
-	collision_detector.draw();
+	plr.collider.draw();
 }

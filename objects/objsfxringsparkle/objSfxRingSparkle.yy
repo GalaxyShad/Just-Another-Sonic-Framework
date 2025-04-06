@@ -9,8 +9,8 @@
   "name":"objSfxRingSparkle",
   "overriddenProperties":[],
   "parent":{
-    "name":"__Hidden",
-    "path":"folders/Objects/__Hidden.yy",
+    "name":"SFX",
+    "path":"folders/Just Another Sonic Framework/Objects/SFX.yy",
   },
   "parentObjectId":null,
   "persistent":false,

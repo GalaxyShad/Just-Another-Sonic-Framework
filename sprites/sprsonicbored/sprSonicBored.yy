@@ -34,7 +34,7 @@
   "origin":9,
   "parent":{
     "name":"Sonic",
-    "path":"folders/Objects/Player/Sprites/Sonic.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sprites/Sonic.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -67,7 +67,7 @@
     },
     "name":"sprSonicBored",
     "playback":1,
-    "playbackSpeed":60.0,
+    "playbackSpeed":30.0,
     "playbackSpeedType":0,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",

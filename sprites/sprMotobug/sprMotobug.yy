@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Objects/Enemies/Sprites.yy",
+    "name":"Motobug",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S1/Motobug.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

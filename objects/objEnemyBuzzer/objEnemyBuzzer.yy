@@ -10,8 +10,8 @@
   "name":"objEnemyBuzzer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Sonic 2",
-    "path":"folders/Objects/Enemies/Sonic 2.yy",
+    "name":"Enemies",
+    "path":"folders/Just Another Sonic Framework/Placeable/Enemies.yy",
   },
   "parentObjectId":{
     "name":"parEnemy",

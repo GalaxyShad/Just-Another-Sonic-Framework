@@ -1,22 +1,27 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
-function player_switch_sensor_radius() {
+
+/// @param {Struct.Player} plr
+function player_switch_sensor_radius(plr) {
 	var _box;
 	
-	if (state.current() == "roll" || state.current() == "jump" || state.current() == "dropdash") {
-		_box = SENSOR_FLOORBOX_ROLL;
-	} else if (state.current() == "glide" || state.current() == "glideRotation" || state.current() == "climbe" || state.current() == "land") {
-		_box = SENSOR_FLOORBOX_SPECIAL;
+	if (plr.state_machine.is_one_of(["roll", "jump", "dropdash"])) {
+		_box = plr.collider_radius.curling;
+	} else if (plr.inst.object_index == objCharacterKnuckles && plr.state_machine.is_one_of(["glide", "glideRotation", "climbe", "land"])) {
+		_box = {
+			horizontal: 10,
+			vertical: 10
+		};
 	} else {
-		_box = SENSOR_FLOORBOX_NORMAL;
+		_box = plr.collider_radius.base;
 	}
 
-	collision_detector.set_radius({ 
-		width:  _box[0], 
-		height: _box[1] 
+	plr.collider.set_radius({ 
+		width:  _box.horizontal, 
+		height: _box.vertical
 	}, 10);
 
-	collision_detector.set_wall_sensor_vertical_offset((ground && collision_detector.get_angle_data().degrees == 0) ? 8 : 0);
+	plr.collider.set_wall_sensor_vertical_offset((plr.ground && plr.collider.get_angle_data().degrees == 0) ? 8 : 0);
 
-	camera.offset_y = (state.current() == "roll") ? -5 : 0;
+	if (plr.inst.camera.FollowingObject == self) {
+		plr.inst.camera.offset_y = (plr.state_machine.current() == "roll") ? -5 : 0;
+	}
 }

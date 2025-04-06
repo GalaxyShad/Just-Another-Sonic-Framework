@@ -27,7 +27,7 @@
   "origin":9,
   "parent":{
     "name":"Buzzer",
-    "path":"folders/Objects/Enemies/Sprites/Buzzer.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S2/Buzzer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

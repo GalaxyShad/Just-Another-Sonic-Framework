@@ -21,7 +21,7 @@
 # [+] [TODO] Camera - camera Lag after spindash or dropdash or dash
 # [ ] [TODO] Camera - camera look up, look down
 
-# [ ] [TODO] Background System - parallax
+# [+] [TODO] Background System - parallax
 
 # [+-] [TODO] Collision - layers
 # [+-] [TODO] Collision - platforms
@@ -39,7 +39,7 @@
 	# [+] [TODO] Rings
 	# [+] [TODO] Super fast shoes
 	# [+] [TODO] Super
-	# [ ] [TODO] Invincibility
+	# [+] [TODO] Invincibility
 	# [ ] [TODO] 1 Up
 # [+] [TODO] Objects - spikes
 # [+?] [TODO] Objects - enemy
@@ -48,12 +48,12 @@
 # [ ] [TODO] Objects - end level sign
 
 # [ ] [TODO] SFX - flicky, explosion
-# [ ] [TODO] SFX - spindash smoke, braking smoke
+# [+] [TODO] SFX - spindash smoke, braking smoke
 
 # [+] [TODO] Physics - water
-# [ ] [TODO] Physics - super form
+# [+] [TODO] Physics - super form
 
-# [ ] [TODO] Gimmicks - corcksew
+# [+] [TODO] Gimmicks - corcksew
 
 # [+] [TODO] Player - get hit
 # [+] [TODO] Player - die
@@ -61,6 +61,6 @@
 # [+-] [TODO] Characters - Tails 
 # [+-] [TODO] Characters - Knux
 
-# [ ] [TODO] HUD
+# [+] [TODO] HUD
 
 

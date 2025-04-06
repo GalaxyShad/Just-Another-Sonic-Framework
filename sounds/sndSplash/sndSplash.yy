@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sndSplash",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":4.321438,
+  "name":"sndSplash",
+  "parent":{
+    "name":"Splash",
+    "path":"folders/Just Another Sonic Framework/Splash.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sndSplash.ogg",
+  "type":0,
+  "volume":1.0,
+}

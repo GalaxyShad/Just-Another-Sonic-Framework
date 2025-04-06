@@ -6,7 +6,7 @@
   "name":"PlayerAddBasicStates",
   "parent":{
     "name":"Scripts",
-    "path":"folders/Objects/Player/Scripts.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

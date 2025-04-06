@@ -9,8 +9,8 @@
   "name":"objCoconutProjectile",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "name":"Coconuts",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S2/Coconuts.yy",
   },
   "parentObjectId":{
     "name":"objProjectile",

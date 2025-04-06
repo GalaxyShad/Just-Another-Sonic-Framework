@@ -1,5 +1,4 @@
-// Ресурсы скриптов были изменены для версии 2.3.0, подробности см. по адресу
-// https://help.yoyogames.com/hc/en-us/articles/360005277377
+
 function PlayerAnimator() constructor {
 	__animation_map = {};
 	__animation_map_super = {};
@@ -173,7 +172,9 @@ function PlayerAnimator() constructor {
 	
 	__init__ = function() {
 		__create_default("__no_anim", sprNoAnimation);
-	}();
+	};
+
+	__init__();
 	
 	
 }

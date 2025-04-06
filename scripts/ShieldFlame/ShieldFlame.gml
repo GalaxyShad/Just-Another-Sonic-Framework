@@ -13,8 +13,8 @@ function ShieldFlame(_player) : ShieldUseable() constructor {
 		audio_play_sound(sndFireDash, 0, false);
 					
 		with __player {
-			ysp = 0;
-			xsp = 8 * sign(image_xscale);
+			plr.ysp = 0;
+			plr.xsp = 8 * sign(image_xscale);
 				
 			camera.set_lag_timer(15);
 		}
@@ -40,10 +40,10 @@ function ShieldFlame(_player) : ShieldUseable() constructor {
 			__use_animation_timer--;
 		
 		draw_sprite_ext(
-			(__used && __player.xsp != 0 && __use_animation_timer) ? sprFireShieldActive : sprFireShield, 
+			(__used && __player.plr.xsp != 0 && __use_animation_timer) ? sprFireShieldActive : sprFireShield, 
 			global.tick, 
 			x, y, 
-			(__used && __player.xsp != 0) ? sign(__player.xsp) : 1, 1,
+			(__used && __player.plr.xsp != 0) ? sign(__player.plr.xsp) : 1, 1,
 			0, c_white, 1
 		);
 	};

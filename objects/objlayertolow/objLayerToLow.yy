@@ -6,8 +6,8 @@
   "name":"objLayerToLow",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Layering",
+    "path":"folders/Just Another Sonic Framework/Placeable/Layering.yy",
   },
   "parentObjectId":null,
   "persistent":false,

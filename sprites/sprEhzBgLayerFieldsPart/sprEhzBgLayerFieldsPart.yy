@@ -26,7 +26,7 @@
   "origin":0,
   "parent":{
     "name":"bgEHZ1",
-    "path":"folders/Scenes/EHZ1/bgEHZ1.yy",
+    "path":"folders/Just Another Sonic Framework/Sprites/bgEHZ1.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

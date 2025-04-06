@@ -11,7 +11,7 @@ function ShieldLightning() : ShieldUseable() constructor {
 		audio_play_sound(sndLightningJump, 0, false);
 					
 		with player {
-			ysp = -5.5;
+			plr.ysp = -5.5;
 					
 			var _particle = part_system_create(ParticleSystem1);
 			part_system_depth(_particle, -1000);

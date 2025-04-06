@@ -904,8 +904,8 @@
   "maintainGms1Font":false,
   "name":"fntTitleCard",
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Fonts",
+    "path":"folders/Just Another Sonic Framework/Fonts.yy",
   },
   "pointRounding":0,
   "ranges":[

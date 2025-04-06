@@ -14,7 +14,7 @@
   "name":"rmInit",
   "parent":{
     "name":"Scenes",
-    "path":"folders/Scenes.yy",
+    "path":"folders/Just Another Sonic Framework/Scenes.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -11,8 +11,8 @@
   "name":"objMonitor",
   "overriddenProperties":[],
   "parent":{
-    "name":"Hidden",
-    "path":"folders/Objects/Monitors/Hidden.yy",
+    "name":"Monitors",
+    "path":"folders/Just Another Sonic Framework/Objects/Monitors.yy",
   },
   "parentObjectId":{
     "name":"parSolidNoAngle",

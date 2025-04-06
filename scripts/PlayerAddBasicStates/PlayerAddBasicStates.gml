@@ -1,15 +1,3 @@
-
-function is_player_sphere() {
-	return array_contains([
-		"jump",
-		"roll",
-		"dropdash",
-		"glide",
-		"glideRotation",
-		"land",
-	], state.current());
-}
-
 function add_basic_player_states(_state) {
 	_state
 		.add("normal",		new PlayerStateNormal())
@@ -29,6 +17,4 @@ function add_basic_player_states(_state) {
 
 		.add("noclip",		new PlayerStateNoclip())
 	;
-
-	_state.change_to("normal");
 }

@@ -1,9 +1,16 @@
 
-function player_handle_springs() {
+/// @param {Struct.Player} plr
+function player_handle_springs(plr) {
 
 	var f = function(s) {
 		var _spring_angle = 0;
-		var _o_spring = collision_detector.collision_object_exp(s, objSpringYellow, 2, 2);
+		var _o_spring;
+		
+		if (s == PlayerCollisionDetectorSensor.Bottom || s == PlayerCollisionDetectorSensor.Top) {
+			_o_spring = plr.collider.collision_object_exp(s, objSpringYellow, 0, 2);
+		} else {
+			_o_spring = plr.collider.collision_object_exp(s, objSpringYellow, 2, 0);
+		}
 
 		if (_o_spring == noone) return noone;
 
@@ -16,7 +23,7 @@ function player_handle_springs() {
 
 		var _ang_dif = abs(
 			angle_difference(
-				collision_detector.get_angle_data().degrees, 
+				plr.collider.get_angle_data().degrees, 
 				_o_spring.image_angle + _spring_angle
 			)
 		);
@@ -26,20 +33,19 @@ function player_handle_springs() {
 
 	var _o_spring = f(PlayerCollisionDetectorSensor.Bottom);
 	if (_o_spring != noone) {
-		if (!ground) ysp = 0;
+		if (!plr.ground) plr.ysp = 0;
 
 		if (_o_spring.reset_plr_speed) {
-			xsp = -_o_spring.xsp;
-			ysp = -_o_spring.ysp;
+			plr.xsp = -_o_spring.xsp;
+			plr.ysp = -_o_spring.ysp;
 		} else {
-			xsp += -_o_spring.xsp;
-			ysp += -_o_spring.ysp;
+			plr.xsp += -_o_spring.xsp;
+			plr.ysp += -_o_spring.ysp;
 		}
 
+		plr.ground = false;
 
-		ground = false;
-
-		state.change_to("spring");
+		plr.state_machine.change_to("spring");
 
 		audio_play_sound(sndSpring, 0, false);
 
@@ -48,13 +54,13 @@ function player_handle_springs() {
 	
 	_o_spring = f(PlayerCollisionDetectorSensor.Right);
 	if (_o_spring) {
-		if (state.current() != "roll" && state.current() != "skid") 
-			state.change_to("normal");
+		if (plr.state_machine.current() != "roll" && plr.state_machine.current() != "skid") 
+			plr.state_machine.change_to("normal");
 		
-		if (ground) 
-			gsp = -_o_spring.spd;
+		if (plr.ground) 
+			plr.gsp = -_o_spring.spd;
 		else 
-			xsp = -_o_spring.spd;
+			plr.xsp = -_o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 
@@ -63,13 +69,13 @@ function player_handle_springs() {
 	
 	_o_spring = f(PlayerCollisionDetectorSensor.Left);
 	if (_o_spring) {
-		if (state.current() != "roll" && state.current() != "skid") 
-			state.change_to("normal");
+		if (plr.state_machine.current() != "roll" && plr.state_machine.current() != "skid") 
+			plr.state_machine.change_to("normal");
 		
-		if (ground) 
-			gsp = _o_spring.spd;
+		if (plr.ground) 
+			plr.gsp = _o_spring.spd;
 		else 
-			xsp = _o_spring.spd;
+			plr.xsp = _o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 
@@ -77,8 +83,8 @@ function player_handle_springs() {
 	}
 	
 	_o_spring = f(PlayerCollisionDetectorSensor.Top);
-	if (_o_spring && !ground) {
-		ysp = _o_spring.spd;
+	if (_o_spring && !plr.ground) {
+		plr.ysp = _o_spring.spd;
 
 		_o_spring.image_speed = 1.00;
 

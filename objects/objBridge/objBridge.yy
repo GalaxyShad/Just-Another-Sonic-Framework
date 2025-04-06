@@ -9,8 +9,8 @@
   "name":"objBridge",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Bridge",
+    "path":"folders/Just Another Sonic Framework/Objects/Bridge.yy",
   },
   "parentObjectId":null,
   "persistent":false,

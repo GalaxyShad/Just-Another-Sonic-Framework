@@ -99,7 +99,7 @@ function AngleMeasurer(plr_inst) constructor {
 		
 		draw_set_color(c_white);
 
-		if (__angle == 0 && abs(angle_difference(0, _res.angle)) > 15) {
+		if (__angle == 0 && abs(angle_difference(__angle, _res.angle)) > 15) {
 			if (_cb_collision_line(__to_cb_arg(_res.left, _res.right))) {
 				draw_text(_res.left[0], _res.left[1], string(_res.angle));
 				return 0;
@@ -554,20 +554,48 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 			true
 		);
 	};
+
+	round_angle = function(_a, _to) {
+		// return round(_a / 90) * 90;
+		return round(_a / _to) * _to;
+	}
 	
 	set_angle = function(_angle) {
+		var a = round_angle(_angle, 1);
+
+		var prev_ = __angle_measurer.get_angle();
+
+		var _xx, yy;
+		_xx = __plr_inst.x;
+		_yy = __plr_inst.y;
+
+		// __plr_inst.x = round(__plr_inst.x / 16) * 16;
+		// __plr_inst.y = round(__plr_inst.y / 16) * 16;
+
+		// var _current_angle = __angle_measurer.get_angle();
+		// __angle_measurer.set_angle(a);
+
+		// var _new_angle = __angle_measurer.measure(__is_collision_line_solid_and_platform);
+
+		// if (round_angle(_new_angle) == a) {
+		// 	__angle_measurer.set_angle(round_angle(_new_angle));
+		// } else {
+		// 	__angle_measurer.set_angle(prev_);
+		// }
+
+		var _p = round_angle(_angle, 90);
+
+		if (abs(angle_difference(_angle, _p)) <= 5) {
+			_angle = _p;
+		}
+
+		__angle_measurer.set_angle(_angle);
 		__floorSensor.set_angle(_angle);
 
-		var a = round(_angle / 3) * 3;
-		// var a = round(_angle / 90) * 90;
-		// var a = _angle;
+		// __floorSensor.set_angle(__angle_measurer.measure(__is_collision_line_solid_and_platform));
 
-		var _current_angle = __angle_measurer.get_angle();
-		__angle_measurer.set_angle(a);
-
-		if (__angle_measurer.measure(__is_collision_line_solid_and_platform) == _current_angle) {
-			__angle_measurer.set_angle(_current_angle);
-		}
+		__plr_inst.x = _xx;
+		__plr_inst.y = _yy;
 	}
 
 	set_wall_sensor_vertical_offset = function(offset) {

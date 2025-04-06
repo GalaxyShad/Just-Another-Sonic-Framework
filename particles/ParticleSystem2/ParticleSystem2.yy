@@ -14,7 +14,7 @@
   "name":"ParticleSystem2",
   "parent":{
     "name":"Particles",
-    "path":"folders/Objects/Player/Particles.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sfx/Particles.yy",
   },
   "resourceType":"GMParticleSystem",
   "resourceVersion":"2.0",

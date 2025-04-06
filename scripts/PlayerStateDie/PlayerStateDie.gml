@@ -1,22 +1,25 @@
 
 function PlayerStateDie() : BaseState() constructor {
-	on_start = function(player) {with (player) {
+	/// @param {Struct.Player} plr
+	on_start = function(plr) {
 		audio_play_sound(sndHurt, 0, false);	
 		
-		xsp = 0;
-		ysp = -7;
+		plr.xsp = 0;
+		plr.ysp = -7;
 		
-		animator.set("die");
+		plr.animator.set("die");
+
+		plr.inst.behavior_loop.disable_all();
 		
-		behavior_loop.disable_all();
-		handle_loop.disable_all();
-	}};
+		plr.inst.handle_loop.disable_all();
+	};
 	
-	on_step = function(player) { with player {
-		ysp += physics.gravity_force;
+	/// @param {Struct.Player} plr
+	on_step = function(plr) { 
+		plr.ysp += plr.physics.gravity_force;
 	
-		y += ysp;
+		plr.inst.y += plr.ysp;
 	
-		camera.set_lag_timer(1);
-	}};
+		plr.inst.camera.set_lag_timer(1);
+	};
 }

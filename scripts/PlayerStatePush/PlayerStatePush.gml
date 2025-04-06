@@ -1,30 +1,33 @@
 
 
 function PlayerStatePush() : BaseState() constructor {
-	on_step = function(player) { with player {
 
-		var is_edge_left = collision_detector.check_expanded(
+	/// @param {Struct.Player} plr
+	on_step = function(plr) { 
+
+		var is_edge_left = plr.collider.check_expanded(
 			1, 0, 
-			collision_detector.is_collision_solid, 
+			plr.collider.is_collision_solid, 
 			PlayerCollisionDetectorSensor.Left
 		);
-		var is_edge_right = collision_detector.check_expanded(
+		var is_edge_right = plr.collider.check_expanded(
 			1, 0, 
-			collision_detector.is_collision_solid, 
+			plr.collider.is_collision_solid, 
 			PlayerCollisionDetectorSensor.Right
 		);
 
-	    if ((is_edge_right && (!is_key_right || gsp < 0)) || 
-		    (is_edge_left  && (!is_key_left  || gsp > 0))
+	    if ((is_edge_right && (!(plr.input_x() > 0) || plr.gsp < 0)) || 
+		    (is_edge_left  && (!(plr.input_x() < 0) || plr.gsp > 0))
 	    ) {
-	    	state.change_to("normal");
+	    	plr.state_machine.change_to("normal");
 	    }
     
-		xsp = 0;
-		gsp = 0;
-    }};
+		plr.xsp = 0;
+		plr.gsp = 0;
+    };
   
-	on_animate = function(player) { with player {
-	animator.set("push");
-	}};
+	/// @param {Struct.Player} plr
+	on_animate = function(plr) {
+		plr.animator.set("push");
+	};
 }

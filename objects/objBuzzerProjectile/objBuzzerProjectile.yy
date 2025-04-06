@@ -9,8 +9,8 @@
   "name":"objBuzzerProjectile",
   "overriddenProperties":[],
   "parent":{
-    "name":"Enemies",
-    "path":"folders/Objects/Enemies.yy",
+    "name":"Buzzer",
+    "path":"folders/Just Another Sonic Framework/Objects/Enemies/S2/Buzzer.yy",
   },
   "parentObjectId":{
     "name":"objProjectile",

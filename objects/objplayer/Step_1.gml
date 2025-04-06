@@ -11,26 +11,27 @@ if (keyboard_check_pressed(ord("R")))
 	room_restart();
 
 if (keyboard_check_pressed(ord("D")))
-	player_get_hit();
+	player_get_hit(plr);
 	
 if (keyboard_check_pressed(ord("A")))
 	show_debug_info = !show_debug_info;
 	
 if (keyboard_check_pressed(ord("S"))) {
-	if (!physics.is_super())  {
-		state.change_to("transform");
+	if (!plr.physics.is_super())  {
+		plr.state_machine.change_to("transform");
 	} else {
 		player_cancel_super_form();	
 	}
 }
 
 if (keyboard_check_pressed(ord("X"))) {
-	state.change_to((state.current() == "noclip") ? "normal" : "noclip");
+	plr.state_machine.change_to((plr.state_machine.current() == "noclip") ? "normal" : "noclip");
 }
 
 if (keyboard_check_pressed(ord("C"))) {
 	var _changer = instance_find(objCharacterChanger, 0);
-	_changer.change(id);
+	if (_changer != noone)
+		_changer.change(id);
 }
 
 if keyboard_check(ord("1"))

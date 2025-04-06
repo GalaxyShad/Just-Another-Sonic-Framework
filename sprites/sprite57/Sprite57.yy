@@ -32,7 +32,7 @@
   "origin":4,
   "parent":{
     "name":"Sprites",
-    "path":"folders/Objects/Monitors/Sprites.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Monitors/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

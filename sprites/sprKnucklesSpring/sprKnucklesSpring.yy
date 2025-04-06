@@ -30,7 +30,7 @@
   "origin":9,
   "parent":{
     "name":"Knuckles",
-    "path":"folders/Objects/Player/Sprites/Knuckles.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sprites/Knuckles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

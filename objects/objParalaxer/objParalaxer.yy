@@ -9,8 +9,8 @@
   "name":"objParalaxer",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"Paralaxer",
+    "path":"folders/Just Another Sonic Framework/Objects/Hud/Paralaxer.yy",
   },
   "parentObjectId":null,
   "persistent":false,

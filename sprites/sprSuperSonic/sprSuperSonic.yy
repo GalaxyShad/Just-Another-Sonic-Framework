@@ -29,7 +29,7 @@
   "origin":9,
   "parent":{
     "name":"Super",
-    "path":"folders/Objects/Player/Sprites/Sonic/Super.yy",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sprites/Sonic/Super.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

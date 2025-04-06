@@ -31,8 +31,8 @@
   "nineSlice":null,
   "origin":8,
   "parent":{
-    "name":"Sfx",
-    "path":"folders/Objects/Player/Sfx.yy",
+    "name":"Sprites",
+    "path":"folders/Just Another Sonic Framework/Objects/Player/Sfx/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

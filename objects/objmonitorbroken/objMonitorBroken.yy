@@ -6,8 +6,8 @@
   "name":"objMonitorBroken",
   "overriddenProperties":[],
   "parent":{
-    "name":"Hidden",
-    "path":"folders/Objects/Monitors/Hidden.yy",
+    "name":"Monitors",
+    "path":"folders/Just Another Sonic Framework/Objects/Monitors.yy",
   },
   "parentObjectId":null,
   "persistent":false,

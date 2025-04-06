@@ -1,4 +1,6 @@
 
+
+
 var num = audio_get_listener_count();
 for( var i = 0; i < num; i++)
 {
@@ -7,53 +9,14 @@ for( var i = 0; i < num; i++)
     ds_map_destroy(info);
 }
 
-var _VAR_CHECK_LIST = [
-	"SFX_COLOR_MAGIC",
-	"SFX_COLOR_MAGIC_SUPER",
-	
-	"SENSOR_FLOORBOX_NORMAL",
-	"SENSOR_FLOORBOX_ROLL",
-	
-	"SENSOR_WALLBOX_NORMAL",
-	"SENSOR_WALLBOX_SLOPES",
-	
-	"state",
-	"physics",
-	
-	"animator",
-	
-	"PAL_CLASSIC",
-	"PAL_SUPER",
-];
-
-array_foreach(_VAR_CHECK_LIST, function(_variable) {
-	if (!variable_instance_exists(id, _variable)) {
-		show_error(
-			"[CHARACTER INITIALISATION ERROR]\n" +
-			$"Variable [{_variable}] is not exist.\n" +
-			"You need to initialize this variable to create your character.\n",
-			true
-		)
-	}
-});
-
-var _VAR_TYPES_CHECK_MAP = {
-	state:			[State,				"State"			],
-	physics:		[PlayerPhysics,		"PlayerPhysics"	],
-	animator:		[PlayerAnimator,	"PlayerAnimator"]
-};
-
-struct_foreach(_VAR_TYPES_CHECK_MAP, function(_key, _value) {
-	var _instance_variable = variable_instance_get(id, _key);
-	
-	if (!is_instanceof(_instance_variable, _value[0])) {
-		show_error(
-			"[CHARACTER INITIALISATION ERROR]\n" +
-			$"Variable [{_key}] should be the type of [{_value[1]}].\n",
-			true
-		)	
-	}
-});
+if (!variable_instance_exists(id, "character_builder")) {
+	show_error(
+		"[CHARACTER INITIALISATION ERROR]\n" +
+		$"character_builder not exists.\n" +
+		"You need to initialize this variable to create your character.\n",
+		true
+	)
+}
 
 if (!variable_instance_exists(id, "draw_player")) {
 	draw_player = function() {
@@ -77,19 +40,11 @@ camera = !instance_exists(objCameraSonicWorlds) ?
 	
 camera.FollowingObject = id;
 
-PALLETE_SUPER_CYCLE_LENGTH = array_length(PAL_SUPER); 
-
 shield = undefined;
 
 running_on_water = false;
 
 animation_angle = 0;
-
-ground = false;
-
-xsp = 0;
-ysp = 0;
-gsp = 0;
 
 allow_jump		= true;
 allow_movement	= true;
@@ -123,32 +78,32 @@ timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
 
 timer_powerup_invincibility = new Timer2(31 * 60, false);
 
-plr = new Player(
-	self,
-	collision_detector,
-	state,
-	animator,
-	physics
-)
+plr = character_builder.build();
+plr.state_machine.change_to("normal");
 
 behavior_loop = new PlayerLoop();
 behavior_loop
 	.add(player_switch_sensor_radius)
+
+	.add(player_behavior_apply_speed)
+
+	// Handle monitors before solid collision
+	.add(player_handle_monitors)
 	
 	// Collisions
-	.add(player_behavior_collisions)
+	.add(player_behavior_collisions_solid)
 	
+	// Air 
+	.add(player_behavior_apply_gravity)
+	.add(player_behavior_air_movement)
+	.add(player_behavior_air_drag)
+	.add(player_behavior_jump)
+
 	// Ground
 	.add(player_behavior_slope_decceleration)
 	.add(player_behavior_ground_movement)
 	.add(player_behavior_ground_friction)
 	.add(player_behavior_fall_off_slopes)
-	
-	// Air (!ground)
-	.add(player_behavior_apply_gravity)
-	.add(player_behavior_air_movement)
-	.add(player_behavior_air_drag)
-	.add(player_behavior_jump)
 ;
 
 handle_loop = new PlayerLoop();
@@ -157,7 +112,7 @@ handle_loop
 	.add(player_handle_rings)
 	.add(player_handle_springs)
 	.add(player_handle_spikes)
-	.add(player_handle_monitors)
+	
 	.add(player_handle_moving_platforms)
 	.add(player_handle_water)
 	.add(player_handle_bubbles)

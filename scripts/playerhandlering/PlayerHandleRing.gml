@@ -1,9 +1,9 @@
-
-function player_handle_rings(){
-	if (state.current() == "hurt")
+/// @param {Struct.Player} plr
+function player_handle_rings(plr){
+	if (plr.state_machine.current() == "hurt")
 		return;
 	
-	var _o_ring = collision_detector.collision_object(objRing, PlayerCollisionDetectorSensor.MainDefault);
+	var _o_ring = plr.collider.collision_object(objRing, PlayerCollisionDetectorSensor.MainDefault);
 	
 	if (_o_ring) {
 		global.rings++;

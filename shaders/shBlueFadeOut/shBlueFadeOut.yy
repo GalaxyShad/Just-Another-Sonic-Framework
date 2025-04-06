@@ -3,8 +3,8 @@
   "%Name":"shBlueFadeOut",
   "name":"shBlueFadeOut",
   "parent":{
-    "name":"Sfx",
-    "path":"folders/Objects/Player/Sfx.yy",
+    "name":"Shaders",
+    "path":"folders/Just Another Sonic Framework/Shaders.yy",
   },
   "resourceType":"GMShader",
   "resourceVersion":"2.0",
