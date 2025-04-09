@@ -56,7 +56,7 @@ function SonicStateLookUp() : PlayerStateLookUp() constructor {
 	override_on_step = function(plr) { 
 		super(); 
 		
-		if (plr.ground && plr.is_input_jump())
+		if (plr.ground && plr.is_input_jump_pressed())
 			plr.state_machine.change_to("peelout");
 	};
 }

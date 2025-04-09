@@ -36,7 +36,7 @@ function PlayerStateSpindash() : BaseState() constructor {
 		}
 
 	
-		if (plr.is_input_jump()) {
+		if (plr.is_input_jump_pressed()) {
 			__spinrev += (__spinrev < 8) ? 2 : 0;
 		
 			audio_stop_sound(sndPlrSpindashCharge);

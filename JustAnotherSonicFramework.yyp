@@ -82,7 +82,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.11.0.179",
+    "IDEVersion":"2024.13.0.190",
   },
   "name":"JustAnotherSonicFramework",
   "resources":[
@@ -196,6 +196,7 @@
     {"id":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"id":{"name":"BaseShield","path":"scripts/BaseShield/BaseShield.yy",},},
+    {"id":{"name":"CharacterBuilder","path":"scripts/CharacterBuilder/CharacterBuilder.yy",},},
     {"id":{"name":"KnucklesStates","path":"scripts/KnucklesStates/KnucklesStates.yy",},},
     {"id":{"name":"Player","path":"scripts/Player/Player.yy",},},
     {"id":{"name":"PlayerAddBasicStates","path":"scripts/PlayerAddBasicStates/PlayerAddBasicStates.yy",},},

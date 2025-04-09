@@ -4,7 +4,7 @@ function TailsStateJump() : PlayerStateJump() constructor {
 	/// @param {Struct.Player} plr	
 	override_on_step = function(plr) { 
 		super(); 
-		if (plr.is_input_jump_pressed) {
+		if (plr.is_input_jump_pressed()) {
 			plr.state_machine.change_to("fly");
 		}
 	};

@@ -18,12 +18,6 @@ if (!variable_instance_exists(id, "character_builder")) {
 	)
 }
 
-if (!variable_instance_exists(id, "draw_player")) {
-	draw_player = function() {
-		draw_self();	
-	}
-}
-
 show_debug_info = true;
 
 o_dj = !instance_exists(objDJ) ? 
@@ -80,6 +74,14 @@ timer_powerup_invincibility = new Timer2(31 * 60, false);
 
 plr = character_builder.build();
 plr.state_machine.change_to("normal");
+
+
+draw_player = function() {
+	if (plr.draw_behind != undefined)
+		plr.draw_behind(plr);	
+	draw_self();	
+}
+
 
 behavior_loop = new PlayerLoop();
 behavior_loop
