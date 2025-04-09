@@ -43,13 +43,13 @@ function SonicStateLookUp() : PlayerStateLookUp() constructor {
 	/// @param {Struct.Player} plr
 	override_on_start = function(plr) { 
 		super(); 
-		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_jump);
 	};
 	
 	/// @param {Struct.Player} plr
 	override_on_exit = function(plr) { 
 		super(); 
-		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_jump);
 	};
 	
 	/// @param {Struct.Player} plr
@@ -128,14 +128,14 @@ function SonicStatePeelout() : BaseState() constructor {
 		audio_play_sound(sndPlrPeelCharge, 0, false);
 		__timer = 0;
 	
-		plr.inst.behavior_loop.disable(player_behavior_jump);
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
 	};
 
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_jump);
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
 	};
 
 	/// @param {Struct.Player} plr

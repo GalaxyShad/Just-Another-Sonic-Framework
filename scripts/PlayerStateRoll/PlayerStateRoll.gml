@@ -5,9 +5,9 @@ function PlayerStateRoll() : BaseState() constructor {
 	on_start = function(plr) {
 		plr.animator.set("curling");
 		
-		plr.inst.behavior_loop.disable(player_behavior_slope_decceleration);
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.disable(player_behavior_ground_friction);
+		plr.behavior_loop.disable(player_behavior_slope_decceleration);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_ground_friction);
 	};
 	
 	/// @param {Struct.Player} plr
@@ -58,8 +58,8 @@ function PlayerStateRoll() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_slope_decceleration);
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.enable(player_behavior_ground_friction);
+		plr.behavior_loop.enable(player_behavior_slope_decceleration);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_ground_friction);
 	};
 }

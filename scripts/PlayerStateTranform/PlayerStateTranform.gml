@@ -24,7 +24,7 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 		plr.ground = false;
 		plr.animator.set("transform");
 
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
+		plr.behavior_loop.disable(player_behavior_air_movement);
 
 		__plr_ins = plr.inst;
 		__timer = 60;
@@ -46,7 +46,7 @@ function PlayerStateTransform(_transform_frame) : BaseState() constructor {
 	on_exit = function(plr) {
 		plr.animator.on_animation_finished(undefined);
 
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
+		plr.behavior_loop.enable(player_behavior_air_movement);
 	};
 }
 
@@ -57,10 +57,10 @@ function PlayerStateCorksew() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
 
-		plr.inst.behavior_loop.disable(player_behavior_collisions_solid);
-		plr.inst.behavior_loop.disable(player_behavior_air_drag);
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_collisions_solid);
+		plr.behavior_loop.disable(player_behavior_air_drag);
+		plr.behavior_loop.disable(player_behavior_air_movement);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
 	
 		__spd = plr.gsp;
 	
@@ -94,9 +94,9 @@ function PlayerStateCorksew() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_collisions_solid);
-		plr.inst.behavior_loop.enable(player_behavior_air_drag);
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_collisions_solid);
+		plr.behavior_loop.enable(player_behavior_air_drag);
+		plr.behavior_loop.enable(player_behavior_air_movement);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
 	};
 }

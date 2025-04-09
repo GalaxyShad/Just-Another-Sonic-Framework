@@ -9,9 +9,9 @@ function PlayerStateDie() : BaseState() constructor {
 		
 		plr.animator.set("die");
 
-		plr.inst.behavior_loop.disable_all();
+		plr.behavior_loop.disable_all();
 		
-		plr.inst.handle_loop.disable_all();
+		plr.handle_loop.disable_all();
 	};
 	
 	/// @param {Struct.Player} plr

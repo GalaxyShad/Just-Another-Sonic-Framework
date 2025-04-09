@@ -2,13 +2,13 @@
 function PlayerStateLookUp() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) { 
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
 		plr.animator.set("look_up");
 	};
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) { 
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
 	};
 	
 	/// @param {Struct.Player} plr
