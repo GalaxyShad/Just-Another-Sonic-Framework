@@ -31,6 +31,9 @@ camera = !instance_exists(objCameraSonicWorlds) ?
 // camera = !instance_exists(objCamera) ? 
 // 	instance_create_layer(x, y, layer, objCamera) :
 // 	instance_find(objCamera, 0);
+
+if (!instance_exists(objSolidTIlemapFinder))
+	instance_create_depth(x, y, depth, objSolidTIlemapFinder);
 	
 camera.FollowingObject = id;
 

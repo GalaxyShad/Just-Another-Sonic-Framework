@@ -38,11 +38,13 @@ if mode != 1
 
 ysp += 0.09375;
 
-if (place_meeting(x, y+ysp, parSolid) || place_meeting(x, y+ysp, parPlatform)) {
+
+
+if (place_meeting_platform(x, y+ysp)) {
 	ysp *= -0.75;	
 }
 
-if (place_meeting(x+xsp, y, parSolid)) {
+if (place_meeting_platform(x+xsp, y)) {
 	xsp *= -0.75;	
 }
 

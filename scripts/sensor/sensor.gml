@@ -396,11 +396,6 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 
 	__angle_measurer = new AngleMeasurer(_plr_inst);
 	__floorSensor = new FloorWallSensor(_plr_inst);
-
-	_main 		= layer_tilemap_get_id("solidmap_main");
-	_high 		= layer_tilemap_get_id("solidmap_high");
-	_low 		= layer_tilemap_get_id("solidmap_low");
-	_platform 	= layer_tilemap_get_id("solidmap_platform");
 	
 	/////////////////////////////////////////////////////////////////////
 	
@@ -420,9 +415,9 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 			(__collision_line(_line, parHigh)  != noone)  && __layer == PlayerCollisionDetectorLayer.High ||
 			(__collision_line(_line, parLow)   != noone)  && __layer == PlayerCollisionDetectorLayer.Low  ||
 			
-			(_main != -1 && __collision_line(_line, _main) != noone) || 
-			(_high != -1 && __collision_line(_line, _high)  != noone)  && __layer == PlayerCollisionDetectorLayer.High ||
-			(_low  != -1 && __collision_line(_line, _low)   != noone)  && __layer == PlayerCollisionDetectorLayer.Low  
+			(global.solid_tilemap_main != -1 && __collision_line(_line, global.solid_tilemap_main) != noone) || 
+			(global.solid_tilemap_high != -1 && __collision_line(_line, global.solid_tilemap_high)  != noone)  && __layer == PlayerCollisionDetectorLayer.High ||
+			(global.solid_tilemap_low  != -1 && __collision_line(_line, global.solid_tilemap_low)   != noone)  && __layer == PlayerCollisionDetectorLayer.Low  
 		);
 	}
 
@@ -435,7 +430,7 @@ function PlayerCollisionDetector(_plr_inst) constructor {
 
 		return __is_collision_line_solid(_line) || 
 			   ((_col_platform_obj != noone && !_is_not_floor) || 
-			   (_platform != -1 && __collision_line(_line, _platform) != noone && !_is_not_floor));
+			   (global.solid_tilemap_platform != -1 && __collision_line(_line, global.solid_tilemap_platform) != noone && !_is_not_floor));
 	}
 
 	set_layer = function(layer) {

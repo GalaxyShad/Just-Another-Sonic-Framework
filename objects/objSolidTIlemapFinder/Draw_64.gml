@@ -1,0 +1,1 @@
+draw_text(0, 0, global.solid_tilemap_main);

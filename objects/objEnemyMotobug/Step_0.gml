@@ -1,8 +1,8 @@
 
 
-if (collision_line(x, y, x, y+64, parSolid, true, true)) {
+if (collision_line_platform(x, y, x, y+64)) {
 	repeat 128 {
-		if (!collision_line(x, y, x, y+15, parSolid, true, true)) {
+		if (!collision_line_platform(x, y, x, y+15)) {
 			y++;
 		} else {
 			break;
@@ -10,7 +10,7 @@ if (collision_line(x, y, x, y+64, parSolid, true, true)) {
 	}
 	
 	repeat 128 {
-		if (collision_line(x, y, x, y+15, parSolid, true, true)) {
+		if (collision_line_platform(x, y, x, y+15)) {
 			y--;	
 		} else {
 			break;
@@ -22,8 +22,8 @@ if (collision_line(x, y, x, y+64, parSolid, true, true)) {
 }
 
 if (
-	(collision_line(x, y, x - 16, y, parSolid, true, true) && hspeed < 0)
-	|| (collision_line(x, y, x + 16, y, parSolid, true, true) && hspeed > 0)
+	(collision_line_platform(x, y, x - 16, y) && hspeed < 0)
+	|| (collision_line_platform(x, y, x + 16, y) && hspeed > 0)
 ) {
 	hspeed = -hspeed;
 }

@@ -124,7 +124,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) { 
 		if (sign(__t) != sign(plr.xsp)) plr.inst.image_xscale *= -1;
-		
+
 		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
 		plr.inst.behavior_loop.enable(player_behavior_air_movement);
 		plr.inst.visual_loop.enable(player_behavior_visual_flip);

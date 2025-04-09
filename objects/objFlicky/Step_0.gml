@@ -1,5 +1,5 @@
 
-if (place_meeting(x, y, parSolid)) {
+if (place_meeting_platform(x, y)) {
 	if (floating) {
 		hspeed = irandom(1) ? 1 : -1;	
 	}

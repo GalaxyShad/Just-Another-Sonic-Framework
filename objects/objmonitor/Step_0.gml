@@ -7,21 +7,21 @@ if (!is_falling)
 
 vspeed += 0.21875;
 
-if (place_meeting(x, y+vspeed-1, parSolid) && vspeed < 0) {
+if (place_meeting_platform(x, y+vspeed-1) && vspeed < 0) {
 	vspeed = 0;
 	
-	while (!place_meeting(x, y, parSolid))
+	while (!place_meeting_platform(x, y))
 		y--;
 		
-	while (place_meeting(x, y+2, parSolid))
+	while (place_meeting_platform(x, y+2))
 		y++;
 }
 
-if (place_meeting(x, y+vspeed+1, parSolid) && vspeed > 0) {
-	while (!place_meeting(x, y, parSolid))
+if (place_meeting_platform(x, y+vspeed+1) && vspeed > 0) {
+	while (!place_meeting_platform(x, y))
 		y++;
 		
-	while (place_meeting(x, y+2, parSolid))
+	while (place_meeting_platform(x, y+2))
 		y--;
 		
 	vspeed = 0;
