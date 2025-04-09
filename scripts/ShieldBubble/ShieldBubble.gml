@@ -33,18 +33,17 @@ function ShieldBubble(_player) : ShieldUseable() constructor {
 		__used = true;
 	};
 	
-	bounce = function(player) { 
-		with player {
-			while (collision_detector.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
-				x -= collision_detector.get_angle_data().sin;
-				y -= collision_detector.get_angle_data().cos;
-			}
-			
-			plr.xsp -= BOUNCE_FORCE * collision_detector.get_angle_data().sin;
-			plr.ysp -= BOUNCE_FORCE * collision_detector.get_angle_data().cos;
-			
-			plr.ground = false;
+	/// @param {Struct.Player} plr
+	bounce = function(plr) {
+		while (plr.collider.is_collision_solid(PlayerCollisionDetectorSensor.Bottom)) {
+			x -= plr.collider.get_angle_data().sin;
+			y -= plr.collider.get_angle_data().cos;
 		}
+			
+		plr.xsp -= BOUNCE_FORCE * plr.collider.get_angle_data().sin;
+		plr.ysp -= BOUNCE_FORCE * plr.collider.get_angle_data().cos;
+			
+		plr.ground = false;
 			
 		__scale.xscale = 2.0;
 		__scale.yscale = 0.25;

@@ -56,19 +56,19 @@ remaining_air = 30;
 timer_underwater  = new Timer2(
 	DELAY_UNDERWATER_EVENT, 
 	true, 
-	function() { with self player_underwater_event(); }
+	function() { with plr player_underwater_event(); }
 );
 
 timer_speed_shoes = new Timer2(
 	DURATION_SUPER_FAST_SHOES, 
 	false, 
-	function() { with self physics.cancel_super_fast_shoes(); }
+	function() { with plr physics.cancel_super_fast_shoes(); }
 );
 
 timer_control_lock = new Timer2(
 	DURATION_CONTROL_LOCK,
 	false,
-	function() { with self allow_movement = true; }
+	function() { with plr allow_movement = true; }
 );
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
@@ -84,13 +84,6 @@ draw_player = function() {
 		plr.draw_behind(plr);	
 	draw_self();	
 }
-
-is_key_left				= false;
-is_key_right			= false;
-is_key_up				= false;
-is_key_down				= false;
-is_key_action			= false;
-is_key_action_pressed	= false;
 
 p_sfx_water_run			= -1;
 

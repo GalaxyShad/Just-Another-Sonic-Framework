@@ -71,11 +71,11 @@ function Player(
     }
 
     is_input_jump = function() {
-        return keyboard_check(ord("Z"));
+        return keyboard_check(ord("Z")) || keyboard_check(vk_numpad1);
     }
 
     is_input_jump_pressed = function() {
-        return keyboard_check_pressed(ord("Z"));
+        return keyboard_check_pressed(ord("Z")) || keyboard_check_pressed(vk_numpad1);
     }
 
     is_can_break_monitor = function() {

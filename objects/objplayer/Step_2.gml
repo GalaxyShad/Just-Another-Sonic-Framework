@@ -11,7 +11,7 @@ sprite_index	= _res[0];
 image_index		= _res[1];
 image_speed		= 0;
 
-if (plr.physics.is_underwater() && !is_instanceof(shield, ShieldBubble))
+if (plr.physics.is_underwater() && !is_instanceof(plr.inst.shield, ShieldBubble))
 	timer_underwater.tick();
 	
 timer_speed_shoes.tick();

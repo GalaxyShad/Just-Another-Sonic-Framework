@@ -11,14 +11,14 @@ function SonicStateJump() : PlayerStateJump() constructor {
 	
 	/// @param {Struct.Player} plr
 	override_on_step = function(plr) { 
-		super(); 
-		if (!plr.is_input_jump())
+		super();
+		if (!plr.is_input_jump_pressed())
 			return;
 		
 		if (!is_instanceof(plr.inst.shield, ShieldUseable) || plr.inst.timer_powerup_invincibility.is_ticking()) {
 			plr.state_machine.change_to("dropdash");
 		} else if (!plr.physics.is_super())  {
-			other.__use_shield(self);
+			__use_shield(plr);
 		}
 	};
 	
@@ -26,7 +26,7 @@ function SonicStateJump() : PlayerStateJump() constructor {
 	override_on_landing = function(plr) {
 		if (is_instanceof(plr.inst.shield, ShieldUseable)) {			
 			if (is_instanceof(plr.inst.shield, ShieldBubble) && plr.inst.shield.is_ability_used()) {
-				plr.inst.shield.bounce(self);
+				plr.inst.shield.bounce(plr);
 				plr.inst.shield.reset_ability();
 				return;	
 			}
