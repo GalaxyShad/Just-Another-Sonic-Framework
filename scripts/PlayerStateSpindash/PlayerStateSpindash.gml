@@ -10,15 +10,15 @@ function PlayerStateSpindash() : BaseState() constructor {
 		
 		__spinrev = 0;
 		
-		plr.inst.behavior_loop.disable(player_behavior_jump);
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
 		plr.animator.set("spindash");	
 	};
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) { 
-		plr.inst.behavior_loop.enable(player_behavior_jump);
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
 	};
 	
 	/// @param {Struct.Player} plr

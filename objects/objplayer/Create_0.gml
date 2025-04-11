@@ -56,19 +56,19 @@ remaining_air = 30;
 timer_underwater  = new Timer2(
 	DELAY_UNDERWATER_EVENT, 
 	true, 
-	function() { with self player_underwater_event(); }
+	function() { with plr player_underwater_event(); }
 );
 
 timer_speed_shoes = new Timer2(
 	DURATION_SUPER_FAST_SHOES, 
 	false, 
-	function() { with self physics.cancel_super_fast_shoes(); }
+	function() { with plr physics.cancel_super_fast_shoes(); }
 );
 
 timer_control_lock = new Timer2(
 	DURATION_CONTROL_LOCK,
 	false,
-	function() { with self allow_movement = true; }
+	function() { with plr allow_movement = true; }
 );
 
 timer_invincibility = new Timer2(DURATION_INVINCIBILITY, false);
@@ -84,61 +84,6 @@ draw_player = function() {
 		plr.draw_behind(plr);	
 	draw_self();	
 }
-
-
-behavior_loop = new PlayerLoop();
-behavior_loop
-	.add(player_switch_sensor_radius)
-
-	.add(player_behavior_apply_speed)
-
-	// Handle monitors before solid collision
-	.add(player_handle_monitors)
-	
-	// Collisions
-	.add(player_behavior_collisions_solid)
-	
-	// Air 
-	.add(player_behavior_apply_gravity)
-	.add(player_behavior_air_movement)
-	.add(player_behavior_air_drag)
-	.add(player_behavior_jump)
-
-	// Ground
-	.add(player_behavior_slope_decceleration)
-	.add(player_behavior_ground_movement)
-	.add(player_behavior_ground_friction)
-	.add(player_behavior_fall_off_slopes)
-;
-
-handle_loop = new PlayerLoop();
-handle_loop
-	.add(player_handle_layers)
-	.add(player_handle_rings)
-	.add(player_handle_springs)
-	.add(player_handle_spikes)
-	
-	.add(player_handle_moving_platforms)
-	.add(player_handle_water)
-	.add(player_handle_bubbles)
-	.add(player_handle_enemy)
-	.add(player_handle_corksew)
-	.add(player_handle_projectile)
-;
-
-visual_loop = new PlayerLoop();
-visual_loop
-	.add(player_behavior_visual_angle)
-	.add(player_behavior_visual_flip)
-	.add(player_behavior_visual_create_afterimage)
-;
-
-is_key_left				= false;
-is_key_right			= false;
-is_key_up				= false;
-is_key_down				= false;
-is_key_action			= false;
-is_key_action_pressed	= false;
 
 p_sfx_water_run			= -1;
 

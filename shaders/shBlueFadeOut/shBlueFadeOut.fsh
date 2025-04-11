@@ -8,6 +8,7 @@ uniform float reductionFactor;
 
 void main()
 {
+	/*
 	vec4 texColor = texture2D( gm_BaseTexture, v_vTexcoord );
     vec3 color = texColor.rgb;
 
@@ -21,4 +22,5 @@ void main()
 
     
     gl_FragColor = vec4(color, texColor.a);
+	*/
 }

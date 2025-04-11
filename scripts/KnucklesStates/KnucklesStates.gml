@@ -20,9 +20,9 @@ function KnucklesStateGlide() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
-		plr.inst.visual_loop.disable(player_behavior_visual_flip);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_air_movement);
+		plr.visual_loop.disable(player_behavior_visual_flip);
 
 		plr.animator.set("glide");
 	};
@@ -56,9 +56,9 @@ function KnucklesStateGlide() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
-		plr.inst.visual_loop.enable(player_behavior_visual_flip);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_air_movement);
+		plr.visual_loop.enable(player_behavior_visual_flip);
 	};
 }
 
@@ -73,10 +73,10 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_start = function(plr) { 
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_air_movement);
 		
-		plr.inst.visual_loop.disable(player_behavior_visual_flip);
+		plr.visual_loop.disable(player_behavior_visual_flip);
 		
 		__a = 90 - 90 * plr.inst.image_xscale;
 		__t = plr.xsp;
@@ -125,18 +125,18 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	on_exit = function(plr) { 
 		if (sign(__t) != sign(plr.xsp)) plr.inst.image_xscale *= -1;
 
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
-		plr.inst.visual_loop.enable(player_behavior_visual_flip);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_air_movement);
+		plr.visual_loop.enable(player_behavior_visual_flip);
 	};
 }
 
 function KnucklesStateDrop() : BaseState() constructor {		
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
-		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_air_movement);
+		plr.behavior_loop.disable(player_behavior_jump);
 
 		drop_time = 0;
 		
@@ -165,9 +165,9 @@ function KnucklesStateDrop() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) { 
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
-		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_air_movement);
+		plr.behavior_loop.enable(player_behavior_jump);
 	};
 }
 
@@ -176,9 +176,9 @@ function KnucklesStateClimbe() : BaseState() constructor {
 		
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.disable(player_behavior_air_movement);
-		plr.inst.visual_loop.disable(player_behavior_visual_flip);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_air_movement);
+		plr.visual_loop.disable(player_behavior_visual_flip);
 
 		if (plr.collider.check_expanded(1, 0, plr.collider.is_collision_solid, PlayerCollisionDetectorSensor.Left)) 
 			image_xscale = -1;
@@ -226,17 +226,17 @@ function KnucklesStateClimbe() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.enable(player_behavior_air_movement);
-		plr.inst.visual_loop.enable(player_behavior_visual_flip);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_air_movement);
+		plr.visual_loop.enable(player_behavior_visual_flip);
 	};
 }
 
 function KnucklesStateClambering() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_jump);
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
 
 		time_climbeEx = 40;
 		plr.xsp = 0;
@@ -257,17 +257,17 @@ function KnucklesStateClambering() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_jump);
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
 	};
 }
 
 function KnucklesStateLand() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.disable(player_behavior_ground_friction);
-		plr.inst.behavior_loop.disable(player_behavior_jump);
+		plr.behavior_loop.disable(player_behavior_ground_movement);
+		plr.behavior_loop.disable(player_behavior_ground_friction);
+		plr.behavior_loop.disable(player_behavior_jump);
 
 		rise_time=0;
 
@@ -295,9 +295,9 @@ function KnucklesStateLand() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr	
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_ground_movement);
-		plr.inst.behavior_loop.enable(player_behavior_ground_friction);
-		plr.inst.behavior_loop.enable(player_behavior_jump);
+		plr.behavior_loop.enable(player_behavior_ground_movement);
+		plr.behavior_loop.enable(player_behavior_ground_friction);
+		plr.behavior_loop.enable(player_behavior_jump);
 	};
 }
 

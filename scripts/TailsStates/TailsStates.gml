@@ -16,7 +16,7 @@ function TailsStateFly() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr	
 	on_start = function(plr) {
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
 
 		__tired			= false;
 		__time_fly		= 0;
@@ -65,6 +65,6 @@ function TailsStateFly() : BaseState() constructor {
 	/// @param {Struct.Player} plr	
 	on_exit = function(plr) {
 		audio_stop_sound(sndFlying);
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
 	};
 }

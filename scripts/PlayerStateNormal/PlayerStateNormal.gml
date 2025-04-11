@@ -99,11 +99,11 @@ function PlayerStateNoclip() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
 		plr.ground = false;
-		plr.inst.behavior_loop.disable(player_behavior_collisions_solid);
-		plr.inst.behavior_loop.disable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.disable(player_behavior_apply_speed);
+		plr.behavior_loop.disable(player_behavior_collisions_solid);
+		plr.behavior_loop.disable(player_behavior_apply_gravity);
+		plr.behavior_loop.disable(player_behavior_apply_speed);
 
-		plr.inst.handle_loop.disable_all();
+		plr.handle_loop.disable_all();
 
 		plr.animator.set("skid");
 	}
@@ -124,10 +124,10 @@ function PlayerStateNoclip() : BaseState() constructor {
 
 	/// @param {Struct.Player} plr
 	on_exit = function(plr) {
-		plr.inst.behavior_loop.enable(player_behavior_collisions_solid);
-		plr.inst.behavior_loop.enable(player_behavior_apply_gravity);
-		plr.inst.behavior_loop.enable(player_behavior_apply_speed);
+		plr.behavior_loop.enable(player_behavior_collisions_solid);
+		plr.behavior_loop.enable(player_behavior_apply_gravity);
+		plr.behavior_loop.enable(player_behavior_apply_speed);
 
-		plr.inst.handle_loop.enable_all();
+		plr.handle_loop.enable_all();
 	}
 }
