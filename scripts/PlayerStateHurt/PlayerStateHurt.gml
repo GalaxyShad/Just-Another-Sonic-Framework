@@ -5,7 +5,6 @@ function PlayerStateHurt() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_start = function(plr) {
 		plr.behavior_loop.disable(player_behavior_air_movement);
-		//allow_movement = false;		
 		
 		plr.xsp = -2 * sign(plr.inst.image_xscale);
 		plr.ysp = -4;
@@ -25,7 +24,7 @@ function PlayerStateHurt() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_landing = function(plr) {
-		plr.inst.timer_invincibility.reset_and_start();
+		plr.timer_invincibility.reset_and_start();
 		
 		plr.state_machine.change_to("normal");
 		

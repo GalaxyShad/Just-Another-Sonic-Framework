@@ -5,11 +5,11 @@ function player_handle_layers(plr) {
 		plr.collider.set_layer((plr.gsp > 0) ? 1 : 0);	
 	}
 	
-	if (place_meeting(plr.inst.x, plr.inst.y,objLayerToHigh)) {
+	if (place_meeting(plr.inst.x, plr.inst.y, objLayerToHigh)) {
 		plr.collider.set_layer(0);	
 	}
 	
-	if (place_meeting(plr.inst.x, plr.inst.y,objLayerToLow)) {
+	if (place_meeting(plr.inst.x, plr.inst.y, objLayerToLow)) {
 		plr.collider.set_layer(1);
 	}
 }

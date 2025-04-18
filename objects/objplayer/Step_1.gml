@@ -7,7 +7,7 @@ if (keyboard_check_pressed(ord("D")))
 	player_get_hit(plr);
 	
 if (keyboard_check_pressed(ord("A")))
-	show_debug_info = !show_debug_info;
+	plr.show_debug_info = !plr.show_debug_info;
 	
 if (keyboard_check_pressed(ord("S"))) {
 	if (!plr.physics.is_super())  {

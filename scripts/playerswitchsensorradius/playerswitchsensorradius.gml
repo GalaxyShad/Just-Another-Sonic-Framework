@@ -21,7 +21,7 @@ function player_switch_sensor_radius(plr) {
 
 	plr.collider.set_wall_sensor_vertical_offset((plr.ground && plr.collider.get_angle_data().degrees == 0) ? 8 : 0);
 
-	if (plr.inst.camera.FollowingObject == self) {
-		plr.inst.camera.offset_y = (plr.state_machine.current() == "roll") ? -5 : 0;
+	if (plr.camera.FollowingObject == self) {
+		plr.camera.offset_y = (plr.state_machine.current() == "roll") ? -5 : 0;
 	}
 }

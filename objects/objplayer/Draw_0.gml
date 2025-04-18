@@ -1,7 +1,7 @@
+/// @param {Struct.Player} plr
 
-
-if (!timer_invincibility.is_ticking() || 
-	(timer_invincibility.is_ticking() && global.tick % 10 >= 5)
+if (!plr.timer_invincibility.is_ticking() || 
+	(plr.timer_invincibility.is_ticking() && global.tick % 10 >= 5)
 ) {
 	if (plr.physics.is_super()) {
 		shader_set(shPlayerPalleteSwap);
@@ -22,7 +22,7 @@ if (!timer_invincibility.is_ticking() ||
 		
 		for (var i = 0; i < 4; i++) {
 			_set_col(
-				i+1, 
+				i+1,
 				plr.palette.base_color_list[i], 
 				plr.palette.super_form_color_list[(global.tick / 4) % array_length(plr.palette.super_form_color_list)][i]
 			);
@@ -35,16 +35,6 @@ if (!timer_invincibility.is_ticking() ||
 	}
 }
 
-if (running_on_water) {
-	draw_sprite_ext(
-		sprSfxWaterRun, 
-		global.tick / 2, 
-		x,
-		y + plr.collider.get_radius().floor.height, 
-		image_xscale, image_yscale, 0, c_white, 1
-	);	
-}
-
 if (plr.state_machine.current() == "spindash") {
 	draw_sprite_ext(
 		sprSfxSpindashDust, 
@@ -55,10 +45,10 @@ if (plr.state_machine.current() == "spindash") {
 	);	
 }
 
-if (shield != undefined && !plr.physics.is_super() && !timer_powerup_invincibility.is_ticking())
-	shield.draw(x, y);
+if (plr.shield != undefined && !plr.physics.is_super() && !plr.timer_powerup_invincibility.is_ticking())
+	plr.shield.draw(x, y);
 	
-if (timer_powerup_invincibility.is_ticking()) {
+if (plr.timer_powerup_invincibility.is_ticking()) {
 	var _dist = irandom_range(16, 20);
 	var _dir = irandom(16) * 22.5;
 	
@@ -76,7 +66,7 @@ if (!plr.animator.is_animation_exists(plr.animator.current())) {
 	draw_set_halign(fa_left);
 }
 
-if (show_debug_info) {
+if (plr.show_debug_info) {
 	plr.collider.draw();
 }
 

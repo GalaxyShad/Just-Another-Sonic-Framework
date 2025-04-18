@@ -3,7 +3,7 @@
 function player_behavior_ground_movement(plr) {
 	if (!plr.ground) return;
 	
-	if (plr.inst.timer_control_lock.is_ticking())
+	if (plr.timer_control_lock.is_ticking())
 		return;
 	
 	if (plr.input_x() < 0) {
@@ -62,11 +62,11 @@ function player_behavior_fall_off_slopes(plr) {
 	// Sonic 3 method
 	#macro FALL_OFF_SPEED_VALUE 2.5
 	
-	if (!plr.inst.timer_control_lock.is_ticking() 
+	if (!plr.timer_control_lock.is_ticking() 
 		&& abs(plr.gsp) < FALL_OFF_SPEED_VALUE 
 		&& plr.collider.is_angle_in_range(35, 326)
 	) { 
-		plr.inst.timer_control_lock.reset_and_start();
+		plr.timer_control_lock.reset_and_start();
 			
 		if (plr.collider.is_angle_in_range(69, 293)) {
 			plr.ground = false;
@@ -74,6 +74,6 @@ function player_behavior_fall_off_slopes(plr) {
 			plr.gsp += (plr.collider.get_angle_data().degrees < 180) ? -0.5 : +0.5;	
 		}
 	} else {
-		plr.inst.timer_control_lock.tick();		
+		plr.timer_control_lock.tick();		
 	}
 }

@@ -109,10 +109,48 @@ function Player(
             "glideRotation",
             "land"
         ]) 
-        || inst.timer_invincibility.is_ticking()
+        || timer_invincibility.is_ticking()
         || physics.is_super()
     }
 	
-	
-	
+    show_debug_info = true;
+    
+    o_dj = !instance_exists(objDJ) ?
+    	instance_create_layer(inst.x, inst.y, inst.layer, objDJ) :
+    	instance_find(objDJ, 0);
+    	
+    camera = !instance_exists(objCameraSonicWorlds) ?
+    	instance_create_layer(inst.x, inst.y, inst.layer, objCameraSonicWorlds) :
+    	instance_find(objCameraSonicWorlds, 0);
+        
+    remaining_air = 30;
+    camera.FollowingObject = inst;
+    shield = undefined;
+    animation_angle = 0;
+    
+    delay_underwater_event		= 60
+    duration_super_fast_shoes	= 21*60
+    duration_control_lock		= 30
+    duration_invincibility		= 120
+    
+    timer_invincibility = new Timer2(duration_invincibility, false);
+    timer_powerup_invincibility = new Timer2(31 * 60, false);
+    
+    timer_underwater  = new Timer2(
+    	delay_underwater_event, 
+    	true, 
+    	function() {  player_underwater_event(self); }
+    );
+    
+    timer_speed_shoes = new Timer2(
+    	duration_super_fast_shoes, 
+    	false, 
+    	function() { with self physics.cancel_super_fast_shoes(); }
+    );
+    
+    timer_control_lock = new Timer2(
+    	duration_control_lock,
+    	false,
+    	function() { }
+    );
 };

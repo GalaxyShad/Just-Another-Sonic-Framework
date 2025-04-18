@@ -2,11 +2,11 @@
 function SonicStateJump() : PlayerStateJump() constructor {
 	/// @param {Struct.Player} plr
 	__use_shield = function(plr) { 
-		if (!is_instanceof(plr.inst.shield, ShieldUseable)) return;
+		if (!is_instanceof(plr.shield, ShieldUseable)) return;
 		
-		if (plr.inst.shield.is_ability_used()) return;
+		if (plr.shield.is_ability_used()) return;
 		
-		plr.inst.shield.use_ability(plr.inst);
+		plr.shield.use_ability(plr.inst);
 	};
 	
 	/// @param {Struct.Player} plr
@@ -15,7 +15,7 @@ function SonicStateJump() : PlayerStateJump() constructor {
 		if (!plr.is_input_jump_pressed())
 			return;
 		
-		if (!is_instanceof(plr.inst.shield, ShieldUseable) || plr.inst.timer_powerup_invincibility.is_ticking()) {
+		if (!is_instanceof(plr.shield, ShieldUseable) || plr.timer_powerup_invincibility.is_ticking()) {
 			plr.state_machine.change_to("dropdash");
 		} else if (!plr.physics.is_super())  {
 			__use_shield(plr);
@@ -24,14 +24,14 @@ function SonicStateJump() : PlayerStateJump() constructor {
 	
 	/// @param {Struct.Player} plr
 	override_on_landing = function(plr) {
-		if (is_instanceof(plr.inst.shield, ShieldUseable)) {			
-			if (is_instanceof(plr.inst.shield, ShieldBubble) && plr.inst.shield.is_ability_used()) {
-				plr.inst.shield.bounce(plr);
-				plr.inst.shield.reset_ability();
+		if (is_instanceof(plr.shield, ShieldUseable)) {			
+			if (is_instanceof(plr.shield, ShieldBubble) && plr.shield.is_ability_used()) {
+				plr.shield.bounce(plr);
+				plr.shield.reset_ability();
 				return;	
 			}
 		
-			plr.inst.shield.reset_ability();
+			plr.shield.reset_ability();
 		}
 
 		super();
@@ -102,7 +102,7 @@ function SonicStateDropDash() : BaseState() constructor {
 		if (abs(plr.gsp) > _drpmax) 
 			plr.gsp = _drpmax * sign(plr.gsp);
 				
-		plr.inst.camera.set_lag_timer(15);
+		plr.camera.set_lag_timer(15);
 		
 		instance_create_depth(
 			plr.inst.x, 
@@ -147,7 +147,7 @@ function SonicStatePeelout() : BaseState() constructor {
 				audio_stop_sound(sndPlrPeelCharge);
 				audio_play_sound(sndPlrPeelRelease, 0, false);
 		
-				plr.inst.camera.set_lag_timer(15);
+				plr.camera.set_lag_timer(15);
 			} else {
 				__timer = 0;		
 			}

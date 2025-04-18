@@ -8,7 +8,7 @@ function ShieldFlame(_player) : ShieldUseable() constructor {
 		audio_play_sound(sndFireShield, 0, 0);
 	};
 	
-	
+    /// @param {Struct.Player} plr
 	use_ability = function() {
 		audio_play_sound(sndFireDash, 0, false);
 					
@@ -16,7 +16,7 @@ function ShieldFlame(_player) : ShieldUseable() constructor {
 			plr.ysp = 0;
 			plr.xsp = 8 * sign(image_xscale);
 				
-			camera.set_lag_timer(15);
+			plr.camera.set_lag_timer(15);
 		}
 		
 		__used = true;

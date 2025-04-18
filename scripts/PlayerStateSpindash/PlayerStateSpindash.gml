@@ -32,7 +32,7 @@ function PlayerStateSpindash() : BaseState() constructor {
 		
 			plr.state_machine.change_to("roll");
 	
-			plr.inst.camera.set_lag_timer(15);
+			plr.camera.set_lag_timer(15);
 		}
 
 	

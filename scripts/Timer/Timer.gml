@@ -44,7 +44,7 @@ function Timer2(_count, _auto_restart = false, _callback = function(){}) constru
 		__count--;
 		
 		if (__count == 0) {
-			__callback_function();	
+			__callback_function();
 			reset();
 			
 			if (!__auto_restart) 

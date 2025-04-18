@@ -20,6 +20,6 @@ function PlayerStateDie() : BaseState() constructor {
 	
 		plr.inst.y += plr.ysp;
 	
-		plr.inst.camera.set_lag_timer(1);
+		plr.camera.set_lag_timer(1);
 	};
 }
