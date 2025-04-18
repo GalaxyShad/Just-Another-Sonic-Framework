@@ -56,7 +56,7 @@ remaining_air = 30;
 timer_underwater  = new Timer2(
 	DELAY_UNDERWATER_EVENT, 
 	true, 
-	function() { with plr player_underwater_event(); }
+	function() {  player_underwater_event(plr); }
 );
 
 timer_speed_shoes = new Timer2(

@@ -1,40 +1,41 @@
 
-function player_underwater_regain_air() {
+/// @param {Struct.Player} plr
+function player_underwater_regain_air(plr) {
 	// Dirty crutch
 	audio_stop_sound(musDrowning);
 	
-	remaining_air = 30;
-	timer_underwater.reset();
+	plr.inst.remaining_air = 30;
+	plr.inst.timer_underwater = DELAY_UNDERWATER_EVENT;
 };
 
-
-function player_underwater_event() {
-	if (array_contains([25, 20, 15], remaining_air)) {
+/// @param {Struct.Player} plr
+function player_underwater_event(plr) {
+	if (array_contains([25, 20, 15], plr.inst.remaining_air)) {
 		// warning chime	
 		audio_play_sound(sndUnderwaterWarningChime, 0, 0);
 	} 
 	
-	if (remaining_air == 12) {
+	if (plr.inst.remaining_air == 12) {
 		// drowning music	
 		show_debug_message("drowning music");
-		o_dj.play_drowning();
+		plr.inst.o_dj.play_drowning();
 	} 
 	
-	if (array_contains([12, 10, 8, 6, 4, 2], remaining_air)) {
+	if (array_contains([12, 10, 8, 6, 4, 2], plr.inst.remaining_air)) {
 		// warning number bubble
-		var _number = (remaining_air / 2) - 1;
+		var _number = (plr.inst.remaining_air / 2) - 1;
 		instance_create_depth(
-			x + 6 * image_xscale, y, -1000, objBubbleCountdown, { number: _number });
+			plr.inst.x + 6 * plr.inst.image_xscale, plr.inst.y, -1000, objBubbleCountdown, { number: _number });
 	} 
 	
-	if (remaining_air == 0) {
+	if (plr.inst.remaining_air == 0) {
 		// player drown	
 		audio_play_sound(sndPlrDrown, 0, 0);
-		state.change_to("die");
+		plr.state_machine.change_to("die");
 	}
 	
-	instance_create_depth(x + 6 * image_xscale, y, -1000, objBreathingBubble);
+	instance_create_depth(plr.inst.x + 6 * plr.inst.image_xscale, plr.inst.y, -1000, objBreathingBubble);
 	
-	remaining_air--;
+	plr.inst.remaining_air--;
 };
 

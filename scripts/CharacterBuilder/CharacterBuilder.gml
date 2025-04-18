@@ -35,6 +35,53 @@ function CharacterBuilder(_instance) constructor {
         vfx_color_super: #FFFFFF,
     }
 
+    __behavior_loop = new PlayerLoop();
+	__behavior_loop
+		.add(player_switch_sensor_radius)
+
+		.add(player_behavior_apply_speed)
+
+		// Handle monitors before solid collision
+		.add(player_handle_monitors)
+	
+		// Collisions
+		.add(player_behavior_collisions_solid)
+	
+		// Air 
+		.add(player_behavior_apply_gravity)
+		.add(player_behavior_air_movement)
+		.add(player_behavior_air_drag)
+		.add(player_behavior_jump)
+
+		// Ground
+		.add(player_behavior_slope_decceleration)
+		.add(player_behavior_ground_movement)
+		.add(player_behavior_ground_friction)
+		.add(player_behavior_fall_off_slopes)
+	;
+
+	__handle_loop = new PlayerLoop();
+	__handle_loop
+		.add(player_handle_layers)
+		.add(player_handle_rings)
+		.add(player_handle_springs)
+		.add(player_handle_spikes)
+	
+		.add(player_handle_moving_platforms)
+		.add(player_handle_water)
+		.add(player_handle_bubbles)
+		.add(player_handle_enemy)
+		.add(player_handle_corksew)
+		.add(player_handle_projectile)
+	;
+
+	__visual_loop = new PlayerLoop();
+	__visual_loop
+		.add(player_behavior_visual_angle)
+		.add(player_behavior_visual_flip)
+		.add(player_behavior_visual_create_afterimage)
+	;
+
     ///////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////
 
@@ -55,6 +102,21 @@ function CharacterBuilder(_instance) constructor {
 
     configure_physics_super = function(_phys) {
         __custom_super_physics_props = _phys;
+        return self;
+    }
+
+    configure_behavior_loop = function(_loop_cfg_func) {
+        _loop_cfg_func(__behavior_loop);
+        return self;
+    }
+
+    configure_handle_loop = function(_loop_cfg_func) {
+        _loop_cfg_func(__handle_loop);
+        return self;
+    }
+
+    configure_visual_loop = function(_loop_cfg_func) {
+        _loop_cfg_func(__visual_loop);
         return self;
     }
 
@@ -113,7 +175,10 @@ function CharacterBuilder(_instance) constructor {
             __collider,
             __state_machine,
             __animator,
-            _physics
+            _physics,
+            __behavior_loop,
+            __handle_loop,
+            __visual_loop
         );
 
         _p.draw_behind = __draw_behind_function;

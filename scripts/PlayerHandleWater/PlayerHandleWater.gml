@@ -11,7 +11,7 @@ function player_handle_bubbles(plr) {
 		
 		audio_play_sound(sndPlayerBreathe, 0, 0);
 		
-		player_underwater_regain_air();
+		player_underwater_regain_air(plr);
 	}
 }
 
@@ -34,12 +34,12 @@ function player_handle_water(plr) {
 			if (is_shield_water_flushable(plr.inst.shield))
 				plr.inst.shield = undefined;
 				
-			plr.inst.timer_underwater.start();
+			plr.inst.timer_underwater = DELAY_UNDERWATER_EVENT;
 		} else {
 			plr.ysp *= 2;
 			plr.physics.cancel_underwater();
 			
-			player_underwater_regain_air();
+			player_underwater_regain_air(plr);
 		}
 		
 		var _particle = part_system_create(ParticleSystem2);

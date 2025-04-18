@@ -82,7 +82,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.0.190",
+    "IDEVersion":"2024.13.1.193",
   },
   "name":"JustAnotherSonicFramework",
   "resources":[
@@ -241,6 +241,7 @@
     {"id":{"name":"PlayerUnderwater","path":"scripts/PlayerUnderwater/PlayerUnderwater.yy",},},
     {"id":{"name":"PlayerVisualBehavior","path":"scripts/PlayerVisualBehavior/PlayerVisualBehavior.yy",},},
     {"id":{"name":"RingLoss","path":"scripts/RingLoss/RingLoss.yy",},},
+    {"id":{"name":"scr_init_fonts","path":"scripts/scr_init_fonts/scr_init_fonts.yy",},},
     {"id":{"name":"scrGitConstants","path":"scripts/scrGitConstants/scrGitConstants.yy",},},
     {"id":{"name":"scrParalaxerScripts","path":"scripts/scrParalaxerScripts/scrParalaxerScripts.yy",},},
     {"id":{"name":"Sensor","path":"scripts/Sensor/Sensor.yy",},},
@@ -334,6 +335,8 @@
     {"id":{"name":"sprFireShield","path":"sprites/sprFireShield/sprFireShield.yy",},},
     {"id":{"name":"sprFireShieldActive","path":"sprites/sprFireShieldActive/sprFireShieldActive.yy",},},
     {"id":{"name":"sprFlicky","path":"sprites/sprFlicky/sprFlicky.yy",},},
+    {"id":{"name":"sprFontHud","path":"sprites/sprFontHud/sprFontHud.yy",},},
+    {"id":{"name":"sprFontPlrHasPassed","path":"sprites/sprFontPlrHasPassed/sprFontPlrHasPassed.yy",},},
     {"id":{"name":"sprFrameworkLevelMusic","path":"sprites/sprFrameworkLevelMusic/sprFrameworkLevelMusic.yy",},},
     {"id":{"name":"sprHczWater","path":"sprites/sprHczWater/sprHczWater.yy",},},
     {"id":{"name":"sprIcon","path":"sprites/sprIcon/sprIcon.yy",},},
@@ -346,6 +349,7 @@
     {"id":{"name":"Sprite183","path":"sprites/Sprite183/Sprite183.yy",},},
     {"id":{"name":"Sprite190","path":"sprites/Sprite190/Sprite190.yy",},},
     {"id":{"name":"Sprite2","path":"sprites/Sprite2/Sprite2.yy",},},
+    {"id":{"name":"Sprite209_1","path":"sprites/Sprite209_1/Sprite209_1.yy",},},
     {"id":{"name":"Sprite227","path":"sprites/Sprite227/Sprite227.yy",},},
     {"id":{"name":"Sprite22730","path":"sprites/Sprite22730/Sprite22730.yy",},},
     {"id":{"name":"Sprite23","path":"sprites/Sprite23/Sprite23.yy",},},

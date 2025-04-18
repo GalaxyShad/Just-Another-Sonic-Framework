@@ -14,7 +14,7 @@ function ShieldBubble(_player) : ShieldUseable() constructor {
 	};
 	
 	__init__ = function() {
-		with __player player_underwater_regain_air();
+		with __player player_underwater_regain_air(plr);
 	}();
 	
 	play_pickup_sound = function() {
