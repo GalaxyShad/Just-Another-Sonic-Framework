@@ -80,7 +80,8 @@ if (show_debug_info) {
 	plr.collider.draw();
 }
 
-draw_set_font(global.sprite_font_hud);
+draw_set_font(global.sprite_font_plr_has_passed);
+//draw_set_font(global.sprite_font_hud);
 draw_set_halign(fa_center);
 draw_set_color(c_yellow);
 draw_text(x, y-32, "HELLO MY NAME IS CHICKY! WAWAMAMA")
