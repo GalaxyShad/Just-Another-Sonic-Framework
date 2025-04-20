@@ -79,3 +79,4 @@ if (!plr.animator.is_animation_exists(plr.animator.current())) {
 if (show_debug_info) {
 	plr.collider.draw();
 }
+ 

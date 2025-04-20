@@ -6,6 +6,11 @@ if (_plr != noone) {
         if (_plr.x > x) {
             is_activated = true;
             rotation *= max(floor(_plr.plr.xsp / 2), 2);
+
+            audio_play_sound(sndSignPostSpin, 0, false);
+
+            _plr.plr.is_reached_goal = true;
+
             alarm[0] = time_to_act_clear;
         }
     }
@@ -43,5 +48,3 @@ draw_sprite_ext(
     dsin(rotation), 1, 
     0, c_white, 1
 );
-
-draw_text(x, y, _plr.camera.offset_y);

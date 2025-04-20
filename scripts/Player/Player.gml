@@ -34,6 +34,8 @@ function Player(
     handle_loop = _handle_loop;
     visual_loop = _visual_loop;
 
+    is_reached_goal = false;
+
     collider_radius = {
         base: {
             vertical: 20,

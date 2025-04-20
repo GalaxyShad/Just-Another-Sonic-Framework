@@ -12,7 +12,10 @@ if (plr != noone) {
 	ball_pos.x += (_x - ball_pos.x) / 4;
 	ball_pos.y += (_y - ball_pos.y) / 4;
 	
-	activated = true;
+	if (!activated) {
+		activated = true;
+		audio_play_sound(sndCheckpoint, 0, false);
+	}
 } else {
 	
 	if (activated) {

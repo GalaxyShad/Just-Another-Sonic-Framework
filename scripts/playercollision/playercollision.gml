@@ -42,6 +42,25 @@ function player_collision_room_borders(p) {
 		
 		p.inst.x = +p.collider.get_radius().wall;
 	}
+
+	if (p.is_reached_goal) {
+		var _l = camera_get_view_x(view_camera[0]) + 8;
+		var _r = camera_get_view_x(view_camera[0]) + camera_get_view_width(view_camera[0]) - 8;
+
+		if (p.xsp > 0 && _sensor_right > _r) {
+			p.xsp = 0;
+			p.gsp = 0;
+			
+			p.inst.x = _r - p.collider.get_radius().wall;
+		}
+
+		if (p.xsp < 0 && _sensor_left < _l) {
+			p.xsp = 0;
+			p.gsp = 0;
+			
+			p.inst.x = _l + p.collider.get_radius().wall;
+		}
+	}
 }
 
 /// @param {Struct.Player} p  

@@ -8,5 +8,3 @@ if (activated) {
 }
 
 draw_sprite(sprCheckpointCircle, ball_frame, ball_pos.x, ball_pos.y);
-
-draw_text(x, y-64, string(ball_speed.y))
