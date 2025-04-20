@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"sndCashregister",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":2.1536508,
+  "name":"sndCashregister",
+  "parent":{
+    "name":"Just Another Sonic Framework",
+    "path":"folders/Just Another Sonic Framework.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sndCashregister.wav",
+  "type":0,
+  "volume":1.0,
+}

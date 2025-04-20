@@ -6,6 +6,7 @@ if (_plr != noone) {
         if (_plr.x > x) {
             is_activated = true;
             rotation *= max(floor(_plr.plr.xsp / 2), 2);
+            alarm[0] = time_to_act_clear;
         }
     }
 

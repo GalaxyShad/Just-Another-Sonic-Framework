@@ -1,17 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"objSignPost",
+  "%Name":"objLevelClearResultScreen",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"objSignPost",
+  "name":"objLevelClearResultScreen",
   "overriddenProperties":[],
   "parent":{
-    "name":"Placeable",
-    "path":"folders/Just Another Sonic Framework/Placeable.yy",
+    "name":"Just Another Sonic Framework",
+    "path":"folders/Just Another Sonic Framework.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -31,10 +32,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sprSignPost",
-    "path":"sprites/sprSignPost/sprSignPost.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }
