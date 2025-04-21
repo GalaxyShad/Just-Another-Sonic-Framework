@@ -8,20 +8,18 @@ uniform float reductionFactor;
 
 void main()
 {
-	/*
 	vec4 texColor = texture2D( gm_BaseTexture, v_vTexcoord );
     vec3 color = texColor.rgb;
 
     color.b = min(reductionFactor, color.b);
 
-    if (reductionFactor >= 1) {
-        color.r = min(reductionFactor - 1, color.r);
-        color.g = min(reductionFactor - 1, color.g);
+    if (reductionFactor >= 1.0) {
+        color.r = min(reductionFactor - 1.0, color.r);
+        color.g = min(reductionFactor - 1.0, color.g);
     } else {
-        color.r = 0;
-        color.g = 0;
+        color.r = 0.0;
+        color.g = 0.0;
     }
 
     gl_FragColor = vec4(color, texColor.a);
-	*/
 }
