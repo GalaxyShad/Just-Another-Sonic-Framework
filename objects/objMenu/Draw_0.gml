@@ -1,10 +1,17 @@
 
 draw_set_halign(fa_left);
 
-draw_set_color(c_black);
-draw_roundrect(x-16, y-16, x + 512, y + 16 + 12 * array_length_1d(items_list) + 16, false);
+depth = -10000000000000000000;
 
-for (var i = 0; i < array_length_1d(items_list); i++) {
+var _x = camera_get_view_x(camera_get_active()) + 32;
+var _y = camera_get_view_y(camera_get_active()) + 32;
+
+draw_sprite(sprSonic, 0, 0, 0);
+
+draw_set_color(c_black);
+draw_roundrect(_x-16, _y-16, _x + 256, _y + 16 + 12 * array_length(items_list) + 16, false);
+
+for (var i = 0; i < array_length(items_list); i++) {
     var item = items_list[i];
 
     if (item == undefined) continue;
@@ -33,7 +40,7 @@ for (var i = 0; i < array_length_1d(items_list); i++) {
         text = text + " >";
     }
     
-    draw_text(x, y + 12 * i, text);
+    draw_text(_x, _y + 12 * i, text);
 
     draw_set_alpha(1);
 }
