@@ -65,6 +65,11 @@ function Player(
 
     draw_behind = undefined;
 
+    name = "no name";
+    name_color = c_gray;
+
+    sign_post_sprite = sprSignPostUnknown;
+
     input_x = function() {
         if (keyboard_check(vk_left) && keyboard_check(vk_right)) return 0;
 

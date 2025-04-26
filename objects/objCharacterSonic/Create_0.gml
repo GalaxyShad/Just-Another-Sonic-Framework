@@ -1,6 +1,11 @@
 character_builder = new CharacterBuilder(self);
 
 character_builder
+	.set_name("Sonic")
+	.set_name_color(c_blue)
+
+	.set_sign_post_sprite(sprSonicSignPost)
+
 	.set_vfx_color(#0F52BA)
 	.set_vfx_super_color(#FFCE57)
 

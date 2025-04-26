@@ -2,6 +2,11 @@
 character_builder = new CharacterBuilder(self);
 
 character_builder
+	.set_name("Knuckles")
+	.set_name_color(c_red)
+
+	.set_sign_post_sprite(sprKnucklesSignPost)
+
 	.set_base_palette([ #000000, #6C0024, #D80024, #FC486C ])
 	.add_super_palette_fading_colors([ #000000, #6C0024, #D80048, #FC4890 ])
 	.add_super_palette_fading_colors([ #000000, #902448, #FC486C, #FC6CB4 ]) 
@@ -77,4 +82,7 @@ character_builder
 
 // Inherit the parent event
 event_inherited();
+
+
+
 

@@ -1,5 +1,5 @@
 
-var _plr = instance_nearest(x, y, objPlayer);
+_plr = instance_nearest(x, y, objPlayer);
 
 if (_plr != noone) {
     if (!is_activated) {
@@ -34,7 +34,7 @@ if (is_activated) {
 
 draw_sprite(sprSignPostPipe, 0, x, y);
 
-var _icon = (dcos(rotation) >= 0) ? sprSignPostEggman : sprSonicSignPost;
+var _icon = (dcos(rotation) >= 0) ? sprSignPostEggman : _plr.plr.sign_post_sprite;
 
 draw_sprite_ext(_icon, 0, 
     x, y - 40, 

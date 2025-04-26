@@ -15,6 +15,11 @@ function CharacterBuilder(_instance) constructor {
 
     __draw_behind_function = undefined;
 
+    __name = "no name";
+    __name_color = c_gray;
+
+    __sign_post_sprite = sprSignPostUnknown;
+
     __collider_radius = {
         base: {
             vertical: 20,
@@ -167,6 +172,21 @@ function CharacterBuilder(_instance) constructor {
         return self;
     }
 
+    set_name = function(name) {
+        __name = name;
+        return self;
+    }
+
+    set_name_color = function(color) {
+        __name_color = color;
+        return self;
+    }
+
+    set_sign_post_sprite = function(sprite) {
+        __sign_post_sprite = sprite;
+        return self;
+    }
+
     build = function() {
         var _physics = new PlayerPhysics(__custom_physics_props, __custom_super_physics_props);
 
@@ -191,6 +211,11 @@ function CharacterBuilder(_instance) constructor {
 
         _p.collider_radius.base = __collider_radius.base;
         _p.collider_radius.curling = __collider_radius.curling;
+
+        _p.name = __name;
+        _p.name_color = __name_color;
+
+        _p.sign_post_sprite = __sign_post_sprite;
  
         return _p;
     }

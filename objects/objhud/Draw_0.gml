@@ -25,7 +25,7 @@ for(var i=0;i<2;i++)
 
 draw_sprite(
 	sprRings,
-	global.rings<3 ? global.tick / 25 : 0
+	global.rings == 0 ? global.tick / 25 : 0
 	,_x+17,_y+41);
 var _rings = global.rings;
 

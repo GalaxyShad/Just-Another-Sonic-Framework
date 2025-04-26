@@ -2,6 +2,11 @@
 character_builder = new CharacterBuilder(self);
 
 character_builder
+	.set_name("Tails")
+	.set_name_color(c_orange)
+
+	.set_sign_post_sprite(sprTailsSignPost)
+
 	.set_vfx_color(#FC9000)
 	.set_vfx_super_color(#FFCE57)
 
