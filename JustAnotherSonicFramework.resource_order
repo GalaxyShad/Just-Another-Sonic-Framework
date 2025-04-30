@@ -431,6 +431,7 @@
     {"name":"sprTexBigFlare","order":4,"path":"sprites/sprTexBigFlare/sprTexBigFlare.yy",},
     {"name":"sprTileSetEHZ1","order":2,"path":"sprites/sprTileSetEHZ1/sprTileSetEHZ1.yy",},
     {"name":"sprTime","order":1,"path":"sprites/sprTime/sprTime.yy",},
+    {"name":"sprTitleScreenBeta","order":1,"path":"sprites/sprTitleScreenBeta/sprTitleScreenBeta.yy",},
     {"name":"sprWaterPixel","order":9,"path":"sprites/sprWaterPixel/sprWaterPixel.yy",},
     {"name":"Tails","order":13,"path":"sprites/Tails/Tails.yy",},
     {"name":"Tails2","order":14,"path":"sprites/Tails2/Tails2.yy",},

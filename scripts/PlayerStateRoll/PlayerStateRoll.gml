@@ -53,7 +53,7 @@ function PlayerStateRoll() : BaseState() constructor {
 	
 	/// @param {Struct.Player} plr
 	on_animate = function(plr) { 
-		plr.animator.set_image_speed(0.5 + abs(plr.gsp) / 8.0);
+		plr.animator.set_image_speed(min(0.5 + abs(plr.gsp) / 8.0, 1));
 	};
 	
 	/// @param {Struct.Player} plr

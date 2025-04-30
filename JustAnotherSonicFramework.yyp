@@ -508,6 +508,7 @@
     {"id":{"name":"sprTexBigFlare","path":"sprites/sprTexBigFlare/sprTexBigFlare.yy",},},
     {"id":{"name":"sprTileSetEHZ1","path":"sprites/sprTileSetEHZ1/sprTileSetEHZ1.yy",},},
     {"id":{"name":"sprTime","path":"sprites/sprTime/sprTime.yy",},},
+    {"id":{"name":"sprTitleScreenBeta","path":"sprites/sprTitleScreenBeta/sprTitleScreenBeta.yy",},},
     {"id":{"name":"sprTsS2Solids","path":"sprites/sprTsS2Solids/sprTsS2Solids.yy",},},
     {"id":{"name":"sprWaterPixel","path":"sprites/sprWaterPixel/sprWaterPixel.yy",},},
     {"id":{"name":"sprWaterShield","path":"sprites/sprWaterShield/sprWaterShield.yy",},},
@@ -521,9 +522,9 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
+    {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmJustAnotherSonicFrameworkSplash","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},},
     {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
-    {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"roomId":{"name":"rmEnemiesTest","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},},
   ],

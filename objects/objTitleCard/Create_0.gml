@@ -4,27 +4,64 @@ timer = 120;
 
 depth = -10000;
 
-gui_center_x = display_get_gui_width()  / 2;
-gui_center_y = display_get_gui_height() / 2;
+scr_x = 0;
+scr_y = 0;
+scr_w = 428;
+scr_h = 240;
 
-padding_horizontal = 256;
+act_number = 1;
 
-rect = {
-    x: gui_center_x - padding_horizontal, y: 0,
-    w: 192,  h: 0,
+zonename_text = {
+    START_X: scr_x - 200,
+    MAIN_X:  scr_x + 96,
+    END_X:   scr_x + scr_w + 200,
 
-    h_max: 600
-};
+    MAIN_Y: scr_y + 64,
+    
+    TEXT: "EMERALD HILL",//room_get_name(room)
 
-text = {
-    x: display_get_gui_width(),
-    y: gui_center_y + 64,
-    msg: room_get_name(room)
+    x: 0,
+    y: 0,
 }
 
+zone_text = {
+    START_X:    zonename_text.END_X,
+    MAIN_X:     scr_x + 128,
+    END_X:      zonename_text.START_X,
+
+    MAIN_Y: zonename_text.MAIN_Y + 24,
+
+    TEXT: "ZONE",
+
+    x: 0,
+    y: 0,
+}
+
+framework_text = {
+    START_Y:    scr_y + scr_h + 16,
+    MAIN_Y:     scr_y + scr_h - 24,
+    END_Y:      scr_y + scr_h + 16,
+
+    TEXT: "JUST ANOTHER SONIC FRAMEWORK",
+
+    x: scr_w / 2,
+    y: 0,
+}
+
+zonename_text.x = zonename_text.START_X;
+zonename_text.y = zonename_text.MAIN_Y;
+
+zone_text.x = zone_text.START_X;
+zone_text.y = zone_text.MAIN_Y;
+
+framework_text.y = framework_text.START_Y;
+
 state_appear = function() {
-    rect.h = lerp(rect.h, rect.h_max, 0.2);
-    text.x = lerp(text.x, gui_center_x + padding_horizontal, 0.1);
+    zonename_text.x = lerp(zonename_text.x, zonename_text.MAIN_X, 0.1);
+    zone_text.x = lerp(zone_text.x, zone_text.MAIN_X, 0.1);
+    framework_text.y = lerp(framework_text.y, framework_text.MAIN_Y, 0.1);
+
+    line_offset_x = lerp(line_offset_x, 152, 0.2);
 
     timer--;
     if (timer == 0) {
@@ -33,13 +70,20 @@ state_appear = function() {
 }
 
 state_move_away = function() {
-    rect.h = lerp(rect.h, 0, 0.4);
+    zonename_text.x = lerp(zonename_text.x, zonename_text.END_X, 0.1);
+    zone_text.x = lerp(zone_text.x, zone_text.END_X, 0.1);
+    framework_text.y = lerp(framework_text.y, framework_text.END_Y, 0.1);
 
-    text.x = lerp(text.x, display_get_gui_width() * 2, 0.2);
+    line_offset_x = lerp(line_offset_x, 250, 0.1);
 
-    if (rect.h == 0) {
-        instance_destroy();
+    if (round(framework_text.y) == round(framework_text.END_Y)) {
+         instance_destroy();
     }
 }
 
 state = state_appear;
+
+line_y = 0;
+line_offset_x = 1000;
+
+title_card_surface = -1;

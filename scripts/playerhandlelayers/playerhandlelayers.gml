@@ -18,7 +18,7 @@ function player_handle_layers(plr) {
 function player_handle_corksew(plr) {
 
 	if (plr.collider.collision_object(objCorksewTrigger, PlayerCollisionDetectorSensor.MainDefault) && 
-		 abs(plr.gsp) > 1 &&
+		 abs(plr.gsp) > 4 &&
 		 plr.ground
 	) {
 		plr.state_machine.change_to("corksew");
