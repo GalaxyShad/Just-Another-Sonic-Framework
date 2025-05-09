@@ -9,8 +9,9 @@ var _h = camera_get_view_height(_cam);
 
 if (!surface_exists(title_card_surface)) {
     title_card_surface = surface_create(_w, _h);
-    exit;
-} else {
+} 
+
+{
     surface_set_target(title_card_surface);
 
     draw_clear_alpha(c_black,0);
@@ -52,7 +53,7 @@ if (!surface_exists(title_card_surface)) {
 
     surface_reset_target();
 
-    depth = -10000000000000000000;
+
 
     draw_surface(title_card_surface, x, y);
 }

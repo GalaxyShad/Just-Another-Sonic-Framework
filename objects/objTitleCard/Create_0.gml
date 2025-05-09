@@ -2,7 +2,7 @@ fade_timer = 60;
 
 timer = 120;
 
-depth = -10000;
+depth = -10000000000000000000;
 
 scr_x = 0;
 scr_y = 0;
