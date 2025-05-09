@@ -82,7 +82,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.13.0.190",
+    "IDEVersion":"2024.13.1.193",
   },
   "name":"JustAnotherSonicFramework",
   "resources":[
@@ -126,6 +126,7 @@
     {"id":{"name":"Object34531","path":"objects/Object34531/Object34531.yy",},},
     {"id":{"name":"Object3453132","path":"objects/Object3453132/Object3453132.yy",},},
     {"id":{"name":"Object3457","path":"objects/Object3457/Object3457.yy",},},
+    {"id":{"name":"objEhzBgFlowerFields","path":"objects/objEhzBgFlowerFields/objEhzBgFlowerFields.yy",},},
     {"id":{"name":"objEnemyBuzzer","path":"objects/objEnemyBuzzer/objEnemyBuzzer.yy",},},
     {"id":{"name":"objEnemyChopper","path":"objects/objEnemyChopper/objEnemyChopper.yy",},},
     {"id":{"name":"objEnemyCoconuts","path":"objects/objEnemyCoconuts/objEnemyCoconuts.yy",},},
@@ -197,6 +198,7 @@
     {"id":{"name":"rmJustAnotherSonicFrameworkSplash","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},},
     {"id":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
+    {"id":{"name":"rmTitle","path":"rooms/rmTitle/rmTitle.yy",},},
     {"id":{"name":"BaseShield","path":"scripts/BaseShield/BaseShield.yy",},},
     {"id":{"name":"CharacterBuilder","path":"scripts/CharacterBuilder/CharacterBuilder.yy",},},
     {"id":{"name":"KnucklesStates","path":"scripts/KnucklesStates/KnucklesStates.yy",},},
@@ -327,6 +329,7 @@
     {"id":{"name":"sprEhz1CollisionsAll","path":"sprites/sprEhz1CollisionsAll/sprEhz1CollisionsAll.yy",},},
     {"id":{"name":"sprEhz1CollisionsBlue","path":"sprites/sprEhz1CollisionsBlue/sprEhz1CollisionsBlue.yy",},},
     {"id":{"name":"sprEhz1CollisionsPlatform","path":"sprites/sprEhz1CollisionsPlatform/sprEhz1CollisionsPlatform.yy",},},
+    {"id":{"name":"sprEhzBgFlowerFields","path":"sprites/sprEhzBgFlowerFields/sprEhzBgFlowerFields.yy",},},
     {"id":{"name":"sprEhzBgLayerFields","path":"sprites/sprEhzBgLayerFields/sprEhzBgLayerFields.yy",},},
     {"id":{"name":"sprEhzBgLayerFieldsPart","path":"sprites/sprEhzBgLayerFieldsPart/sprEhzBgLayerFieldsPart.yy",},},
     {"id":{"name":"sprEhzBgLayerMountainsBack","path":"sprites/sprEhzBgLayerMountainsBack/sprEhzBgLayerMountainsBack.yy",},},
@@ -522,11 +525,12 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
+    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmJustAnotherSonicFrameworkSplash","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},},
-    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"roomId":{"name":"rmEnemiesTest","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},},
+    {"roomId":{"name":"rmTitle","path":"rooms/rmTitle/rmTitle.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[

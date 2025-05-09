@@ -1,19 +1,23 @@
 
-obj = 0;
+obj = 1;
 
 characters = [];
 current = 0;
 count = 0;
 
 
-while (true) {
-	if (!object_exists(obj)) break;
-	
-	if (object_get_parent(obj) == objPlayer && obj != objCharacterTemplate)
-		array_push(characters, obj);
+// while (true) {
+// 	if (!object_exists(obj)) break;
+
+// 	if (object_get_parent(obj) == objPlayer && obj != objCharacterTemplate)
+// 		array_push(characters, obj);
 		
-	obj++;	
-}
+// 	obj++;	
+// }
+
+array_push(characters, objCharacterSonic);
+array_push(characters, objCharacterTails);
+array_push(characters, objCharacterKnuckles);
 
 count = array_length(characters);
 
