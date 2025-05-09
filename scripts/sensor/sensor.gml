@@ -45,7 +45,7 @@ function AngleMeasurer(plr_inst) constructor {
 	__ground_point = function(_start_point, _cb_collision_line) {
 		var point = [_start_point[0], _start_point[1]];
 
-		var _MAX_POINT = 128;
+		var _MAX_POINT = 32;
 		
 		for (var i = 0; i < 20 + _MAX_POINT; i++) {
 			if (_cb_collision_line(__to_cb_arg(_start_point, point))) {
@@ -59,9 +59,9 @@ function AngleMeasurer(plr_inst) constructor {
 		return undefined;
 	}
 
-	measure_edges = function(_cb_collision_line, _is_landing) {
-		var _left_start_point  = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
-		var _right_start_point = [__plr_inst.x + __right_point[0], __plr_inst.y + __right_point[1]];
+	__measure_edges = function(_left_edge, _right_edge, _cb_collision_line, _is_landing) {
+		var _left_start_point  = _left_edge;
+		var _right_start_point = _right_edge;
 
 		var _left  = __ground_point(_left_start_point, _cb_collision_line);
 		var _right = __ground_point(_right_start_point, _cb_collision_line);
@@ -85,6 +85,40 @@ function AngleMeasurer(plr_inst) constructor {
 			left: _left,
 			right: _right
 		};
+	}
+
+	measure_left_edge = function(_cb_collision_line, _is_landing) {
+		var _a  = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
+		var _b = [_a[0] + dcos(__angle), _a[1] + dsin(__angle)];
+
+		return __measure_edges(_a, _b, _cb_collision_line, _is_landing);
+	}
+
+	measure_right_edge = function(_cb_collision_line, _is_landing) {
+		var _a  = [__plr_inst.x + __right_point[0], __plr_inst.y + __right_point[1]];
+		var _b = [_a[0] - dcos(__angle), _a[1] - dsin(__angle)];
+
+		return __measure_edges(_b, _a, _cb_collision_line, _is_landing);
+	}
+
+	measure_edges = function(_cb_collision_line, _is_landing) {
+		var _left_start_point  = [__plr_inst.x + __left_point[0], __plr_inst.y + __left_point[1]];
+		var _right_start_point = [__plr_inst.x + __right_point[0], __plr_inst.y + __right_point[1]];
+
+		var _res = __measure_edges(_left_start_point, _right_start_point, _cb_collision_line, _is_landing);
+
+
+		if (_is_landing) {
+			if (_res.right == undefined) {
+				return measure_left_edge(_cb_collision_line, _is_landing);
+			} 
+			
+			if (_res.left == undefined) {
+				return measure_right_edge(_cb_collision_line, _is_landing);
+			} 
+		}
+
+		return _res;
 	}
 
 	measure = function(_cb_collision_line, is_landing) {

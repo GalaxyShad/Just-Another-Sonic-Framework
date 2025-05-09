@@ -152,6 +152,7 @@
     {"name":"rmJustAnotherSonicFrameworkSplash","order":6,"path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},
     {"name":"rmNewTestZone","order":5,"path":"rooms/rmNewTestZone/rmNewTestZone.yy",},
     {"name":"rmTest","order":2,"path":"rooms/rmTest/rmTest.yy",},
+    {"name":"rmTitle","order":7,"path":"rooms/rmTitle/rmTitle.yy",},
     {"name":"CharacterBuilder","order":11,"path":"scripts/CharacterBuilder/CharacterBuilder.yy",},
     {"name":"KnucklesStates","order":1,"path":"scripts/KnucklesStates/KnucklesStates.yy",},
     {"name":"place_meeting_platform","order":11,"path":"scripts/place_meeting_platform/place_meeting_platform.yy",},

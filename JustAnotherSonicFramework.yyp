@@ -198,6 +198,7 @@
     {"id":{"name":"rmJustAnotherSonicFrameworkSplash","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},},
     {"id":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"id":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
+    {"id":{"name":"rmTitle","path":"rooms/rmTitle/rmTitle.yy",},},
     {"id":{"name":"BaseShield","path":"scripts/BaseShield/BaseShield.yy",},},
     {"id":{"name":"CharacterBuilder","path":"scripts/CharacterBuilder/CharacterBuilder.yy",},},
     {"id":{"name":"KnucklesStates","path":"scripts/KnucklesStates/KnucklesStates.yy",},},
@@ -524,11 +525,12 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmInit","path":"rooms/rmInit/rmInit.yy",},},
+    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmEHZ1","path":"rooms/rmEHZ1/rmEHZ1.yy",},},
     {"roomId":{"name":"rmJustAnotherSonicFrameworkSplash","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},},
-    {"roomId":{"name":"rmTest","path":"rooms/rmTest/rmTest.yy",},},
     {"roomId":{"name":"rmNewTestZone","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},},
     {"roomId":{"name":"rmEnemiesTest","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},},
+    {"roomId":{"name":"rmTitle","path":"rooms/rmTitle/rmTitle.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[
