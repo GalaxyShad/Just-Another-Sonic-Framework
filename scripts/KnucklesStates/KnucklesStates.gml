@@ -68,7 +68,7 @@ function KnucklesStateGlideRotation() : BaseState() constructor {
 	const_glide_gravity_force = 0.125;
 
 	__a = undefined;
-	__t = undefined;
+	__t = 0;
 	__r = undefined;
 	
 	/// @param {Struct.Player} plr

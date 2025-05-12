@@ -34,7 +34,8 @@ function player_handle_water(plr) {
 			if (is_shield_water_flushable(plr.inst.shield))
 				plr.inst.shield = undefined;
 				
-			plr.inst.timer_underwater = DELAY_UNDERWATER_EVENT;
+			plr.inst.timer_underwater.reset();
+			plr.inst.timer_underwater.start();
 		} else {
 			plr.ysp *= 2;
 			plr.physics.cancel_underwater();

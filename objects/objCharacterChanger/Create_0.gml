@@ -1,23 +1,9 @@
 
 obj = 1;
 
-characters = [];
+characters = [objCharacterSonic, objCharacterTails, objCharacterKnuckles];
 current = 0;
 count = 0;
-
-
-// while (true) {
-// 	if (!object_exists(obj)) break;
-
-// 	if (object_get_parent(obj) == objPlayer && obj != objCharacterTemplate)
-// 		array_push(characters, obj);
-		
-// 	obj++;	
-// }
-
-array_push(characters, objCharacterSonic);
-array_push(characters, objCharacterTails);
-array_push(characters, objCharacterKnuckles);
 
 count = array_length(characters);
 

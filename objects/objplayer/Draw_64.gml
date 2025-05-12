@@ -38,10 +38,11 @@ draw_text(
 	$"\n" +
 	$"animator_image_speed:		{plr.animator.__image_speed}\n" +
 	$"\n" +
+	$"timer underwater	{timer_underwater.get_count()}\n" +
 	$"sprite_index:		{sprite_index}\n" +
 	$"image_index:		{image_index}\n" +
 	$"image_speed:		{image_speed}\n" +
-	$"image_xscale:		{image_xscale}\n"
+	$"image_xscale:		{image_xscale}\n" 
 );
 
 

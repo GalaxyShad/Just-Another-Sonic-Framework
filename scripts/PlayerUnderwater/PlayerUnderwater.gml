@@ -5,7 +5,7 @@ function player_underwater_regain_air(plr) {
 	audio_stop_sound(musDrowning);
 	
 	plr.inst.remaining_air = 30;
-	plr.inst.timer_underwater = DELAY_UNDERWATER_EVENT;
+	plr.inst.timer_underwater.reset();
 };
 
 /// @param {Struct.Player} plr
@@ -34,7 +34,7 @@ function player_underwater_event(plr) {
 		plr.state_machine.change_to("die");
 	}
 	
-	instance_create_depth(plr.inst.x + 6 * plr.inst.image_xscale, plr.inst.y, -1000, objBreathingBubble);
+	instance_create_depth(plr.inst.x + 6 * plr.inst.image_xscale, plr.inst.y, plr.inst.depth-1, objBreathingBubble);
 	
 	plr.inst.remaining_air--;
 };

@@ -16,7 +16,8 @@ character_builder
 	.add_super_palette_fading_colors([ #ffffaa, #ffffaa, #ffffaa, #ffffaa ])
 	.add_super_palette_fading_colors([ #ffac74, #ffce90, #ffffac, #ffffce ])
 
-	.configure_animations(function (anim) {
+	
+	.configure_animations(function (anim) { 
 		anim
 			.add("idle",		sprSonic			)
 			.add("bored",		sprSonicBored		).loop_from(2).speed(.25)
