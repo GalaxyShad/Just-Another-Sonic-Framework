@@ -1,15 +1,15 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmNewTestZone",
+  "%Name":"rm_tile_collision_test",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_5EBD11E4","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},
-    {"name":"inst_5F48F491","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},
-    {"name":"inst_23BE238C","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},
-    {"name":"inst_3CE9E0E6","path":"rooms/rmNewTestZone/rmNewTestZone.yy",},
+    {"name":"inst_5EBD11E4","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
+    {"name":"inst_5F48F491","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
+    {"name":"inst_23BE238C","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
+    {"name":"inst_3CE9E0E6","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -85,7 +85,7 @@
         ],"TileDataFormat":1,},"tilesetId":{"name":"tsS2Solids","path":"tilesets/tsS2Solids/tsS2Solids.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
-  "name":"rmNewTestZone",
+  "name":"rm_tile_collision_test",
   "parent":{
     "name":"Scenes",
     "path":"folders/Just Another Sonic Framework/Scenes.yy",

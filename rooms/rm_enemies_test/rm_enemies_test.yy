@@ -1,15 +1,15 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmEnemiesTest",
+  "%Name":"rm_enemies_test",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_6F165AC7","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},
-    {"name":"inst_FB4FDB7","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},
-    {"name":"inst_23938650","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},
-    {"name":"inst_13CBA875","path":"rooms/rmEnemiesTest/rmEnemiesTest.yy",},
+    {"name":"inst_6F165AC7","path":"rooms/rm_enemies_test/rm_enemies_test.yy",},
+    {"name":"inst_FB4FDB7","path":"rooms/rm_enemies_test/rm_enemies_test.yy",},
+    {"name":"inst_23938650","path":"rooms/rm_enemies_test/rm_enemies_test.yy",},
+    {"name":"inst_13CBA875","path":"rooms/rm_enemies_test/rm_enemies_test.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -21,7 +21,7 @@
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
-  "name":"rmEnemiesTest",
+  "name":"rm_enemies_test",
   "parent":{
     "name":"Scenes",
     "path":"folders/Just Another Sonic Framework/Scenes.yy",

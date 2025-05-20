@@ -1,21 +1,21 @@
 {
   "$GMRoom":"v1",
-  "%Name":"rmJustAnotherSonicFrameworkSplash",
+  "%Name":"rm_JustAnotherSonicFrameworkSplash",
   "creationCodeFile":"",
   "inheritCode":false,
   "inheritCreationOrder":false,
   "inheritLayers":false,
   "instanceCreationOrder":[
-    {"name":"inst_AF59C74","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},
-    {"name":"inst_B17D0B1","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},
-    {"name":"inst_708421D7","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},
-    {"name":"inst_117DC12A","path":"rooms/rmJustAnotherSonicFrameworkSplash/rmJustAnotherSonicFrameworkSplash.yy",},
+    {"name":"inst_AF59C74","path":"rooms/rm_JustAnotherSonicFrameworkSplash/rm_JustAnotherSonicFrameworkSplash.yy",},
+    {"name":"inst_B17D0B1","path":"rooms/rm_JustAnotherSonicFrameworkSplash/rm_JustAnotherSonicFrameworkSplash.yy",},
+    {"name":"inst_708421D7","path":"rooms/rm_JustAnotherSonicFrameworkSplash/rm_JustAnotherSonicFrameworkSplash.yy",},
+    {"name":"inst_117DC12A","path":"rooms/rm_JustAnotherSonicFrameworkSplash/rm_JustAnotherSonicFrameworkSplash.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Instances_1","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v2","%Name":"inst_117DC12A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_117DC12A","objectId":{"name":"objFadeIn","path":"objects/objFadeIn/objFadeIn.yy",},"properties":[
-            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objFadeIn","path":"objects/objFadeIn/objFadeIn.yy",},"propertyId":{"name":"speed","path":"objects/objFadeIn/objFadeIn.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0.1",},
+        {"$GMRInstance":"v2","%Name":"inst_117DC12A","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_117DC12A","objectId":{"name":"objFade","path":"objects/objFade/objFade.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objFade","path":"objects/objFade/objFade.yy",},"propertyId":{"name":"speed","path":"objects/objFade/objFade.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"0.1",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
       ],"layers":[],"name":"Instances_1","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRInstanceLayer":"","%Name":"Instances","depth":100,"effectEnabled":true,"effectType":null,"gridX":16,"gridY":16,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
@@ -31,7 +31,7 @@
       ],"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Assets_1","properties":[],"resourceType":"GMRAssetLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":30.0,"animationSpeedType":0,"colour":4294967295,"depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":{"name":"sprSplashBackground","path":"sprites/sprSplashBackground/sprSplashBackground.yy",},"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
-  "name":"rmJustAnotherSonicFrameworkSplash",
+  "name":"rm_JustAnotherSonicFrameworkSplash",
   "parent":{
     "name":"Scenes",
     "path":"folders/Just Another Sonic Framework/Scenes.yy",

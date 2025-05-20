@@ -21,7 +21,7 @@ main_menu_list = [
             if (!room_exists(inst.room_id)) inst.room_id--;
         },
         action: function(inst) { 
-            instance_create_depth(0, 0, -1000, objFadeIn, {
+            instance_create_depth(0, 0, -1000, objFade, {
                 speed: 0.25,
                 is_fade_in: false,
                 on_finish: [inst, function(ctx) { room_goto(ctx.room_id) }]

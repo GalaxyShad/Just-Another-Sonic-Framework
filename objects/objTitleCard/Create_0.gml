@@ -9,7 +9,9 @@ scr_y = 0;
 scr_w = 428;
 scr_h = 240;
 
-act_number = 1;
+zone_info = parse_room_name_to_level_info(room);
+
+act_number = zone_info.act_number;
 
 zonename_text = {
     START_X: scr_x - 200,
@@ -18,7 +20,7 @@ zonename_text = {
 
     MAIN_Y: scr_y + 64,
     
-    TEXT: "EMERALD HILL",//room_get_name(room)
+    TEXT: string_upper(zone_info.zone_name),
 
     x: 0,
     y: 0,

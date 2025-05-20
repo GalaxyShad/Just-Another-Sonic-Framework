@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"parse_room_name_to_level_info",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"parse_room_name_to_level_info",
+  "parent":{
+    "name":"JustAnotherSonicFramework",
+    "path":"JustAnotherSonicFramework.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

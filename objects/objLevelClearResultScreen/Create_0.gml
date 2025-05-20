@@ -9,10 +9,12 @@ act_sprite_index = 0;
 
 outof_scr_width = 400;
 
-next_scene = rmEHZ1;
+next_scene = rm_emerald_hill_act_1;
 
 calculate_time_bonus = function() {
     var _seconds = global.tick / 100 / 60;
+
+    return 500;
 
     // Sonic 2 method
 

@@ -11,7 +11,7 @@ if (tick == 120) {
 }
 
 if (tick == 504) {
-    instance_create_depth(x, y, -1000, objFadeIn, {
+    instance_create_depth(x, y, -1000, objFade, {
         is_fade_in: false,
         on_finish: [self, function() {
             room_goto_next();

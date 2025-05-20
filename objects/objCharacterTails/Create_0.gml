@@ -78,29 +78,47 @@ character_builder
 			if (p.state_machine.is_one_of(["normal", "look_up", "look_down", "hang", "breathe"])
 				&& p.xsp == 0 && p.ysp == 0	
 			) {
-				draw_sprite_ext(sprTailsTailType1, global.tick/10, x, y, image_xscale, 1, 0, c_white, 255);
+				draw_sprite_ext(
+					sprTailsTailType1, 
+					global.tick/10, 
+					x, y, 
+					image_xscale, 1, 
+					animation_angle, 
+					c_white, 255
+				);
 
 				_props.spr = sprTailsTailType1;
 			} else if (p.state_machine.is_one_of(["push", "skid"])) {
 				_props.spr = sprTailsTailType2;
 				_props.shift = { x: -6, y: +10 };
 
-				draw_sprite_ext(sprTailsTailType2,global.tick/10,x-6*image_xscale,y+10,image_xscale,1,0,c_white,255);
+				draw_sprite_ext(
+					sprTailsTailType2,
+					global.tick/10,
+					x-6*image_xscale,y+10,
+					image_xscale,1,
+					0,
+					c_white, 255
+				);
 			} else if (p.state_machine.current == "spindash") {
 				_props.spr = sprTailsTailType2;
 				_props.shift = { x: -12, y: +10 };
 
-				draw_sprite_ext(sprTailsTailType2, global.tick/10, x-12*image_xscale, y+10, image_xscale, 1, 0, c_white, 255);
+				draw_sprite_ext(
+					sprTailsTailType2, 
+					global.tick/10, 
+					x-12*image_xscale, y+10, 
+					image_xscale, 1, 
+					0, 
+					c_white, 255);
 			} else if (p.state_machine.is_one_of(["roll", "jump"])) {
-				
-
 				draw_sprite_ext(
 					sprTailsTailType3,
 					global.tick/10,
 					x, y,
 					1, p.xsp!=0 ? sign(p.xsp) : 1,
 					point_direction(0, 0, p.xsp, p.ysp),
-					c_white,255
+					c_white, 255
 				);		
 			}
 		}
