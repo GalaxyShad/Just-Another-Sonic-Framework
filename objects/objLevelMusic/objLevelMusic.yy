@@ -38,5 +38,8 @@
     "path":"sprites/sprFrameworkLevelMusic/sprFrameworkLevelMusic.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "DoNotDeactivate",
+  ],
   "visible":false,
 }

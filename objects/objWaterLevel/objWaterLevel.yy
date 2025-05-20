@@ -36,5 +36,8 @@
     "path":"sprites/sprWaterShield/sprWaterShield.yy",
   },
   "spriteMaskId":null,
+  "tags":[
+    "DoNotDeactivate",
+  ],
   "visible":true,
 }

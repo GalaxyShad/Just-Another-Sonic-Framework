@@ -34,6 +34,11 @@ camera = !instance_exists(objCameraSonicWorlds) ?
 
 if (!instance_exists(objSolidTIlemapFinder))
 	instance_create_depth(x, y, depth, objSolidTIlemapFinder);
+
+if (!instance_exists(objDeactivator))
+    instance_create_depth(x, y, depth, objDeactivator, {
+        InstPlayer: id
+    });
 	
 camera.FollowingObject = id;
 

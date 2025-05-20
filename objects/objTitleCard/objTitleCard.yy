@@ -33,5 +33,8 @@
   "solid":false,
   "spriteId":null,
   "spriteMaskId":null,
+  "tags":[
+    "DoNotDeactivate",
+  ],
   "visible":true,
 }

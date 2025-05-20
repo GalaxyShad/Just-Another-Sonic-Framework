@@ -111,6 +111,7 @@
     {"id":{"name":"objCheckpoint","path":"objects/objCheckpoint/objCheckpoint.yy",},},
     {"id":{"name":"objCoconutProjectile","path":"objects/objCoconutProjectile/objCoconutProjectile.yy",},},
     {"id":{"name":"objCorksewTrigger","path":"objects/objCorksewTrigger/objCorksewTrigger.yy",},},
+    {"id":{"name":"objDeactivator","path":"objects/objDeactivator/objDeactivator.yy",},},
     {"id":{"name":"objDJ","path":"objects/objDJ/objDJ.yy",},},
     {"id":{"name":"Object15","path":"objects/Object15/Object15.yy",},},
     {"id":{"name":"Object16","path":"objects/Object16/Object16.yy",},},

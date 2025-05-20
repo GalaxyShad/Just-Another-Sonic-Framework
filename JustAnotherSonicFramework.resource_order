@@ -79,6 +79,7 @@
     {"name":"objCheckpoint","order":7,"path":"objects/objCheckpoint/objCheckpoint.yy",},
     {"name":"objCoconutProjectile","order":3,"path":"objects/objCoconutProjectile/objCoconutProjectile.yy",},
     {"name":"objCorksewTrigger","order":12,"path":"objects/objCorksewTrigger/objCorksewTrigger.yy",},
+    {"name":"objDeactivator","order":15,"path":"objects/objDeactivator/objDeactivator.yy",},
     {"name":"objDJ","order":3,"path":"objects/objDJ/objDJ.yy",},
     {"name":"Object16","order":1,"path":"objects/Object16/Object16.yy",},
     {"name":"Object17","order":2,"path":"objects/Object17/Object17.yy",},
