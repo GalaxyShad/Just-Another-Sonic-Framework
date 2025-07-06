@@ -1,9 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"objCorksewTrigger",
-  "eventList":[],
+  "%Name":"objPlayerStart",
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
-  "name":"objCorksewTrigger",
+  "name":"objPlayerStart",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects Placeable",
@@ -27,10 +29,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sprCorksewTrigger",
-    "path":"sprites/sprCorksewTrigger/sprCorksewTrigger.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
-  "visible":false,
+  "visible":true,
 }

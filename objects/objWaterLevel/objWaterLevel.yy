@@ -11,7 +11,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Editor",
-    "path":"folders/Just Another Sonic Framework/Placeable/Editor.yy",
+    "path":"folders/Just Another Sonic Framework/Objects Placeable/Editor.yy",
   },
   "parentObjectId":null,
   "persistent":false,

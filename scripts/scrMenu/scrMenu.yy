@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scrMenu",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scrMenu",
+  "parent":{
+    "name":"JustAnotherSonicFramework",
+    "path":"JustAnotherSonicFramework.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

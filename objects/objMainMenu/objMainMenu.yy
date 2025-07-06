@@ -1,16 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"objMovingPlatformMover",
+  "%Name":"objMainMenu",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"objMovingPlatformMover",
+  "name":"objMainMenu",
   "overriddenProperties":[],
   "parent":{
-    "name":"Editor",
-    "path":"folders/Just Another Sonic Framework/Objects Placeable/Editor.yy",
+    "name":"Objects",
+    "path":"folders/Just Another Sonic Framework/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"sprMovingPlatformDirection",
-    "path":"sprites/sprMovingPlatformDirection/sprMovingPlatformDirection.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

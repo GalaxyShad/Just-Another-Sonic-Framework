@@ -9,8 +9,8 @@
   "name":"objSpikesMoving",
   "overriddenProperties":[],
   "parent":{
-    "name":"Placeable",
-    "path":"folders/Just Another Sonic Framework/Placeable.yy",
+    "name":"Objects Placeable",
+    "path":"folders/Just Another Sonic Framework/Objects Placeable.yy",
   },
   "parentObjectId":{
     "name":"objSpikes",

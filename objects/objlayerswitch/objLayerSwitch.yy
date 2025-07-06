@@ -7,7 +7,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Layering",
-    "path":"folders/Just Another Sonic Framework/Placeable/Layering.yy",
+    "path":"folders/Just Another Sonic Framework/Objects Placeable/Layering.yy",
   },
   "parentObjectId":null,
   "persistent":false,
