@@ -12,9 +12,7 @@ outof_scr_width = 400;
 next_scene = rm_emerald_hill_act_1;
 
 calculate_time_bonus = function() {
-    var _seconds = global.tick / 100 / 60;
-
-    return 500;
+    var _seconds = global.tick / 100;
 
     // Sonic 2 method
 
