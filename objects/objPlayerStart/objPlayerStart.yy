@@ -29,7 +29,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sprPlayerStart",
+    "path":"sprites/sprPlayerStart/sprPlayerStart.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

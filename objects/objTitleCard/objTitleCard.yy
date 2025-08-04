@@ -10,8 +10,8 @@
   "name":"objTitleCard",
   "overriddenProperties":[],
   "parent":{
-    "name":"Hud",
-    "path":"folders/Just Another Sonic Framework/Objects/Hud.yy",
+    "name":"Editor",
+    "path":"folders/Just Another Sonic Framework/Objects Placeable/Editor.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -31,7 +31,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sprTitleCardIcon",
+    "path":"sprites/sprTitleCardIcon/sprTitleCardIcon.yy",
+  },
   "spriteMaskId":null,
   "tags":[
     "DoNotDeactivate",

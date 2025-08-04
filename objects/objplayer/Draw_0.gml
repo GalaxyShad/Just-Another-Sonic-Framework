@@ -76,7 +76,7 @@ if (!plr.animator.is_animation_exists(plr.animator.current())) {
 	draw_set_halign(fa_left);
 }
 
-if (show_debug_info) {
+if (debugger != noone && debugger.show_debug_info) {
 	plr.collider.draw();
 }
  
