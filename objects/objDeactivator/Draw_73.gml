@@ -29,7 +29,12 @@ if (InstPlayer != noone) {
     );
 }
 
+
 for (var i = 0; i < array_length(do_not_deactivate_list); i++) {
     instance_activate_object(do_not_deactivate_list[i]);
 }
+
+
+
+
 

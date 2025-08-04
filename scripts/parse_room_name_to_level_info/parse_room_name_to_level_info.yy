@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"parse_room_name_to_level_info",
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Just Another Sonic Framework",
+    "path":"folders/Just Another Sonic Framework.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
