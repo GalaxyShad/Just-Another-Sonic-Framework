@@ -28,7 +28,11 @@
   "physicsShape":1,
   "physicsShapePoints":[],
   "physicsStartAwake":true,
-  "properties":[],
+  "properties":[
+    {"$GMObjectProperty":"v1","%Name":"NextRoom","filters":[
+        "GMRoom",
+      ],"listItems":[],"multiselect":false,"name":"NextRoom","rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"resource":{"name":"rm_init","path":"rooms/rm_init/rm_init.yy",},"resourceType":"GMObjectProperty","resourceVersion":"2.0","value":"rm_init","varType":5,},
+  ],
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,

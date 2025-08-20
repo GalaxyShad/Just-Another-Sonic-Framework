@@ -9,7 +9,7 @@ act_sprite_index = 0;
 
 outof_scr_width = 400;
 
-next_scene = rm_emerald_hill_act_1;
+next_scene = NextRoom;
 
 calculate_time_bonus = function() {
     var _seconds = global.tick / 100;

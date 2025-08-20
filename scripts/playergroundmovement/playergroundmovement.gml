@@ -35,8 +35,6 @@ function player_behavior_ground_movement(plr) {
 
 /// @param {Struct.Player} plr
 function player_behavior_slope_decceleration(plr) {
-	return;
-
 	if (!plr.ground) return;
 
 	var _slp_dec_value = plr.physics.slope_factor * plr.collider.get_angle_data().sin;
@@ -57,8 +55,6 @@ function player_behavior_ground_friction(plr) {
 
 /// @param {Struct.Player} plr
 function player_behavior_fall_off_slopes(plr) {
-	return;
-
 	// Sonic 3 method
 	#macro FALL_OFF_SPEED_VALUE 2.5
 	

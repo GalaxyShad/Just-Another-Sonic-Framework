@@ -34,5 +34,5 @@
     "path":"sprites/sprPlayerStart/sprPlayerStart.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
