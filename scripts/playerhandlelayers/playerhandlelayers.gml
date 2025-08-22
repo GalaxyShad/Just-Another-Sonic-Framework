@@ -17,7 +17,7 @@ function player_handle_layers(plr) {
 /// @param {Struct.Player} plr
 function player_handle_corksew(plr) {
 
-	if (plr.collider.collision_object(objCorksewTrigger, PlayerCollisionDetectorSensor.MainDefault) && 
+	if (plr.collider.collision_object(objCorksew, PlayerCollisionDetectorSensor.MainDefault) && 
 		 abs(plr.gsp) > 4 &&
 		 plr.ground
 	) {

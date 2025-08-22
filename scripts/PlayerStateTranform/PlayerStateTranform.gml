@@ -71,7 +71,7 @@ function PlayerStateCorksew() : BaseState() constructor {
 	/// @param {Struct.Player} plr
 	on_step = function(plr) {
 		var _corksew = plr.collider.collision_object(
-			objCorksewTrigger, PlayerCollisionDetectorSensor.MainDefault);
+			objCorksew, PlayerCollisionDetectorSensor.MainDefault);
 
 		if (plr.is_input_jump_pressed()) {
 			plr.xsp = __spd;
@@ -81,13 +81,16 @@ function PlayerStateCorksew() : BaseState() constructor {
 		}
 
 		if (_corksew != noone) {
-			var _w = sprite_get_width(_corksew.sprite_index)  * _corksew.image_xscale;
-			var _h = (sprite_get_height(_corksew.sprite_index) + 8 - 20) * _corksew.image_yscale;
+			var _spr_x = 384;
+			var _off_y = 93;
+			var _off_x = -14;
+			var _h = 35;
+			var _w = 178;
 
-			__corkPos = (plr.inst.x - _corksew.x) / _w;
+			__corkPos = (plr.inst.x - _corksew.x) / _spr_x;
  
 			plr.inst.x += __spd;
-			plr.inst.y = _corksew.y+_h - abs(dsin(__corkPos * 180)) * _h;
+			plr.inst.y = _corksew.y + _off_y - _h + _h*dcos(((plr.inst.x - _corksew.x) / _w) * 180 + _off_x);
 		} else {
 			plr.state_machine.change_to("normal");
 		}

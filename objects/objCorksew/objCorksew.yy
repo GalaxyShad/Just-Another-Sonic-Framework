@@ -1,13 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"objTestCorksew",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":73,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"objCorksew",
+  "eventList":[],
   "managed":true,
-  "name":"objTestCorksew",
+  "name":"objCorksew",
   "overriddenProperties":[],
   "parent":{
     "name":"JustAnotherSonicFramework",
@@ -32,9 +28,9 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sprCorksew",
-    "path":"sprites/sprCorksew/sprCorksew.yy",
+    "name":"sprCorksew_1",
+    "path":"sprites/sprCorksew_1/sprCorksew_1.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }
