@@ -6,8 +6,8 @@
   "name":"objCorksew",
   "overriddenProperties":[],
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Objects Placeable",
+    "path":"folders/Just Another Sonic Framework/Objects Placeable.yy",
   },
   "parentObjectId":null,
   "persistent":false,

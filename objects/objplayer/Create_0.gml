@@ -1,14 +1,4 @@
 
-
-
-var num = audio_get_listener_count();
-for( var i = 0; i < num; i++)
-{
-    var info = audio_get_listener_info(i);
-    audio_set_master_gain(info[? "index"], 0.1);
-    ds_map_destroy(info);
-}
-
 if (!variable_instance_exists(id, "character_builder")) {
 	show_error(
 		"[CHARACTER INITIALISATION ERROR]\n" +

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"place_meeting_platform",
   "parent":{
-    "name":"Just Another Sonic Framework",
-    "path":"folders/Just Another Sonic Framework.yy",
+    "name":"Scripts",
+    "path":"folders/Just Another Sonic Framework/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

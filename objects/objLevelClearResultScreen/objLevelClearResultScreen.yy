@@ -11,8 +11,8 @@
   "name":"objLevelClearResultScreen",
   "overriddenProperties":[],
   "parent":{
-    "name":"Just Another Sonic Framework",
-    "path":"folders/Just Another Sonic Framework.yy",
+    "name":"Objects",
+    "path":"folders/Just Another Sonic Framework/Objects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

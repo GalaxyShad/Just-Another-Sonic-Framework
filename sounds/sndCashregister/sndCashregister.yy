@@ -12,8 +12,8 @@
   "duration":2.1536508,
   "name":"sndCashregister",
   "parent":{
-    "name":"Just Another Sonic Framework",
-    "path":"folders/Just Another Sonic Framework.yy",
+    "name":"Sounds",
+    "path":"folders/Just Another Sonic Framework/Objects/Sounds.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

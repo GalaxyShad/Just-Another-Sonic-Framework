@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":0,
   "parent":{
-    "name":"JustAnotherSonicFramework",
-    "path":"JustAnotherSonicFramework.yyp",
+    "name":"Sprites",
+    "path":"folders/Just Another Sonic Framework/Objects/Sprites.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

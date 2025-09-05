@@ -9,13 +9,11 @@
     {"name":"inst_5F48F491","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
     {"name":"inst_23BE238C","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
     {"name":"inst_3CE9E0E6","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
-    {"name":"inst_25A2FE9C","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
     {"name":"inst_49FACC2E","path":"rooms/rm_tile_collision_test/rm_tile_collision_test.yy",},
   ],
   "isDnd":false,
   "layers":[
     {"$GMRInstanceLayer":"","%Name":"Instances","depth":0,"effectEnabled":true,"effectType":null,"gridX":8,"gridY":8,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
-        {"$GMRInstance":"v2","%Name":"inst_25A2FE9C","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_25A2FE9C","objectId":{"name":"objCorksew","path":"objects/objCorksew/objCorksew.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":192.5,"y":308.0,},
         {"$GMRInstance":"v2","%Name":"inst_5F48F491","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_5F48F491","objectId":{"name":"objSpringRed","path":"objects/objSpringRed/objSpringRed.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objSpringYellow","path":"objects/objSpringYellow/objSpringYellow.yy",},"propertyId":{"name":"spd","path":"objects/objSpringYellow/objSpringYellow.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"64",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":-90.0,"scaleX":1.0,"scaleY":1.0,"x":1312.0,"y":640.0,},
